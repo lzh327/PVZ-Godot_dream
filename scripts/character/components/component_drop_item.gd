@@ -1,9 +1,9 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name DropItemComponent
 ## 掉落战利品组件,可以掉落金币\硬币\钻石\花园植物
 
 @export_group("掉落相关")
-## 可以掉落坐标X范围,若x在该范围内可以掉落
+## 可以掉落坐标X范围,若x在该范围内可以掉落(僵尸逃跑\魅惑离开当前页面)
 @export var can_drop_x_range :Vector2 = Vector2(0, 900)
 ## 掉落金币的概率
 @export var drop_coin_rate := 0.3
@@ -15,6 +15,8 @@ class_name DropItemComponent
 #region 僵尸掉落
 ## 掉落金银钻
 func drop_coin():
+	if not is_enabling:
+		return
 	if global_position.x > can_drop_x_range.y or global_position.x < can_drop_x_range.x:
 		return
 
@@ -26,6 +28,8 @@ func drop_coin():
 
 ## 掉落花园植物
 func drop_garden_plant():
+	if not is_enabling:
+		return
 	var r = randf()
 	if r < drop_garden_plant_rate:
 		Global.create_garden_plant(

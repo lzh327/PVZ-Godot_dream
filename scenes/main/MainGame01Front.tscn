@@ -21,7 +21,7 @@ offset_right = -45.0
 offset_bottom = 178.0
 mouse_filter = 2
 
-[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow1" index="0" instance=ExtResource("2_awllt")]
+[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow1" index="0" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -34,8 +34,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow1" index="1" instance=ExtResource("2_awllt")]
+[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow1" index="1" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -48,8 +61,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow1" index="2" instance=ExtResource("2_awllt")]
+[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow1" index="2" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -62,8 +88,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow1" index="3" instance=ExtResource("2_awllt")]
+[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow1" index="3" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -76,8 +115,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow1" index="4" instance=ExtResource("2_awllt")]
+[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow1" index="4" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -90,8 +142,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow1" index="5" instance=ExtResource("2_awllt")]
+[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow1" index="5" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -104,8 +169,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow1" index="6" instance=ExtResource("2_awllt")]
+[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow1" index="6" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -118,8 +196,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow1" index="7" instance=ExtResource("2_awllt")]
+[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow1" index="7" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -132,8 +223,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow1" index="8" instance=ExtResource("2_awllt")]
+[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow1" index="8" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -146,6 +250,19 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
 [node name="PlantCellsRow2" type="Control" parent="PlantCellsRoot" index="1"]
 layout_direction = 3
@@ -157,7 +274,7 @@ offset_right = -45.0
 offset_bottom = 278.0
 mouse_filter = 2
 
-[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow2" index="0" instance=ExtResource("2_awllt")]
+[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow2" index="0" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -170,8 +287,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow2" index="1" instance=ExtResource("2_awllt")]
+[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow2" index="1" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -184,8 +314,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow2" index="2" instance=ExtResource("2_awllt")]
+[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow2" index="2" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -198,8 +341,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow2" index="3" instance=ExtResource("2_awllt")]
+[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow2" index="3" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -212,8 +368,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow2" index="4" instance=ExtResource("2_awllt")]
+[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow2" index="4" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -226,8 +395,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow2" index="5" instance=ExtResource("2_awllt")]
+[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow2" index="5" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -240,8 +422,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow2" index="6" instance=ExtResource("2_awllt")]
+[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow2" index="6" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -254,8 +449,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow2" index="7" instance=ExtResource("2_awllt")]
+[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow2" index="7" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -268,8 +476,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow2" index="8" instance=ExtResource("2_awllt")]
+[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow2" index="8" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -282,6 +503,19 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
 [node name="PlantCellsRow3" type="Control" parent="PlantCellsRoot" index="2"]
 layout_direction = 3
@@ -293,7 +527,7 @@ offset_right = -45.0
 offset_bottom = 378.0
 mouse_filter = 2
 
-[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow3" index="0" instance=ExtResource("2_awllt")]
+[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow3" index="0" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -306,8 +540,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow3" index="1" instance=ExtResource("2_awllt")]
+[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow3" index="1" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -320,8 +567,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow3" index="2" instance=ExtResource("2_awllt")]
+[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow3" index="2" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -334,8 +594,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow3" index="3" instance=ExtResource("2_awllt")]
+[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow3" index="3" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -348,8 +621,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow3" index="4" instance=ExtResource("2_awllt")]
+[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow3" index="4" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -362,8 +648,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow3" index="5" instance=ExtResource("2_awllt")]
+[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow3" index="5" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -376,8 +675,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow3" index="6" instance=ExtResource("2_awllt")]
+[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow3" index="6" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -390,8 +702,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow3" index="7" instance=ExtResource("2_awllt")]
+[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow3" index="7" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -404,8 +729,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow3" index="8" instance=ExtResource("2_awllt")]
+[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow3" index="8" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -418,6 +756,19 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
 [node name="PlantCellsRow4" type="Control" parent="PlantCellsRoot" index="3"]
 layout_direction = 3
@@ -429,7 +780,7 @@ offset_right = -45.0
 offset_bottom = 477.0
 mouse_filter = 2
 
-[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow4" index="0" instance=ExtResource("2_awllt")]
+[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow4" index="0" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -442,8 +793,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow4" index="1" instance=ExtResource("2_awllt")]
+[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow4" index="1" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -456,8 +820,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow4" index="2" instance=ExtResource("2_awllt")]
+[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow4" index="2" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -470,8 +847,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow4" index="3" instance=ExtResource("2_awllt")]
+[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow4" index="3" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -484,8 +874,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow4" index="4" instance=ExtResource("2_awllt")]
+[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow4" index="4" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -498,8 +901,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow4" index="5" instance=ExtResource("2_awllt")]
+[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow4" index="5" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -512,8 +928,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow4" index="6" instance=ExtResource("2_awllt")]
+[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow4" index="6" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -526,8 +955,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow4" index="7" instance=ExtResource("2_awllt")]
+[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow4" index="7" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -540,8 +982,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow4" index="8" instance=ExtResource("2_awllt")]
+[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow4" index="8" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -554,6 +1009,19 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
 [node name="PlantCellsRow5" type="Control" parent="PlantCellsRoot" index="4"]
 layout_direction = 3
@@ -565,7 +1033,7 @@ offset_right = -45.0
 offset_bottom = 574.0
 mouse_filter = 2
 
-[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow5" index="0" instance=ExtResource("2_awllt")]
+[node name="PlantCell1" parent="PlantCellsRoot/PlantCellsRow5" index="0" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -578,8 +1046,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow5" index="1" instance=ExtResource("2_awllt")]
+[node name="PlantCell2" parent="PlantCellsRoot/PlantCellsRow5" index="1" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -592,8 +1073,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow5" index="2" instance=ExtResource("2_awllt")]
+[node name="PlantCell3" parent="PlantCellsRoot/PlantCellsRow5" index="2" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -606,8 +1100,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow5" index="3" instance=ExtResource("2_awllt")]
+[node name="PlantCell4" parent="PlantCellsRoot/PlantCellsRow5" index="3" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -620,8 +1127,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow5" index="4" instance=ExtResource("2_awllt")]
+[node name="PlantCell5" parent="PlantCellsRoot/PlantCellsRow5" index="4" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -634,8 +1154,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow5" index="5" instance=ExtResource("2_awllt")]
+[node name="PlantCell6" parent="PlantCellsRoot/PlantCellsRow5" index="5" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -648,8 +1181,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow5" index="6" instance=ExtResource("2_awllt")]
+[node name="PlantCell7" parent="PlantCellsRoot/PlantCellsRow5" index="6" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -662,8 +1208,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow5" index="7" instance=ExtResource("2_awllt")]
+[node name="PlantCell8" parent="PlantCellsRoot/PlantCellsRow5" index="7" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -676,8 +1235,21 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
-[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow5" index="8" instance=ExtResource("2_awllt")]
+[node name="PlantCell9" parent="PlantCellsRoot/PlantCellsRow5" index="8" node_paths=PackedStringArray("plant_in_cell") instance=ExtResource("2_awllt")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -690,6 +1262,19 @@ grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+plant_cell_type = 0
+row_col = Vector2i(0, 0)
+plant_in_cell = {
+0: null,
+1: null,
+2: null,
+3: null,
+4: null
+}
+can_common_plant = true
+curr_special_state_plant = Dictionary[int, bool]({})
+can_common_zombie = true
+curr_special_state_zombie = Dictionary[int, bool]({})
 
 [node name="Zombies_row1" type="Node2D" parent="ZombiesRoot" index="0"]
 z_index = 10
@@ -726,5 +1311,5 @@ script = ExtResource("4_mevug")
 [node name="ZombieCreatePosition" type="Marker2D" parent="ZombiesRoot/Zombies_row5" index="0"]
 position = Vector2(837, 554)
 
-[node name="DetectComponentGlobal" parent="." index="14"]
+[node name="DetectComponentGlobal" parent="." index="15"]
 visible = false

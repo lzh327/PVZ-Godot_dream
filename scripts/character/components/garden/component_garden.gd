@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name GardenComponent
 
 ## 植物身体
@@ -232,6 +232,4 @@ func get_curr_plant_data() -> Dictionary:
 		"curr_plant_condition": curr_plant_condition
 	}
 	return data
-
-
 

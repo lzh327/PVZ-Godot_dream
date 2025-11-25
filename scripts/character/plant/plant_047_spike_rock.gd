@@ -1,7 +1,7 @@
 extends Plant000Base
 class_name Plant047SpikeRock
 
-@onready var detect_component: AttackRayComponent = $AttackRayComponent
+@onready var detect_component: DetectComponent = $DetectComponent
 
 @export var attack_value:=20
 @export_group("动画状态")
@@ -11,7 +11,7 @@ class_name Plant047SpikeRock
 
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	detect_component.signal_can_attack.connect(func():is_attack = true)
 	detect_component.signal_not_can_attack.connect(func():is_attack = false)
@@ -20,7 +20,7 @@ func init_norm_signal_connect():
 
 ## 攻击一次
 func _attack_once():
-	SoundManager.play_plant_SFX(Global.PlantType.P001PeaShooterSingle, "Throw")
+	SoundManager.play_character_SFX("Throw")
 	var all_enemy_can_be_attacked = detect_component.get_all_enemy_can_be_attacked()
 	for i in range(all_enemy_can_be_attacked.size() - 1, -1, -1):
 		var enemy:Character000Base = all_enemy_can_be_attacked[i]

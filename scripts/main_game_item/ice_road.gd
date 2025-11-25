@@ -43,7 +43,7 @@ func ice_road_init(lane:int):
 				curr_i_plant_cell = i + 1
 				break
 	## 更新冰道数据
-	Global.main_game.plant_cell_manager.all_ice_roads[lane].append(self)
+	Global.main_game.zombie_manager.all_ice_roads[lane].append(self)
 
 ## 冰道每次更新, 将冰冻的scale.x设置为-1，右边缘不变，修改大小即可
 func expand_size(expand_x:float):
@@ -69,6 +69,6 @@ func _on_ice_road_disappear_timer_timeout() -> void:
 	ice_road_disappear()
 
 func ice_road_disappear():
-	Global.main_game.plant_cell_manager.all_ice_roads[lane].erase(self)
+	Global.main_game.zombie_manager.all_ice_roads[lane].erase(self)
 	signal_ice_road_disappear.emit()
 	queue_free()

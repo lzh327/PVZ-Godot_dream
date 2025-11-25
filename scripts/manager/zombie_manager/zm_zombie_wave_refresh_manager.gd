@@ -56,6 +56,7 @@ var curr_wave_type := ZombieWaveManager.E_WaveType.Norm
 var curr_wave := -1
 
 ## 刷新下一波信号（当前波结束时调用）
+@warning_ignore("unused_signal")
 signal signal_refresh
 ## 当前波自然刷新时间（更新完当前波后触发,给波次管理器当前波自然刷新时间）
 signal signal_norm_time(time:float)
@@ -70,20 +71,20 @@ func init_zombie_wave_refresh_manager():
 	pass
 
 ## 每次刷新僵尸后获取当前波次生成僵尸血量值
-func update_wave_health_data(wave_total_health:int, curr_wave_type:ZombieWaveManager.E_WaveType, curr_wave:int):
-	self.curr_wave_type = curr_wave_type
-	self.curr_wave = curr_wave
+func update_wave_health_data(curr_wave_total_health:int, new_curr_wave_type:ZombieWaveManager.E_WaveType, new_curr_wave:int):
+	self.curr_wave_type = new_curr_wave_type
+	self.curr_wave = new_curr_wave
 	curr_refresh_status = E_RefreshStatus.DisableRefresh
 
-	match curr_wave_type:
+	match self.curr_wave_type:
 		## 普通波或旗帜波会触发残半刷新，更新当前残半刷新数据
 		ZombieWaveManager.E_WaveType.Norm, ZombieWaveManager.E_WaveType.Flag:
 			curr_can_refresh_type = E_RefreshType.HalfRefresh
-			self.wave_total_health = wave_total_health
+			self.wave_total_health = curr_wave_total_health
 			self.wave_current_health = self.wave_total_health
 			## 残半刷新血量倍率
 			var refresh_threshold = randf_range(refresh_threshold_range.x, refresh_threshold_range.y)
-			refresh_health = int(refresh_threshold * wave_total_health)
+			refresh_health = int(refresh_threshold * self.wave_total_health)
 			## 旗前波 僵尸全部死亡触发提前刷新
 		ZombieWaveManager.E_WaveType.FlagFront:
 			curr_can_refresh_type = E_RefreshType.TotalRefresh

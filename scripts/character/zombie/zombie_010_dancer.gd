@@ -41,7 +41,7 @@ func init_anim_speed_dance(animation_origin_speed, curr_speed, jackson_init_rand
 	self.animation_origin_speed = animation_origin_speed
 	update_speed_factor(jackson_init_random_speed, E_Influence_Speed_Factor.InitRandomSpeed)
 	anim_component.set_animation_origin_speed(animation_origin_speed)
-	anim_component.update_anim_speed(jackson_init_random_speed)
+	anim_component.owner_update_speed(jackson_init_random_speed)
 	anim_component.update_anim_speed_scale(curr_speed)
 
 ## 随机初始化角色速度,继承重写

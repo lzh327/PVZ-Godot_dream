@@ -11,7 +11,7 @@
 [ext_resource type="Animation" uid="uid://cnyy74xwbja8u" path="res://animation/character/plant/030_star_fruit/StarFruit_idle.tres" id="8_ryetw"]
 [ext_resource type="Animation" uid="uid://xbwv3dnuagpi" path="res://animation/character/plant/030_star_fruit/StarFruit_shoot.tres" id="9_2bi5b"]
 [ext_resource type="Script" uid="uid://d27ifln7bjwup" path="res://scripts/character/components/attack_behavior_component/component_attack_bullet_base.gd" id="9_j1qv8"]
-[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/attack_ray_component/component_attack_ray.gd" id="10_us3df"]
+[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/detect_component/component_detect.gd" id="10_us3df"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_el77c"]
 _data = {
@@ -35,6 +35,7 @@ fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lia21"]
 graph_offset = Vector2(-179.334, 73.7962)
+nodes/output/position = Vector2(560, 300)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_el77c")
 nodes/Animation/position = Vector2(-80, 300)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_yn2qs")
@@ -45,16 +46,14 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_65373")
 nodes/TimeScale/position = Vector2(360, 300)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_w8ucd")
 "nodes/TimeScale 2/position" = Vector2(-40, 500)
-nodes/output/position = Vector2(560, 300)
-node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"TimeScale 2", &"TimeScale", 0, &"OneShot", &"TimeScale 2", 0, &"Animation 2", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"OneShot", 0, &"Animation", &"OneShot", 1, &"TimeScale 2", &"TimeScale", 0, &"OneShot", &"TimeScale 2", 0, &"Animation 2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ds8om"]
 size = Vector2(800, 5)
 
-[node name="Plant030StarFruit" node_paths=PackedStringArray("special_component_update_pos_in_slope") instance=ExtResource("1_nndnm")]
+[node name="Plant030StarFruit" instance=ExtResource("1_nndnm")]
 script = ExtResource("2_ds8om")
 plant_type = 30
-special_component_update_pos_in_slope = [NodePath("AttackComponent")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-40, -59)
@@ -71,8 +70,8 @@ visible = false
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(2.61324, 10.1401)
-scale = Vector2(0.716268, 0.697665)
+position = Vector2(5.6552315, 7.863179)
+scale = Vector2(0.65489537, 0.7408285)
 texture = ExtResource("2_j1qv8")
 centered = false
 
@@ -83,23 +82,22 @@ texture = ExtResource("3_ds8om")
 centered = false
 
 [node name="Starfruit_smile" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
-position = Vector2(33.9599, 35.3467)
-scale = Vector2(0.741206, 0.704533)
-skew = -0.023857
+position = Vector2(34.809204, 34.78159)
+scale = Vector2(0.65489537, 0.7408285)
 texture = ExtResource("3_us3df")
 centered = false
 
 [node name="Starfruit_leaf" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(27.4335, 4.75993)
-rotation = 0.0818116
-scale = Vector2(0.706, 0.74414)
-skew = -0.0409634
+position = Vector2(29.88159, 1.7276158)
+rotation = 0.22175176
+scale = Vector2(0.6579874, 0.7348285)
+skew = 0.044597022
 texture = ExtResource("4_ds8om")
 centered = false
 
 [node name="Starfruit_stem" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
-position = Vector2(29.3, 6.64669)
-scale = Vector2(0.726537, 0.714801)
+position = Vector2(30.6, 4.081589)
+scale = Vector2(0.60779077, 0.82080334)
 texture = ExtResource("5_uefxc")
 centered = false
 
@@ -112,8 +110,8 @@ centered = false
 
 [node name="Starfruit_eyes2" type="Sprite2D" parent="Body/BodyCorrect" index="9"]
 visible = false
-position = Vector2(28.8582, 26)
-scale = Vector2(0.714103, 0.714)
+position = Vector2(29.58107, 25.181591)
+scale = Vector2(0.6727955, 0.795841)
 texture = ExtResource("6_0ews2")
 centered = false
 
@@ -161,58 +159,58 @@ markers_2d_bullet = [NodePath("../Body/BodyCorrect/Marker2DBullet"), NodePath(".
 
 [node name="BulletAttackCdTimer" type="Timer" parent="AttackComponent" index="0"]
 
-[node name="AttackRayComponent" type="Node2D" parent="AttackComponent" index="1"]
+[node name="DetectComponent" type="Node2D" parent="AttackComponent" index="1"]
 script = ExtResource("10_us3df")
 plant_enemy_collision_lay = 512
 zomie_enemy_collision_lay = 1280
 
-[node name="Area2D" type="Area2D" parent="AttackComponent/AttackRayComponent" index="0"]
+[node name="Area2D" type="Area2D" parent="AttackComponent/DetectComponent" index="0"]
 position = Vector2(0, -25)
 rotation = -0.3418
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_ds8om")
 
-[node name="Area2D2" type="Area2D" parent="AttackComponent/AttackRayComponent" index="1"]
+[node name="Area2D2" type="Area2D" parent="AttackComponent/DetectComponent" index="1"]
 position = Vector2(0, -25)
 rotation = -1.5708
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D2" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D2" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_ds8om")
 
-[node name="Area2D3" type="Area2D" parent="AttackComponent/AttackRayComponent" index="2"]
+[node name="Area2D3" type="Area2D" parent="AttackComponent/DetectComponent" index="2"]
 position = Vector2(0, -25)
 rotation = -3.14159
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D3" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D3" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_ds8om")
 
-[node name="Area2D4" type="Area2D" parent="AttackComponent/AttackRayComponent" index="3"]
+[node name="Area2D4" type="Area2D" parent="AttackComponent/DetectComponent" index="3"]
 position = Vector2(0, -25)
 rotation = -4.42851
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D4" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D4" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_ds8om")
 
-[node name="Area2D5" type="Area2D" parent="AttackComponent/AttackRayComponent" index="4"]
+[node name="Area2D5" type="Area2D" parent="AttackComponent/DetectComponent" index="4"]
 position = Vector2(0, -25)
 rotation = -5.41052
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D5" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D5" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_ds8om")
 

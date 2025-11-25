@@ -8,7 +8,7 @@ var attack_cd_timer:Timer
 
 @export var attack_cd:float = 5
 
-func init_norm():
+func ready_norm():
 	super()
 	attack_cd_timer = Timer.new()
 

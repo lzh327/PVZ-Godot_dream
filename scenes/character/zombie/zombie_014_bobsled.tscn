@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://b8d5t24ffmpix"]
+[gd_scene load_steps=63 format=3 uid="uid://b8d5t24ffmpix"]
 
 [ext_resource type="PackedScene" uid="uid://cktksmdbn2nmn" path="res://scenes/character/zombie/zombie_000_base.tscn" id="1_lm26a"]
 [ext_resource type="Script" uid="uid://d8stg7p2wiw4" path="res://scripts/character/zombie/zombie_014_bobsled.gd" id="2_2l04k"]
@@ -423,7 +423,7 @@ tracks/30/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.008727, 0.022689, 0.031416, 0.043633, 0.054105, 0.066323, 0.07854, 0.066323, 0.054105, 0.043633, 0.031416, 0.022689, 0.008727, 0.0]
+"values": [0.0, 0.008727, 0.022689, 0.031416, 0.043633, 0.054105, 0.06632299999999999, 0.07854, 0.06632299999999999, 0.054105, 0.043633, 0.031416, 0.022689, 0.008727, 0.0]
 }
 tracks/31/type = "value"
 tracks/31/imported = false
@@ -1383,7 +1383,7 @@ tracks/110/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.015708, -0.038397, -0.024435, -0.012217, 0.0, 0.008727, 0.020944, 0.05236, 0.083776, 0.066323, 0.048869, 0.031416, 0.013963, 0.0]
+"values": [0.0, -0.015708, -0.038397, -0.024435, -0.012217, 0.0, 0.008727, 0.020944, 0.05236, 0.083776, 0.06632299999999999, 0.048869, 0.031416, 0.013963, 0.0]
 }
 tracks/111/type = "value"
 tracks/111/imported = false
@@ -4599,7 +4599,7 @@ tracks/30/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.008727, 0.022689, 0.031416, 0.043633, 0.054105, 0.066323, 0.07854, 0.066323, 0.054105, 0.043633, 0.031416, 0.022689, 0.008727, 0.0]
+"values": [0.0, 0.008727, 0.022689, 0.031416, 0.043633, 0.054105, 0.06632299999999999, 0.07854, 0.06632299999999999, 0.054105, 0.043633, 0.031416, 0.022689, 0.008727, 0.0]
 }
 tracks/31/type = "value"
 tracks/31/imported = false
@@ -5559,7 +5559,7 @@ tracks/110/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.015708, -0.038397, -0.024435, -0.012217, 0.0, 0.008727, 0.020944, 0.05236, 0.083776, 0.066323, 0.048869, 0.031416, 0.013963, 0.0]
+"values": [0.0, -0.015708, -0.038397, -0.024435, -0.012217, 0.0, 0.008727, 0.020944, 0.05236, 0.083776, 0.06632299999999999, 0.048869, 0.031416, 0.013963, 0.0]
 }
 tracks/111/type = "value"
 tracks/111/imported = false
@@ -8432,27 +8432,18 @@ _data = {
 script = ExtResource("25_yqynq")
 sprite_change = Array[NodePath]([NodePath("../ZombieBobsled1")])
 sprite_change_texture = Array[Texture2D]([ExtResource("27_mbxdl")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_0upo2"]
 script = ExtResource("25_yqynq")
 sprite_change = Array[NodePath]([NodePath("../ZombieBobsled1")])
 sprite_change_texture = Array[Texture2D]([ExtResource("28_csye1")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_227y1"]
 script = ExtResource("25_yqynq")
 sprite_change = Array[NodePath]([NodePath("../ZombieBobsled1")])
 sprite_change_texture = Array[Texture2D]([ExtResource("29_1ko8m")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Animation" id="Animation_k73pq"]
@@ -9476,15 +9467,8 @@ _data = {
 &"RESET": SubResource("Animation_7rguq")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xmic"]
-size = Vector2(70, 5)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ko8m"]
-radius = 40.0
-height = 200.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_csye1"]
-radius = 40.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mbxdl"]
+radius = 50.0
 height = 200.0
 
 [node name="Zombie014Bobsled" instance=ExtResource("1_lm26a")]
@@ -10266,22 +10250,23 @@ libraries = {
 &"": SubResource("AnimationLibrary_bab66")
 }
 
-[node name="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2d" index="0"]
-position = Vector2(-15, 0)
-shape = SubResource("RectangleShape2D_5xmic")
-
 [node name="MoveComponent" parent="." index="11"]
 ori_speed = 30.0
 
-[node name="CollisionShape2D" parent="BeAttackedBoxComponent/HurtBoxDetection" index="0"]
-position = Vector2(40, -40)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_1ko8m")
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetection" index="0"]
+position = Vector2(40, -50)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mbxdl")
 
-[node name="CollisionShape2D" parent="BeAttackedBoxComponent/HurtBoxReal" index="0"]
-position = Vector2(40, -40)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_csye1")
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxReal" index="0"]
+position = Vector2(40, -50)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mbxdl")
+
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetectionOnAttack" index="0"]
+position = Vector2(40, -50)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_mbxdl")
 
 [node name="JudgeIsInIceRoadTimer" type="Timer" parent="." index="15"]
 wait_time = 0.3

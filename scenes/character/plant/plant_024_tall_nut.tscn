@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c78n78gfrkolq"]
+[gd_scene load_steps=20 format=3 uid="uid://c78n78gfrkolq"]
 
 [ext_resource type="PackedScene" uid="uid://c5cke4cm02um7" path="res://scenes/character/plant/plant_000_base.tscn" id="1_qbo1e"]
 [ext_resource type="Texture2D" uid="uid://bx76a21ng1hd1" path="res://assets/reanim/Tallnut_body.png" id="2_814ck"]
@@ -8,14 +8,13 @@
 [ext_resource type="Script" uid="uid://4o1wtnifn4tq" path="res://scripts/character/components/hp_component/component_hp_stage_change.gd" id="5_ecgny"]
 [ext_resource type="Texture2D" uid="uid://dx41doer20tqv" path="res://assets/reanim/Tallnut_blink2.png" id="6_ecgny"]
 [ext_resource type="Script" uid="uid://jl0nl4a234bc" path="res://scripts/resources/resource_body_change.gd" id="6_lgypc"]
+[ext_resource type="Texture2D" uid="uid://d0q3vvxpeqiia" path="res://assets/reanim/Tallnut_cracked1.png" id="9_0h6i8"]
+[ext_resource type="Texture2D" uid="uid://c6a2y7jjdxove" path="res://assets/reanim/Tallnut_cracked2.png" id="10_2d134"]
 
 [sub_resource type="Resource" id="Resource_6hwhb"]
 script = ExtResource("6_lgypc")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/blink")])
 sprite_change_texture = Array[Texture2D]([ExtResource("3_se5o2"), ExtResource("6_ecgny")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Animation" id="Animation_6hwhb"]
@@ -45,47 +44,41 @@ animation = &"Tallnut_idle"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_uxf8y"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ecgny"]
+nodes/output/position = Vector2(520, 80)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_uyw20")
 nodes/Animation/position = Vector2(100, 80)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_uxf8y")
 nodes/TimeScale/position = Vector2(340, 60)
-nodes/output/position = Vector2(520, 80)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="Resource" id="Resource_sum7j"]
 script = ExtResource("6_lgypc")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
+sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_idle")])
+sprite_change_texture = Array[Texture2D]([ExtResource("9_0h6i8")])
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_hev76"]
 script = ExtResource("6_lgypc")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
+sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_idle")])
+sprite_change_texture = Array[Texture2D]([ExtResource("10_2d134")])
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0h6i8"]
 size = Vector2(50, 50)
 
-[node name="Plant024TallNut" instance=ExtResource("1_qbo1e")]
+[node name="Plant024TallNut" node_paths=PackedStringArray("node2d_detect_in_slope") instance=ExtResource("1_qbo1e")]
 script = ExtResource("2_lgypc")
 plant_type = 24
 is_can_ladder = true
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("Area2DStopJump")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-43, -74)
 
 [node name="Anim_idle" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(-0.924795, -35.7253)
-rotation = -0.00479856
-scale = Vector2(0.805499, 0.807752)
-skew = 0.00109155
+position = Vector2(0.33533943, -36.08421)
+rotation = 0.0068108994
+scale = Vector2(0.80580455, 0.80729324)
 texture = ExtResource("2_814ck")
 centered = false
 
@@ -112,7 +105,7 @@ texture = ExtResource("3_se5o2")
 [node name="HpComponent" parent="." index="3"]
 max_hp = 8000
 
-[node name="BlinkComponent" parent="." index="6"]
+[node name="BlinkComponent" parent="." index="5"]
 all_blink_body_change = Array[ExtResource("6_lgypc")]([SubResource("Resource_6hwhb")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]

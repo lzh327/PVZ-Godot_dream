@@ -30,9 +30,6 @@ corner_radius_bottom_left = 6
 [sub_resource type="LabelSettings" id="LabelSettings_813jy"]
 font = ExtResource("2_bie68")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bie68"]
-size = Vector2(40, 80)
-
 [sub_resource type="Animation" id="Animation_6pj1d"]
 resource_name = "zzz"
 length = 3.00001
@@ -152,6 +149,9 @@ _data = {
 &"zzz": SubResource("Animation_6pj1d")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bie68"]
+size = Vector2(40, 80)
+
 [node name="Plant000Base" node_paths=PackedStringArray("node_no_change_direction") instance=ExtResource("1_e772o")]
 script = ExtResource("2_4jr4d")
 plant_type = 0
@@ -161,6 +161,9 @@ is_can_ladder = false
 is_sleeping = false
 is_garden_aquarium = false
 node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), NodePath("GardenComponent")]
+
+[node name="HpComponent" parent="." index="3"]
+max_hp = 300
 
 [node name="HpControl" type="Control" parent="HpComponent" index="0"]
 unique_name_in_owner = true
@@ -213,19 +216,7 @@ label_settings = SubResource("LabelSettings_813jy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HurtBoxDetection" parent="BeAttackedBoxComponent" index="0"]
-collision_layer = 2
-collision_mask = 0
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeAttackedBoxComponent/HurtBoxDetection" index="0"]
-position = Vector2(0, -40)
-shape = SubResource("RectangleShape2D_bie68")
-
-[node name="HurtBoxReal" parent="BeAttackedBoxComponent" index="1"]
-collision_layer = 256
-
-[node name="SleepComponent" type="Node2D" parent="." index="5" node_paths=PackedStringArray("sleep_influence_components")]
+[node name="SleepComponent" type="Node2D" parent="." index="4" node_paths=PackedStringArray("sleep_influence_components")]
 unique_name_in_owner = true
 visible = false
 script = ExtResource("5_813jy")
@@ -255,13 +246,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_vonjk")
 }
 
-[node name="BlinkComponent" type="Node2D" parent="." index="6"]
+[node name="BlinkComponent" type="Node2D" parent="." index="5"]
 unique_name_in_owner = true
 script = ExtResource("6_813jy")
 
 [node name="BlinkTimer" type="Timer" parent="BlinkComponent" index="0"]
 
-[node name="GardenComponent" type="Node2D" parent="." index="7"]
+[node name="GardenComponent" type="Node2D" parent="." index="6"]
 unique_name_in_owner = true
 z_index = 1
 script = ExtResource("7_at3ho")
@@ -271,6 +262,18 @@ one_shot = true
 
 [node name="CreateCoinTimer" type="Timer" parent="GardenComponent" index="1"]
 one_shot = true
+
+[node name="HurtBoxDetection" parent="HurtBoxComponent" index="0"]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetection" index="0"]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_bie68")
+
+[node name="HurtBoxReal" parent="HurtBoxComponent" index="1"]
+collision_layer = 256
 
 [connection signal="timeout" from="BlinkComponent/BlinkTimer" to="BlinkComponent" method="_on_blink_timer_timeout"]
 [connection signal="timeout" from="GardenComponent/NeedTimer" to="GardenComponent" method="_on_need_timer_timeout"]

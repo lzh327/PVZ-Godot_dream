@@ -6,7 +6,7 @@ class_name Plant043GloomShroom
 var all_bullet_fx_particles :Array[Array]
 var num_attack :int = 0
 
-func init_norm():
+func ready_norm():
 	super()
 	for bullet_fx in all_bullet_fx:
 		var bullet_fx_particles :Array[GPUParticles2D] = []
@@ -15,7 +15,7 @@ func init_norm():
 		all_bullet_fx_particles.append(bullet_fx_particles)
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	signal_update_speed.connect(attack_component.owner_update_speed)
 

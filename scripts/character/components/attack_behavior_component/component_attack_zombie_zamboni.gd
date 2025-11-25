@@ -10,5 +10,5 @@ func attack_end():
 	pass
 
 ## 修改速度
-func owner_update_speed(speed_product:float):
+func owner_update_speed(_speed_product:float):
 	pass

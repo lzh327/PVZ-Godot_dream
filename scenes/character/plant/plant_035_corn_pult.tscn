@@ -25,7 +25,7 @@
 [ext_resource type="Animation" uid="uid://bsio1cqmdn56g" path="res://animation/character/plant/035_corn_pult/Cornpult_idle.tres" id="22_lnxox"]
 [ext_resource type="Animation" uid="uid://dd6u5i6ynqwe3" path="res://animation/character/plant/035_corn_pult/Cornpult_shooting.tres" id="23_yokan"]
 [ext_resource type="Script" uid="uid://df0eavyfmbrdw" path="res://scripts/character/components/attack_behavior_component/component_attack_bullet_corn.gd" id="24_t3okm"]
-[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/attack_ray_component/component_attack_ray.gd" id="25_btqik"]
+[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/detect_component/component_detect.gd" id="25_btqik"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sp1kv"]
 _data = {
@@ -48,6 +48,7 @@ fadeout_time = 0.2
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_1v5nr"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lqpdm"]
+nodes/output/position = Vector2(560, 120)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_j3uml")
 nodes/Animation/position = Vector2(20, 60)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_px547")
@@ -58,38 +59,36 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_1v5nr")
 nodes/TimeScale/position = Vector2(400, 100)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_btqik")
 "nodes/TimeScale 2/position" = Vector2(40, 280)
-nodes/output/position = Vector2(560, 120)
-node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"TimeScale 2", &"TimeScale", 0, &"OneShot", &"TimeScale 2", 0, &"Animation 2", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"OneShot", 0, &"Animation", &"OneShot", 1, &"TimeScale 2", &"TimeScale", 0, &"OneShot", &"TimeScale 2", 0, &"Animation 2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1v5nr"]
 size = Vector2(800, 5)
 
-[node name="Plant035CornPult" instance=ExtResource("1_1i1ru")]
+[node name="Plant035CornPult" node_paths=PackedStringArray("node2d_detect_in_slope") instance=ExtResource("1_1i1ru")]
 script = ExtResource("2_btqik")
 plant_type = 35
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("AttackComponent/DetectComponent")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-45, -67)
 
 [node name="Cornpult_husk5" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(58.2594, 56.8482)
-rotation = 0.0294136
-scale = Vector2(0.911263, 0.832594)
-skew = 0.440032
+position = Vector2(55.66142, 55.474277)
+rotation = -0.002693465
+scale = Vector2(0.79832816, 0.80167186)
 texture = ExtResource("2_px547")
 centered = false
 
 [node name="Cornpult_husk6" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(13.6406, 56.6482)
-rotation = -0.0522976
-scale = Vector2(0.918004, 0.688366)
-skew = 0.0522976
+position = Vector2(16.864302, 54.997116)
+rotation = 0.004489151
+scale = Vector2(0.79832816, 0.80167186)
 texture = ExtResource("3_j3uml")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(22.6259, 19.7482)
-scale = Vector2(0.829594, 0.777147)
+position = Vector2(23.374279, 18.251442)
+scale = Vector2(0.8009002, 0.799357)
 texture = ExtResource("4_t3okm")
 centered = false
 
@@ -101,130 +100,131 @@ texture = ExtResource("5_btqik")
 centered = false
 
 [node name="Cabbagepult_basket" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(-18.1, 18.0486)
-rotation = -0.176675
-scale = Vector2(0.599, 0.599)
+position = Vector2(-16.268515, 3.9827046)
+rotation = 0.08704542
+scale = Vector2(0.5998714, 0.5998714)
 texture = ExtResource("6_1v5nr")
 centered = false
 
 [node name="Cabbagepult_basket2" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
-position = Vector2(-17.9371, 18.2116)
-rotation = -0.176675
-scale = Vector2(0.599, 0.599)
+position = Vector2(-16.168514, 4.182705)
+rotation = 0.08704542
+scale = Vector2(0.5998714, 0.5998714)
 texture = ExtResource("7_lqpdm")
 centered = false
 
 [node name="Cornpult_kernal" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(-17.3, 24.4116)
-rotation = -0.970348
-scale = Vector2(0.946629, 0.946629)
+position = Vector2(-16.30133, 10.019733)
+rotation = -0.6747848
+scale = Vector2(0.94961417, 0.94961417)
 texture = ExtResource("8_jjugt")
 centered = false
 
 [node name="Cornpult_butter" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
 visible = false
-position = Vector2(-22.6371, -8.84779)
+position = Vector2(-21.935698, -19.057205)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_ddfhy")
 centered = false
 
 [node name="Cabbagepult_basket_overlay" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
-position = Vector2(-18.0741, 17.9116)
-rotation = -0.176675
-scale = Vector2(0.599, 0.599)
+position = Vector2(-16.268515, 3.6955652)
+rotation = 0.08704542
+scale = Vector2(0.5998714, 0.5998714)
 texture = ExtResource("7_lqpdm")
 centered = false
 
 [node name="Cornpult_husk3" type="Sprite2D" parent="Body/BodyCorrect" index="9"]
-position = Vector2(9.64063, 58.6741)
-scale = Vector2(0.88404, 0.784518)
+position = Vector2(12.464301, 58.209976)
+rotation = 0.0022445112
+scale = Vector2(0.79832816, 0.80167186)
 texture = ExtResource("10_yu88b")
 centered = false
 
 [node name="Cornpult_husktip3" type="Sprite2D" parent="Body/BodyCorrect" index="10"]
-position = Vector2(3.96653, 60.9853)
-rotation = -0.178935
-scale = Vector2(0.917004, 0.729701)
-skew = -0.0165492
+position = Vector2(7.867184, 58.907093)
+rotation = 0.015711837
+scale = Vector2(0.79832816, 0.80154324)
 texture = ExtResource("11_s88wv")
 centered = false
 
 [node name="Cornpult_husk1" type="Sprite2D" parent="Body/BodyCorrect" index="11"]
-position = Vector2(17.5518, 61.9371)
-scale = Vector2(0.855817, 0.784518)
+position = Vector2(19.364302, 61.52284)
+rotation = 0.00112232
+scale = Vector2(0.79832816, 0.80167186)
 texture = ExtResource("12_7olme")
 centered = false
 
 [node name="Cornpult_husktip1" type="Sprite2D" parent="Body/BodyCorrect" index="12"]
-position = Vector2(8.40358, 69.4853)
-rotation = -0.178935
-scale = Vector2(0.836335, 0.785888)
-skew = -0.0165492
+position = Vector2(12.005765, 67.11996)
+rotation = 0.012345005
+scale = Vector2(0.79832816, 0.8027007)
+skew = 0.010773847
 texture = ExtResource("13_a4m87")
 centered = false
 
 [node name="Cornpult_husk4" type="Sprite2D" parent="Body/BodyCorrect" index="13"]
-position = Vector2(57, 61.8371)
-scale = Vector2(0.88641, 0.784518)
+position = Vector2(56.261417, 61.474277)
+rotation = -0.002693465
+scale = Vector2(0.79832816, 0.80167186)
 texture = ExtResource("14_st8fo")
 centered = false
 
 [node name="Cornpult_husk2" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(44.8, 63.5)
-scale = Vector2(0.876669, 0.784518)
+position = Vector2(44.86142, 63.01286)
+rotation = -0.00426461
+scale = Vector2(0.79832816, 0.80167186)
 texture = ExtResource("15_n3hh3")
 centered = false
 
 [node name="Cornpult_husktip2" type="Sprite2D" parent="Body/BodyCorrect" index="15"]
-position = Vector2(67.6076, 65.8371)
-rotation = 0.365046
-scale = Vector2(0.830594, 0.815112)
-skew = 0.215329
+position = Vector2(62.358536, 65.4357)
+rotation = -0.0067336624
+scale = Vector2(0.79832816, 0.8027007)
+skew = -0.010100455
 texture = ExtResource("16_eccnh")
 centered = false
 
 [node name="Cornpult_stalk1" type="Sprite2D" parent="Body/BodyCorrect" index="16"]
-position = Vector2(38.2629, 11.0482)
-rotation = 0.0240449
+position = Vector2(38.774277, 9.451441)
+rotation = 0.070211396
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("17_gy7i5")
 centered = false
 
 [node name="Cornpult_stalk2" type="Sprite2D" parent="Body/BodyCorrect" index="17"]
-position = Vector2(25.6259, 11.7594)
-rotation = -0.064647
-scale = Vector2(0.801371, 0.8)
-skew = 0.0546894
+position = Vector2(26.251442, 8.448559)
+rotation = 0.07874062
+scale = Vector2(0.7998714, 0.7998714)
 texture = ExtResource("18_k64ir")
 centered = false
 
 [node name="Cornpult_stalk4" type="Sprite2D" parent="Body/BodyCorrect" index="18"]
-position = Vector2(13.1259, 19.1817)
-rotation = 0.0524151
-scale = Vector2(0.755, 0.755)
+position = Vector2(14.0643015, 13.307096)
+rotation = 0.34278512
+scale = Vector2(0.75487137, 0.75487137)
 texture = ExtResource("19_c84qq")
 centered = false
 
 [node name="Cornpult_stalk3" type="Sprite2D" parent="Body/BodyCorrect" index="19"]
-position = Vector2(14.6371, 21.6446)
-rotation = -0.138535
-scale = Vector2(0.804371, 0.799)
-skew = 0.0891442
+position = Vector2(14.625721, 15.807096)
+rotation = 0.08098513
+scale = Vector2(0.7998714, 0.7998714)
 texture = ExtResource("20_50x1q")
 centered = false
 
 [node name="Cornpult_eyebrow1" type="Sprite2D" parent="Body/BodyCorrect" index="20"]
-position = Vector2(39.0371, 43.2112)
-rotation = 0.0346496
+position = Vector2(38.64856, 42.128605)
+rotation = -0.019976446
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("21_8sqss")
 centered = false
 
 [node name="Cornpult_eyebrow2" type="Sprite2D" parent="Body/BodyCorrect" index="21"]
-position = Vector2(64.8, 43.6112)
-rotation = 3.10695
+position = Vector2(64.73858, 42.19002)
+rotation = 3.161791
 scale = Vector2(0.621, 0.621)
-skew = -3.13985
+skew = -3.14159
 texture = ExtResource("21_8sqss")
 centered = false
 
@@ -257,15 +257,15 @@ markers_2d_bullet = [NodePath("../Body/BodyCorrect/Marker2DBullet")]
 
 [node name="BulletAttackCdTimer" type="Timer" parent="AttackComponent" index="0"]
 
-[node name="AttackRayComponent" type="Node2D" parent="AttackComponent" index="1"]
+[node name="DetectComponent" type="Node2D" parent="AttackComponent" index="1"]
 script = ExtResource("25_btqik")
 
-[node name="Area2D" type="Area2D" parent="AttackComponent/AttackRayComponent" index="0"]
+[node name="Area2D" type="Area2D" parent="AttackComponent/DetectComponent" index="0"]
 position = Vector2(0, -25)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_1v5nr")
 

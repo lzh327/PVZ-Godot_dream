@@ -16,12 +16,12 @@ var dancer_id:int= -1
 
 #region 初始化相关
 ## 初始化正常出战角色
-func init_norm():
+func ready_norm():
 	super()
 	_init_dance()
 
 ## 初始化展示角色
-func init_show():
+func ready_show():
 	super()
 	_init_show_jackon()
 
@@ -32,7 +32,7 @@ func _init_show_jackon():
 		# 设置循环模式
 		anim.loop_mode = Animation.LOOP_LINEAR
 	animation_player.play("moonwalk")
-	move_component.disable_component(ComponentBase.E_IsEnableFactor.InitType)
+	move_component.disable_component(ComponentNormBase.E_IsEnableFactor.InitType)
 
 ## 舞王出场动画，伴舞继承重写
 func _init_dance():
@@ -52,10 +52,10 @@ func init_random_speed():
 	## 初始化角色速度
 	update_speed_factor(randf_range(random_speed_range.x, random_speed_range.y), E_Influence_Speed_Factor.InitRandomSpeed)
 	animation_origin_speed = anim_component.get_animation_origin_speed()
-	jackson_manager.init_anim_speed(animation_origin_speed, influence_speed_factors[E_Influence_Speed_Factor.InitRandomSpeed])
+	jackson_manager.init_anim_speed(animation_origin_speed, influence_speed_factors.get(E_Influence_Speed_Factor.InitRandomSpeed, randf_range(random_speed_range.x, random_speed_range.y)))
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	hp_component.signal_hp_component_death.connect(func():
 		state_machine.change_jackson_anim_status(state_machine.curr_jackson_status, JacksonStateMachine.E_JacksonStatus.Death)
@@ -66,6 +66,8 @@ func init_norm_signal_connect():
 ## 修改速度，发射信号
 ## 继承重写该方法，速度变化时将速度变化结果给舞王管理器，舞王管理器选择最小速度作为真实速度,调用manager_update_anim_speed方法
 func update_speed_factor(value: float, change_speed_factor:E_Influence_Speed_Factor) -> void:
+	if is_death:
+		return
 	influence_speed_factors[change_speed_factor] = value
 	jackson_manager.change_speed_factor_product(dancer_id, GlobalUtils.get_dic_product(influence_speed_factors))
 
@@ -122,7 +124,7 @@ func character_death():
 ## 僵尸更新舞王管理器，并更新舞王管理器父节点
 func dancer_manager_change():
 	## 更新舞王管理器对应id僵尸速度和对应僵尸
-	jackson_manager.change_speed_factor_product(dancer_id, influence_speed_factors[E_Influence_Speed_Factor.InitRandomSpeed])
+	jackson_manager.change_speed_factor_product(dancer_id, influence_speed_factors.get(E_Influence_Speed_Factor.InitRandomSpeed, randf_range(random_speed_range.x, random_speed_range.y)))
 	jackson_manager.zombie_dancers[dancer_id] = null
 	## 更新舞王管理器的移动
 	jackson_manager.change_move(dancer_id, true)
@@ -145,7 +147,7 @@ func jackson_be_hypno():
 	state_machine.jackson_manager = jackson_manager
 	add_child(jackson_manager)
 	jackson_manager.zombie_dancers[-1] = self
-	jackson_manager.init_anim_speed(animation_origin_speed, influence_speed_factors[E_Influence_Speed_Factor.InitRandomSpeed])
+	jackson_manager.init_anim_speed(animation_origin_speed, influence_speed_factors.get(E_Influence_Speed_Factor.InitRandomSpeed, randf_range(random_speed_range.x, random_speed_range.y)))
 	jackson_manager.start_anim()
 	jackson_manager.is_hypnotized = true
 
@@ -155,8 +157,8 @@ func jackson_be_hypno():
 
 ## 舞王管理器管理动画播放
 ## Norm状态更新
-func anim_play(name, curr_scale, start_time, speed):
-	state_machine.anim_play(name, curr_scale, start_time, speed)
+func anim_play(anim_name, curr_scale, start_time, speed):
+	state_machine.anim_play(anim_name, curr_scale, start_time, speed)
 
 ### 使用舞王管理器召唤伴舞僵尸
 func call_zombie_dancer():

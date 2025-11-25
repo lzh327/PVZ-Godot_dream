@@ -19,9 +19,6 @@
 script = ExtResource("7_wi4d4")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_blink")])
 sprite_change_texture = Array[Texture2D]([ExtResource("4_663tl"), ExtResource("8_bep3f")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_euprm"]
@@ -84,12 +81,12 @@ graph_offset = Vector2(95, -3)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_sa70k"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wi4d4"]
+nodes/output/position = Vector2(940, 160)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_fc1ok")
 nodes/StateMachine/position = Vector2(400, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_sa70k")
 nodes/TimeScale/position = Vector2(700, 140)
-nodes/output/position = Vector2(940, 160)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xarg1"]
 particles_animation = true
@@ -109,19 +106,18 @@ initial_velocity_max = 100.0
 gravity = Vector3(0, 98, 0)
 scale_max = 3.0
 
-[node name="Plant015IceShroom" node_paths=PackedStringArray("node_no_change_direction", "special_component_update_pos_in_slope") instance=ExtResource("1_n3wco")]
+[node name="Plant015IceShroom" node_paths=PackedStringArray("node_no_change_direction") instance=ExtResource("1_n3wco")]
 script = ExtResource("2_xarg1")
 plant_type = 15
 is_sleep_in_day = true
 node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), null]
-special_component_update_pos_in_slope = [NodePath("BombComponent")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-41, -69)
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(12.9526, 41.2895)
-scale = Vector2(0.824421, 0.722262)
+position = Vector2(13.471491, 39.114037)
+scale = Vector2(0.80714035, 0.77614903)
 texture = ExtResource("2_37t62")
 centered = false
 
@@ -137,18 +133,18 @@ centered = false
 
 [node name="Anim_blink" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
 visible = false
-position = Vector2(27.005, 40.9518)
+position = Vector2(27.21839, 38.8889)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_663tl")
 centered = false
 
 [node name="IceShroom_head" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(-1.4, 4.81049)
-scale = Vector2(0.8, 0.792633)
+position = Vector2(-1.4, 1.6425474)
+scale = Vector2(0.8, 0.80742985)
 texture = ExtResource("5_236rb")
 centered = false
 
-[node name="BlinkComponent" parent="." index="6"]
+[node name="BlinkComponent" parent="." index="5"]
 all_blink_body_change = Array[ExtResource("7_wi4d4")]([SubResource("Resource_ohyhk")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
@@ -167,7 +163,6 @@ parameters/TimeScale/scale = 1.0
 script = ExtResource("8_37t62")
 bomb_value = 0
 is_cherry_bomb = false
-bomb_sfx_plant_type = 15
 bomb_sfx = &"Frozen"
 metadata/_custom_type_script = "uid://houapt72isd2"
 

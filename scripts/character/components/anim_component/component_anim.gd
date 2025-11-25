@@ -1,4 +1,5 @@
-extends ComponentBase
+@abstract
+extends Node2D
 class_name AnimComponentBase
 ## 动画组件基类
 ## 由于部分僵尸可能没有AnimationTree或者AnimationPlayer
@@ -11,9 +12,6 @@ signal signal_animation_finished(anim_name:StringName)
 ## 角色动画原始速度
 var animation_origin_speed :float = -1
 
-func _ready() -> void:
-	## ready中获取动画角色原始速度
-	pass
 
 ## 获取动画原始速度
 func get_animation_origin_speed():
@@ -26,12 +24,12 @@ func set_animation_origin_speed(value:float):
 	animation_origin_speed = value
 
 ## 更新动画速度(根据速度倍率)
-func update_anim_speed(speed_factor_product:float):
-	pass
+@abstract
+func owner_update_speed(speed_factor_product:float)
 
 ## 更新动画速度(动画播放速度)
-func update_anim_speed_scale(speed_scale:float):
-	pass
+@abstract
+func update_anim_speed_scale(speed_scale:float)
 
 ## 停止动画
 func stop_anim():
@@ -41,3 +39,4 @@ func stop_anim():
 func _on_animation_finished(anim_name:StringName):
 	signal_animation_finished.emit(anim_name)
 	#print("当前动画结束")
+

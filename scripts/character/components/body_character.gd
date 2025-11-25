@@ -1,6 +1,9 @@
-extends ComponentBase
+extends Node2D
 ## 角色身体属性，用于管理body变换（发亮、颜色）
 class_name BodyCharacter
+
+## 模仿者材质
+const IMITATER = preload("res://shader_material/imitater.tres")
 
 const BODY_MASK = preload("res://shader_material/body_mask.tres")
 var hit_tween: Tween = null  # 发光动画
@@ -64,7 +67,7 @@ func body_light_and_dark():
 	light_and_dark_tween.tween_method(
 		func(val): set_other_color(E_ChangeColors.LightAndDark, val), # 传匿名函数包一层，保证有 change_name
 		Color(0.6, 0.6, 0.6),
-		Color(2, 2, 2),
+		Color(2.0, 2.0, 2.0, 1.0),
 		0.5
 	)
 	light_and_dark_tween.tween_method(
@@ -83,6 +86,14 @@ func body_light_and_dark_end():
 ## body被炸弹炸黑(蹦极)
 func body_charred_black():
 	set_other_color(E_ChangeColors.CharredBlack, Color(0,0,0))
+
+## 模仿者更新材质
+func imitater_update_material():
+	material = IMITATER.duplicate()
+	for child in get_children():
+		if child.owner == owner:
+			GlobalUtils.node_use_parent_material(child)
+
 
 #region 僵尸从地下\水下出现
 ## 僵尸从地下出来
@@ -113,18 +124,12 @@ func body_mask_start():
 	material = BODY_MASK.duplicate()
 	material.set_shader_parameter(&"cutoff_y", GlobalUtils.world_to_screen(owner.global_position).y)
 	for child in get_children():
-		_node_use_parent_material(child)
+		GlobalUtils.node_use_parent_material(child)
 
 ## 结束身体在当前body节点以上的显示,以下透明
 func body_mask_end():
 	material = null
 
-## 递归让子节点使用父节点shader材质
-func _node_use_parent_material(node: Node2D) -> void:
-	node.use_parent_material = true
-	## 遍历所有子节点
-	for child in node.get_children():
-		_node_use_parent_material(child)
 #endregion
 
 ## 角色被压扁,复制一份body更新其为根节点父节点

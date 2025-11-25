@@ -17,7 +17,7 @@ class_name Zombie014Bobsled
 	$Body4/AnimationPlayer,
 ]
 
-func init_norm():
+func ready_norm():
 	super()
 	judge_is_in_ice_road_timer.start()
 	_play_anim("Zombie_bobsled_push")
@@ -26,7 +26,7 @@ func init_norm():
 	move_component.update_move_mode(MoveComponent.E_MoveMode.Speed)
 
 ## 初始化展示角色
-func init_show():
+func ready_show():
 	super()
 	_play_anim("Zombie_bobsled_idle")
 
@@ -38,7 +38,7 @@ func _play_anim(anim_name:StringName):
 ## 判断冰道是否在冰道上(0.3秒检测一次,不在冰道上掉100血)
 func judge_is_in_ice_road():
 	var is_in_road = false
-	for ice_road:IceRoad in Global.main_game.plant_cell_manager.all_ice_roads[lane]:
+	for ice_road:IceRoad in Global.main_game.zombie_manager.all_ice_roads[lane]:
 		## 如果冰道最左边 < 当前位置+偏移
 		if ice_road.left_x < global_position.x - 50:
 			is_in_road = true
@@ -62,16 +62,17 @@ func death_language():
 	if is_can_death_language:
 		var zombie_row:ZombieRow = get_parent()
 		for sub_zombie_body in all_zombie_bobsled_single_body:
-			## 僵尸相对本体父节点的x
-			var zombie_pos_x = sub_zombie_body.global_position.x - zombie_row.zombie_create_position.global_position.x
+			var zombie_init_para:Dictionary = {
+				Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+				Zombie000Base.E_ZInitAttr.Lane:lane,
+				Zombie000Base.E_ZInitAttr.CurrWave:curr_wave,
+			}
 			Global.main_game.zombie_manager.call_deferred(
 				"create_norm_zombie",
 				Global.ZombieType.Z1001BobsledSingle,
 				zombie_row,
-				Character000Base.E_CharacterInitType.IsNorm,
-				lane,
-				curr_wave,
-				Vector2(zombie_pos_x, position.y)
+				zombie_init_para,
+				Vector2(sub_zombie_body.global_position.x, Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_create_position.global_position.y)
 			)
 
 ## 调整雪橇车和僵尸的显示顺序

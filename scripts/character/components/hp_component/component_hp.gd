@@ -1,4 +1,4 @@
-extends ComponentBase
+extends Node2D
 class_name HpComponent
 
 @onready var owner_character: Character000Base = owner
@@ -6,7 +6,7 @@ class_name HpComponent
 @onready var progress_bar_hp: ProgressBar = %ProgressBarHp
 @onready var label_hp: Label = %LabelHp
 
-@export var max_hp:int = 300
+@export var max_hp:int
 ## 本体受击音效
 @export var sfx_be_attack_body :SoundManagerClass.TypeBeAttackSFX= SoundManagerClass.TypeBeAttackSFX.Null
 
@@ -54,8 +54,8 @@ func change_display_HP_label(value:bool):
 	if is_can_look_hp:
 		visible = value
 
-func set_death_hp(death_hp:int):
-	self.death_hp = death_hp
+func set_death_hp(new_death_hp:int):
+	self.death_hp = new_death_hp
 
 func get_all_hp():
 	return curr_hp
@@ -63,10 +63,12 @@ func get_all_hp():
 ## attack_value(int): 掉血的值
 ## bullet_mode(Global.AttackMode): 伤害类型
 ## trigger_be_attack_SFX:=true:是否触发受击音效
+## [is_drop_on_death:bool] 死亡时是否有掉落
+## [is_drop_2:bool] 是否有掉落额外条件
 ## return bool: 返回是否死亡
-func Hp_loss(attack_value:int, bullet_mode : Global.AttackMode = Global.AttackMode.Norm, is_drop=false, trigger_be_attack_SFX:=true):
-
+func Hp_loss(attack_value:int, _bullet_mode:Global.AttackMode = Global.AttackMode.Norm, is_drop_on_death=true, trigger_be_attack_SFX:=true, is_drop_2:=true):
 	curr_hp -= attack_value
+	var is_drop = not (owner.is_death and not is_drop_on_death) and is_drop_2
 	signal_hp_loss.emit(curr_hp, is_drop)
 
 	## 如果有受击音效并且触发受击音效

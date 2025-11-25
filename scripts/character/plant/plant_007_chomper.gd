@@ -1,7 +1,7 @@
 extends Plant000Base
 class_name Plant007Chomper
 
-@onready var detect_component: AttackRayComponent = $AttackRayComponent
+@onready var detect_component: DetectComponent = $DetectComponent
 
 ## 咀嚼时间计时器
 @onready var chew_timer: Timer = $ChewTimer
@@ -17,12 +17,12 @@ class_name Plant007Chomper
 @export var is_chewing = false
 
 
-func init_norm() -> void:
+func ready_norm() -> void:
 	super()
 	## 咀嚼计时器
 	chew_timer.wait_time = eat_CD
 
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	signal_update_speed.connect(owner_update_speed)
 	detect_component.signal_can_attack.connect(change_is_attack.bind(true))
@@ -68,7 +68,7 @@ func bite_end():
 ## 大嘴花吃一次僵尸,动画调用
 func _eat_zombie():
 	## 播放音效
-	SoundManager.play_plant_SFX(Global.PlantType.P007Chomper, &"BigChomp")
+	SoundManager.play_character_SFX(&"BigChomp")
 	## 如果有僵尸
 	if is_instance_valid(detect_component.enemy_can_be_attacked):
 		var zombie :Zombie000Base = detect_component.enemy_can_be_attacked

@@ -39,25 +39,17 @@
 [sub_resource type="Resource" id="Resource_8c1ng"]
 script = ExtResource("7_36gbm")
 text = "欢迎来到疯狂戴夫的商店"
-is_crazy = false
-is_hand = false
-is_choosed = false
 metadata/_custom_type_script = "uid://7qucqjvdq78q"
 
 [sub_resource type="Resource" id="Resource_on4af"]
 script = ExtResource("7_36gbm")
 text = "吃饭、睡觉、做大梦"
-is_crazy = false
-is_hand = false
-is_choosed = false
 metadata/_custom_type_script = "uid://7qucqjvdq78q"
 
 [sub_resource type="Resource" id="Resource_45f1l"]
 script = ExtResource("7_36gbm")
 text = "戴夫~接客"
 is_crazy = true
-is_hand = false
-is_choosed = false
 metadata/_custom_type_script = "uid://7qucqjvdq78q"
 
 [sub_resource type="Resource" id="Resource_2rser"]
@@ -65,9 +57,7 @@ script = ExtResource("22_o853e")
 dialog_detail_list = Array[ExtResource("7_36gbm")]([SubResource("Resource_8c1ng")])
 dialog_detail_long_time_idle_list = Array[ExtResource("7_36gbm")]([ExtResource("21_wb67t"), SubResource("Resource_on4af"), SubResource("Resource_45f1l")])
 is_enter_up = true
-is_grab = false
 is_long_time_dave = true
-hand_show_item_path = ""
 metadata/_custom_type_script = "uid://dlfnh7fjqyil6"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8c1ng"]
@@ -185,7 +175,7 @@ dialog_detail = ExtResource("11_45f1l")
 
 [node name="StoreIcon" type="TextureRect" parent="Bg/Car2/Panel/HBoxContainer/Goods2"]
 z_index = -1
-layout_mode = 2
+layout_mode = 0
 offset_right = 67.0
 offset_bottom = 68.0
 mouse_filter = 2
@@ -242,27 +232,29 @@ z_index = -1
 position = Vector2(32, 64)
 
 [node name="Pot_bottom" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot/Body/BodyCorrect" index="6"]
-position = Vector2(13.5, 53.1123)
-scale = Vector2(0.8, 0.892525)
+position = Vector2(13.5, 51.471294)
+scale = Vector2(0.8, 0.9695569)
 
 [node name="Pot_stem" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot/Body/BodyCorrect" index="7"]
-position = Vector2(24.9954, 9.30766)
-rotation = 0.184042
-scale = Vector2(0.799, 0.799)
+position = Vector2(23.253042, 10.606084)
+rotation = -0.2415386
+scale = Vector2(0.7994696, 0.7994696)
 
 [node name="Pot_leaf1" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot/Body/BodyCorrect" index="8"]
-position = Vector2(26.9, 7.30306)
-rotation = -0.124996
+position = Vector2(28.546959, 6.6591263)
+rotation = 0.25346714
+scale = Vector2(0.7994696, 0.7994696)
 
 [node name="Pot_leaf2" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot/Body/BodyCorrect" index="9"]
-position = Vector2(17.9969, 7.80766)
-rotation = 0.109341
+position = Vector2(17.3, 10.906084)
+rotation = -0.25357383
+scale = Vector2(0.7994696, 0.7994696)
 
 [node name="Pot_top" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot/Body/BodyCorrect" index="10"]
-position = Vector2(7.2, 12.2046)
+position = Vector2(7.2, 11.259127)
 
 [node name="DownPlantContainer" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot" index="4"]
-position = Vector2(0, -1.0954)
+position = Vector2(0, -2.0408738)
 
 [node name="Plant1000Sprout" parent="Bg/Car2/Panel/HBoxContainer2/Goods1/FlowerPot/DownPlantContainer" index="0" node_paths=PackedStringArray("node_no_change_direction") instance=ExtResource("19_256br")]
 position = Vector2(0, -26.78)
@@ -470,9 +462,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -551,9 +552,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false

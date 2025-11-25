@@ -37,6 +37,7 @@ height = 300.0
 script = ExtResource("2_ydugh")
 time_be_decelerated = 3.0
 parabola_height = -500.0
+bullet_type = 15
 is_rotate = true
 attack_value = 80
 bullet_mode = 1

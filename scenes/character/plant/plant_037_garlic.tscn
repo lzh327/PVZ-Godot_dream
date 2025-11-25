@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dg3hfd5luujlk"]
+[gd_scene load_steps=19 format=3 uid="uid://dg3hfd5luujlk"]
 
 [ext_resource type="PackedScene" uid="uid://c5cke4cm02um7" path="res://scenes/character/plant/plant_000_base.tscn" id="1_34mm5"]
 [ext_resource type="Script" uid="uid://bpoiu58r2rpiu" path="res://scripts/character/plant/plant_037_garlic.gd" id="2_5vkpm"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bjcutyeg4vtre" path="res://assets/reanim/Garlic_body1.png" id="5_ljkad"]
 [ext_resource type="Texture2D" uid="uid://k4aatmbcppnb" path="res://assets/reanim/Garlic_blink1.png" id="6_oxluj"]
 [ext_resource type="Animation" uid="uid://bn3iqo6t7b63r" path="res://animation/character/plant/037_garlic/Garlic_idle.tres" id="7_u12re"]
-[ext_resource type="Texture2D" uid="uid://dir7aktx8gr3j" path="res://assets/reanim/Garlic_stink1.png" id="7_vggsd"]
 [ext_resource type="Script" uid="uid://4o1wtnifn4tq" path="res://scripts/character/components/hp_component/component_hp_stage_change.gd" id="10_fgxvd"]
 [ext_resource type="Script" uid="uid://jl0nl4a234bc" path="res://scripts/resources/resource_body_change.gd" id="11_eruay"]
 [ext_resource type="Texture2D" uid="uid://by3h62tn0xch3" path="res://assets/reanim/Garlic_body2.png" id="12_u12re"]
@@ -26,29 +25,23 @@ animation = &"Garlic_idle"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ce242"]
 graph_offset = Vector2(124.467, 162.872)
+nodes/output/position = Vector2(540, 140)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_7chwr")
 nodes/Animation/position = Vector2(180, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_5vkpm")
 nodes/TimeScale/position = Vector2(380, 140)
-nodes/output/position = Vector2(540, 140)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="Resource" id="Resource_fgxvd"]
 script = ExtResource("11_eruay")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_face")])
 sprite_change_texture = Array[Texture2D]([ExtResource("12_u12re")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_eruay"]
 script = ExtResource("11_eruay")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_face")])
 sprite_change_texture = Array[Texture2D]([ExtResource("13_vggsd")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [node name="Plant037Garlic" instance=ExtResource("1_34mm5")]
@@ -59,39 +52,37 @@ plant_type = 37
 position = Vector2(-42, -66)
 
 [node name="Garlic_stem1" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(31.1532, 25.987)
-rotation = -0.101522
-scale = Vector2(0.98635, 0.836402)
-skew = 0.101522
+position = Vector2(32, 21.097895)
+rotation = 0.026363688
+scale = Vector2(0.8997482, 0.901007)
+skew = -0.026363688
 texture = ExtResource("2_7chwr")
 centered = false
 
 [node name="Garlic_stem2" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(38.4065, 21.4597)
-rotation = 0.10746
-scale = Vector2(0.98735, 0.836402)
-skew = -0.10746
+position = Vector2(38.924473, 17.44965)
+rotation = -0.028121183
+scale = Vector2(0.90025175, 0.901007)
+skew = 0.028121183
 texture = ExtResource("3_5vkpm")
 centered = false
 
 [node name="Garlic_stem3" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(40.7467, 26.7533)
-rotation = 0.0562348
-scale = Vector2(0.981948, 0.836402)
-skew = -0.0562348
+position = Vector2(40.8, 22.95035)
+rotation = -0.032515045
+scale = Vector2(0.901007, 0.901007)
+skew = 0.032515045
 texture = ExtResource("4_ce242")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(11.5662, 24.6403)
-scale = Vector2(0.980013, 0.823195)
+position = Vector2(14.075526, 20.024473)
+scale = Vector2(0.8972307, 0.901007)
 texture = ExtResource("5_ljkad")
 centered = false
 
 [node name="Garlic_stink" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(34.1, -22.1375)
-scale = Vector2(0.903, 0.901)
-texture = ExtResource("7_vggsd")
+visible = false
 centered = false
 
 [node name="Garlic_blink" type="Sprite2D" parent="Body/BodyCorrect" index="5"]

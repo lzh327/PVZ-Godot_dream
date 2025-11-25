@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 ## 添加到场景树之前初始化备选卡片
-func init_card_in_seed_chooser(card:Card):
-	self.card = card
-	add_child(card)
-	card.card_candidate_container = self
+func init_card_in_seed_chooser(curr_card:Card):
+	self.card = curr_card
+	add_child(curr_card)
+	curr_card.card_candidate_container = self

@@ -15,14 +15,14 @@ class_name Plant010SunShroom
 ## 成长
 @export var is_grow:=false
 
-func init_norm():
+func ready_norm():
 	super()
 	grow_timer.wait_time = time_grow
 	grow_timer.start()
 	create_sun_component.change_sun_value(mini_sun_value)
 
 
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	## 角色速度改变
 	signal_update_speed.connect(update_grow_speed)

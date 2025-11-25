@@ -17,8 +17,8 @@ func _ready() -> void:
 	_init_tombstone()
 
 ## 初始化赋值
-func init_tombstone(plant_cell:PlantCell):
-	self.plant_cell = plant_cell
+func init_tombstone(curr_plant_cell:PlantCell):
+	self.plant_cell = curr_plant_cell
 	self.row_col = plant_cell.row_col
 
 ## 随机生成一种墓碑（一共5种）
@@ -54,15 +54,17 @@ func failure_eat_tombstone():
 ## 生成僵尸
 func create_new_zombie(new_zombie_type:Global.ZombieType, anim_multiply:float=1.0):
 	if not new_zombie:
+
+		var zombie_init_para:Dictionary = {
+			Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+			Zombie000Base.E_ZInitAttr.Lane:row_col.x,
+		}
+
 		new_zombie = Global.main_game.zombie_manager.create_norm_zombie(
 			new_zombie_type,
 			Global.main_game.zombie_manager.all_zombie_rows[row_col.x],
-			Character000Base.E_CharacterInitType.IsNorm,
-			row_col.x,
-			-1,
-			Vector2(global_position.x - Global.main_game.zombie_manager.all_zombie_rows[row_col.x].global_position.x,
-				Global.main_game.zombie_manager.all_zombie_rows[row_col.x].zombie_create_position.position.y
-			)
+			zombie_init_para,
+			Vector2(global_position.x,Global.main_game.zombie_manager.all_zombie_rows[row_col.x].zombie_create_position.global_position.y)
 		)
 		new_zombie.call_deferred("update_speed_factor", anim_multiply, Character000Base.E_Influence_Speed_Factor.HammerZombieSpeed)
 		await new_zombie.zombie_up_from_ground()

@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://dqppqdw4n40ts" path="res://scripts/character/zombie/zombie_000_base.gd" id="2_72xfp"]
 [ext_resource type="FontFile" uid="uid://cchqc1dtcle23" path="res://assets/fonts/Bake_Soda.otf" id="2_p5arj"]
 [ext_resource type="Script" uid="uid://d0w7rpih1wyo6" path="res://scripts/character/components/hp_component/component_hp_zombie.gd" id="3_rdbr5"]
-[ext_resource type="Script" uid="uid://b3wavy585v5p1" path="res://scripts/character/components/component_be_attacked_box_zombie.gd" id="3_t14t4"]
-[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/attack_ray_component/component_attack_ray.gd" id="5_b1t0g"]
+[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/detect_component/component_detect.gd" id="5_b1t0g"]
 [ext_resource type="Script" uid="uid://4o1wtnifn4tq" path="res://scripts/character/components/hp_component/component_hp_stage_change.gd" id="6_in461"]
 [ext_resource type="Script" uid="uid://b2atnvuqp1kcr" path="res://scripts/character/components/attack_behavior_component/component_attack_zombie_norm.gd" id="7_b1t0g"]
 [ext_resource type="Script" uid="uid://dmydsf6020r5f" path="res://scripts/character/components/component_move.gd" id="8_yye2l"]
 [ext_resource type="Script" uid="uid://bk3w4sifj7es" path="res://scripts/character/components/charred_component/component_charred_zombie_norm.gd" id="11_t14t4"]
+[ext_resource type="Script" uid="uid://b3wavy585v5p1" path="res://scripts/character/components/component_hurt_box_zombie.gd" id="12_6mvk0"]
 [ext_resource type="Script" uid="uid://c84r00ur563m8" path="res://scripts/character/components/component_drop_item.gd" id="12_ewfmg"]
 [ext_resource type="Script" uid="uid://bk802l8n0pnjb" path="res://scripts/character/components/swim_box_component/component_swim_box.gd" id="12_kbcr1"]
 
@@ -43,9 +43,9 @@ size = Vector2(40, 20)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xdwn0"]
 radius = 20.0
-height = 80.0
+height = 100.0
 
-[node name="Zombie000Base" node_paths=PackedStringArray("node_no_change_direction", "node_follow_body_direction") instance=ExtResource("1_q5all")]
+[node name="Zombie000Base" node_paths=PackedStringArray("node_follow_body_direction", "node2d_detect_in_slope") instance=ExtResource("1_q5all")]
 script = ExtResource("2_72xfp")
 zombie_type = 0
 is_ignore_ladder = false
@@ -58,9 +58,8 @@ is_walk = true
 is_attack = false
 is_swimming = false
 sfx_enter_name = &""
-head1_path = NodePath("Body/BodyCorrect/Anim_head1")
-node_no_change_direction = []
-node_follow_body_direction = []
+node_follow_body_direction = [NodePath("Body"), NodePath("Shadow"), NodePath("CharredComponent")]
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("HurtBoxComponent/HurtBoxDetectionOnAttack"), NodePath("AttackComponent/DetectComponent")]
 
 [node name="NodeDrop" type="Node2D" parent="Body" index="1"]
 unique_name_in_owner = true
@@ -76,6 +75,7 @@ max_hp_armor1 = 0
 max_hp_armor2 = 0
 sfx_be_attack_armor1 = 0
 sfx_be_attack_armor2 = 0
+max_hp = 270
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HpComponent" index="0"]
 anchors_preset = 8
@@ -118,7 +118,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_xdwn0")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rdbr5")
 max_value = 1.0
-value = 0.5
+value = 0.64
 show_percentage = false
 
 [node name="LabelHpArmor2" type="Label" parent="HpComponent/VBoxContainer/Armor2Control" index="1"]
@@ -252,17 +252,17 @@ position = Vector2(-43, -117)
 unique_name_in_owner = true
 script = ExtResource("7_b1t0g")
 
-[node name="AttackRayComponent" type="Node2D" parent="AttackComponent" index="0"]
+[node name="DetectComponent" type="Node2D" parent="AttackComponent" index="0"]
 unique_name_in_owner = true
 script = ExtResource("5_b1t0g")
 
-[node name="Area2d" type="Area2D" parent="AttackComponent/AttackRayComponent" index="0"]
+[node name="Area2d" type="Area2D" parent="AttackComponent/DetectComponent" index="0"]
 position = Vector2(0, -25)
 collision_layer = 0
 collision_mask = 34
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2d" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2d" index="0"]
 position = Vector2(-13, 0)
 shape = SubResource("RectangleShape2D_t14t4")
 
@@ -285,32 +285,41 @@ debug_color = Color(0.974132, 0, 0.429002, 0.42)
 [node name="DropItemComponent" type="Node2D" parent="." index="9"]
 unique_name_in_owner = true
 script = ExtResource("12_ewfmg")
+can_drop_x_range = null
+drop_coin_rate = null
+drop_coin_silver_glod_diamond_rate = null
+drop_garden_plant_rate = null
+is_enable_default = null
 
-[node name="BeAttackedBoxComponent" parent="." index="10"]
-script = ExtResource("3_t14t4")
+[node name="HurtBoxComponent" parent="." index="10"]
+script = ExtResource("12_6mvk0")
 x_correct_on_attack = -20.0
 
-[node name="HurtBoxDetection" parent="BeAttackedBoxComponent" index="0"]
+[node name="HurtBoxDetection" parent="HurtBoxComponent" index="0"]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeAttackedBoxComponent/HurtBoxDetection" index="0"]
-position = Vector2(0, -40)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetection" index="0"]
+position = Vector2(0, -50)
 shape = SubResource("CapsuleShape2D_xdwn0")
 
-[node name="HurtBoxDetectionOnAttack" type="Area2D" parent="BeAttackedBoxComponent" index="1"]
+[node name="HurtBoxReal" parent="HurtBoxComponent" index="1"]
+collision_layer = 512
+
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxReal" index="0"]
+position = Vector2(0, -50)
+shape = SubResource("CapsuleShape2D_xdwn0")
+
+[node name="HurtBoxDetectionOnAttack" type="Area2D" parent="HurtBoxComponent" index="2"]
 unique_name_in_owner = true
 collision_layer = 16
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BeAttackedBoxComponent/HurtBoxDetectionOnAttack" index="0"]
-position = Vector2(0, -40)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetectionOnAttack" index="0"]
+position = Vector2(0, -50)
 shape = SubResource("CapsuleShape2D_xdwn0")
-
-[node name="HurtBoxReal" parent="BeAttackedBoxComponent" index="2"]
-collision_layer = 512
 
 [connection signal="area_entered" from="SwimBoxComponent/Area2D" to="SwimBoxComponent" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="SwimBoxComponent/Area2D" to="SwimBoxComponent" method="_on_area_2d_area_exited"]

@@ -42,7 +42,7 @@ func _on_trophy_button_pressed() -> void:
 	tween_glow.tween_property(glow, "modulate:a", 1, 5.0)
 
 	await get_tree().create_timer(5.0).timeout
-	get_tree().change_scene_to_file(Global.MainScenesMap[Global.MainScenes.StartMenu])
+	EventBus.push_event("win_main_game")
 
 
 func _on_trophy_button_mouse_entered() -> void:

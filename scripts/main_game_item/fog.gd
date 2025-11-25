@@ -43,6 +43,7 @@ func change_fog_type():
 		dynamic_fog.visible = true
 		update_fog_dynamic()
 
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if is_move and not fog_clearers.is_empty():
 		if Global.fog_is_static:
@@ -194,13 +195,23 @@ func be_flow_away():
 	blover_end_timer.start()
 
 ## 回到主游戏界面
-func come_back_game(duration:float):
+func come_back_game(duration:float, res_glo_pos_x:=start_global_positon_x):
 	tween_come_back = get_tree().create_tween()
-	tween_come_back.tween_property(self, "global_position:x", start_global_positon_x, duration)
+	tween_come_back.tween_property(self, "global_position:x", res_glo_pos_x, duration)
 	is_move = true
 	await tween_come_back.finished
 	is_move = false
+	blover_end_timer.paused = false
 
+
+## 迷雾到外面,多轮游戏时调用
+func fog_outside():
+	## 先停止计时器，避免在等待间隙计时完成
+	blover_end_timer.stop()
+	## 如果当前fog正在移动回到游戏场景，停止移动
+	if tween_come_back and tween_come_back.is_running():
+		tween_come_back.kill()
+	come_back_game(3, end_global_positon_x)
 
 ## 吹散迷雾24秒回到游戏
 func _on_blover_end_timer_timeout() -> void:

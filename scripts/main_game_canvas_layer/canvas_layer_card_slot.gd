@@ -13,7 +13,7 @@ func _ready() -> void:
 func _on_bg_mouse_entered() -> void:
 	if Global.card_slot_top_mouse_focus and Global.main_game.main_game_progress == MainGameManager.E_MainGameProgress.MAIN_GAME:
 		# 鼠标进入时，提高z_index，保证在前面显示
-		layer = 1
+		layer = 10
 
 func _on_bg_mouse_exited() -> void:
 	if Global.card_slot_top_mouse_focus and Global.main_game.main_game_progress == MainGameManager.E_MainGameProgress.MAIN_GAME:

@@ -1,5 +1,9 @@
 extends PanelContainer
 class_name CardSlotConveyorBelt
+"""
+先根据植物和僵尸的权重,随机选取生成植物还是生成僵尸
+在使用随机池生成对应的卡片
+"""
 
 @onready var conveyor_belt_gear: ConveyorBeltGear = $ConveyorBeltGear
 @onready var new_card_area: Panel = $NewCardArea
@@ -17,22 +21,15 @@ var all_card_pos_x_target :Array[float] = []
 ## 卡片生成时间
 @export var create_new_card_cd :float = 5
 
-@export_group("出现卡片相关")
-## 可能出现的植物卡片,及其概率
-@export var all_card_plant_type_probability :Dictionary[Global.PlantType, int] = {}
-## 可能出现的僵尸卡片,及其概率
-@export var all_card_zombie_type_probability :Dictionary[Global.ZombieType, int] = {}
-## 游戏开始时按顺序出现的卡片
-@export var start_list_card_plant_type :Array[Global.PlantType] = []
-## 游戏开始时按顺序出现的卡片
-@export var start_list_card_zombie_type :Array[Global.ZombieType] = []
+#region 随机生成卡片相关
+@onready var card_random_pool: CardRandomPool = $CardRandomPool
+## 按顺序出现的卡片植物
+var card_order_plant:Dictionary[int, Global.PlantType] = {}
+## 按顺序出现的卡片僵尸(若重复,则使用植物的卡片)
+var card_order_zombie:Dictionary[int, Global.ZombieType] = {}
 ## 当前生成的卡片总数量
-@export var all_num_card :int = 0
-
-## 总概率之和
-var total_prob = 0
-## 每种卡片的概率上限，从小到大遍历随机值不大于该上限时选择对应的卡牌
-var prob_every_card :Array[int] = []
+var all_num_card :int = 0
+#endregion
 
 ## 是否正在运行中
 var is_working:= false
@@ -40,8 +37,6 @@ var is_working:= false
 var create_new_card_speed:float
 ## 卡片种植完成后信号，计时器判断是否重启
 signal signal_card_end
-## 传送带创建新card发射信号给hand_manager连接点击种植函数
-signal signal_create_new_card(card:Card)
 
 
 #region 初始化
@@ -57,23 +52,19 @@ func _init_card_position_x():
 
 ## 管理器初始化调用
 func init_card_slot_conveyor_belt(game_para:ResourceLevelData):
-	self.all_card_plant_type_probability = game_para.all_card_plant_type_probability
-	self.all_card_zombie_type_probability = game_para.all_card_zombie_type_probability
-	self.start_list_card_plant_type = game_para.start_list_card_plant_type
-	self.start_list_card_zombie_type = game_para.start_list_card_zombie_type
+	var card_random_pool_init_para = {
+		CardRandomPool.E_CardRandomPoolInitParaAttr.AllCardPlantProbability: game_para.all_card_plant_type_probability,
+		CardRandomPool.E_CardRandomPoolInitParaAttr.AllCardZombieProbability: game_para.all_card_zombie_type_probability,
+	}
+	print("传送带卡槽初始化随机卡片生成器")
+	card_random_pool.init_card_random_pool(card_random_pool_init_para)
+
+	self.card_order_plant = game_para.card_order_plant
+	self.card_order_zombie = game_para.card_order_zombie
 	self.create_new_card_speed = game_para.create_new_card_speed
 	## 修改倍率
 	create_new_card_cd = create_new_card_cd / create_new_card_speed
 	create_new_card_timer.wait_time = create_new_card_cd
-
-	## 计算总概率值
-	for prob in all_card_plant_type_probability.values():
-		total_prob += prob
-		prob_every_card.append(total_prob)
-
-	for prob in all_card_zombie_type_probability.values():
-		total_prob += prob
-		prob_every_card.append(total_prob)
 
 	await get_tree().process_frame
 	## 初始化后生成一个卡片
@@ -109,43 +100,24 @@ func _create_new_card():
 		await signal_card_end
 		create_new_card_timer.start()
 	var new_card_prefabs:Card
-	if all_num_card < start_list_card_plant_type.size():
-		new_card_prefabs = AllCards.all_plant_card_prefabs[start_list_card_plant_type[all_num_card]]
-	elif all_num_card < start_list_card_plant_type.size() + start_list_card_zombie_type.size():
-		new_card_prefabs = AllCards.all_zombie_card_prefabs[start_list_card_zombie_type[all_num_card]]
+	if card_order_plant.has(all_num_card):
+		new_card_prefabs = AllCards.all_plant_card_prefabs[card_order_plant[all_num_card]]
+	elif card_order_zombie.has(all_num_card):
+		new_card_prefabs = AllCards.all_zombie_card_prefabs[card_order_zombie[all_num_card]]
 	else:
-		new_card_prefabs = _get_random_card_by_probability()
+		new_card_prefabs = card_random_pool.get_random_card()
 	var new_card = new_card_prefabs.duplicate()
 	new_card_area.add_child(new_card)
 	new_card.card_init_conveyor_belt()
 	new_card.position = Vector2(new_card_area.size.x, 0)
 	#print(new_card_area.size)
 	curr_cards.append(new_card)
-	signal_create_new_card.emit(new_card)
 	new_card.signal_card_use_end.connect(card_use_end.bind(new_card))
 	var card_bg:TextureRect = new_card.get_node("CardBg")
 	card_bg.clip_children = CanvasItem.CLIP_CHILDREN_DISABLED
 
 	all_num_card += 1
 
-## 按概率随机获取可生成卡片索引
-func _get_random_card_by_probability() -> Card:
-	var rand_val = randi_range(1, total_prob)
-
-	for i in range(prob_every_card.size()):
-		if rand_val <= prob_every_card[i]:
-			## 如果是植物
-			if i < all_card_plant_type_probability.size():
-				var card_plant_type = all_card_plant_type_probability.keys()[i]
-				return AllCards.all_plant_card_prefabs[card_plant_type]
-			else:
-				i = i - all_card_plant_type_probability.size()
-				var card_zombie_type = all_card_zombie_type_probability.keys()[i]
-				return AllCards.all_zombie_card_prefabs[card_zombie_type]
-
-	push_error("传送带未随机到卡片？")
-	# （理论上不会执行到这里）
-	return null
 #endregion
 
 #region 传送带开始与结束

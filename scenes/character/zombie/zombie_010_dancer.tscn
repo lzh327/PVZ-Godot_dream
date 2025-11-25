@@ -51,18 +51,12 @@
 
 [sub_resource type="Resource" id="Resource_m6i7q"]
 script = ExtResource("3_abhbb")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_hand"), NodePath("../Body/BodyCorrect/Zombie_outerarm_lower")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Hand_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_4e6id"]
 script = ExtResource("3_abhbb")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_head1"), NodePath("../Body/BodyCorrect/Anim_head2"), NodePath("../Body/BodyCorrect/Anim_hair")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Head_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
@@ -4477,9 +4471,6 @@ script = ExtResource("45_4e6id")
 
 [node name="HpStageChangeComponent" parent="." index="3"]
 body_change = Array[ExtResource("3_abhbb")]([SubResource("Resource_m6i7q"), SubResource("Resource_4e6id")])
-
-[node name="HpComponent" parent="." index="4"]
-max_hp = 270
 
 [node name="Anim_blink" type="Sprite2D" parent="CharredComponent/ZombieCharred/CharredCorrect" index="0"]
 centered = false

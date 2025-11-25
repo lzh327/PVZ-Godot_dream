@@ -16,24 +16,24 @@ var zombie_last_x:float
 var zombie_curr_x:float
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	hp_stage_change_component.signal_hp_stage_change.connect(hp_stage_zamboni_change)
 	hp_component.signal_hp_component_death.connect(func():ice_road.start_disappear_timer())
 
 ## 初始化正常出战角色
-func init_norm():
+func ready_norm():
 	super()
 	## 将冰道放置于游戏背景上
 	var main_game :MainGameManager = get_tree().current_scene
-	GlobalUtils.child_node_change_parent(ice_road, main_game.background)
+	ice_road.reparent(main_game.background_manager.background)
 	ice_road.ice_road_init(lane)
 	zombie_last_x = global_position.x
 
 ## 初始化展示角色
-func init_show():
+func ready_show():
 	super()
-	move_component.disable_component(ComponentBase.E_IsEnableFactor.InitType)
+	move_component.disable_component(ComponentNormBase.E_IsEnableFactor.InitType)
 	zombie_last_x = global_position.x
 
 func _process(delta: float) -> void:
@@ -50,7 +50,6 @@ func _process(delta: float) -> void:
 ## 2:停止移动\车身抖动
 ## 3:爆炸死亡
 func hp_stage_zamboni_change(curr_hp_stage:int):
-	print(hp_stage_change_component.is_no_change)
 	match curr_hp_stage:
 		1:
 			smoke.emitting = true
@@ -63,15 +62,12 @@ func hp_stage_zamboni_change(curr_hp_stage:int):
 			tween.tween_property(body, "position", body.position, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 			tween.set_loops()
 		3:
-			print(hp_stage_change_component.is_no_change)
-			## 如果死亡时body有变化
-			if not hp_stage_change_component.is_no_change:
-				zamboni_death_effect()
+			zamboni_death_effect()
 
 ## 死亡爆炸特效
 func zamboni_death_effect():
 	death_bomb.activate_it()
-	SoundManager.play_zombie_SFX(Global.ZombieType.Z013Zamboni, "explosion")
+	SoundManager.play_character_SFX(&"explosion")
 	queue_free()
 
 ## 被地刺扎

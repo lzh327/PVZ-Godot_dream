@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name CreateSunComponent
 
 ## 生产阳光计时器
@@ -34,6 +34,14 @@ func _ready() -> void:
 	create_interval = randf_range(create_time_range_first.x, create_time_range_first.y)
 	create_sun_timer.start(create_interval)
 
+	EventBus.subscribe("main_game_progress_update", _on_main_game_progress_update)
+
+## 主游戏进程改变时,修改生产阳光组件
+func _on_main_game_progress_update(curr_main_game_progress:MainGameManager.E_MainGameProgress):
+	if curr_main_game_progress == MainGameManager.E_MainGameProgress.MAIN_GAME:
+		enable_component(E_IsEnableFactor.MainGameProgress)
+	else:
+		disable_component(E_IsEnableFactor.MainGameProgress)
 
 ## 启用组件
 func enable_component(is_enable_factor:E_IsEnableFactor):
@@ -67,7 +75,7 @@ func change_production_interval():
 ## 创建阳光
 func _spawn_sun():
 	## 播放音效
-	SoundManager.play_plant_SFX(Global.PlantType.P002SunFlower, &"Throw")
+	SoundManager.play_character_SFX(&"Throw1")
 	for i in range(num_create_sun):
 		var new_sun:Sun = SceneRegistry.SUN.instantiate()
 		new_sun.init_sun(sun_value, Global.main_game.suns.to_local(marker_2d_create_sun.global_position))
@@ -103,5 +111,5 @@ func _on_create_sun_timer_timeout() -> void:
 	change_production_interval()
 
 ## 改变阳光生产价值
-func change_sun_value(sun_value:int):
-	self.sun_value = sun_value
+func change_sun_value(new_sun_value:int):
+	self.sun_value = new_sun_value

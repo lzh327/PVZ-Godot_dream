@@ -71,8 +71,8 @@ func acitvate_it(control_x:float = 0):
 		is_swimming = true
 
 	var zombie_lane := Global.main_game.zombie_manager.all_zombie_rows[zombie.lane]
-	GlobalUtils.child_node_change_parent(self, zombie_lane)
-
+	#GlobalUtils.child_node_change_parent(self, zombie_lane)
+	reparent(zombie_lane)
 
 func fade_and_delete():
 	var tween = create_tween()

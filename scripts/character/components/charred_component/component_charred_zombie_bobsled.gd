@@ -13,9 +13,6 @@ class_name CharredComponentZombieBobsled
 	$ZombieCharred3/CharredCorrect/AnimLib,
 	$ZombieCharred4/CharredCorrect/AnimLib,
 ]
-@onready var all_body: Array[BodyCharacter] = [
-	%Body2, %Body4, %Body3, %Body
-]
 
 ## 播放灰烬动画
 func play_charred_anim():
@@ -25,7 +22,6 @@ func play_charred_anim():
 	black_zombie_bobsled_1.global_position = zombie_bobsled_1.global_position
 	black_zombie_bobsled_1.modulate = Color.BLACK
 	for i in range(4):
-		all_body[i].visible = false
 		zombie_charred[i].visible = true
 		all_anim_lib[i].play("ALL_ANIMS")
 	await all_anim_lib[0].animation_finished

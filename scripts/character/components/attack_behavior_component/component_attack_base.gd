@@ -1,9 +1,10 @@
-extends ComponentBase
+@abstract
+extends ComponentNormBase
 ## 基础攻击组件，攻击组件都有攻击射线检测组件（detect_component）
-## (除了全局攻击组件使用全局检测组件)
+## 列外:全局攻击组件同时使用全局检测组件
 class_name AttackComponentBase
 
-@onready var detect_component: AttackRayComponent = $AttackRayComponent
+@onready var detect_component: DetectComponent = $DetectComponent
 
 ### 是否正在攻击
 #var is_attack := false
@@ -70,3 +71,5 @@ func attack_end():
 func owner_be_hypno():
 	detect_component.owner_be_hypno()
 
+@abstract
+func owner_update_speed(speed_product:float)

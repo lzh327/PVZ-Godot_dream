@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://brbdbxg2tocla"]
+[gd_scene load_steps=13 format=3 uid="uid://brbdbxg2tocla"]
 
 [ext_resource type="Script" uid="uid://b17126kyvx43n" path="res://scripts/ui/main_game_ui/ui_flag_progress_bar.gd" id="1_dtp4m"]
 [ext_resource type="Texture2D" uid="uid://de2yt1rux7boj" path="res://assets/image/ui/ui_progress_bar/FlagMeterParts.png" id="1_l32th"]
 [ext_resource type="Texture2D" uid="uid://cebvui8j81gxi" path="res://assets/image/ui/ui_progress_bar/FlagMeter.png" id="2_ea7cx"]
 [ext_resource type="Script" uid="uid://doq1iak45j5xk" path="res://scripts/ui/main_game_ui/ui_flag_progress_bar_flag.gd" id="3_dtp4m"]
 [ext_resource type="Texture2D" uid="uid://dvi4pcgdfyfim" path="res://assets/image/ui/ui_progress_bar/FlagMeterLevelProgress.png" id="5_bkxnl"]
+[ext_resource type="FontFile" uid="uid://dqb8lum530s2f" path="res://assets/fonts/方正少儿_GBK.ttf" id="6_1lpw6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42xtw"]
 atlas = ExtResource("2_ea7cx")
@@ -26,8 +27,14 @@ region = Rect2(50, 1, 25, 25)
 atlas = ExtResource("1_l32th")
 region = Rect2(0, 0, 25, 25)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ri5yr"]
+font = ExtResource("6_1lpw6")
+font_size = 18
+font_color = Color(1, 1, 0.45490196, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
 [node name="FlagProgressBar" type="Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -37,6 +44,7 @@ script = ExtResource("1_dtp4m")
 layout_mode = 0
 offset_right = 158.0
 offset_bottom = 27.0
+mouse_filter = 2
 step = 0.1
 value = 30.4
 fill_mode = 1
@@ -48,19 +56,21 @@ anchors_preset = 0
 offset_left = 2.0
 offset_right = 42.0
 offset_bottom = 40.0
-mouse_filter = 1
+mouse_filter = 2
 script = ExtResource("3_dtp4m")
 
 [node name="Pole" type="TextureRect" parent="Flag"]
 layout_mode = 0
 offset_right = 25.0
 offset_bottom = 25.0
+mouse_filter = 2
 texture = SubResource("AtlasTexture_abset")
 
 [node name="Flag" type="TextureRect" parent="Flag"]
 layout_mode = 0
 offset_right = 25.0
 offset_bottom = 25.0
+mouse_filter = 2
 texture = SubResource("AtlasTexture_wg8jo")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -69,6 +79,7 @@ offset_left = 37.0
 offset_top = 15.0
 offset_right = 123.0
 offset_bottom = 26.0
+mouse_filter = 2
 texture = ExtResource("5_bkxnl")
 
 [node name="MiniZombie" type="TextureRect" parent="."]
@@ -77,4 +88,19 @@ offset_left = 142.0
 offset_top = -6.0
 offset_right = 167.0
 offset_bottom = 19.0
+mouse_filter = 2
 texture = SubResource("AtlasTexture_hry0n")
+
+[node name="RoundLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_right = -12.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "完成10轮"
+label_settings = SubResource("LabelSettings_ri5yr")
+horizontal_alignment = 2

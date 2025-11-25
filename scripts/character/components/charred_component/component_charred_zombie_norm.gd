@@ -11,8 +11,6 @@ class_name CharredComponentZombieNorm
 ## 播放灰烬动画
 func play_charred_anim():
 	super()
-	body.visible = false
-	visible = true
 	anim_lib.play(anim_lib_name)
 	await anim_lib.animation_finished
 	queue_free()

@@ -77,7 +77,7 @@ func card_use_end(card:Card):
 	card.judge_sun_enough(Global.coin_value/10)
 	curr_wave_card -= 1
 	if curr_wave_card == 0:
-		card.set_card_disabel()
+		card.set_card_disable()
 		if not is_end_wave:
 			next_wave_timer.start()
 	else:

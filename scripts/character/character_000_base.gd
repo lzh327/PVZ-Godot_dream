@@ -4,7 +4,8 @@ class_name Character000Base
 #region 子节点
 @onready var body: BodyCharacter = %Body
 ## 角色必备组件(受击盒子组件、血量组件)
-@onready var be_attacked_box_component: BeAttackedBoxComponent = %BeAttackedBoxComponent
+@onready var hurt_box_component:HurtBoxComponent = %HurtBoxComponent
+
 @onready var hp_component: HpComponent = %HpComponent
 @onready var anim_component: AnimComponentBase = %AnimComponent
 
@@ -27,15 +28,15 @@ var a :Dictionary = {"111":1}
 
 #region 基础属性
 
-@export_group("角色方向")
 ## 角色实际方向改变时,body方向为角色实际方向基础的body方向
+@export_group("角色方向")
 ## 角色实际方向(1为默认方向,-1为反方向)被魅惑时改变方向
 @export var direction_x_root := 1
 ## 不改变方向的节点(睡眠组件\血条显示),当角色实际方向改变时,将该组件方向修改回来
 @export var node_no_change_direction:Array[Node2D]
 ## body方向(1为默认方向,-1为反方向)[舞王\花园使用]
 @export var direction_x_body := 1
-## 跟随body方向的节点(body\影子\僵尸身体掉落节点\灰烬)
+## 跟随body方向的节点(body\影子\灰烬)
 @export var node_follow_body_direction:Array[Node2D]
 
 @export_group("角色速度")
@@ -85,7 +86,7 @@ signal signal_direction_x_body_update(direction_x:int)
 ## 更新角色本体方向
 func update_direction_x_root(direction_x:int):
 	direction_x_root = direction_x
-	scale.x = direction_x
+	scale.x = abs(scale.x) * sign(direction_x)
 	signal_direction_x_root_update.emit(direction_x_root)
 
 ## 更新角色body方向
@@ -105,35 +106,32 @@ enum E_CharacterInitType{
 ## 角色初始化类型
 @export var character_init_type :E_CharacterInitType = E_CharacterInitType.IsNorm
 @export_group("斜面(屋顶)相关")
-## 特殊组件(不包含植物和僵尸基类的节点)在斜面上更新位置
-## 特殊组件(爆炸组件)移动
-@export var special_component_update_pos_in_slope:Array[ComponentBase]
-## 特殊节点
-@export var special_node2d_update_pos_in_slope:Array[Node2D]
+## 斜面移动的检测层面的组件(受击框,检测组件或非检测组件下的检测框)
+@export var node2d_detect_in_slope:Array[Node2D]
 #endregion
 
 #endregion
 func _ready() -> void:
 	match character_init_type:
 		E_CharacterInitType.IsNorm:
-			init_norm()
+			ready_norm()
 		E_CharacterInitType.IsShow:
-			init_show()
+			ready_show()
 		E_CharacterInitType.IsGarden:
-			init_garden()
+			ready_garden()
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	## 角色根改变方向（修改为同样的值,方向不变）
 	for node2d:Node2D in node_no_change_direction:
-		signal_direction_x_root_update.connect(func(dir_x:int): node2d.scale.x = dir_x)
+		signal_direction_x_root_update.connect(func(dir_x:int): node2d.scale.x = abs(node2d.scale.x) * sign(dir_x))
 
 	## 角色body改变方向（修改为同样的值,保持和body方向一致）
 	for node2d:Node2D in node_follow_body_direction:
-		signal_direction_x_body_update.connect(func(dir_x:int): node2d.scale.x = dir_x)
+		signal_direction_x_body_update.connect(func(dir_x:int): node2d.scale.x = abs(node2d.scale.x) * sign(dir_x))
 
 	## 速度修改信号连接动画速度
-	signal_update_speed.connect(anim_component.update_anim_speed)
+	signal_update_speed.connect(anim_component.owner_update_speed)
 
 	## 血量组件发射死亡信号
 	hp_component.signal_hp_component_death.connect(character_death)
@@ -142,22 +140,23 @@ func init_norm_signal_connect():
 	signal_character_be_hypno.connect(body.owner_be_hypno)
 
 ## 初始化正常出战角色
-func init_norm():
-	init_norm_signal_connect()
+func ready_norm():
+	ready_norm_signal_connect()
 	is_show = false
 	is_idle = false
 	call_deferred("init_random_speed")
 
 ## 初始化展示角色
-func init_show():
+func ready_show():
 	is_show = true
 	is_idle = true
-	be_attacked_box_component.call_deferred("queue_free")
+	hurt_box_component.disable_component(ComponentNormBase.E_IsEnableFactor.InitType)
 
 ## 初始化花园角色
-func init_garden():
+func ready_garden():
 	is_show = true
-	be_attacked_box_component.call_deferred("queue_free")
+	is_idle = true
+	hurt_box_component.disable_component(ComponentNormBase.E_IsEnableFactor.InitType)
 
 ## 随机初始化角色速度
 func init_random_speed():
@@ -211,11 +210,11 @@ func be_attacked_hammer(attack_value:int):
 ## 被僵尸啃食
 ## attack_value:伤害
 ## attack_zombie:攻击的僵尸
-func be_zombie_eat(attack_value:int, attack_zombie:Zombie000Base):
+func be_zombie_eat(attack_value:int, _attack_zombie:Zombie000Base):
 	hp_component.Hp_loss(attack_value, Global.AttackMode.Penetration, true, false)
 
 ## 被僵尸啃食一次发光
-func be_zombie_eat_once(attack_zombie:Zombie000Base):
+func be_zombie_eat_once(_attack_zombie:Zombie000Base):
 	body.body_light()
 
 ## 被魅惑
@@ -224,12 +223,12 @@ func be_hypno():
 	signal_character_be_hypno.emit()
 	update_direction_x_root(-1)
 
-	#be_attacked_box_component.disable_component(ComponentBase.E_IsEnableFactor.Hypno)
-	#be_attacked_box_component.enable_component(ComponentBase.E_IsEnableFactor.Hypno)
+	#hurt_box_component.disable_component(ComponentNormBase.E_IsEnableFactor.Hypno)
+	#hurt_box_component.enable_component(ComponentNormBase.E_IsEnableFactor.Hypno)
 
 ## 被压扁
 ## [character:Character000Base] 发动攻击的角色
-func be_flattened(character:Character000Base):
+func be_flattened(_character:Character000Base):
 	body.be_flattened_body()
 	## 角色死亡消失
 	character_death_disappear()
@@ -253,8 +252,8 @@ func _on_ice_decelerate_timer_timeout() -> void:
 	body.set_other_color(BodyCharacter.E_ChangeColors.IceColor, Color(1, 1, 1))
 
 ## 被冰冻控制
-func be_ice_freeze(time:float, time_ice_end_decelerate:float):
-	self.time_ice_end_decelerate = time_ice_end_decelerate
+func be_ice_freeze(time:float, new_time_ice_end_decelerate:float):
+	self.time_ice_end_decelerate = new_time_ice_end_decelerate
 	update_speed_factor(0.0, E_Influence_Speed_Factor.IceFreezeSpeed)
 	body.set_other_color(BodyCharacter.E_ChangeColors.IceColor, Color(0.5, 1, 1))
 	if not is_instance_valid(all_timer[E_TimerType.IceFreeze]):

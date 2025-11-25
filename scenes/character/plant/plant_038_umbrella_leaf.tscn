@@ -49,27 +49,28 @@ transitions = ["Start", "Umbrellaleaf_idle", SubResource("AnimationNodeStateMach
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2w244"]
 graph_offset = Vector2(0, 64)
+nodes/output/position = Vector2(600, 160)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_yc2dj")
 nodes/StateMachine/position = Vector2(120, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_gg6xg")
 nodes/TimeScale/position = Vector2(420, 140)
-nodes/output/position = Vector2(600, 160)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kuurk"]
 size = Vector2(240, 180)
 
-[node name="Plant038UmbrellaLeaf" instance=ExtResource("1_kuurk")]
+[node name="Plant038UmbrellaLeaf" node_paths=PackedStringArray("node2d_detect_in_slope") instance=ExtResource("1_kuurk")]
 script = ExtResource("2_7nhj0")
 is_activate_umbrella = false
 plant_type = 38
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("Area2DUmbrella")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-40, -66)
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(26.8735, 35.2531)
-scale = Vector2(0.679694, 0.606571)
+position = Vector2(27.405655, 34.141518)
+scale = Vector2(0.65071726, 0.62769794)
 texture = ExtResource("2_kjldc")
 centered = false
 
@@ -81,55 +82,51 @@ texture = ExtResource("3_7nhj0")
 centered = false
 
 [node name="Umbrellaleaf_leaf5" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(34.0265, 7.17962)
-rotation = 0.0883003
-scale = Vector2(0.637, 0.58704)
+position = Vector2(32.26414, 4.141516)
+rotation = -0.03843096
+scale = Vector2(0.637, 0.637)
 texture = ExtResource("4_f4cmm")
 centered = false
 
 [node name="Umbrellaleaf_leaf4" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(8.53673, 12.9389)
-rotation = -0.198008
-scale = Vector2(0.638, 0.575775)
-skew = 0.067534
+position = Vector2(9.894344, 4.211312)
+rotation = 0.015313166
+scale = Vector2(0.637, 0.637)
 texture = ExtResource("5_xi1k3")
 centered = false
 
 [node name="Umbrellaleaf_leaf6" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(36.1429, 10.7735)
-rotation = 0.210688
-scale = Vector2(0.638, 0.637)
-skew = -0.061194
+position = Vector2(33.35283, 11.105656)
+rotation = -0.023940943
+scale = Vector2(0.637, 0.637)
 texture = ExtResource("6_yc2dj")
 centered = false
 
 [node name="Umbrellaleaf_leaf3" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
-position = Vector2(-2.61635, 24.7654)
-rotation = -0.228605
-scale = Vector2(0.637, 0.636633)
-skew = 0.0426367
+position = Vector2(0.28868833, 14.533935)
+rotation = 0.03503865
+scale = Vector2(0.637, 0.637)
 texture = ExtResource("7_gg6xg")
 centered = false
 
 [node name="Umbrellaleaf_leaf7" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(39.3531, 19.1)
-rotation = 0.170261
-scale = Vector2(0.638, 0.637)
-skew = -0.0657889
+position = Vector2(37.21131, 19.541517)
+rotation = -0.039254583
+scale = Vector2(0.637, 0.637)
 texture = ExtResource("8_2w244")
 centered = false
 
 [node name="Umbrellaleaf_leaf2" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
-position = Vector2(9.81019, 27.0694)
-rotation = -0.0998764
-scale = Vector2(0.637, 0.637)
+position = Vector2(11.541516, 22.705656)
+rotation = 0.019726014
+scale = Vector2(0.637, 0.6159242)
 texture = ExtResource("9_gsw7f")
 centered = false
 
 [node name="Umbrellaleaf_leaf1" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
-position = Vector2(32.7898, 24.4633)
-rotation = 0.0577034
-scale = Vector2(0.637, 0.657164)
+position = Vector2(32.241516, 24.147173)
+rotation = -0.011097708
+scale = Vector2(0.637, 0.6149242)
 texture = ExtResource("10_dwrju")
 centered = false
 

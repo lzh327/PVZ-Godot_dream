@@ -1,30 +1,51 @@
-[gd_scene load_steps=25 format=3 uid="uid://cqo7ru5lo8e6g"]
+[gd_scene load_steps=36 format=3 uid="uid://cqo7ru5lo8e6g"]
 
 [ext_resource type="Theme" uid="uid://cx302yraw066y" path="res://data/ChooesLevel.tres" id="1_ehgxy"]
 [ext_resource type="Script" uid="uid://jru6xfv7g4f1" path="res://scripts/choose_level/02_chooes_level.gd" id="1_o008e"]
 [ext_resource type="Texture2D" uid="uid://bwevuvs5nnwfx" path="res://assets/image/ui/ui_challenge/Challenge_Background.jpg" id="2_xopa1"]
-[ext_resource type="Texture2D" uid="uid://ders1ogcvovet" path="res://assets/image/ui/ui_challenge/Challenge_Blank.png" id="3_we3l7"]
 [ext_resource type="Texture2D" uid="uid://hb4b6ujaahoc" path="res://assets/image/Almanac/Almanac_GroundDay.jpg" id="4_e2jkj"]
-[ext_resource type="Texture2D" uid="uid://bnwwtx66naab1" path="res://assets/image/ui/ui_challenge/Challenge_Window.png" id="6_mrsyh"]
-[ext_resource type="Texture2D" uid="uid://vwk4r0yu588v" path="res://assets/image/ui/ui_challenge/Challenge_Window_Highlight.png" id="7_fgi2n"]
+[ext_resource type="Resource" uid="uid://r8eb38jjjno7" path="res://resources/level_date_resource/mode_adventure/adventure_02_night.tres" id="5_o008e"]
 [ext_resource type="PackedScene" uid="uid://bqvqjd3yshp8r" path="res://scenes/character/zombie/zombie_020_yeti.tscn" id="7_my4l7"]
-[ext_resource type="Script" uid="uid://cnagiy3yxjooh" path="res://scripts/choose_level/chooes_level_button.gd" id="8_pw6t1"]
-[ext_resource type="Texture2D" uid="uid://bvp2j68muqgm8" path="res://assets/image/Almanac/Almanac_GroundNight.jpg" id="10_rivfv"]
+[ext_resource type="PackedScene" uid="uid://bjdufdnu8jj62" path="res://scenes/character/plant/plant_004_wall_nut.tscn" id="7_xopa1"]
+[ext_resource type="Texture2D" uid="uid://bvp2j68muqgm8" path="res://assets/image/Almanac/Almanac_GroundNight.jpg" id="8_we3l7"]
+[ext_resource type="Texture2D" uid="uid://bqtnl31pv3rv3" path="res://assets/reanim/Hammer_3.png" id="9_e2jkj"]
+[ext_resource type="PackedScene" uid="uid://bhjnqm3kqr2fq" path="res://scenes/main/choose_level_button.tscn" id="9_xsph7"]
+[ext_resource type="Texture2D" uid="uid://qtifu6lsmq6x" path="res://assets/reanim/hammer_1.png" id="10_sb4cu"]
+[ext_resource type="Texture2D" uid="uid://dweon5ml8otw5" path="res://assets/reanim/Hammer_2.png" id="11_mrsyh"]
+[ext_resource type="PackedScene" uid="uid://cfc5vrs1dcy0j" path="res://scenes/character/plant/plant_001_pea_shooter_single.tscn" id="12_fgi2n"]
+[ext_resource type="PackedScene" uid="uid://b72u5kwdpw4te" path="res://scenes/character/zombie/zombie_001_norm.tscn" id="13_pw6t1"]
 [ext_resource type="Texture2D" uid="uid://om7aubyyu3le" path="res://assets/image/ui/ui_level/SeedChooser_Button2.png" id="13_v8ms4"]
 [ext_resource type="Resource" uid="uid://byaabbkntnwec" path="res://resources/level_date_resource/mode_minigame/minigame_101_small_gambling.tres" id="14_5d8uv"]
+[ext_resource type="Texture2D" uid="uid://dwva3w3r5kjvb" path="res://assets/image/Almanac/Almanac_GroundNightPool.jpg" id="14_bkyeq"]
 [ext_resource type="Texture2D" uid="uid://cx854vkq3n8gs" path="res://assets/image/ui/ui_level/SeedChooser_Button2_Glow.png" id="14_xsph7"]
-[ext_resource type="PackedScene" uid="uid://bjdufdnu8jj62" path="res://scenes/character/plant/plant_004_wall_nut.tscn" id="19_mbc5i"]
-[ext_resource type="Resource" uid="uid://c8yt6n65ponc6" path="res://resources/level_date_resource/mode_minigame/minigame_01_bowling.tres" id="20_vuip8"]
-[ext_resource type="Texture2D" uid="uid://bqtnl31pv3rv3" path="res://assets/reanim/Hammer_3.png" id="21_3ef3p"]
-[ext_resource type="Texture2D" uid="uid://qtifu6lsmq6x" path="res://assets/reanim/hammer_1.png" id="22_xguwi"]
-[ext_resource type="Texture2D" uid="uid://dweon5ml8otw5" path="res://assets/reanim/Hammer_2.png" id="23_6wvnp"]
+[ext_resource type="PackedScene" uid="uid://cv3iw5srgpusv" path="res://scenes/main_game_bg/rain.tscn" id="15_rivfv"]
+[ext_resource type="Theme" uid="uid://em12la0rqibq" path="res://data/PVZ_theme.tres" id="16_iqxly"]
+[ext_resource type="Texture2D" uid="uid://cdm356vgex30b" path="res://assets/image/ui/ui_card/SeedPacket_Larger.png" id="17_xlo1v"]
+[ext_resource type="Texture2D" uid="uid://d0hpo2yp78fwc" path="res://assets/image/plant/plantshadow.png" id="18_f1qdu"]
+[ext_resource type="Texture2D" uid="uid://cbhaawnc37cwe" path="res://assets/reanim/LilyPad_body.png" id="19_4nhff"]
+[ext_resource type="Texture2D" uid="uid://dmmcjbsd028oj" path="res://assets/reanim/LilyPad_blink1.png" id="20_bku10"]
+[ext_resource type="Texture2D" uid="uid://jppuyyro3g5w" path="res://assets/image/ui/ui_challenge/Challenge_Thumbnails.jpg" id="21_xopa1"]
 [ext_resource type="Texture2D" uid="uid://xc3kqag3vqlq" path="res://assets/image/ui/ui_level/Almanac_CloseButton.png" id="25_ta0hi"]
 [ext_resource type="Texture2D" uid="uid://c82uuprowr5d" path="res://assets/image/ui/ui_level/Almanac_CloseButtonHighlight.png" id="26_fvivu"]
 [ext_resource type="BitMap" uid="uid://bc7yq02xscrlr" path="res://assets/image/ui/ui_level/Almanac_CloseButton_Mask.png" id="27_2sh17"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehgxy"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmduy"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cq2ge"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icdg3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ug5o"]
+
+[sub_resource type="SystemFont" id="SystemFont_mbc5i"]
+font_names = PackedStringArray("Sans-Serif")
+font_weight = 500
+hinting = 2
+subpixel_positioning = 0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_we3l7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2jkj"]
+atlas = ExtResource("21_xopa1")
+region = Rect2(320, 0, 80, 64)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1i0xb"]
 
@@ -37,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ehgxy")
 script = ExtResource("1_o008e")
+game_mode = "MiniGame"
 curr_page = 1
 
 [node name="BG" type="TextureRect" parent="."]
@@ -92,33 +114,29 @@ theme_override_constants/h_separation = 53
 theme_override_constants/v_separation = 3
 columns = 5
 
-[node name="TextureRect1" type="TextureRect" parent="AllPage/GridContainer"]
+[node name="ChooseLevelButton" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
 layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
+curr_level_data_game_para = ExtResource("5_o008e")
 
-[node name="TextureRect2" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-curr_level_data_game_para = ExtResource("20_vuip8")
+[node name="Label" parent="AllPage/GridContainer/ChooseLevelButton/TextureButton" index="0"]
+text = "保龄球"
 
-[node name="Panel" type="Panel" parent="AllPage/GridContainer/TextureRect2"]
+[node name="Panel" type="Panel" parent="AllPage/GridContainer/ChooseLevelButton"]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -49.3976
-offset_top = 4.38553
+offset_top = 4.3855286
 offset_right = 42.6024
 offset_bottom = 70.3855
 grow_horizontal = 2
 pivot_offset = Vector2(41, 33.5)
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ehgxy")
+theme_override_styles/panel = SubResource("StyleBoxFlat_pmduy")
 
-[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/TextureRect2/Panel"]
+[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/ChooseLevelButton/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -134,121 +152,33 @@ grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_e2jkj")
 
-[node name="Plant004WallNut" parent="AllPage/GridContainer/TextureRect2/Panel/TextureRect" node_paths=PackedStringArray("node_no_change_direction") instance=ExtResource("19_mbc5i")]
+[node name="Plant004WallNut" parent="AllPage/GridContainer/ChooseLevelButton/Panel/TextureRect" instance=ExtResource("7_xopa1")]
 position = Vector2(90.6627, 96.0242)
-node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), null]
 character_init_type = 1
 
-[node name="TextureButton" type="TextureButton" parent="AllPage/GridContainer/TextureRect2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.0
-offset_top = -60.0
-offset_right = 59.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_mrsyh")
-texture_pressed = ExtResource("7_fgi2n")
-texture_focused = ExtResource("6_mrsyh")
-
-[node name="Label" type="Label" parent="AllPage/GridContainer/TextureRect2/TextureButton"]
-layout_mode = 0
-offset_left = 19.0
-offset_top = 82.5
-offset_right = 99.0
-offset_bottom = 105.5
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "保龄球"
-horizontal_alignment = 1
-
-[node name="TextureRect3" type="TextureRect" parent="AllPage/GridContainer"]
+[node name="ChooseLevelButton2" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
 layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
+curr_level_data_game_para = ExtResource("5_o008e")
 
-[node name="TextureRect4" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
+[node name="Label" parent="AllPage/GridContainer/ChooseLevelButton2/TextureButton" index="0"]
+text = "锤僵尸"
 
-[node name="TextureRect5" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect6" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect7" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect8" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect9" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect10" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect11" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect12" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect13" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect14" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-
-[node name="TextureRect15" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
-curr_level_data_game_para = ExtResource("14_5d8uv")
-
-[node name="Panel" type="Panel" parent="AllPage/GridContainer/TextureRect15"]
+[node name="Panel" type="Panel" parent="AllPage/GridContainer/ChooseLevelButton2"]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -45.9398
-offset_top = 0.987915
-offset_right = 42.0602
+offset_left = -45.93979
+offset_top = 0.98791504
+offset_right = 42.06021
 offset_bottom = 68.9879
 grow_horizontal = 2
 pivot_offset = Vector2(41, 33.5)
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_cq2ge")
+theme_override_styles/panel = SubResource("StyleBoxFlat_icdg3")
 
-[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/TextureRect15/Panel"]
+[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/ChooseLevelButton2/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -262,86 +192,281 @@ offset_bottom = 149.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("10_rivfv")
+texture = ExtResource("8_we3l7")
 
-[node name="Hammer" type="Node2D" parent="AllPage/GridContainer/TextureRect15/Panel"]
+[node name="Hammer" type="Node2D" parent="AllPage/GridContainer/ChooseLevelButton2/Panel"]
 z_index = 950
 z_as_relative = false
 position = Vector2(45.241, 35.5121)
 scale = Vector2(0.51, 0.51)
 
-[node name="Body" type="Node2D" parent="AllPage/GridContainer/TextureRect15/Panel/Hammer"]
+[node name="Body" type="Node2D" parent="AllPage/GridContainer/ChooseLevelButton2/Panel/Hammer"]
 position = Vector2(-62, -11)
 
-[node name="Hammer_3" type="Sprite2D" parent="AllPage/GridContainer/TextureRect15/Panel/Hammer/Body"]
+[node name="Hammer_3" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton2/Panel/Hammer/Body"]
 position = Vector2(57.9, -19.3)
 rotation = 1.11527
 scale = Vector2(0.797, 0.797)
-texture = ExtResource("21_3ef3p")
+texture = ExtResource("9_e2jkj")
 centered = false
 
-[node name="Hammer_2" type="Sprite2D" parent="AllPage/GridContainer/TextureRect15/Panel/Hammer/Body"]
+[node name="Hammer_2" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton2/Panel/Hammer/Body"]
 position = Vector2(74.6, -29.3)
 rotation = 1.11527
 scale = Vector2(0.797, 0.797)
-texture = ExtResource("22_xguwi")
+texture = ExtResource("10_sb4cu")
 centered = false
 
-[node name="Hammer1" type="Sprite2D" parent="AllPage/GridContainer/TextureRect15/Panel/Hammer/Body"]
+[node name="Hammer1" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton2/Panel/Hammer/Body"]
 position = Vector2(65.3, 4.1)
 rotation = 1.11527
 scale = Vector2(0.797, 0.797)
-texture = ExtResource("23_6wvnp")
+texture = ExtResource("11_mrsyh")
 centered = false
 
-[node name="TextureButton" type="TextureButton" parent="AllPage/GridContainer/TextureRect15"]
+[node name="ChooseLevelButton3" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+curr_level_data_game_para = ExtResource("5_o008e")
+
+[node name="Label" parent="AllPage/GridContainer/ChooseLevelButton3/TextureButton" index="0"]
+text = "小僵尸大麻烦"
+
+[node name="Panel" type="Panel" parent="AllPage/GridContainer/ChooseLevelButton3"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 3.0
+offset_right = 47.0
+offset_bottom = 73.0
+grow_horizontal = 2
+pivot_offset = Vector2(41, 33.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ug5o")
+
+[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/ChooseLevelButton3/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -59.0
-offset_top = -60.0
-offset_right = 59.0
-offset_bottom = 60.0
+offset_left = -64.5
+offset_top = -39.0
+offset_right = 135.5
+offset_bottom = 161.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_mrsyh")
-texture_pressed = ExtResource("7_fgi2n")
-texture_focused = ExtResource("6_mrsyh")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_e2jkj")
 
-[node name="Label" type="Label" parent="AllPage/GridContainer/TextureRect15/TextureButton"]
+[node name="Plant001PeaShooterSingle" parent="AllPage/GridContainer/ChooseLevelButton3/Panel/TextureRect" node_paths=PackedStringArray("node_no_change_direction") instance=ExtResource("12_fgi2n")]
+position = Vector2(85.8333, 88.115)
+node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), null]
+character_init_type = 1
+
+[node name="Zombie001Norm" parent="AllPage/GridContainer/ChooseLevelButton3/Panel/TextureRect" instance=ExtResource("13_pw6t1")]
+position = Vector2(151.66666, 93.33333)
+scale = Vector2(0.5, 0.5)
+character_init_type = 1
+
+[node name="ChooseLevelButton4" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+curr_level_data_game_para = ExtResource("5_o008e")
+
+[node name="Label" parent="AllPage/GridContainer/ChooseLevelButton4/TextureButton" index="0"]
+text = "种子雨"
+
+[node name="Panel" type="Panel" parent="AllPage/GridContainer/ChooseLevelButton4"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -46.0
+offset_top = 3.0
+offset_right = 47.0
+offset_bottom = 73.0
+grow_horizontal = 2
+pivot_offset = Vector2(41, 33.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0ug5o")
+
+[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/ChooseLevelButton4/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.683
+offset_top = -59.9414
+offset_right = 141.317
+offset_bottom = 140.059
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("14_bkyeq")
+
+[node name="Rain" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect" instance=ExtResource("15_rivfv")]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 82.5
-offset_right = 98.0
-offset_bottom = 105.5
+
+[node name="Card17" type="Control" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -35.0
+offset_right = 25.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("16_iqxly")
+
+[node name="CardBg" type="TextureRect" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("17_xlo1v")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Cost" type="Label" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.78
+anchor_right = 0.65
+anchor_bottom = 0.95
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "锤僵尸"
-horizontal_alignment = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_fonts/font = SubResource("SystemFont_mbc5i")
+theme_override_font_sizes/font_size = 10
+text = "100"
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="TextureRect16" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
+[node name="CharacterStatic" type="Node2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg"]
+position = Vector2(24, 30)
 
-[node name="TextureRect17" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
+[node name="Plant017LilyPad" type="Node2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic"]
+position = Vector2(3, 15)
+scale = Vector2(0.5, 0.5)
 
-[node name="TextureRect18" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
+[node name="Shadow" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic/Plant017LilyPad"]
+visible = false
+texture = ExtResource("18_f1qdu")
 
-[node name="TextureRect19" type="TextureRect" parent="AllPage/GridContainer"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
+[node name="Body" type="Node2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic/Plant017LilyPad"]
 
-[node name="TextureRect20" type="TextureRect" parent="AllPage/GridContainer"]
+[node name="BodyCorrect" type="Node2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic/Plant017LilyPad/Body"]
+position = Vector2(-44, -67)
+
+[node name="shadow" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic/Plant017LilyPad/Body/BodyCorrect"]
+visible = false
+position = Vector2(40, 61)
+texture = ExtResource("18_f1qdu")
+
+[node name="Anim_idle" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic/Plant017LilyPad/Body/BodyCorrect"]
+position = Vector2(-0.2, 5.5)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("19_4nhff")
+centered = false
+
+[node name="Anim_blink" type="Sprite2D" parent="AllPage/GridContainer/ChooseLevelButton4/Panel/TextureRect/Card17/CardBg/CharacterStatic/Plant017LilyPad/Body/BodyCorrect"]
+visible = false
+position = Vector2(46, 50)
+scale = Vector2(0.735294, 0.695652)
+texture = ExtResource("20_bku10")
+centered = false
+
+[node name="ChooseLevelButton5" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
 layout_mode = 2
-texture = ExtResource("3_we3l7")
+curr_level_data_game_para = ExtResource("5_o008e")
+
+[node name="Label" parent="AllPage/GridContainer/ChooseLevelButton5/TextureButton" index="0"]
+text = "柱子"
+
+[node name="Panel" type="Panel" parent="AllPage/GridContainer/ChooseLevelButton5"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -45.93979
+offset_top = 0.98791504
+offset_right = 42.06021
+offset_bottom = 68.9879
+grow_horizontal = 2
+pivot_offset = Vector2(41, 33.5)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_we3l7")
+
+[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer/ChooseLevelButton5/Panel"]
+layout_mode = 0
+offset_left = 1.9397888
+offset_top = 3.012085
+offset_right = 87.93979
+offset_bottom = 68.012085
+texture = SubResource("AtlasTexture_e2jkj")
+
+[node name="ChooseLevelButton6" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton7" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton8" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton9" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton10" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton11" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton12" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton13" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton14" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton15" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton16" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton17" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton18" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton19" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
+
+[node name="ChooseLevelButton20" parent="AllPage/GridContainer" instance=ExtResource("9_xsph7")]
+layout_mode = 2
 
 [node name="GridContainer2" type="GridContainer" parent="AllPage"]
 visible = false
@@ -358,13 +483,14 @@ theme_override_constants/h_separation = 53
 theme_override_constants/v_separation = 3
 columns = 5
 
-[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer2"]
+[node name="ChooseLevelButton" parent="AllPage/GridContainer2" instance=ExtResource("9_xsph7")]
 layout_mode = 2
-texture = ExtResource("3_we3l7")
-script = ExtResource("8_pw6t1")
 curr_level_data_game_para = ExtResource("14_5d8uv")
 
-[node name="Panel" type="Panel" parent="AllPage/GridContainer2/TextureRect"]
+[node name="Label" parent="AllPage/GridContainer2/ChooseLevelButton/TextureButton" index="0"]
+text = "小赌怡情"
+
+[node name="Panel" type="Panel" parent="AllPage/GridContainer2/ChooseLevelButton"]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 5
@@ -379,7 +505,7 @@ pivot_offset = Vector2(41, 33.5)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1i0xb")
 
-[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer2/TextureRect/Panel"]
+[node name="TextureRect" type="TextureRect" parent="AllPage/GridContainer2/ChooseLevelButton/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -395,115 +521,10 @@ grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_e2jkj")
 
-[node name="Zombie020Yeti" parent="AllPage/GridContainer2/TextureRect/Panel/TextureRect" instance=ExtResource("7_my4l7")]
+[node name="Zombie020Yeti" parent="AllPage/GridContainer2/ChooseLevelButton/Panel/TextureRect" instance=ExtResource("7_my4l7")]
 position = Vector2(92.5, 94.7817)
 scale = Vector2(0.5, 0.5)
 character_init_type = 1
-
-[node name="TextureButton" type="TextureButton" parent="AllPage/GridContainer2/TextureRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -59.0
-offset_top = -60.0
-offset_right = 59.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("6_mrsyh")
-texture_pressed = ExtResource("7_fgi2n")
-texture_focused = ExtResource("6_mrsyh")
-
-[node name="Label" type="Label" parent="AllPage/GridContainer2/TextureRect/TextureButton"]
-layout_mode = 0
-offset_left = 25.0
-offset_top = 82.0
-offset_right = 89.0
-offset_bottom = 105.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "小赌怡情"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TextureRect2" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect3" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect4" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect5" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect6" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect7" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect8" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect9" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect10" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect11" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect12" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect13" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect14" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect15" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect16" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect17" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect18" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect19" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
-
-[node name="TextureRect20" type="TextureRect" parent="AllPage/GridContainer2"]
-layout_mode = 2
-texture = ExtResource("3_we3l7")
 
 [node name="MainMenu" type="TextureButton" parent="."]
 layout_mode = 0
@@ -598,36 +619,6 @@ text = "下一页"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MainMenu2" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 670.0
-offset_top = 568.0
-offset_right = 759.0
-offset_bottom = 594.0
-mouse_default_cursor_shape = 2
-texture_normal = ExtResource("25_ta0hi")
-texture_pressed = ExtResource("26_fvivu")
-texture_click_mask = ExtResource("27_2sh17")
-
-[node name="Label" type="Label" parent="MainMenu2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -38.5
-offset_top = -10.0
-offset_right = 18.5
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 13
-text = "主菜单"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="LabelPage" type="Label" parent="."]
 layout_mode = 0
 offset_left = 43.0
@@ -642,4 +633,10 @@ vertical_alignment = 1
 [connection signal="pressed" from="MainMenu" to="." method="back_start_menu"]
 [connection signal="pressed" from="Last" to="." method="_on_last_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
-[connection signal="pressed" from="MainMenu2" to="." method="back_start_menu"]
+
+[editable path="AllPage/GridContainer/ChooseLevelButton"]
+[editable path="AllPage/GridContainer/ChooseLevelButton2"]
+[editable path="AllPage/GridContainer/ChooseLevelButton3"]
+[editable path="AllPage/GridContainer/ChooseLevelButton4"]
+[editable path="AllPage/GridContainer/ChooseLevelButton5"]
+[editable path="AllPage/GridContainer2/ChooseLevelButton"]

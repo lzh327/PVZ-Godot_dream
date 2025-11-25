@@ -27,13 +27,16 @@ enum E_WaveType{
 var curr_wave_type:E_WaveType
 ## 最大波次
 var max_wave :int
+## 一轮游戏最大波次
+var max_wave_one_round :int
+
 ## 当前波次
 var curr_wave := -1
 ## 每波进度条所占大小
 var progress_bar_segment_every_wave:float
 ## 每段根据当前波次时间，每秒多长
 var progress_bar_segment_mini_every_sec:float
-## 是否有墓碑
+## 是否有墓碑,即墓碑是否生成僵尸
 var is_have_tombston := false
 
 ## 波次刷新信号,给zombie_manager,删除魅惑僵尸，更新是否为最后一波
@@ -49,25 +52,35 @@ func _ready() -> void:
 ## 初始化波次管理器
 func init_zombie_wave_manager(game_para:ResourceLevelData):
 	self.is_have_tombston = game_para.is_have_tombston
-	self.max_wave = game_para.max_wave
-	flag_progress_bar.init_flag_from_wave(max_wave)
-	progress_bar_segment_every_wave = 100.0 / (max_wave - 1)
+	self.max_wave = game_para.curr_max_wave
+	self.max_wave_one_round = game_para.max_wave
+	self.curr_wave = game_para.curr_wave
+	flag_progress_bar.init_flag_from_wave(max_wave_one_round)
+	progress_bar_segment_every_wave = 100.0 / (max_wave_one_round - 1)
 
 	zombie_wave_refresh_manager.init_zombie_wave_refresh_manager()
 	zombie_wave_create_manager.init_zombie_wave_create_manager(game_para)
 
+## 多轮游戏开始下一轮僵尸波次管理器更新数据
+func start_next_game_zombie_wave_mananger_update(new_zombie_refresh_types:Array[Global.ZombieType], is_bungi:= false):
+	max_wave += max_wave_one_round
+	flag_progress_bar.start_next_game_flag_progress_bar_update()
+	flag_progress_bar.visible = false
+	zombie_wave_create_manager.update_zombie_refresh_types(new_zombie_refresh_types, is_bungi)
 
 ## 计算当前进度并更新进度条
-func set_progress_bar(curr_flag:=-1):
-	var curr_progress = curr_wave * progress_bar_segment_every_wave
+func set_progress_bar(curr_flag:int=-1):
+	var curr_progress = curr_wave % max_wave_one_round * progress_bar_segment_every_wave
 	flag_progress_bar.set_progress(curr_progress, curr_flag)
 
 ## 开始第一波
 func start_first_wave():
 	start_next_wave()
 	every_wave_progress_timer.start()
-
 	flag_progress_bar.visible = true
+	if curr_wave >= max_wave_one_round:
+		@warning_ignore("integer_division")
+		flag_progress_bar.set_round(curr_wave/max_wave_one_round)
 
 ## 开始刷新下一波,发射刷新下一波信号
 func start_next_wave() -> void:
@@ -84,7 +97,7 @@ func start_next_wave() -> void:
 			curr_wave_type = E_WaveType.Final
 			await ui_remind_word.zombie_approach(true)
 			curr_wave_all_zombies = zombie_wave_create_manager.create_curr_wave_all_zombies(curr_wave, true)
-			set_progress_bar(curr_wave/10)
+			set_progress_bar(int(curr_wave%max_wave_one_round/10.0))
 			## 额外生成大波特殊僵尸,珊瑚僵尸,蹦极僵尸
 			zombie_wave_create_manager.spawn_special_zombie_in_big_wave(true)
 
@@ -92,7 +105,7 @@ func start_next_wave() -> void:
 			curr_wave_type = E_WaveType.Flag
 			await ui_remind_word.zombie_approach(false)
 			curr_wave_all_zombies = zombie_wave_create_manager.create_curr_wave_all_zombies(curr_wave, true)
-			set_progress_bar(curr_wave/10)
+			set_progress_bar(int(curr_wave%max_wave_one_round/10.0))
 			## 额外生成大波特殊僵尸,珊瑚僵尸,蹦极僵尸
 			zombie_wave_create_manager.spawn_special_zombie_in_big_wave(false)
 

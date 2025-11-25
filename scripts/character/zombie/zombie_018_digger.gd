@@ -15,14 +15,14 @@ class_name Zombie018Digger
 @export var is_up_end := false
 @onready var gpu_particles_dirt: GPUParticles2D = $GPUParticlesDirt
 
-func init_norm():
+func ready_norm():
 	super()
 	gpu_particles_dirt.emitting = true
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
-	attack_component.disable_component(ComponentBase.E_IsEnableFactor.DownGround)
+	attack_component.disable_component(ComponentNormBase.E_IsEnableFactor.DownGround)
 
 ## 每帧判断是否到达最后一格
 func _process(delta: float) -> void:
@@ -57,6 +57,6 @@ func loss_iron_item():
 
 ## 绝地结束出土结束(动画调用)
 func dig_up_end():
-	attack_component.enable_component(ComponentBase.E_IsEnableFactor.DownGround)
+	attack_component.enable_component(ComponentNormBase.E_IsEnableFactor.DownGround)
 
 

@@ -23,12 +23,6 @@ var garden_need_water:=true
 
 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 ## 功能未实现
 func _unrealized():
 	dialog.appear_dialog()
@@ -41,6 +35,9 @@ func _on_menu_button_1_pressed() -> void:
 func _on_button_2_pressed() -> void:
 	get_tree().change_scene_to_file(Global.MainScenesMap[Global.MainScenes.ChooseLevelMiniGame])
 
+
+func _on_button_4_pressed() -> void:
+	get_tree().change_scene_to_file(Global.MainScenesMap[Global.MainScenes.ChooseLevelSurvival])
 
 #region 选项
 func _on_option_button_1_pressed() -> void:
@@ -70,3 +67,4 @@ func _on_item_button_1_pressed() -> void:
 ## 图鉴
 func _on_item_button_2_pressed() -> void:
 	get_tree().change_scene_to_file(Global.MainScenesMap[Global.MainScenes.Almanac])
+

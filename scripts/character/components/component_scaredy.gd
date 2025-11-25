@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name ScaredyComponent
 
 
@@ -6,7 +6,7 @@ signal signal_scaredy_start
 signal signal_scaredy_end
 
 ## 害怕时影响的节点
-@export var scaredy_influence_components:Array[ComponentBase]
+@export var scaredy_influence_components:Array[ComponentNormBase]
 ## 检测到的敌人
 var enemies_can_be_attacked: Array[Character000Base]
 

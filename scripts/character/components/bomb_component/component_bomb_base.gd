@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name BombComponentBase
 
 ## 爆炸检测区域,部分爆炸组件(火爆辣椒\寒冰菇)没有
@@ -19,29 +19,21 @@ var is_bomb:= false
 @export_flags("1 正常", "2 跳跃", "4 水下", "8 空中", "16 地下", "32 跳入泳池") var can_attack_zombie_status:int = 1
 
 @export_group("爆炸音效")
-## 攻击音效所属植物
-@export var bomb_sfx_plant_type:Global.PlantType = Global.PlantType.P003CherryBomb
-## 攻击音效所属僵尸
-@export var bomb_sfx_zombie_type:Global.ZombieType
 ## 攻击音效名字
 @export var bomb_sfx:StringName = &"CherryBomb"
 
 ## 爆炸一次信号,毁灭菇使用
 signal signal_bomb_once
 
-## 设置死亡时自动爆炸
-func set_is_auto_bomb_in_death(is_auto_bomb_in_death):
-	self.is_auto_bomb_in_death = is_auto_bomb_in_death
-
 ## 死亡时判断是否爆炸过
 func judge_death_bomb():
-	if is_enabling:
-		if not is_bomb and is_auto_bomb_in_death:
-			bomb_once()
+	if is_enabling and not is_bomb and is_auto_bomb_in_death:
+		bomb_once()
 
 ## 爆炸一次
 func bomb_once():
-	if is_enabling:
+	## 可以爆炸并且还没爆炸
+	if is_enabling and not is_bomb:
 		is_bomb = true
 		_play_bome_sfx()
 		_start_bomb_fx()
@@ -50,12 +42,8 @@ func bomb_once():
 
 ## 播放音效
 func _play_bome_sfx():
-	if bomb_sfx_plant_type == Global.PlantType.Null:
-		if bomb_sfx_zombie_type != Global.ZombieType.Null:
-			SoundManager.play_zombie_SFX(bomb_sfx_zombie_type, bomb_sfx)
-	else:
-		## 播放音效
-		SoundManager.play_plant_SFX(bomb_sfx_plant_type, bomb_sfx)
+	## 播放音效
+	SoundManager.play_character_SFX(bomb_sfx)
 
 ## 爆炸特效
 func _start_bomb_fx():
@@ -70,5 +58,3 @@ func update_component_y(move_y:float):
 	position.y += move_y
 	if is_instance_valid(area_2d_bomb):
 		area_2d_bomb.position.y -= move_y
-
-

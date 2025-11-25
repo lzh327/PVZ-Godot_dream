@@ -21,15 +21,12 @@
 [ext_resource type="Script" uid="uid://cp6q723x2kd2g" path="res://scripts/fx/plant_effect/plant_effect_002_bomb_potato_mine.gd" id="21_kp7v2"]
 [ext_resource type="Texture2D" uid="uid://c8f1ytvtikhaa" path="res://assets/image/particles/PotatoMine_particles.png" id="22_6w1u8"]
 [ext_resource type="Texture2D" uid="uid://c7xenjnldyucf" path="res://assets/reanim/PotatoMine_mashed.png" id="23_hi8k1"]
-[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/attack_ray_component/component_attack_ray.gd" id="24_kp7v2"]
+[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/detect_component/component_detect.gd" id="24_kp7v2"]
 
 [sub_resource type="Resource" id="Resource_l48fy"]
 script = ExtResource("15_6w1u8")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/PotatoMine_blink")])
 sprite_change_texture = Array[Texture2D]([ExtResource("16_hi8k1"), ExtResource("5_0r7iw")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Animation" id="Animation_iq31m"]
@@ -102,7 +99,7 @@ nodes/AnimationNodeStateMachine/node = SubResource("AnimationNodeStateMachine_kt
 nodes/AnimationNodeStateMachine/position = Vector2(-460, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ifo2p")
 nodes/TimeScale/position = Vector2(-60, 120)
-node_connections = [&"TimeScale", 0, &"AnimationNodeStateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"AnimationNodeStateMachine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kp7v2"]
 size = Vector2(55, 5)
@@ -130,13 +127,13 @@ radial_accel_max = -100.0
 scale_min = 0.5
 anim_offset_max = 1.0
 
-[node name="Plant005PotatoMine" node_paths=PackedStringArray("node_no_change_direction", "special_component_update_pos_in_slope") instance=ExtResource("1_8djfp")]
+[node name="Plant005PotatoMine" node_paths=PackedStringArray("node_no_change_direction", "node2d_detect_in_slope") instance=ExtResource("1_8djfp")]
 script = ExtResource("2_0r7iw")
 prepare_time = 10.0
 is_prepare_end = false
 plant_type = 5
-node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), null]
-special_component_update_pos_in_slope = [NodePath("BombComponent")]
+node_no_change_direction = [null, null, null]
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("BombComponent/Area2DBomb"), NodePath("DetectComponent")]
 
 [node name="Shadow" parent="." index="0"]
 scale = Vector2(0.901163, 0.763889)
@@ -151,13 +148,13 @@ visible = false
 centered = false
 
 [node name="PotatoMine_rock4" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(38.6, 62.9241)
+position = Vector2(38.6, 63.399162)
 scale = Vector2(0.59, 0.59)
 texture = ExtResource("2_q8gyy")
 centered = false
 
 [node name="PotatoMine_rock2" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(23.9, 60.5037)
+position = Vector2(23.9, 60.996647)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_gxhax")
 centered = false
@@ -203,7 +200,7 @@ visible = false
 centered = false
 
 [node name="Anim_light" type="Sprite2D" parent="Body/BodyCorrect" index="12"]
-position = Vector2(28.2, 42.9815)
+position = Vector2(28.2, 42.281174)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_36d07")
 centered = false
@@ -213,30 +210,30 @@ visible = false
 centered = false
 
 [node name="PotatoMine_rock6" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(14.7, 66.7482)
+position = Vector2(14.7, 66.50167)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_27vsk")
 centered = false
 
 [node name="PotatoMine_rock1" type="Sprite2D" parent="Body/BodyCorrect" index="15"]
-position = Vector2(26.8, 68.5)
+position = Vector2(26.8, 69.09833)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_c7j4p")
 centered = false
 
 [node name="PotatoMine_rock3" type="Sprite2D" parent="Body/BodyCorrect" index="16"]
-position = Vector2(42.5, 63.8518)
+position = Vector2(42.5, 62.901676)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_tq0os")
 centered = false
 
 [node name="PotatoMine_rock5" type="Sprite2D" parent="Body/BodyCorrect" index="17"]
-position = Vector2(31.1, 68.4518)
+position = Vector2(31.1, 68.698326)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_iq31m")
 centered = false
 
-[node name="BlinkComponent" parent="." index="6"]
+[node name="BlinkComponent" parent="." index="5"]
 all_blink_body_change = Array[ExtResource("15_6w1u8")]([SubResource("Resource_l48fy")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
@@ -251,15 +248,16 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 1.0
 
-[node name="AttackRayComponent" type="Node2D" parent="." index="10"]
+[node name="DetectComponent" type="Node2D" parent="." index="10"]
 script = ExtResource("24_kp7v2")
 
-[node name="Area2D" type="Area2D" parent="AttackRayComponent" index="0"]
+[node name="Area2D" type="Area2D" parent="DetectComponent" index="0"]
 position = Vector2(0, -25)
 collision_layer = 0
 collision_mask = 4
+monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRayComponent/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent/Area2D" index="0"]
 position = Vector2(10.5, 0)
 shape = SubResource("RectangleShape2D_kp7v2")
 
@@ -269,12 +267,11 @@ is_cherry_bomb = false
 is_auto_bomb_in_death = false
 can_attack_plant_status = 5
 can_attack_zombie_status = 21
-bomb_sfx_plant_type = 5
 bomb_sfx = &"PotatoMine"
 
 [node name="Area2DBomb" type="Area2D" parent="BombComponent" index="0"]
 collision_layer = 0
-collision_mask = 21
+collision_mask = 20
 input_pickable = false
 monitorable = false
 

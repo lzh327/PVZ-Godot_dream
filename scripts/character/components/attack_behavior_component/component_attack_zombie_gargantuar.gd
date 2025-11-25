@@ -22,7 +22,7 @@ func attack_once():
 		elif enemy is Zombie000Base:
 			enemy.be_attacked_bullet(1800, Global.AttackMode.Penetration, true, true)
 
-		SoundManager.play_zombie_SFX(Global.ZombieType.Z024Gargantuar, "gargantuar_thump")
+		SoundManager.play_character_SFX("gargantuar_thump")
 
 
 ## 修改速度

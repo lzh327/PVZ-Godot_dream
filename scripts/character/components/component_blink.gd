@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name BlinkComponent
 
 @onready var blink_timer: Timer = $BlinkTimer
@@ -17,7 +17,6 @@ func _ready() -> void:
 ## 眨眼
 func _on_blink_timer_timeout() -> void:
 	if is_enabling:
-		#print("眨眼一次")
 		for blink_body_change in all_blink_body_change:
 			var blink_sprite = get_node(blink_body_change.sprite_change[0])
 			blink_sprite.visible = true
@@ -45,10 +44,9 @@ func _do_blink_onc_sprite(blink_sprite:Sprite2D, blink_sprite_texture:Array[Text
 ## 启用组件
 func enable_component(is_enable_factor:E_IsEnableFactor):
 	super(is_enable_factor)
+
 	if is_enabling:
 		blink_timer.start(blink_time + randf_range(-1,1))
-
-
 
 ## 禁用组件
 func disable_component(is_enable_factor:E_IsEnableFactor):

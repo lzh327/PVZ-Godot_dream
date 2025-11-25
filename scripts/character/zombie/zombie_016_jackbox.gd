@@ -7,10 +7,10 @@ class_name Zombie016Jackbox
 @export var is_pop:=false
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	bomb_component_jackbox.signal_trigger_bomb.connect(_strigger_bomb)
-	hp_component.signal_hp_component_death.connect(bomb_component_jackbox.disable_component.bind(ComponentBase.E_IsEnableFactor.Death))
+	hp_component.signal_hp_component_death.connect(bomb_component_jackbox.disable_component.bind(ComponentNormBase.E_IsEnableFactor.Death))
 
 	signal_update_speed.connect(bomb_component_jackbox.owner_update_speed)
 
@@ -18,14 +18,14 @@ func init_norm_signal_connect():
 ## 触发爆炸
 func _strigger_bomb():
 	is_pop = true
-	SoundManager.play_zombie_SFX(Global.ZombieType.Z016Jackbox, "boing")
+	SoundManager.play_character_SFX(&"boing")
 	_stop_sfx_enter()
 
 ## 失去铁器道具
 func loss_iron_item():
 	super()
-	bomb_component_jackbox.disable_component(ComponentBase.E_IsEnableFactor.Lose)
+	bomb_component_jackbox.disable_component(ComponentNormBase.E_IsEnableFactor.Lose)
 	_stop_sfx_enter()
 
 func sfx_jack_suprise():
-	SoundManager.play_zombie_SFX(Global.ZombieType.Z016Jackbox, "jack_suprise")
+	SoundManager.play_character_SFX(&"jack_suprise")

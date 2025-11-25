@@ -26,7 +26,7 @@ signal look_end_goods_signal
 signal signal_pressed_this_goods
 
 func _ready() -> void:
-	price_tag_label.text = "$" + Global.format_number_with_commas(price)
+	price_tag_label.text = "$" + GlobalUtils.format_number_with_commas(price)
 	is_not_have_goods_label.visible = not is_have_goods
 	curr_dialog_detail = dialog_detail.duplicate(true)
 	judge_can_get_goods()

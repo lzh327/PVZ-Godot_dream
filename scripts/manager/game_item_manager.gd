@@ -4,7 +4,7 @@ class_name GameItemManager
 
 ## 放置在背景的游戏物品
 @onready var game_items_in_bg: Node2D = %GameItemsInBg
-@onready var canvas_layer_temp: CanvasLayer = $"../../CanvasLayerTemp"
+@onready var canvas_layer_temp: CanvasLayer = %CanvasLayerTemp
 
 enum E_GameItemType {
 	WallnutBowlingStripe,	## 保龄球红线

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://b2soejmoqi7wd"]
+[gd_scene load_steps=65 format=3 uid="uid://b2soejmoqi7wd"]
 
 [ext_resource type="Script" uid="uid://c7dr2016dfdoo" path="res://scripts/manager/main_game_manager.gd" id="1_7dde3"]
 [ext_resource type="AudioStream" uid="uid://duvijencyf7mi" path="res://assets/audio/BGM/choose_card.mp3" id="2_8fvtd"]
@@ -14,18 +14,19 @@
 [ext_resource type="Script" uid="uid://cruc1xp1mskml" path="res://scripts/manager/game_item_manager.gd" id="11_f06xn"]
 [ext_resource type="Script" uid="uid://cr3h2c27i2jrx" path="res://scripts/manager/plant_cell_manager/plant_cell_manager.gd" id="12_hgtxc"]
 [ext_resource type="Script" uid="uid://g4mhhnrtydhd" path="res://scripts/manager/plant_cell_manager/tomb_stone_manager.gd" id="13_3d12c"]
-[ext_resource type="Script" uid="uid://bh3rft7vb6xch" path="res://scripts/main_game_item/back_ground/main_game_background.gd" id="14_0mfp0"]
 [ext_resource type="Script" uid="uid://7rl0u85kxat1" path="res://scripts/main_game_item/back_ground/main_game_home.gd" id="15_tsrbg"]
 [ext_resource type="Texture2D" uid="uid://css4w8rs4mm6l" path="res://assets/image/background/background1_gameover_interior_overlay.png" id="15_uinqq"]
 [ext_resource type="Texture2D" uid="uid://b6gd58cnsxid2" path="res://assets/image/background/background2_gameover_interior_overlay.png" id="16_7eijg"]
 [ext_resource type="PackedScene" uid="uid://brbdbxg2tocla" path="res://scenes/ui/flag_progress_bar.tscn" id="16_dc1ex"]
 [ext_resource type="Texture2D" uid="uid://bter5jg6j45k" path="res://assets/image/background/background1_gameover_mask.png" id="17_0mfp0"]
 [ext_resource type="Script" uid="uid://cyutow4qwsjq5" path="res://scripts/ui/main_game_ui/ui_remind_word.gd" id="17_ybhi1"]
+[ext_resource type="Script" uid="uid://dp0c6p03bus3u" path="res://scripts/manager/background_manager.gd" id="18_du5qn"]
 [ext_resource type="Texture2D" uid="uid://dd8pmf7hpwm0a" path="res://assets/image/background/background3_gameover_interior_overlay.png" id="18_g0ofp"]
 [ext_resource type="Texture2D" uid="uid://bll1o67ycmid6" path="res://assets/image/ui/ui_remind_word/StartReady.png" id="18_gyila"]
 [ext_resource type="Texture2D" uid="uid://dltdtjwn6a800" path="res://assets/image/background/background2_gameover_mask.png" id="18_tsrbg"]
 [ext_resource type="Texture2D" uid="uid://daqyr7g1dgckt" path="res://assets/image/ui/ui_remind_word/StartSet.png" id="19_3tcal"]
 [ext_resource type="Texture2D" uid="uid://d4bxwn6mmndtj" path="res://assets/image/background/background4_gameover_interior_overlay.png" id="19_470oe"]
+[ext_resource type="Script" uid="uid://lmskm3crn773" path="res://scripts/manager/day_suns_manager.gd" id="19_a514a"]
 [ext_resource type="Texture2D" uid="uid://bcv81qevn5hpt" path="res://assets/image/ui/ui_remind_word/StartPlant.png" id="20_2b7lk"]
 [ext_resource type="Texture2D" uid="uid://uh50cdkqdl67" path="res://assets/image/background/background1.jpg" id="20_ifnc6"]
 [ext_resource type="Texture2D" uid="uid://c4jwi8yjt7hmd" path="res://assets/image/ui/ui_remind_word/Approaching.png" id="21_48j6u"]
@@ -55,7 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://47ixd5hsddft" path="res://assets/image/ui/ui_card/ShovelBank.png" id="42_pmw6j"]
 [ext_resource type="Script" uid="uid://drl7ywtxslsbm" path="res://scripts/ui/card/shovel_in_ui.gd" id="43_erab5"]
 [ext_resource type="Script" uid="uid://5unqafehbil7" path="res://scripts/fx/other_effect/canvas_layer_effect.gd" id="51_qfhda"]
-[ext_resource type="Script" uid="uid://pqbu71xw5ngn" path="res://scripts/character/components/attack_ray_component/component_attack_ray_global.gd" id="55_l4e4o"]
+[ext_resource type="Script" uid="uid://pqbu71xw5ngn" path="res://scripts/character/components/detect_component/component_detect_global.gd" id="55_l4e4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yy6tc"]
 size = Vector2(150, 600)
@@ -75,6 +76,7 @@ size = Vector2(900, 600)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_7dde3")
+test_change_sun_value = 10001
 bgm_choose_card = ExtResource("2_8fvtd")
 
 [node name="Manager" type="Node" parent="."]
@@ -144,6 +146,16 @@ script = ExtResource("34_5pjpf")
 unique_name_in_owner = true
 script = ExtResource("28_3uxdp")
 
+[node name="BackgroundManager" type="Node" parent="Manager"]
+unique_name_in_owner = true
+script = ExtResource("18_du5qn")
+
+[node name="DaySunsManager" type="Node" parent="Manager"]
+unique_name_in_owner = true
+script = ExtResource("19_a514a")
+
+[node name="ProductionTimer" type="Timer" parent="Manager/DaySunsManager"]
+
 [node name="CanvasLayerBG" type="CanvasLayer" parent="."]
 layer = -10
 follow_viewport_enabled = true
@@ -154,7 +166,6 @@ process_mode = 3
 position = Vector2(-210, 0)
 texture = ExtResource("20_ifnc6")
 centered = false
-script = ExtResource("14_0mfp0")
 
 [node name="Home" type="Node2D" parent="CanvasLayerBG/Background"]
 unique_name_in_owner = true
@@ -253,7 +264,7 @@ anchor_right = 1.0
 offset_left = -300.0
 offset_top = 180.0
 offset_right = -20.0
-offset_bottom = 580.0
+offset_bottom = 326.0
 grow_horizontal = 0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ha6fd")
@@ -262,6 +273,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ha6fd")
 unique_name_in_owner = true
 
 [node name="CanvasLayerCardSlot" type="CanvasLayer" parent="."]
+layer = 10
 script = ExtResource("30_b6ai2")
 
 [node name="CardSlotRoot" type="Control" parent="CanvasLayerCardSlot"]
@@ -320,12 +332,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 mouse_default_cursor_shape = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_jbbka")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_jbbka")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jbbka")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_jbbka")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_jbbka")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_jbbka")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jbbka")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jbbka")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_jbbka")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jbbka")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jbbka")
 
 [node name="Label" type="Label" parent="CanvasLayerCardSlot/CardSlotRoot/CardSlotContainer/ShovelContainer/UIShovel"]
 layout_mode = 0
@@ -340,10 +352,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CanvasLayerFG" type="CanvasLayer" parent="."]
-layer = 10
+layer = 5
 follow_viewport_enabled = true
 
+[node name="Frontground" type="Node2D" parent="CanvasLayerFG"]
+unique_name_in_owner = true
+
+[node name="CanvasLayerCardSlotSeedRain" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 10
+
 [node name="CanvasLayerTemp" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 20
 follow_viewport_enabled = true
 
@@ -393,6 +413,7 @@ layer = 50
 
 [node name="CoinBankLabel" parent="CanvasLayerUI" instance=ExtResource("30_xh73d")]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -583,9 +604,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -754,7 +784,7 @@ use_parent_material = false
 clip_contents = false
 custom_minimum_size = Vector2(0, 0)
 layout_direction = 0
-layout_mode = 3
+layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
@@ -782,9 +812,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 1
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -849,7 +888,7 @@ use_parent_material = false
 clip_contents = false
 custom_minimum_size = Vector2(0, 0)
 layout_direction = 0
-layout_mode = 3
+layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
@@ -877,9 +916,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 1
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -949,7 +997,7 @@ use_parent_material = false
 clip_contents = false
 custom_minimum_size = Vector2(0, 0)
 layout_direction = 0
-layout_mode = 3
+layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
@@ -977,9 +1025,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 1
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -1044,7 +1101,7 @@ use_parent_material = false
 clip_contents = false
 custom_minimum_size = Vector2(0, 0)
 layout_direction = 0
-layout_mode = 3
+layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1072,9 +1129,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 1
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 0
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -1164,6 +1230,7 @@ text = "没做"
 
 [node name="FlagProgressBar" parent="CanvasLayerUI" instance=ExtResource("16_dc1ex")]
 unique_name_in_owner = true
+visible = false
 offset_left = 614.0
 offset_top = 575.0
 offset_right = 614.0
@@ -1216,11 +1283,11 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponentGlobal/Area2D"]
 position = Vector2(420, 300)
 shape = SubResource("RectangleShape2D_b6ai2")
+debug_color = Color(0, 0.6, 0.69803923, 0.20392157)
 
 [connection signal="timeout" from="Manager/ZombieManager/ZombieWaveManager/ZombieWaveRefreshManager/WaveNormRefreshTimer" to="Manager/ZombieManager/ZombieWaveManager/ZombieWaveRefreshManager" method="_on_wave_norm_refresh_timer_timeout"]
 [connection signal="timeout" from="Manager/ZombieManager/ZombieWaveManager/ZombieWaveRefreshManager/WaveMinTimeTimer" to="Manager/ZombieManager/ZombieWaveManager/ZombieWaveRefreshManager" method="_on_wave_min_time_timer_timeout"]
 [connection signal="timeout" from="Manager/ZombieManager/ZombieWaveManager/EveryWaveProgressTimer" to="Manager/ZombieManager/ZombieWaveManager" method="_on_every_wave_progress_timer_timeout"]
-[connection signal="timeout" from="Manager/ZombieManager/ZombieWaveManager/EveryWaveProgressTimer" to="Manager/ZombieManager/ZombieWaveManager" method="_on_one_wave_progress_timer_timeout"]
 [connection signal="timeout" from="Manager/ZombieManager/HammerZombieManager/HammerZombieTimer" to="Manager/ZombieManager/HammerZombieManager" method="_on_hammer_zombie_timer_timeout"]
 [connection signal="timeout" from="Manager/ZombieManager/CheckZombieEndWaveTimer" to="Manager/ZombieManager" method="_on_check_zombie_end_wave_timer_timeout"]
 [connection signal="area_entered" from="CanvasLayerBG/Background/Home/Area2DHome" to="CanvasLayerBG/Background/Home" method="_on_area_2d_home_area_entered"]

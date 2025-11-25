@@ -62,16 +62,12 @@
 script = ExtResource("25_jrf5p")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_dolphinrider_outerarm_upper")])
 sprite_change_texture = Array[Texture2D]([ExtResource("29_i10n5")])
-sprite_appear = Array[NodePath]([])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_lower"), NodePath("../Body/BodyCorrect/Zombie_outerarm_hand")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Hand_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_pfdwe"]
 script = ExtResource("25_jrf5p")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_head2"), NodePath("../Body/BodyCorrect/Anim_head1")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Head_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
@@ -1224,18 +1220,18 @@ states/Zombie_dolphinrider_walk/position = Vector2(386, 434)
 states/Zombie_dolphinrider_walkdolphin/node = SubResource("AnimationNodeAnimation_iwwki")
 states/Zombie_dolphinrider_walkdolphin/position = Vector2(344, 212)
 transitions = ["Start", "Zombie_dolphinrider_idle", SubResource("AnimationNodeStateMachineTransition_a1ed3"), "Zombie_dolphinrider_idle", "Zombie_dolphinrider_walkdolphin", SubResource("AnimationNodeStateMachineTransition_0u6g7"), "Zombie_dolphinrider_walkdolphin", "Zombie_dolphinrider_jumpinpool", SubResource("AnimationNodeStateMachineTransition_lrg8e"), "Zombie_dolphinrider_jumpinpool", "Zombie_dolphinrider_ride", SubResource("AnimationNodeStateMachineTransition_08gle"), "Zombie_dolphinrider_ride", "Zombie_dolphinrider_dolphinjump", SubResource("AnimationNodeStateMachineTransition_hjt17"), "Zombie_dolphinrider_dolphinjump", "Zombie_dolphinrider_swim", SubResource("AnimationNodeStateMachineTransition_cu1bl"), "Zombie_dolphinrider_swim", "Zombie_dolphinrider_eat", SubResource("AnimationNodeStateMachineTransition_pn8q5"), "Zombie_dolphinrider_eat", "Zombie_dolphinrider_death", SubResource("AnimationNodeStateMachineTransition_pa3ew"), "Zombie_dolphinrider_swim", "Zombie_dolphinrider_death", SubResource("AnimationNodeStateMachineTransition_y7qvo"), "Zombie_dolphinrider_swim", "Zombie_dolphinrider_walk", SubResource("AnimationNodeStateMachineTransition_ftjjv"), "Zombie_dolphinrider_walk", "Zombie_dolphinrider_death", SubResource("AnimationNodeStateMachineTransition_s4dol"), "Start", "Zombie_dolphinrider_walkdolphin", SubResource("AnimationNodeStateMachineTransition_38nik"), "Zombie_dolphinrider_eat", "Zombie_dolphinrider_swim", SubResource("AnimationNodeStateMachineTransition_xujkh"), "Zombie_dolphinrider_dolphinjump", "Zombie_dolphinrider_walk", SubResource("AnimationNodeStateMachineTransition_t72tt"), "Zombie_dolphinrider_ride", "Zombie_dolphinrider_walk", SubResource("AnimationNodeStateMachineTransition_gwu51")]
-graph_offset = Vector2(262, 254)
+graph_offset = Vector2(5, 41)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6bvct"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gt1sr"]
-graph_offset = Vector2(0, 11)
+graph_offset = Vector2(-166.24982, -37.74267)
+nodes/output/position = Vector2(420, 120)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_ydrci")
 nodes/StateMachine/position = Vector2(-20, 60)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_6bvct")
 nodes/TimeScale/position = Vector2(240, 80)
-nodes/output/position = Vector2(420, 120)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [node name="Zombie015Dolphinrider" instance=ExtResource("1_2e1n0")]
 script = ExtResource("2_g80ia")
@@ -1246,7 +1242,7 @@ is_trigger_tall_nut_stop_jump = true
 sfx_enter_name = &"dolphin_appears"
 
 [node name="Marker2DSpecialSplash" type="Marker2D" parent="Body" index="0"]
-position = Vector2(-65, 0)
+position = Vector2(-164.86667, 0)
 
 [node name="BodyCorrect" parent="Body" index="1"]
 position = Vector2(-47, -126)
@@ -1257,43 +1253,43 @@ texture = ExtResource("2_jrf5p")
 centered = false
 
 [node name="Zombie_dolphinrider_innerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(16.39, 88.0601)
-rotation = 0.00925122
+position = Vector2(16.4, 87.49641)
+rotation = 0.0062155
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_c6ldt")
 centered = false
 
 [node name="Zombie_dolphinrider_innerarm_lower" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(22.36, 73.1601)
-rotation = -0.0130907
+position = Vector2(22.687767, 72.52447)
+rotation = -0.0059393295
 scale = Vector2(0.8, 0.876)
 texture = ExtResource("4_pfdwe")
 centered = false
 
 [node name="Zombie_dolphinrider_innerarm_upper" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(21.7399, 58.3701)
-rotation = -0.0130907
+position = Vector2(22.087769, 57.868347)
+rotation = -0.0059393295
 scale = Vector2(0.8, 0.876)
 texture = ExtResource("5_g80ia")
 centered = false
 
 [node name="Zombie_dolphinrider_innerleg_foot" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(27.92, 118.28)
-rotation = 0.0235627
+position = Vector2(27.9, 118.443886)
+rotation = 0.012644439
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_8n4sf")
 centered = false
 
 [node name="Zombie_dolphinrider_innerleg_lower" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
-position = Vector2(35.72, 98.8)
-rotation = 0.0143124
+position = Vector2(35.556114, 98.87194)
+rotation = 0.00768461
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_m6v50")
 centered = false
 
 [node name="Zombie_dolphinrider_innerleg_upper" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(36.36, 70.44)
-rotation = -0.0258329
+position = Vector2(36.687767, 70.11223)
+rotation = -0.015645111
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_fnxpj")
 centered = false
@@ -1323,15 +1319,15 @@ visible = false
 centered = false
 
 [node name="Zombie_dolphinrider_body2" type="Sprite2D" parent="Body/BodyCorrect" index="13"]
-position = Vector2(39.57, 70.84)
-rotation = -0.0258329
+position = Vector2(39.887768, 70.584175)
+rotation = -0.015645111
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_gcfki")
 centered = false
 
 [node name="Zombie_dolphinrider_body1" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(21.9299, 43.2601)
-rotation = -0.0258329
+position = Vector2(22.575537, 42.768345)
+rotation = -0.015645111
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_vbixh")
 centered = false
@@ -1341,8 +1337,8 @@ visible = false
 centered = false
 
 [node name="Zombie_dolphinrider_outerleg_foot1" type="Sprite2D" parent="Body/BodyCorrect" index="16"]
-position = Vector2(50.39, 124.71)
-rotation = -0.0370039
+position = Vector2(50.471943, 124.556114)
+rotation = -0.02109483
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("11_m76ys")
 centered = false
@@ -1354,15 +1350,15 @@ texture = ExtResource("12_t21hx")
 centered = false
 
 [node name="Zombie_dolphinrider_outerleg_lower" type="Sprite2D" parent="Body/BodyCorrect" index="18"]
-position = Vector2(47.6499, 105.02)
-rotation = -0.0401445
+position = Vector2(47.987766, 104.85612)
+rotation = -0.02207405
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_8luka")
 centered = false
 
 [node name="Zombie_dolphinrider_outerleg_upper" type="Sprite2D" parent="Body/BodyCorrect" index="19"]
-position = Vector2(48.87, 79.3)
-rotation = 0.005236
+position = Vector2(48.971943, 79.22806)
+rotation = 0.0014691099
 scale = Vector2(0.8, 0.914)
 texture = ExtResource("14_sjj07")
 centered = false
@@ -1372,72 +1368,72 @@ visible = false
 centered = false
 
 [node name="Anim_head2" type="Sprite2D" parent="Body/BodyCorrect" index="21"]
-position = Vector2(5.19988, 53.2002)
-rotation = -0.0991407
-scale = Vector2(0.799, 0.799)
+position = Vector2(5.9474792, 51.489216)
+rotation = -0.06034599
+scale = Vector2(0.79971945, 0.79971945)
 texture = ExtResource("15_0t21d")
 centered = false
 
 [node name="Anim_head1" type="Sprite2D" parent="Body/BodyCorrect" index="22"]
-position = Vector2(-3.71013, 27.9602)
-rotation = -0.0441596
+position = Vector2(-2.5928102, 26.648926)
+rotation = -0.02682044
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("16_hf77w")
 centered = false
 
 [node name="Zombie_dolphinrider_dolphinbody2" type="Sprite2D" parent="Body/BodyCorrect" index="23"]
-position = Vector2(66.08, 84.01)
-rotation = -0.00401522
-scale = Vector2(0.8349, 0.822001)
+position = Vector2(66.38777, 83.85612)
+rotation = -0.0009795001
+scale = Vector2(0.835, 0.8130864)
 texture = ExtResource("17_qa03s")
 centered = false
 
 [node name="Zombie_dolphinrider_dolphinfin2" type="Sprite2D" parent="Body/BodyCorrect" index="24"]
-position = Vector2(36.02, 105.07)
-rotation = 0.121133
-scale = Vector2(0.799, 0.799)
+position = Vector2(35.92806, 104.49641)
+rotation = 0.07375621
+scale = Vector2(0.79971945, 0.79971945)
 texture = ExtResource("18_y874v")
 centered = false
 
 [node name="Zombie_dolphinrider_dolphinjaw" type="Sprite2D" parent="Body/BodyCorrect" index="25"]
-position = Vector2(14.52, 111.55)
-rotation = -0.154122
-scale = Vector2(0.7989, 0.7989)
+position = Vector2(14.5, 109.50145)
+rotation = -0.09387154
+scale = Vector2(0.799, 0.799)
 texture = ExtResource("19_4t83v")
 centered = false
 
 [node name="Zombie_dolphinrider_dolphinbody1" type="Sprite2D" parent="Body/BodyCorrect" index="26"]
-position = Vector2(5.0199, 59.7602)
-rotation = -0.0350832
+position = Vector2(5.603595, 58.59281)
+rotation = -0.02060494
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("20_omitf")
 centered = false
 
 [node name="Zombie_dolphinrider_dolphinfin1" type="Sprite2D" parent="Body/BodyCorrect" index="27"]
-position = Vector2(41.31, 101.55)
-rotation = 0.0844788
-scale = Vector2(0.799, 0.799)
+position = Vector2(41.3, 101.14029)
+rotation = 0.05140599
+scale = Vector2(0.79971945, 0.79971945)
 texture = ExtResource("21_h3c86")
 centered = false
 
 [node name="Zombie_outerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="28"]
-position = Vector2(46.5299, 84.5801)
-rotation = -0.0370039
-scale = Vector2(0.7999, 0.7999)
+position = Vector2(47.103596, 83.78058)
+rotation = -0.02109483
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("22_gwu51")
 centered = false
 
 [node name="Zombie_outerarm_lower" type="Sprite2D" parent="Body/BodyCorrect" index="29"]
-position = Vector2(55.5899, 65.8701)
-rotation = -0.0370039
-scale = Vector2(0.7999, 0.7999)
+position = Vector2(56.491364, 65.2964)
+rotation = -0.02109483
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("23_mmwbb")
 centered = false
 
 [node name="Zombie_dolphinrider_outerarm_upper" type="Sprite2D" parent="Body/BodyCorrect" index="30"]
-position = Vector2(40.7199, 49.33)
-rotation = 0.0331634
-scale = Vector2(0.799, 0.799)
+position = Vector2(41.231655, 49.084175)
+rotation = 0.01885994
+scale = Vector2(0.79971945, 0.79971945)
 texture = ExtResource("24_tf0ce")
 centered = false
 
@@ -1556,7 +1552,6 @@ shape = SubResource("RectangleShape2D_i10n5")
 script = ExtResource("36_pfdwe")
 jump_x = 173.8
 is_jump_compensate_plant = false
-jump_sfx_zombie_type = 15
 jump_sfx = &"dolphin_before_jumping"
 
 [node name="Area2D" type="Area2D" parent="JumpComponent" index="0"]

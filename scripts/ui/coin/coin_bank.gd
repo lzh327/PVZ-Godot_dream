@@ -13,9 +13,12 @@ func _ready() -> void:
 
 func update_label():
 	visible = true
-	label_coin_value.text = "$" + Global.format_number_with_commas(Global.coin_value)
+	label_coin_value.text = "$" + GlobalUtils.format_number_with_commas(Global.coin_value)
 	if auto_hide:
-		timer_auto_hide.start()
+		if is_instance_valid(Global.main_game) and Global.main_game.main_game_progress == MainGameManager.E_MainGameProgress.RE_CHOOSE_CARD:
+			visible = false
+		else:
+			timer_auto_hide.start()
 
 
 func _on_timer_auto_hide_timeout() -> void:

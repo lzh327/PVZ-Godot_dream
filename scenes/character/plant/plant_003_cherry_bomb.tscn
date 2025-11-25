@@ -63,12 +63,12 @@ graph_offset = Vector2(57, -49)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_fj2s8"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_dniyj"]
+nodes/output/position = Vector2(740, 140)
 nodes/AnimationNodeStateMachine/node = SubResource("AnimationNodeStateMachine_fj2s8")
 nodes/AnimationNodeStateMachine/position = Vector2(100, 80)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_fj2s8")
 nodes/TimeScale/position = Vector2(460, 80)
-nodes/output/position = Vector2(740, 140)
-node_connections = [&"TimeScale", 0, &"AnimationNodeStateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"AnimationNodeStateMachine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gy5r"]
 size = Vector2(250, 200)
@@ -248,11 +248,11 @@ shader_parameter/emission_shape_scale = 1.0
 shader_parameter/emission_sphere_radius = 60.0
 shader_parameter/random_direction_from_spread = Vector3(0, 0, 0)
 
-[node name="Plant003CherryBomb" node_paths=PackedStringArray("node_no_change_direction", "special_component_update_pos_in_slope") instance=ExtResource("1_mdj76")]
+[node name="Plant003CherryBomb" node_paths=PackedStringArray("node_no_change_direction", "node2d_detect_in_slope") instance=ExtResource("1_mdj76")]
 script = ExtResource("2_dniyj")
 plant_type = 3
 node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), null]
-special_component_update_pos_in_slope = [NodePath("BombComponent")]
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("BombComponent/Area2DBomb")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-42, -67)
@@ -389,7 +389,7 @@ skew = -0.125664
 texture = ExtResource("18_lg8p0")
 centered = false
 
-[node name="BlinkComponent" parent="." index="6"]
+[node name="BlinkComponent" parent="." index="5"]
 is_enable_default = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
@@ -411,7 +411,7 @@ can_attack_zombie_status = 63
 
 [node name="Area2DBomb" type="Area2D" parent="BombComponent" index="0"]
 collision_layer = 0
-collision_mask = 21
+collision_mask = 2068
 input_pickable = false
 monitorable = false
 

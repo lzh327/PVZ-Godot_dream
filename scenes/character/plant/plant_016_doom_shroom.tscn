@@ -66,12 +66,12 @@ graph_offset = Vector2(133, 12)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_tjrwq"]
 graph_offset = Vector2(-62, -26)
+nodes/output/position = Vector2(600, 120)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_fmcth")
 nodes/StateMachine/position = Vector2(40, 100)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_k2ghs")
 nodes/TimeScale/position = Vector2(420, 100)
-nodes/output/position = Vector2(600, 120)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64sl4"]
 size = Vector2(354, 352)
@@ -1578,25 +1578,25 @@ _data = {
 &"idle": SubResource("Animation_rcrem")
 }
 
-[node name="Plant016DoomShroom" node_paths=PackedStringArray("node_no_change_direction", "special_component_update_pos_in_slope") instance=ExtResource("1_uubea")]
+[node name="Plant016DoomShroom" node_paths=PackedStringArray("node_no_change_direction", "node2d_detect_in_slope") instance=ExtResource("1_uubea")]
 script = ExtResource("2_tjrwq")
 plant_type = 16
 is_sleep_in_day = true
 node_no_change_direction = [NodePath("HpComponent"), NodePath("SleepComponent"), null]
-special_component_update_pos_in_slope = [NodePath("BombComponent")]
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("BombComponent/Area2DBomb")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-39, -72)
 
 [node name="DoomShroom_body" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(17.9059, 38.2529)
-scale = Vector2(0.773117, 0.833942)
+position = Vector2(16.26663, 42.466797)
+scale = Vector2(0.83366853, 0.7513309)
 texture = ExtResource("2_55ivw")
 centered = false
 
 [node name="DoomShroom_head1" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(0.941214, 0.476359)
-scale = Vector2(0.781176, 0.838649)
+position = Vector2(-1.2000551, 7.5668507)
+scale = Vector2(0.8263348, 0.7623315)
 texture = ExtResource("3_oiu6n")
 centered = false
 
@@ -1612,10 +1612,10 @@ centered = false
 visible = false
 centered = false
 
-[node name="SleepComponent" parent="." index="5" node_paths=PackedStringArray("sleep_influence_components")]
+[node name="SleepComponent" parent="." index="4" node_paths=PackedStringArray("sleep_influence_components")]
 sleep_influence_components = [NodePath("../BombComponent")]
 
-[node name="BlinkComponent" parent="." index="6"]
+[node name="BlinkComponent" parent="." index="5"]
 is_enable_default = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
@@ -1635,12 +1635,11 @@ unique_name_in_owner = true
 script = ExtResource("7_enwho")
 can_attack_plant_status = 7
 can_attack_zombie_status = 63
-bomb_sfx_plant_type = 16
 bomb_sfx = &"DoomShroom"
 
 [node name="Area2DBomb" type="Area2D" parent="BombComponent" index="0"]
 collision_layer = 0
-collision_mask = 21
+collision_mask = 2068
 input_pickable = false
 monitorable = false
 

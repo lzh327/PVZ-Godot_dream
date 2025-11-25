@@ -6,14 +6,14 @@ class_name Bullet016CobCannon
 var target_global_pos :Vector2
 @onready var bomb_component: BombComponentNorm = %BombComponent
 
-func init_cannon(target_global_pos:Vector2):
-	self.target_global_pos = target_global_pos
+func init_cannon(curr_target_global_pos:Vector2):
+	self.target_global_pos = curr_target_global_pos
 	z_index = 4000
 
 func _ready() -> void:
 	bullet_shadow.visible = false
 	var tween:Tween = get_tree().create_tween()
-	tween.tween_property(body, ^"position:y", -600, 0.8)
+	tween.tween_property(body, ^"position:y", -1000, 0.8)
 	await tween.finished
 
 	await get_tree().create_timer(1, false).timeout

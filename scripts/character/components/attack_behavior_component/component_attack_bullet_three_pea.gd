@@ -32,7 +32,7 @@ func _shoot_bullet():
 			_create_bullte(0, i, true)
 
 	## 攻击音效
-	SoundManager.play_plant_SFX(Global.PlantType.P001PeaShooterSingle, &"Throw")
+	SoundManager.play_character_SFX(&"Throw")
 
 func _create_bullte(await_time:float, i:int=1, change_y_target:bool=false):
 	if await_time:
@@ -42,7 +42,7 @@ func _create_bullte(await_time:float, i:int=1, change_y_target:bool=false):
 	## 有偏移的为正常发射的子弹
 	if change_y_target:
 		bullet.global_position = markers_2d_bullet[0].global_position
-		var bullet_paras = {
+		var bullet_paras:Dictionary = {
 			Bullet000Base.E_InitParasAttr.BulletLane : owner.row_col.x + i -1,
 			Bullet000Base.E_InitParasAttr.Position :  bullets.to_local(markers_2d_bullet[0].global_position),
 		}
@@ -52,7 +52,7 @@ func _create_bullte(await_time:float, i:int=1, change_y_target:bool=false):
 	## 没有偏移的为边路补偿子弹
 	else:
 		bullet.global_position = markers_2d_bullet[0].global_position
-		var bullet_paras = {
+		var bullet_paras :Dictionary= {
 			Bullet000Base.E_InitParasAttr.BulletLane : owner.row_col.x,
 			Bullet000Base.E_InitParasAttr.Position :  bullets.to_local(markers_2d_bullet[0].global_position),
 		}

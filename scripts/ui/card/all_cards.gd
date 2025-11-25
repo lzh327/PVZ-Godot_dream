@@ -21,17 +21,22 @@ var frame_num := 0
 
 ## 更新每个已经制作的卡片（卡片类型不为空）
 func _ready() -> void:
+	## 非编辑器中运行隐藏(游戏中)
+	if not Engine.is_editor_hint():
+		visible = false
 	var plant_i = -1
 	for plant_cards_parent_node in all_plant_cards_parent_node_root:
 		for i in range(plant_cards_parent_node.get_children().size()):
 			var card:Card = plant_cards_parent_node.get_children()[i]
 			if card.card_plant_type != 0:
 				plant_i += 1
-				card.card_id = plant_i
-				#print(card.card_plant_type)
-				card.cool_time = Global.PlantInfo[card.card_plant_type][Global.PlantInfoAttribute.CoolTime]
-				card.sun_cost = Global.PlantInfo[card.card_plant_type][Global.PlantInfoAttribute.SunCost]
-
+				var card_para:Dictionary[Card.E_CInitAttr, Variant] = {
+					Card.E_CInitAttr.CardId:plant_i,
+					Card.E_CInitAttr.CoolTime:Global.PlantInfo[card.card_plant_type][Global.PlantInfoAttribute.CoolTime],
+					Card.E_CInitAttr.SunCost:Global.PlantInfo[card.card_plant_type][Global.PlantInfoAttribute.SunCost]
+				}
+				#card.init_card(card_para)
+				init_card(card, card_para)
 				all_plant_card_prefabs[card.card_plant_type] = card
 				plant_card_ids[card.card_plant_type] = plant_i
 
@@ -46,7 +51,12 @@ func _ready() -> void:
 				card.sun_cost = Global.ZombieInfo[card.card_zombie_type][Global.ZombieInfoAttribute.SunCost]
 				all_zombie_card_prefabs[card.card_zombie_type] = card
 				zombie_card_ids[card.card_zombie_type] = zombie_i
-	##
+
+func init_card(card:CardBase, card_init_para:Dictionary):
+	card.card_id = card_init_para[CardBase.E_CInitAttr.CardId]
+	card.cool_time = card_init_para[CardBase.E_CInitAttr.CoolTime]
+	card.sun_cost = card_init_para[CardBase.E_CInitAttr.SunCost]
+
 #### 该部分物理帧实际运行时删除
 #func _physics_process(delta: float) -> void:
 	#if Engine.is_editor_hint():

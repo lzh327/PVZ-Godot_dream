@@ -1,8 +1,8 @@
 extends Zombie000Base
 class_name Zombie019Pogo
-## 跳跳僵尸初始化时禁用攻击组件,使用AttackRayComponentPogo检测植物,若有植物,弹跳两次跳过该植物
+## 跳跳僵尸初始化时禁用攻击组件,使用DetectComponentPogo检测植物,若有植物,弹跳两次跳过该植物
 
-@onready var detect_component_pogo: AttackRayComponent = $AttackRayComponentPogo
+@onready var detect_component_pogo: DetectComponent = $DetectComponentPogo
 @onready var body_correct: Node2D = $Body/BodyCorrect
 
 var tween_pogo:Tween
@@ -24,10 +24,10 @@ var is_jump_stop:=false
 ## 是否为大跳状态
 var is_big_pogo := false
 
-func init_norm():
+func ready_norm():
 	super()
 	time_pogo_once = time_pogo_once_default
-	attack_component.disable_component(ComponentBase.E_IsEnableFactor.Character)
+	attack_component.disable_component(ComponentNormBase.E_IsEnableFactor.Character)
 	## 跳跳状态下检测到植物停止移动,弹跳两次后移动
 	detect_component_pogo.signal_can_attack.connect(pogo_ray_enemy)
 	#detect_component_pogo.signal_not_can_attack.connect(func():move_component.update_move_factor.bind(false, MoveComponent.E_MoveFactor.IsCharacter))
@@ -41,7 +41,7 @@ func pogo_ray_enemy():
 
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	hp_component.signal_hp_component_death.connect(loss_iron_item)
 	signal_update_speed.connect(_on_update_speed)
@@ -51,7 +51,7 @@ func loss_iron_item():
 	super()
 	is_pogo = false
 	move_component.update_move_mode(MoveComponent.E_MoveMode.Ground)
-	attack_component.enable_component(ComponentBase.E_IsEnableFactor.Character)
+	attack_component.enable_component(ComponentNormBase.E_IsEnableFactor.Character)
 
 ## 开始起跳
 func pogo_start():
@@ -79,7 +79,7 @@ func pogo_start():
 	if tween_pogo != null:
 		tween_pogo.kill()
 
-	SoundManager.play_zombie_SFX(Global.ZombieType.Z019Pogo, "pogo_zombie")
+	SoundManager.play_character_SFX(&"pogo_zombie")
 
 	tween_pogo = get_tree().create_tween()
 	tween_pogo.set_speed_scale(speed_scale_pogo)

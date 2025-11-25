@@ -6,7 +6,7 @@ class_name Zombie020Yeti
 ## 是否已经润了
 var is_run_end:=false
 
-func init_norm():
+func ready_norm():
 	super()
 	if Global.main_game.p_yeti_run != -1:
 		probability_run = Global.main_game.p_yeti_run

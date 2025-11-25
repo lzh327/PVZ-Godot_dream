@@ -25,8 +25,6 @@ func _ready() -> void:
 	EventBus.subscribe("add_sun_value", func(value): sun_value+=value)
 	EventBus.subscribe("update_card_purple_sun_cost", update_card_purple_sun_cost)
 
-
-
 ## 初始化出战卡槽，管理器调用
 func init_card_slot_battle(max_choosed_card_num:int, sun:int):
 	self.sun_value = sun
@@ -44,9 +42,21 @@ func main_game_refresh_card():
 	for i in range(curr_cards.size()):
 		var card:Card = curr_cards[i]
 		card.judge_sun_enough(sun_value)
-		card.signal_card_use_end.connect(card_use_end.bind(card))
 		card.set_shortcut((i+1)%10)
+		if not card.signal_card_use_end.is_connected(card_use_end.bind(card)):
+			card.signal_card_use_end.connect(card_use_end.bind(card))
 	judge_disappear_add_card_bar()
+
+## 开始下一轮出战卡槽更新数据
+func start_next_game_card_slot_battle_update():
+	for i in range(curr_cards.size()):
+		var card:Card = curr_cards[i]
+		## 卡牌冷却结束,可以点击
+		card.set_card_cool_end()
+		card.card_ready()
+		card.set_shortcut_disappear()
+		if card.signal_card_use_end.is_connected(card_use_end.bind(card)):
+			card.signal_card_use_end.disconnect(card_use_end.bind(card))
 
 ## 卡片种植后信号调用函数
 func card_use_end(card:Card):
@@ -63,9 +73,10 @@ func judge_disappear_add_card_bar():
 			if curr_cards.size() < cards_placeholder.size():
 				for i in range(curr_cards.size(), cards_placeholder.size()):
 					cards_placeholder[i].visible = false
-		else:
-			for i in range(cards_placeholder.size()):
-				cards_placeholder[i].visible = true
+	else:
+		for i in range(cards_placeholder.size()):
+			cards_placeholder[i].visible = true
+
 #endregion
 
 ## 等待一帧(阳光减少)后 更新当前卡片的紫卡价格,每次植物种植或死亡时调用

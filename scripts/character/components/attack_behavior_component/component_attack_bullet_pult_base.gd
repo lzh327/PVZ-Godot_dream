@@ -18,6 +18,7 @@ func _on_bullet_attack_cd_timer_timeout() -> void:
 
 func get_bullet_paras(marker_2d_bullet_glo_pos:Vector2, ray_direction:Vector2) -> Dictionary[Bullet000Base.E_InitParasAttr,Variant]:
 	var bullet_paras = super(marker_2d_bullet_glo_pos, ray_direction)
-	bullet_paras[Bullet000Base.E_InitParasAttr.Enemy] = last_target_enemy
+	if is_instance_valid(last_target_enemy):
+		bullet_paras[Bullet000Base.E_InitParasAttr.Enemy] = last_target_enemy
 	bullet_paras[Bullet000Base.E_InitParasAttr.EnemyGloPos] = last_target_enemy_global_pos
 	return bullet_paras

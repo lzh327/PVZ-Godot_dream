@@ -19,13 +19,13 @@ class_name Zombie021Bungi
 ## 蹦极僵尸所在PlantCell
 var plant_cell:PlantCell
 
-func init_norm():
+func ready_norm():
 	super()
 	## 如果没有plant_cell,报错
 	if not is_instance_valid(plant_cell):
 		printerr("当前蹦极僵尸没有plant_cell")
 	## 蹦极僵尸初始化时先禁用受击组件
-	be_attacked_box_component.disable_component(ComponentBase.E_IsEnableFactor.Character)
+	hurt_box_component.disable_component(ComponentNormBase.E_IsEnableFactor.Character)
 
 	bungee_target.position.y -= 600
 	var tween_bungee_target = create_tween()
@@ -37,14 +37,15 @@ func init_norm():
 	tween.set_parallel()
 	# 在动画进行到 2.5 秒时调用函数
 	tween.tween_callback(func():is_drop_end = true).set_delay(1.8)
-	tween.tween_callback(be_attacked_box_component.enable_component.bind(ComponentBase.E_IsEnableFactor.Character)).set_delay(1.3)
+	tween.tween_callback(hurt_box_component.enable_component.bind(ComponentNormBase.E_IsEnableFactor.Character)).set_delay(1.3)
 	tween.tween_property(body_correct, "position:y", body_correct.position.y+600, 2).set_trans(Tween.TRANS_BACK)
 	#.set_ease(Tween.EASE_OUT)
 	await tween.finished
 	await get_tree().create_timer(2.0).timeout
 	is_grab = true
+	body.z_index -= 50
 
-func init_show():
+func ready_show():
 	super()
 	bungee_target.visible = false
 	shadow.visible = false
@@ -56,7 +57,7 @@ func raise_start():
 		bungi_plant_cell(plant_cell)
 	bungee_target.visible = false
 	## 禁用受击组件
-	be_attacked_box_component.disable_component(ComponentBase.E_IsEnableFactor.Character)
+	hurt_box_component.disable_component(ComponentNormBase.E_IsEnableFactor.Character)
 	var tween = create_tween()
 	tween.tween_property(body_correct, "position:y", body_correct.position.y-600, 1.0)
 	tween.set_parallel()
@@ -70,11 +71,13 @@ func bungi_plant_cell(p_c:PlantCell):
 	if is_instance_valid(p_c):
 		var plant_body_copy :Node2D= p_c.be_bungi()
 		if plant_body_copy != null:
-			GlobalUtils.child_node_change_parent(plant_body_copy, bungi_container)
+			#GlobalUtils.child_node_change_parent(plant_body_copy, bungi_container)
+			plant_body_copy.reparent(bungi_container)
 
 ## 修改绳子父节点
 func update_bungee_cords_parent():
-	GlobalUtils.child_node_change_parent(bungee_cords, zombie_bungi_body_2)
+	#GlobalUtils.child_node_change_parent(bungee_cords, zombie_bungi_body_2)
+	bungee_cords.reparent(zombie_bungi_body_2)
 
 
 ## 角色死亡

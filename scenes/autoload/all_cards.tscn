@@ -1,4 +1,4 @@
-[gd_scene load_steps=776 format=3 uid="uid://bb24ydyvk8c3u"]
+[gd_scene load_steps=784 format=3 uid="uid://bb24ydyvk8c3u"]
 
 [ext_resource type="Script" uid="uid://bh1ixrlfb6jr4" path="res://scripts/ui/card/all_cards.gd" id="1_qtbte"]
 [ext_resource type="PackedScene" uid="uid://cjuiaaq33o5aa" path="res://scenes/ui/all_cards/card.tscn" id="2_5pqky"]
@@ -558,13 +558,21 @@
 [ext_resource type="Texture2D" uid="uid://dg8oaxgqbdu2g" path="res://assets/reanim/CobCannon_husk1.png" id="375_vxcot"]
 [ext_resource type="Texture2D" uid="uid://bjfgnxqtsjeal" path="res://assets/reanim/CobCannon_blink1.png" id="376_3fnx5"]
 [ext_resource type="Texture2D" uid="uid://dso0w5x240ovg" path="res://assets/reanim/Zombie_dolphinrider_innerleg_lower.png" id="376_7lapw"]
+[ext_resource type="Script" uid="uid://dx752kig120mj" path="res://scripts/character/components/body_character.gd" id="377_b70e6"]
 [ext_resource type="Texture2D" uid="uid://8lf3oib5dsqt" path="res://assets/reanim/Zombie_dolphinrider_innerleg_upper.png" id="377_pupom"]
+[ext_resource type="Texture2D" uid="uid://c63tf7upqqxus" path="res://assets/reanim/Imitater_root2.png" id="378_45g8r"]
 [ext_resource type="Texture2D" uid="uid://dkj0lon114c3o" path="res://assets/reanim/Zombie_dolphinrider_body2.png" id="378_b70e6"]
 [ext_resource type="Texture2D" uid="uid://cli3edkc70xbo" path="res://assets/reanim/Zombie_dolphinrider_body1.png" id="379_45g8r"]
+[ext_resource type="Texture2D" uid="uid://bqw13oc1ficg7" path="res://assets/reanim/Imitater_root3.png" id="379_cnu4l"]
 [ext_resource type="Texture2D" uid="uid://b7ggvyaplipyr" path="res://assets/reanim/Zombie_dolphinrider_outerleg_foot1.png" id="380_cnu4l"]
+[ext_resource type="Texture2D" uid="uid://wox6kcig3h35" path="res://assets/reanim/Imitater_body.png" id="380_vxcot"]
+[ext_resource type="Texture2D" uid="uid://bkjsjbi47lxlv" path="res://assets/reanim/Imitater_root1.png" id="381_3fnx5"]
 [ext_resource type="Texture2D" uid="uid://feufmecp63cf" path="res://assets/reanim/Zombie_dolphinrider_outerleg_foot2.png" id="381_vxcot"]
 [ext_resource type="Texture2D" uid="uid://ym3cj03fvop4" path="res://assets/reanim/Zombie_dolphinrider_outerleg_lower.png" id="382_3fnx5"]
+[ext_resource type="Texture2D" uid="uid://d3etuf1sy65a1" path="res://assets/reanim/Imitater_blink1.png" id="382_knh0l"]
+[ext_resource type="Texture2D" uid="uid://bnccv7wjkdsph" path="res://assets/reanim/Imitater_hat.png" id="383_junvc"]
 [ext_resource type="Texture2D" uid="uid://cnf5nehubebbk" path="res://assets/reanim/Zombie_dolphinrider_outerleg_upper.png" id="383_knh0l"]
+[ext_resource type="Texture2D" uid="uid://c583jsodj755w" path="res://assets/reanim/Imitater_spin1.png" id="384_jlrij"]
 [ext_resource type="Texture2D" uid="uid://cjujyrb3tyc55" path="res://assets/reanim/Zombie_dolphinrider_jaw.png" id="384_junvc"]
 [ext_resource type="Texture2D" uid="uid://c0qb3srcraxvi" path="res://assets/reanim/Zombie_dolphinrider_head.png" id="385_jlrij"]
 [ext_resource type="Texture2D" uid="uid://ctci5pveql0wh" path="res://assets/reanim/Zombie_dolphinrider_dolphinbody2.png" id="386_w8qdd"]
@@ -1020,6 +1028,111 @@ zombie_card_ids = Dictionary[int, int]({
 25: 23,
 1001: 24
 })
+
+[node name="CardImitater" parent="." instance=ExtResource("2_5pqky")]
+layout_mode = 0
+offset_left = -309.0
+offset_top = -92.0
+offset_right = -259.0
+offset_bottom = -22.0
+card_plant_type = 999
+curr_card_gb = 2
+cool_time = 0.0
+sun_cost = 0
+is_initater = true
+
+[node name="CardBg" parent="CardImitater" index="0"]
+texture = ExtResource("3_m4n4y")
+
+[node name="Plant999Imitater" type="Node2D" parent="CardImitater/CardBg/CharacterStatic" index="0"]
+position = Vector2(1, 15)
+scale = Vector2(0.5, 0.5)
+
+[node name="Shadow" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater"]
+visible = false
+texture = ExtResource("98_ev02b")
+
+[node name="Body" type="Node2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater"]
+script = ExtResource("377_b70e6")
+
+[node name="BodyCorrect" type="Node2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body"]
+position = Vector2(-40, -69)
+
+[node name="Anim_blink" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+centered = false
+
+[node name="Anim_idle" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+centered = false
+
+[node name="Anim_explode" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+centered = false
+
+[node name="Imitater_root4" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(62.8, 49.1)
+rotation = 2.572615
+scale = Vector2(0.809, 0.809)
+skew = -3.1154125
+texture = ExtResource("378_45g8r")
+centered = false
+
+[node name="Imitater_root3" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(55.8, 29.6)
+rotation = 0.249582
+scale = Vector2(0.799, 0.819)
+texture = ExtResource("379_cnu4l")
+centered = false
+
+[node name="Imitater_root2" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(15.8, 49)
+rotation = -0.26529
+scale = Vector2(0.799, 0.819)
+texture = ExtResource("378_45g8r")
+centered = false
+
+[node name="Anim_face" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(17.3, 3.7)
+scale = Vector2(0.8, 0.819)
+texture = ExtResource("380_vxcot")
+centered = false
+
+[node name="Imitater_root1" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(14.7, 31.7)
+rotation = -0.342085
+scale = Vector2(0.821, 0.819)
+skew = 0.2286386
+texture = ExtResource("381_3fnx5")
+centered = false
+
+[node name="Imitater_blink" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(26.9, 13.4)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("382_knh0l")
+centered = false
+
+[node name="Imitater_hat" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+position = Vector2(15.8, -0.5)
+scale = Vector2(0.8, 0.819)
+texture = ExtResource("383_junvc")
+centered = false
+
+[node name="Imitater_spin" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+position = Vector2(14.2, -3.8)
+scale = Vector2(0.801, 0.799)
+texture = ExtResource("384_jlrij")
+centered = false
+
+[node name="Imitater_explode" type="Sprite2D" parent="CardImitater/CardBg/CharacterStatic/Plant999Imitater/Body/BodyCorrect"]
+visible = false
+centered = false
 
 [node name="PlantCards" type="GridContainer" parent="."]
 unique_name_in_owner = true
@@ -1575,7 +1688,6 @@ position = Vector2(1, 10)
 scale = Vector2(0.5, 0.5)
 
 [node name="Body" type="Node2D" parent="PlantCards/Card5/CardBg/CharacterStatic/Plant005PotatoMine"]
-position = Vector2(0, 2)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card5/CardBg/CharacterStatic/Plant005PotatoMine/Body"]
 position = Vector2(-31, -56)
@@ -2391,7 +2503,7 @@ sun_cost = 75
 texture = ExtResource("3_m4n4y")
 
 [node name="Plant012GraveBuster" type="Node2D" parent="PlantCards/Card12/CardBg/CharacterStatic" index="0"]
-position = Vector2(1, 14)
+position = Vector2(1, 27)
 scale = Vector2(0.5, 0.5)
 
 [node name="Shadow" type="Sprite2D" parent="PlantCards/Card12/CardBg/CharacterStatic/Plant012GraveBuster"]
@@ -2399,10 +2511,9 @@ visible = false
 texture = ExtResource("98_ev02b")
 
 [node name="Body" type="Node2D" parent="PlantCards/Card12/CardBg/CharacterStatic/Plant012GraveBuster"]
-position = Vector2(-39, -57.7968)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card12/CardBg/CharacterStatic/Plant012GraveBuster/Body"]
-position = Vector2(-0.317017, -12.2225)
+position = Vector2(-41, -90)
 
 [node name="Gravebuster_tooth1" type="Sprite2D" parent="PlantCards/Card12/CardBg/CharacterStatic/Plant012GraveBuster/Body/BodyCorrect"]
 position = Vector2(6.79539, 45.2929)
@@ -2793,7 +2904,7 @@ sun_cost = 25
 texture = ExtResource("3_m4n4y")
 
 [node name="Plant017LilyPad" type="Node2D" parent="PlantCards/Card17/CardBg/CharacterStatic" index="0"]
-position = Vector2(3, 9)
+position = Vector2(3, 15)
 scale = Vector2(0.5, 0.5)
 
 [node name="Shadow" type="Sprite2D" parent="PlantCards/Card17/CardBg/CharacterStatic/Plant017LilyPad"]
@@ -2801,9 +2912,9 @@ visible = false
 texture = ExtResource("98_ev02b")
 
 [node name="Body" type="Node2D" parent="PlantCards/Card17/CardBg/CharacterStatic/Plant017LilyPad"]
-position = Vector2(-46, -62)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card17/CardBg/CharacterStatic/Plant017LilyPad/Body"]
+position = Vector2(-44, -67)
 
 [node name="shadow" type="Sprite2D" parent="PlantCards/Card17/CardBg/CharacterStatic/Plant017LilyPad/Body/BodyCorrect"]
 visible = false
@@ -2834,7 +2945,7 @@ sun_cost = 50
 texture = ExtResource("3_m4n4y")
 
 [node name="Plant018Squash" type="Node2D" parent="PlantCards/Card18/CardBg/CharacterStatic" index="0"]
-position = Vector2(1, 14)
+position = Vector2(1, 16)
 scale = Vector2(0.5, 0.5)
 
 [node name="Shadow" type="Sprite2D" parent="PlantCards/Card18/CardBg/CharacterStatic/Plant018Squash"]
@@ -2842,10 +2953,9 @@ visible = false
 texture = ExtResource("98_ev02b")
 
 [node name="Body" type="Node2D" parent="PlantCards/Card18/CardBg/CharacterStatic/Plant018Squash"]
-position = Vector2(0, -45)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card18/CardBg/CharacterStatic/Plant018Squash/Body"]
-position = Vector2(-41, -28)
+position = Vector2(-41, -75)
 
 [node name="Squash_stem" type="Sprite2D" parent="PlantCards/Card18/CardBg/CharacterStatic/Plant018Squash/Body/BodyCorrect"]
 position = Vector2(33.4, -1.8)
@@ -3141,7 +3251,6 @@ visible = false
 texture = ExtResource("98_ev02b")
 
 [node name="Body" type="Node2D" parent="PlantCards/Card20/CardBg/CharacterStatic/Plant020Tanglekelp"]
-position = Vector2(4, -2)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card20/CardBg/CharacterStatic/Plant020Tanglekelp/Body"]
 position = Vector2(-43, -62)
@@ -4669,14 +4778,13 @@ sun_cost = 75
 texture = ExtResource("3_m4n4y")
 
 [node name="Plant036CoffeeBean" type="Node2D" parent="PlantCards/Card36/CardBg/CharacterStatic" index="0"]
-position = Vector2(1, 14)
+position = Vector2(1, 21)
 scale = Vector2(0.5, 0.5)
 
 [node name="Body" type="Node2D" parent="PlantCards/Card36/CardBg/CharacterStatic/Plant036CoffeeBean"]
-position = Vector2(0, 46)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card36/CardBg/CharacterStatic/Plant036CoffeeBean/Body"]
-position = Vector2(-41, -115)
+position = Vector2(-41, -81)
 
 [node name="Anim_crumble" type="Sprite2D" parent="PlantCards/Card36/CardBg/CharacterStatic/Plant036CoffeeBean/Body/BodyCorrect"]
 centered = false
@@ -4937,11 +5045,10 @@ sun_cost = 300
 texture = ExtResource("3_m4n4y")
 
 [node name="Plant040MelonPult" type="Node2D" parent="PlantCards/Card40/CardBg/CharacterStatic" index="0"]
-position = Vector2(1, 14)
+position = Vector2(9, 14)
 scale = Vector2(0.45, 0.45)
 
 [node name="Body" type="Node2D" parent="PlantCards/Card40/CardBg/CharacterStatic/Plant040MelonPult"]
-position = Vector2(20, 2.38419e-06)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card40/CardBg/CharacterStatic/Plant040MelonPult/Body"]
 position = Vector2(-42, -65)
@@ -5217,7 +5324,7 @@ layout_mode = 2
 card_id = 41
 card_plant_type = 42
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 150
 
 [node name="Plant042TwinSunFlower" type="Node2D" parent="PlantCards/Card42/CardBg/CharacterStatic" index="0"]
 position = Vector2(1, 14)
@@ -5362,7 +5469,7 @@ layout_mode = 2
 card_id = 42
 card_plant_type = 43
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 150
 
 [node name="Plant043GloomShroom" type="Node2D" parent="PlantCards/Card43/CardBg/CharacterStatic" index="0"]
 position = Vector2(1, 14)
@@ -5508,7 +5615,7 @@ layout_mode = 2
 card_id = 43
 card_plant_type = 44
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 225
 
 [node name="Plant044Cattail" type="Node2D" parent="PlantCards/Card44/CardBg/CharacterStatic" index="0"]
 position = Vector2(1, 14)
@@ -5612,10 +5719,10 @@ layout_mode = 2
 card_id = 44
 card_plant_type = 45
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 200
 
 [node name="Plant045WinterMelon" type="Node2D" parent="PlantCards/Card45/CardBg/CharacterStatic" index="0"]
-position = Vector2(1, 14)
+position = Vector2(8, 16)
 scale = Vector2(0.45, 0.45)
 
 [node name="Shadow" type="Sprite2D" parent="PlantCards/Card45/CardBg/CharacterStatic/Plant045WinterMelon"]
@@ -5623,7 +5730,6 @@ visible = false
 texture = ExtResource("98_ev02b")
 
 [node name="Body" type="Node2D" parent="PlantCards/Card45/CardBg/CharacterStatic/Plant045WinterMelon"]
-position = Vector2(20, 2.22225)
 
 [node name="BodyCorrect" type="Node2D" parent="PlantCards/Card45/CardBg/CharacterStatic/Plant045WinterMelon/Body"]
 position = Vector2(-41, -69)
@@ -5731,7 +5837,7 @@ layout_mode = 2
 card_id = 45
 card_plant_type = 46
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 50
 
 [node name="Plant046GoldMagnet" type="Node2D" parent="PlantCards/Card46/CardBg/CharacterStatic" index="0"]
 position = Vector2(1, 14)
@@ -5848,7 +5954,7 @@ layout_mode = 2
 card_id = 46
 card_plant_type = 47
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 125
 
 [node name="Plant047SpikeRock" type="Node2D" parent="PlantCards/Card47/CardBg/CharacterStatic" index="0"]
 position = Vector2(1, 14)
@@ -5978,7 +6084,7 @@ layout_mode = 2
 card_id = 47
 card_plant_type = 48
 cool_time = 50.0
-sun_cost = 250
+sun_cost = 500
 
 [node name="CharacterStatic" parent="PlantCards/Card48/CardBg" index="1"]
 position = Vector2(12, 31)
@@ -11069,6 +11175,7 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("371_ea7g5")
 centered = false
 
+[editable path="CardImitater"]
 [editable path="PlantCards/Card1"]
 [editable path="PlantCards/Card2"]
 [editable path="PlantCards/Card3"]

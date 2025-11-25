@@ -2,7 +2,7 @@ extends Plant000Base
 class_name Plant018Squash
 
 @onready var area_2d_squash_attack: Area2D = $Area2DSquashAttack
-@onready var detect_component: AttackRayComponentSquash = $AttackRayComponent
+@onready var detect_component: DetectComponentSquash = $DetectComponent
 
 ## 可以攻击的敌人状态
 @export_flags("1 正常", "2 悬浮", "4 地刺") var can_attack_plant_status:int = 5
@@ -13,23 +13,22 @@ class_name Plant018Squash
 @export var is_right:bool = true
 var target_x
 
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	detect_component.signal_can_attack.connect(attack_start)
 
 ## 开始攻击
 func attack_start():
 	if not is_attack:
-		SoundManager.play_plant_SFX(Global.PlantType.P018Squash, "SquashHmm")
+		SoundManager.play_character_SFX("SquashHmm")
 		is_attack = true
 		target_x = detect_component.enemy_can_be_attacked.shadow.global_position.x
 		is_right = target_x > global_position.x
-		be_attacked_box_component.disable_component(ComponentBase.E_IsEnableFactor.Character)
+		hurt_box_component.disable_component(ComponentNormBase.E_IsEnableFactor.Character)
 
 ## 开始跳跃
 func jump_up_start():
-	z_index = 415 + row_col.x * 10
-	z_as_relative = false
+	z_index += 50
 	## 如果地形为睡莲或者水
 	if plant_cell.curr_condition & 8 or  plant_cell.curr_condition & 16:
 		shadow.visible = false
@@ -61,3 +60,5 @@ func judge_jump_pool():
 		splash.z_as_relative = z_as_relative
 		splash.z_index = z_index
 		character_death()
+	else:
+		SoundManager.play_character_SFX(&"gargantuar_thump")

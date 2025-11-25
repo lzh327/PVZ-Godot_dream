@@ -1,9 +1,6 @@
 extends Node2D
 class_name MainGameHome
 
-
-@onready var panel_zombie_go_home: Panel = %PanelZombieGoHome
-
 @onready var door_downs: Array[Sprite2D] = [
 	$Door/DoorDown/Background1GameoverInteriorOverlay,
 	$Door/DoorDown/Background2GameoverInteriorOverlay,

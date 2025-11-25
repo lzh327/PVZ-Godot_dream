@@ -1,7 +1,6 @@
-[gd_scene load_steps=117 format=3 uid="uid://b72u5kwdpw4te"]
+[gd_scene load_steps=115 format=3 uid="uid://b72u5kwdpw4te"]
 
 [ext_resource type="PackedScene" uid="uid://cktksmdbn2nmn" path="res://scenes/character/zombie/zombie_000_base.tscn" id="1_vj7es"]
-[ext_resource type="Texture2D" uid="uid://xvpvxtsj2yew" path="res://assets/reanim/Ground.png" id="2_2su5o"]
 [ext_resource type="Script" uid="uid://cl2gyjjjieh0e" path="res://scripts/character/zombie/zombie_001_norm.gd" id="2_21wkp"]
 [ext_resource type="Texture2D" uid="uid://c56eve4tvxpgc" path="res://assets/reanim/Zombie_innerarm_hand.png" id="3_21wkp"]
 [ext_resource type="Texture2D" uid="uid://c5yhqaj630eso" path="res://assets/reanim/Zombie_innerarm_lower.png" id="4_uh2ph"]
@@ -22,10 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://desfjbp2kpxma" path="res://assets/reanim/Zombie_body.png" id="17_6sbaq"]
 [ext_resource type="Texture2D" uid="uid://1s76ywqgwjdg" path="res://assets/reanim/Zombie_tie.png" id="19_35kym"]
 [ext_resource type="Texture2D" uid="uid://cbftqok26jk60" path="res://assets/reanim/Zombie_jaw.png" id="20_iw10b"]
+[ext_resource type="Texture2D" uid="uid://dfg74gsba28it" path="res://assets/reanim/Zombie_duckytube.png" id="21_gdkty"]
 [ext_resource type="Texture2D" uid="uid://deubxyhlkfjrq" path="res://assets/reanim/Zombie_tongue.png" id="21_vvkxq"]
 [ext_resource type="Texture2D" uid="uid://ctjw1603ur2jm" path="res://assets/reanim/Zombie_mustache1.png" id="22_smhc2"]
+[ext_resource type="Texture2D" uid="uid://ok2l7mfg4lev" path="res://assets/reanim/Zombie_whitewater1.png" id="22_vukf2"]
 [ext_resource type="Texture2D" uid="uid://bcnptydg0xkej" path="res://assets/reanim/Zombie_screendoor1.png" id="23_1ypyj"]
-[ext_resource type="Texture2D" uid="uid://dfg74gsba28it" path="res://assets/reanim/Zombie_duckytube.png" id="23_b4qrn"]
 [ext_resource type="Texture2D" uid="uid://5h0qjv40byky" path="res://assets/reanim/Zombie_innerarm_screendoor_hand.png" id="24_5hcwp"]
 [ext_resource type="Texture2D" uid="uid://bn06qq202tixy" path="res://assets/reanim/Zombie_outerarm_screendoor.png" id="25_a3dhf"]
 [ext_resource type="Texture2D" uid="uid://duyqfy4j8isia" path="res://assets/reanim/Zombie_outerarm_hand.png" id="26_v4e4r"]
@@ -36,20 +36,19 @@
 [ext_resource type="Texture2D" uid="uid://is2g44uxfgvp" path="res://assets/reanim/Zombie_bucket1.png" id="31_d1hh3"]
 [ext_resource type="Script" uid="uid://dmcra0pjlpu70" path="res://scripts/character/components/drop_body/ZombieHeadDrop.gd" id="32_q6va3"]
 [ext_resource type="Script" uid="uid://33sxeu6n870x" path="res://scripts/character/components/drop_body/ZombieHandDrop.gd" id="33_7rguq"]
-[ext_resource type="Script" uid="uid://doalrh1fha7yy" path="res://scripts/character/components/iron_node/iron_node_ori.gd" id="35_b4qrn"]
-[ext_resource type="Texture2D" uid="uid://ddlkkrp74v64f" path="res://assets/reanim/Zombie_outerarm_upper2.png" id="39_gdkty"]
-[ext_resource type="Animation" uid="uid://d3xlpfjhhpjoe" path="res://animation/character/zombie/001_zombie_norm/Zombie_dance.tres" id="39_iw10b"]
-[ext_resource type="Animation" uid="uid://b5hjaxn8gcba8" path="res://animation/character/zombie/001_zombie_norm/Zombie_death.tres" id="40_vvkxq"]
-[ext_resource type="Animation" uid="uid://bt6hgqk4jrjia" path="res://animation/character/zombie/001_zombie_norm/Zombie_death2.tres" id="41_smhc2"]
-[ext_resource type="Animation" uid="uid://duxiflfr26khm" path="res://animation/character/zombie/001_zombie_norm/Zombie_eat.tres" id="42_1ypyj"]
-[ext_resource type="Animation" uid="uid://c4y5rv77q3wme" path="res://animation/character/zombie/001_zombie_norm/Zombie_idle.tres" id="43_5hcwp"]
-[ext_resource type="Animation" uid="uid://bpqok1g6cpdfr" path="res://animation/character/zombie/001_zombie_norm/Zombie_idle2.tres" id="44_a3dhf"]
-[ext_resource type="Animation" uid="uid://btjsybnuhwdb" path="res://animation/character/zombie/001_zombie_norm/Zombie_superlongdeath.tres" id="45_v4e4r"]
-[ext_resource type="Animation" uid="uid://b8cnchb5c85u2" path="res://animation/character/zombie/001_zombie_norm/Zombie_swim.tres" id="46_b24iv"]
-[ext_resource type="Animation" uid="uid://ch6t2wqlui1r6" path="res://animation/character/zombie/001_zombie_norm/Zombie_walk.tres" id="47_5nqa6"]
-[ext_resource type="Animation" uid="uid://bq8k3xqmoldmh" path="res://animation/character/zombie/001_zombie_norm/Zombie_walk2.tres" id="48_73eos"]
+[ext_resource type="Texture2D" uid="uid://ddlkkrp74v64f" path="res://assets/reanim/Zombie_outerarm_upper2.png" id="38_b4qrn"]
+[ext_resource type="Animation" uid="uid://cl1aii3rvoc44" path="res://animation/character/zombie/001_zombie_norm/Zombie_dance.tres" id="39_iw10b"]
+[ext_resource type="Animation" uid="uid://ok5truuxsgm3" path="res://animation/character/zombie/001_zombie_norm/Zombie_death.tres" id="40_vvkxq"]
+[ext_resource type="Animation" uid="uid://bhl3acsnxbu44" path="res://animation/character/zombie/001_zombie_norm/Zombie_death2.tres" id="41_smhc2"]
+[ext_resource type="Animation" uid="uid://fivlj7o58lcn" path="res://animation/character/zombie/001_zombie_norm/Zombie_eat.tres" id="42_1ypyj"]
+[ext_resource type="Animation" uid="uid://bvdi54jlgdq0s" path="res://animation/character/zombie/001_zombie_norm/Zombie_idle.tres" id="43_5hcwp"]
+[ext_resource type="Animation" uid="uid://dbqea3ohfw2lp" path="res://animation/character/zombie/001_zombie_norm/Zombie_idle2.tres" id="44_a3dhf"]
+[ext_resource type="Animation" uid="uid://dkhdqddusidj8" path="res://animation/character/zombie/001_zombie_norm/Zombie_superlongdeath.tres" id="45_v4e4r"]
+[ext_resource type="Animation" uid="uid://d22v01aj7rtug" path="res://animation/character/zombie/001_zombie_norm/Zombie_swim.tres" id="46_b24iv"]
+[ext_resource type="Animation" uid="uid://c5aucvr0hm5t7" path="res://animation/character/zombie/001_zombie_norm/Zombie_walk.tres" id="47_5nqa6"]
+[ext_resource type="Animation" uid="uid://cbdemyjj2pjrw" path="res://animation/character/zombie/001_zombie_norm/Zombie_walk2.tres" id="48_73eos"]
 [ext_resource type="Texture2D" uid="uid://divrs56ci7ra6" path="res://assets/reanim/Zombie_charred1.png" id="48_d1hh3"]
-[ext_resource type="Animation" uid="uid://bjdmm0kymqi22" path="res://animation/character/zombie/001_zombie_norm/Zombie_waterdeath.tres" id="49_e4ogf"]
+[ext_resource type="Animation" uid="uid://c3fe8anuxphw5" path="res://animation/character/zombie/001_zombie_norm/Zombie_waterdeath.tres" id="49_e4ogf"]
 [ext_resource type="Texture2D" uid="uid://cyclr63newxnu" path="res://assets/reanim/Zombie_charred_head.png" id="49_q6va3"]
 [ext_resource type="Texture2D" uid="uid://byfgmljhbkjo7" path="res://assets/reanim/Zombie_charred2.png" id="50_7rguq"]
 [ext_resource type="Script" uid="uid://jl0nl4a234bc" path="res://scripts/resources/resource_body_change.gd" id="51_35kym"]
@@ -70,28 +69,20 @@
 
 [sub_resource type="Resource" id="Resource_vukf2"]
 script = ExtResource("51_35kym")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
 sprite_appear = Array[NodePath]([NodePath("Body/BodyCorrect/Zombie_duckytube")])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
-[sub_resource type="Resource" id="Resource_d1hh3"]
+[sub_resource type="Resource" id="Resource_7rguq"]
 script = ExtResource("51_35kym")
-sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_upper")])
-sprite_change_texture = Array[Texture2D]([ExtResource("39_gdkty")])
-sprite_appear = Array[NodePath]([])
+sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_upper/Zombie_outerarm_upper")])
+sprite_change_texture = Array[Texture2D]([ExtResource("38_b4qrn")])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_hand"), NodePath("../Body/BodyCorrect/Zombie_outerarm_lower")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Hand_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
-[sub_resource type="Resource" id="Resource_q6va3"]
+[sub_resource type="Resource" id="Resource_b4qrn"]
 script = ExtResource("51_35kym")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_head1"), NodePath("../Body/BodyCorrect/Anim_head2"), NodePath("../Body/BodyCorrect/Anim_tongue"), NodePath("../Body/BodyCorrect/Anim_hair")])
+sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_head"), NodePath("../Body/BodyCorrect/Anim_head2"), NodePath("../Body/BodyCorrect/Anim_tongue"), NodePath("../Body/BodyCorrect/Zombie_mustache"), NodePath("../Body/BodyCorrect/Anim_hair")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Head_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
@@ -1116,32 +1107,10 @@ _data = {
 &"RESET": SubResource("Animation_7rguq")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t14t4"]
-size = Vector2(50, 5)
-
 [sub_resource type="Resource" id="Resource_gdkty"]
 script = ExtResource("51_35kym")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_innerleg_upper"), NodePath("../Body/BodyCorrect/Zombie_innerleg_lower"), NodePath("../Body/BodyCorrect/Zombie_innerleg_foot"), NodePath("../Body/BodyCorrect/Zombie_outerleg_upper"), NodePath("../Body/BodyCorrect/Zombie_outerleg_foot"), NodePath("../Body/BodyCorrect/Zombie_outerleg_lower")])
-node_drop = NodePath("")
+sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/leg")])
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_qd83c"]
-_data = {
-&"Zombie_dance": ExtResource("39_iw10b"),
-&"Zombie_death": ExtResource("40_vvkxq"),
-&"Zombie_death2": ExtResource("41_smhc2"),
-&"Zombie_eat": ExtResource("42_1ypyj"),
-&"Zombie_idle": ExtResource("43_5hcwp"),
-&"Zombie_idle2": ExtResource("44_a3dhf"),
-&"Zombie_superlongdeath": ExtResource("45_v4e4r"),
-&"Zombie_swim": ExtResource("46_b24iv"),
-&"Zombie_walk": ExtResource("47_5nqa6"),
-&"Zombie_walk2": ExtResource("48_73eos"),
-&"Zombie_waterdeath": ExtResource("49_e4ogf")
-}
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o5m8x"]
 animation = &"Zombie_death"
@@ -1241,12 +1210,12 @@ animation = &"Zombie_eat"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_risgh"]
 graph_offset = Vector2(-18, 57)
+nodes/output/position = Vector2(700, 160)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_gdkty")
 nodes/Animation/position = Vector2(240, 160)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_vukf2")
 nodes/TimeScale/position = Vector2(460, 160)
-nodes/output/position = Vector2(700, 160)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gm2ot"]
 advance_mode = 2
@@ -1331,28 +1300,43 @@ states/Zombie_waterdeath/position = Vector2(909, 37)
 states/eat/node = SubResource("AnimationNodeBlendTree_risgh")
 states/eat/position = Vector2(738, 105)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gm2ot"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_yxb45"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_1rytp"), "Start", "Walk", SubResource("AnimationNodeStateMachineTransition_nk4os"), "Walk", "Zombie_swim", SubResource("AnimationNodeStateMachineTransition_i8bqt"), "Zombie_swim", "Zombie_waterdeath", SubResource("AnimationNodeStateMachineTransition_vbiek"), "Zombie_swim", "Walk", SubResource("AnimationNodeStateMachineTransition_oy52n"), "eat", "Death", SubResource("AnimationNodeStateMachineTransition_7rguq"), "Walk", "eat", SubResource("AnimationNodeStateMachineTransition_0ouek"), "eat", "Walk", SubResource("AnimationNodeStateMachineTransition_jwitv"), "eat", "Zombie_swim", SubResource("AnimationNodeStateMachineTransition_o6eay"), "Zombie_swim", "eat", SubResource("AnimationNodeStateMachineTransition_r5bwh"), "eat", "Zombie_waterdeath", SubResource("AnimationNodeStateMachineTransition_fh72l")]
-graph_offset = Vector2(185, -53)
+graph_offset = Vector2(121, -35)
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_nk4os"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_d1hh3"]
+graph_offset = Vector2(-55.710754, 75.909096)
+nodes/output/position = Vector2(820, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_xuj3g")
 nodes/StateMachine/position = Vector2(160, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_nk4os")
 nodes/TimeScale/position = Vector2(580, 140)
-nodes/output/position = Vector2(820, 140)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_si8kf"]
+_data = {
+&"Zombie_dance": ExtResource("39_iw10b"),
+&"Zombie_death": ExtResource("40_vvkxq"),
+&"Zombie_death2": ExtResource("41_smhc2"),
+&"Zombie_eat": ExtResource("42_1ypyj"),
+&"Zombie_idle": ExtResource("43_5hcwp"),
+&"Zombie_idle2": ExtResource("44_a3dhf"),
+&"Zombie_superlongdeath": ExtResource("45_v4e4r"),
+&"Zombie_swim": ExtResource("46_b24iv"),
+&"Zombie_walk": ExtResource("47_5nqa6"),
+&"Zombie_walk2": ExtResource("48_73eos"),
+&"Zombie_waterdeath": ExtResource("49_e4ogf")
+}
 
 [node name="Zombie001Norm" node_paths=PackedStringArray("init_sprite_random") instance=ExtResource("1_vj7es")]
 script = ExtResource("2_21wkp")
-is_inner_hand_zombie = false
 idle_status = 1
 walk_status = 1
 death_status = 1
 idle_status_max = 2
 walk_status_max = 2
 death_status_max = 2
-init_sprite_random = [NodePath("Body/BodyCorrect/Anim_tongue"), NodePath("Body/BodyCorrect/Zombie_tie"), NodePath("Body/BodyCorrect/Anim_hair")]
+init_sprite_random = [NodePath("Body/BodyCorrect/Zombie_tie"), NodePath("Body/BodyCorrect/Anim_tongue"), NodePath("Body/BodyCorrect/Anim_hair")]
 zombie_type = 1
 body_change_on_pool = SubResource("Resource_vukf2")
 
@@ -1361,144 +1345,164 @@ position = Vector2(-7.62939e-06, 0)
 
 [node name="BodyCorrect" parent="Body" index="0"]
 unique_name_in_owner = true
-position = Vector2(-46, -121)
-rotation = 0.0601815
+position = Vector2(-56, -116)
 
 [node name="_ground" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
 visible = false
-position = Vector2(10.9564, 40)
-texture = ExtResource("2_2su5o")
+position = Vector2(11, 40)
 centered = false
 
-[node name="Anim_innerarm3" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(24.7582, 76.3912)
-rotation = 6.28758
-scale = Vector2(0.798418, 0.798418)
+[node name="Anim_innerarm" type="Node2D" parent="Body/BodyCorrect" index="1"]
+
+[node name="Anim_innerarm3" type="Sprite2D" parent="Body/BodyCorrect/Anim_innerarm" index="0"]
+position = Vector2(24.885683, 77.19978)
+rotation = 6.2445498
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("3_21wkp")
 centered = false
 
-[node name="Anim_innerarm2" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(26.833, 61.4582)
-rotation = 6.35154
-scale = Vector2(0.798418, 0.798418)
+[node name="Anim_innerarm2" type="Sprite2D" parent="Body/BodyCorrect/Anim_innerarm" index="1"]
+position = Vector2(27.342731, 61.75705)
+rotation = 6.3574843
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("4_uh2ph")
 centered = false
 
-[node name="Anim_innerarm1" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(30.3912, 41.9165)
-rotation = 6.35154
+[node name="Anim_innerarm1" type="Sprite2D" parent="Body/BodyCorrect/Anim_innerarm" index="2"]
+position = Vector2(31.1141, 42.085682)
+rotation = 6.3574843
 scale = Vector2(0.998, 0.998)
 texture = ExtResource("5_ybnpx")
 centered = false
 
-[node name="Zombie_flaghand" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
+[node name="Zombie_flaghand" type="Node2D" parent="Body/BodyCorrect" index="2"]
 visible = false
-position = Vector2(-5.50881, 47.6341)
-rotation = 5.77614
+
+[node name="Zombie_flaghand" type="Sprite2D" parent="Body/BodyCorrect/Zombie_flaghand" index="0"]
+position = Vector2(-4.785901, 46.614536)
+rotation = 5.81468
 scale = Vector2(0.797, 0.797)
 texture = ExtResource("6_oj1c6")
 centered = false
 
-[node name="Zombie_flagpole" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
+[node name="Zombie_flag" type="Node2D" parent="Body/BodyCorrect" index="3"]
 visible = false
-position = Vector2(11.6167, -6.7246)
-rotation = -0.561612
+
+[node name="Zombie_flagpole" type="Sprite2D" parent="Body/BodyCorrect/Zombie_flag" index="0"]
+position = Vector2(13.094456, -6.7661495)
+rotation = -0.550645
 texture = ExtResource("8_7rguq")
 
-[node name="Zombie_flag" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-visible = false
-position = Vector2(13.6167, -6.7246)
-rotation = -0.561612
+[node name="Zombie_flag" type="Sprite2D" parent="Body/BodyCorrect/Zombie_flag" index="1"]
+position = Vector2(15.094453, -6.7661495)
+rotation = -0.550645
 texture = ExtResource("9_b4qrn")
 
-[node name="Zombie_innerarm_screendoor" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
+[node name="Zombie_innerarm_screendoor" type="Node2D" parent="Body/BodyCorrect" index="4"]
 visible = false
-position = Vector2(4.03295, 46.9418)
+
+[node name="Zombie_innerarm_screendoor" type="Sprite2D" parent="Body/BodyCorrect/Zombie_innerarm_screendoor" index="0"]
+position = Vector2(4.4570494, 46.9)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("7_j634i")
 centered = false
 
-[node name="Zombie_neck" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
-position = Vector2(36.1824, 30.8747)
-rotation = 0.135387
-scale = Vector2(0.837, 0.797)
+[node name="Zombie_neck" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
+position = Vector2(37.371147, 31.25705)
+rotation = 0.16729383
+scale = Vector2(0.8361432, 0.7961432)
 texture = ExtResource("8_dq6s3")
 centered = false
 
-[node name="Anim_head1" type="Sprite2D" parent="Body/BodyCorrect" index="9"]
-position = Vector2(17.1065, 3.57472)
-rotation = 0.0815693
+[node name="Anim_head" type="Node2D" parent="Body/BodyCorrect" index="6"]
+
+[node name="Anim_head1" type="Sprite2D" parent="Body/BodyCorrect/Anim_head" index="0"]
+position = Vector2(19.527979, 3.9570494)
+rotation = 0.11493384
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("9_2ppo8")
 centered = false
 
-[node name="ZombieSeaweed3" type="Sprite2D" parent="Body/BodyCorrect/Anim_head1" index="0"]
+[node name="ZombieSeaweed3" type="Sprite2D" parent="Body/BodyCorrect/Anim_head/Anim_head1" index="0"]
 visible = false
-position = Vector2(18.9536, 17.683)
-rotation = 0.365859
+position = Vector2(37.74846, 1.6264629)
+rotation = 3.4291744
 scale = Vector2(0.91108, 0.703698)
 skew = 0.258848
 texture = ExtResource("10_5lxj4")
 hframes = 4
 
-[node name="Zombie_innerleg_upper" type="Sprite2D" parent="Body/BodyCorrect" index="10"]
-position = Vector2(43.9, 76.2)
-rotation = 0.0832004
-scale = Vector2(0.803418, 0.8)
-skew = -0.0816087
+[node name="ZombieSeaweed2" type="Sprite2D" parent="Body/BodyCorrect/Anim_head/Anim_head1" index="1"]
+visible = false
+position = Vector2(11.63475, 39.863945)
+rotation = -0.0735175
+scale = Vector2(0.913, 0.631)
+texture = ExtResource("10_5lxj4")
+hframes = 4
+frame = 3
+
+[node name="leg" type="Node2D" parent="Body/BodyCorrect" index="7"]
+
+[node name="Zombie_innerleg_upper" type="Sprite2D" parent="Body/BodyCorrect/leg" index="0"]
+position = Vector2(43.985683, 76.2)
+rotation = 0.07579863
+scale = Vector2(0.80214316, 0.8)
+skew = -0.06308541
 texture = ExtResource("11_6w8wl")
 centered = false
 
-[node name="Zombie_innerleg_lower" type="Sprite2D" parent="Body/BodyCorrect" index="11"]
+[node name="Zombie_innerleg_lower" type="Sprite2D" parent="Body/BodyCorrect/leg" index="1"]
 position = Vector2(31.6, 90.3)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_72ne4")
 centered = false
 
-[node name="Zombie_innerleg_foot" type="Sprite2D" parent="Body/BodyCorrect" index="12"]
+[node name="Zombie_innerleg_foot" type="Sprite2D" parent="Body/BodyCorrect/leg" index="2"]
 position = Vector2(35.3, 105.8)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_8pg6f")
 centered = false
 
-[node name="Zombie_outerleg_upper" type="Sprite2D" parent="Body/BodyCorrect" index="13"]
-position = Vector2(54.8, 68)
-rotation = 0.0379359
+[node name="Zombie_outerleg_upper" type="Sprite2D" parent="Body/BodyCorrect/leg" index="3"]
+position = Vector2(54.8, 68.171364)
+rotation = 0.071300834
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("14_sum7j")
 centered = false
 
-[node name="Zombie_outerleg_foot" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(44.4418, 109.4)
-rotation = -0.022382
+[node name="Zombie_outerleg_foot" type="Sprite2D" parent="Body/BodyCorrect/leg" index="4"]
+position = Vector2(44.314316, 109.571365)
+rotation = -0.04462527
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("15_nuugq")
 centered = false
 
-[node name="Zombie_outerleg_lower" type="Sprite2D" parent="Body/BodyCorrect" index="15"]
-position = Vector2(59.0923, 93.9165)
-rotation = -0.0427313
-scale = Vector2(0.8, 0.8)
-skew = -0.0210774
+[node name="Zombie_outerleg_lower" type="Sprite2D" parent="Body/BodyCorrect/leg" index="5"]
+position = Vector2(58.028854, 94.25705)
+rotation = -0.078281984
+scale = Vector2(0.8008568, 0.7991432)
+skew = -0.036648434
 texture = ExtResource("16_dv3ir")
 centered = false
 
-[node name="Zombie_body" type="Sprite2D" parent="Body/BodyCorrect" index="16"]
-position = Vector2(35.8241, 30.3165)
-rotation = 0.160109
+[node name="Zombie_body" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
+position = Vector2(36.971146, 30.65705)
+rotation = 0.19347383
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("17_6sbaq")
 centered = false
 
-[node name="Zombie_duckytube" type="Sprite2D" parent="Body/BodyCorrect" index="17"]
+[node name="Zombie_duckytube" type="Node2D" parent="Body/BodyCorrect" index="9"]
 visible = false
-position = Vector2(3.33295, 43.3835)
-rotation = 0.0677604
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("23_b4qrn")
+
+[node name="Zombie_duckytube" type="Sprite2D" parent="Body/BodyCorrect/Zombie_duckytube" index="0"]
+position = Vector2(4.0140986, 43.04295)
+rotation = 0.090003274
+scale = Vector2(0.7991432, 0.7991432)
+texture = ExtResource("21_gdkty")
 centered = false
 
-[node name="ZombieSeaweed" type="Sprite2D" parent="Body/BodyCorrect/Zombie_duckytube" index="0"]
+[node name="ZombieSeaweed" type="Sprite2D" parent="Body/BodyCorrect/Zombie_duckytube/Zombie_duckytube" index="0"]
 visible = false
 position = Vector2(78.2833, 30.9555)
 rotation = -0.0735175
@@ -1506,7 +1510,7 @@ scale = Vector2(0.913, 0.631)
 texture = ExtResource("10_5lxj4")
 hframes = 4
 
-[node name="ZombieSeaweed2" type="Sprite2D" parent="Body/BodyCorrect/Zombie_duckytube" index="1"]
+[node name="ZombieSeaweed2" type="Sprite2D" parent="Body/BodyCorrect/Zombie_duckytube/Zombie_duckytube" index="1"]
 visible = false
 position = Vector2(35.2998, 39.1556)
 rotation = -0.0735175
@@ -1515,86 +1519,110 @@ texture = ExtResource("10_5lxj4")
 hframes = 4
 frame = 3
 
-[node name="Zombie_whitewater" type="Sprite2D" parent="Body/BodyCorrect" index="18"]
+[node name="Zombie_whitewater" type="Node2D" parent="Body/BodyCorrect" index="10"]
+
+[node name="Zombie_whitewater" type="Sprite2D" parent="Body/BodyCorrect/Zombie_whitewater" index="0"]
 visible = false
+position = Vector2(21.6, 80)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("22_vukf2")
 centered = false
 
-[node name="Zombie_tie" type="Sprite2D" parent="Body/BodyCorrect" index="19"]
-position = Vector2(28.1912, 47.1912)
-rotation = 6.22212
-scale = Vector2(0.799, 0.799)
+[node name="Zombie_tie" type="Node2D" parent="Body/BodyCorrect" index="11"]
+
+[node name="Zombie_tie" type="Sprite2D" parent="Body/BodyCorrect/Zombie_tie" index="0"]
+position = Vector2(28.999783, 47.9141)
+rotation = 6.1939316
+scale = Vector2(0.79814315, 0.79814315)
 texture = ExtResource("19_35kym")
 centered = false
 
-[node name="Anim_head2" type="Sprite2D" parent="Body/BodyCorrect" index="20"]
-position = Vector2(21.9824, 34.2494)
-rotation = 0.131054
+[node name="Anim_head2" type="Node2D" parent="Body/BodyCorrect" index="12"]
+
+[node name="Anim_head2" type="Sprite2D" parent="Body/BodyCorrect/Anim_head2" index="0"]
+position = Vector2(23.428198, 35.27115)
+rotation = 0.11993144
 scale = Vector2(0.798, 0.798)
 texture = ExtResource("20_iw10b")
 centered = false
 
-[node name="Anim_tongue" type="Sprite2D" parent="Body/BodyCorrect" index="21"]
-position = Vector2(29.1241, 37.6912)
-rotation = 6.29639
-scale = Vector2(0.799, 0.731165)
-skew = 0.288575
+[node name="Anim_tongue" type="Node2D" parent="Body/BodyCorrect" index="13"]
+
+[node name="Anim_tongue" type="Sprite2D" parent="Body/BodyCorrect/Anim_tongue" index="0"]
+position = Vector2(30.442514, 38.32842)
+rotation = 6.3238196
+scale = Vector2(0.799, 0.7345705)
+skew = 0.27377108
 texture = ExtResource("21_vvkxq")
 centered = false
 
-[node name="Zombie_mustache" type="Sprite2D" parent="Body/BodyCorrect" index="22"]
+[node name="Zombie_mustache" type="Node2D" parent="Body/BodyCorrect" index="14"]
 visible = false
-position = Vector2(13.1571, 25.4747)
-rotation = 0.0815693
+
+[node name="Zombie_mustache" type="Sprite2D" parent="Body/BodyCorrect/Zombie_mustache" index="0"]
+position = Vector2(14.899564, 25.771366)
+rotation = 0.11493384
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("22_smhc2")
 centered = false
 
-[node name="IronNodeScreendoor" type="Node2D" parent="Body/BodyCorrect" index="23" node_paths=PackedStringArray("marker_2d_iron_center")]
-script = ExtResource("35_b4qrn")
-marker_2d_iron_center = NodePath("Anim_screendoor/Marker2D")
-metadata/_custom_type_script = "uid://doalrh1fha7yy"
-
-[node name="Anim_screendoor" type="Sprite2D" parent="Body/BodyCorrect/IronNodeScreendoor" index="0"]
+[node name="Anim_screendoor" type="Node2D" parent="Body/BodyCorrect" index="15"]
 visible = false
-position = Vector2(1.14943, 29.167)
-rotation = 0.0103185
+
+[node name="Anim_screendoor" type="Sprite2D" parent="Body/BodyCorrect/Anim_screendoor" index="0"]
+position = Vector2(1.9140986, 28.828632)
+rotation = 0.021439709
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("23_1ypyj")
 centered = false
 
-[node name="Marker2D" type="Marker2D" parent="Body/BodyCorrect/IronNodeScreendoor/Anim_screendoor" index="0"]
-position = Vector2(33.4839, 59.3404)
-
-[node name="Zombie_innerarm_screendoor_hand" type="Sprite2D" parent="Body/BodyCorrect" index="24"]
+[node name="Zombie_innerarm_screendoor_hand" type="Node2D" parent="Body/BodyCorrect" index="16"]
 visible = false
-position = Vector2(-0.0252841, 47.4253)
+
+[node name="Zombie_innerarm_screendoor_hand" type="Sprite2D" parent="Body/BodyCorrect/Zombie_innerarm_screendoor_hand" index="0"]
+position = Vector2(0.44273242, 47.04295)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("24_5hcwp")
 centered = false
 
-[node name="Zombie_outerarm_screendoor" type="Sprite2D" parent="Body/BodyCorrect" index="25"]
+[node name="Zombie_outerarm_screendoor" type="Node2D" parent="Body/BodyCorrect" index="17"]
 visible = false
-position = Vector2(37.5582, 41.133)
+
+[node name="Zombie_outerarm_screendoor" type="Sprite2D" parent="Body/BodyCorrect/Zombie_outerarm_screendoor" index="0"]
+position = Vector2(37.85705, 41.642735)
 rotation = 0.087266
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("25_a3dhf")
 centered = false
 
-[node name="Zombie_outerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="26"]
-position = Vector2(35.8571, 77.5912)
-rotation = 6.46439
-scale = Vector2(0.798, 0.798)
+[node name="Zombie_outerarm_hand" type="Node2D" parent="Body/BodyCorrect" index="18"]
+
+[node name="Zombie_outerarm_hand" type="Sprite2D" parent="Body/BodyCorrect/Zombie_outerarm_hand" index="0"]
+position = Vector2(37.428196, 78.14273)
+rotation = 6.486635
+scale = Vector2(0.79714316, 0.79714316)
 texture = ExtResource("26_v4e4r")
 centered = false
 
-[node name="Zombie_outerarm_upper" type="Sprite2D" parent="Body/BodyCorrect" index="27"]
-position = Vector2(48.533, 41.0494)
-rotation = 6.32682
-scale = Vector2(0.798418, 0.798418)
+[node name="Zombie_whitewater2" type="Node2D" parent="Body/BodyCorrect" index="19"]
+
+[node name="Zombie_whitewater2" type="Sprite2D" parent="Body/BodyCorrect/Zombie_whitewater2" index="0"]
+visible = false
+position = Vector2(21.6, 80)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("22_vukf2")
+centered = false
+
+[node name="Zombie_outerarm_upper" type="Node2D" parent="Body/BodyCorrect" index="20"]
+
+[node name="Zombie_outerarm_upper" type="Sprite2D" parent="Body/BodyCorrect/Zombie_outerarm_upper" index="0"]
+position = Vector2(49.042732, 41.728416)
+rotation = 6.328314
+scale = Vector2(0.798, 0.798)
 texture = ExtResource("27_b24iv")
 centered = false
 
-[node name="ZombieSeaweed4" type="Sprite2D" parent="Body/BodyCorrect/Zombie_outerarm_upper" index="0"]
+[node name="ZombieSeaweed4" type="Sprite2D" parent="Body/BodyCorrect/Zombie_outerarm_upper/Zombie_outerarm_upper" index="0"]
 visible = false
 position = Vector2(5.29361, 12.3143)
 rotation = -0.971483
@@ -1604,47 +1632,53 @@ texture = ExtResource("10_5lxj4")
 hframes = 4
 frame = 1
 
-[node name="Zombie_whitewater2" type="Sprite2D" parent="Body/BodyCorrect" index="28"]
-visible = false
-centered = false
+[node name="Zombie_outerarm_lower" type="Node2D" parent="Body/BodyCorrect" index="21"]
 
-[node name="Zombie_outerarm_lower" type="Sprite2D" parent="Body/BodyCorrect" index="29"]
-position = Vector2(41, 62.1659)
-rotation = 6.36046
+[node name="Zombie_outerarm_lower" type="Sprite2D" parent="Body/BodyCorrect/Zombie_outerarm_lower" index="0"]
+position = Vector2(41.085682, 63.442513)
+rotation = 6.2989087
 scale = Vector2(0.798, 0.798)
 texture = ExtResource("28_5nqa6")
 centered = false
 
-[node name="Anim_hair" type="Sprite2D" parent="Body/BodyCorrect" index="30"]
-position = Vector2(13.323, 0.516477)
-rotation = 0.0815693
+[node name="Anim_hair" type="Node2D" parent="Body/BodyCorrect" index="22"]
+
+[node name="Anim_hair" type="Sprite2D" parent="Body/BodyCorrect/Anim_hair" index="0"]
+position = Vector2(15.913663, 0.85704935)
+rotation = 0.11493384
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("29_73eos")
 centered = false
 
-[node name="Anim_cone" type="Sprite2D" parent="Body/BodyCorrect" index="31"]
+[node name="Anim_cone" type="Node2D" parent="Body/BodyCorrect" index="23"]
 visible = false
-position = Vector2(23.7977, -22.7923)
-rotation = 0.123611
+
+[node name="Anim_cone" type="Sprite2D" parent="Body/BodyCorrect/Anim_cone" index="0"]
+position = Vector2(26.599344, -21.728853)
+rotation = 0.14286308
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("30_e4ogf")
 centered = false
 
-[node name="IronNodeBucket" type="Node2D" parent="Body/BodyCorrect" index="32" node_paths=PackedStringArray("marker_2d_iron_center")]
-script = ExtResource("35_b4qrn")
-marker_2d_iron_center = NodePath("Anim_bucket/Marker2D")
-metadata/_custom_type_script = "uid://doalrh1fha7yy"
-
-[node name="Anim_bucket" type="Sprite2D" parent="Body/BodyCorrect/IronNodeBucket" index="0"]
+[node name="Anim_bucket" type="Node2D" parent="Body/BodyCorrect" index="24"]
 visible = false
-position = Vector2(12.0142, -13.4835)
-rotation = 0.045205
+
+[node name="Anim_bucket" type="Sprite2D" parent="Body/BodyCorrect/Anim_bucket" index="0"]
+position = Vector2(15.327761, -13.314317)
+rotation = 0.083018176
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("31_d1hh3")
 centered = false
 
-[node name="Marker2D" type="Marker2D" parent="Body/BodyCorrect/IronNodeBucket/Anim_bucket" index="0"]
-position = Vector2(31.5913, 31.4137)
+[node name="ZombieSeaweed4" type="Sprite2D" parent="Body/BodyCorrect/Anim_bucket/Anim_bucket" index="0"]
+visible = false
+position = Vector2(45.716, 28.664928)
+rotation = -0.971483
+scale = Vector2(0.495, 0.703)
+skew = 0.258848
+texture = ExtResource("10_5lxj4")
+hframes = 4
+frame = 1
 
 [node name="Node2D_Hand_Drop" type="Node2D" parent="Body/NodeDrop" index="0"]
 script = ExtResource("33_7rguq")
@@ -1706,10 +1740,7 @@ centered = false
 offset = Vector2(-29.8904, -31.8648)
 
 [node name="HpStageChangeComponent" parent="." index="3"]
-body_change = Array[ExtResource("51_35kym")]([SubResource("Resource_d1hh3"), SubResource("Resource_q6va3")])
-
-[node name="HpComponent" parent="." index="4"]
-max_hp = 270
+body_change = Array[ExtResource("51_35kym")]([SubResource("Resource_7rguq"), SubResource("Resource_b4qrn")])
 
 [node name="Anim_blink" type="Sprite2D" parent="CharredComponent/ZombieCharred/CharredCorrect" index="0"]
 centered = false
@@ -1768,23 +1799,19 @@ libraries = {
 &"": SubResource("AnimationLibrary_bab66")
 }
 
-[node name="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2d" index="0"]
-shape = SubResource("RectangleShape2D_t14t4")
-
 [node name="SwimBoxComponent" parent="." index="8"]
 script = ExtResource("55_b4qrn")
 body_change_swim = SubResource("Resource_gdkty")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
-libraries = {
-&"": SubResource("AnimationLibrary_qd83c")
-}
-speed_scale = 1.5
-
-[node name="AnimationTree" type="AnimationTree" parent="." index="12"]
+[node name="AnimationTree" type="AnimationTree" parent="." index="11"]
 deterministic = false
 tree_root = SubResource("AnimationNodeBlendTree_d1hh3")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/StateMachine/eat/TimeScale/scale = 2.0
 parameters/TimeScale/scale = 1.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
+libraries = {
+&"": SubResource("AnimationLibrary_si8kf")
+}

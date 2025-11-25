@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name MoveComponent
 ## 根据ground节点移动\速度移动的组件
 ## 移动组件只和owner的is_walk属性、_ground节点和AnimationTree节点有关
@@ -88,9 +88,9 @@ func owner_update_speed(speed_product:float):
 	curr_speed_product = speed_product
 
 ## 角色速度不变的情况下,只修改移动速度,(跳跳僵尸使用)
-func update_only_move_speed(curr_speed_move:float=1):
-	curr_speed = ori_speed * curr_speed_product * curr_speed_move
-	self.curr_speed_move = curr_speed_move
+func update_only_move_speed(new_speed_move:float=1):
+	self.curr_speed_move = new_speed_move
+	curr_speed = ori_speed * curr_speed_product * self.curr_speed_move
 
 ## 更新影响移动的因素 true表示不移动
 func update_move_factor(value:bool, move_factor:E_MoveFactor):
@@ -194,6 +194,7 @@ func update_previous_ground_global_x():
 	_previous_ground_global_x = _ground.global_position.x
 
 ## 动画结束时
+@warning_ignore("unused_parameter")
 func _on_animation_finished(anim_name: StringName) -> void:
 	_walking_end()
 

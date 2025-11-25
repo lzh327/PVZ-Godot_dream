@@ -27,7 +27,7 @@ var charge_cd_timer:Timer
 ## 是否充能
 @export var is_charge := false
 
-func init_norm():
+func ready_norm():
 	super()
 	cob_cannon_bright_dark()
 
@@ -68,7 +68,7 @@ func _on_charge_cd_timer_timeout():
 	is_charge = true
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	cob_cannon_target.signal_cannon_fire.connect(attack_start)
 

@@ -28,7 +28,6 @@ func click_shovel():
 func item_process() -> void:
 	## 如果有预铲植物并且当前格子有多个植物时
 	if plant_be_shovel_look and curr_shovel_look_plant_num >= 2:
-		print("当前格子有多个植物")
 		var new_plant_be_shovel_look = curr_plant_cell.return_plant_be_shovel_look()
 		if new_plant_be_shovel_look == plant_be_shovel_look:
 			pass
@@ -49,6 +48,7 @@ func mouse_enter(plant_cell:PlantCell):
 				plant_be_shovel_look.be_shovel_look()
 
 ## 鼠标移出cell
+@warning_ignore("unused_parameter")
 func mouse_exit(plant_cell:PlantCell):
 	curr_plant_cell = null
 
@@ -62,6 +62,7 @@ func mouse_exit(plant_cell:PlantCell):
 
 
 ## 点击铲掉植物
+@warning_ignore("unused_parameter")
 func click_cell(plant_cell:PlantCell):
 	match curr_hm_item_status:
 		E_HmItemStatus.Shovel:

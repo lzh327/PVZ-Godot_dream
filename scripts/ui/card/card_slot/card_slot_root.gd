@@ -7,7 +7,8 @@ var curr_cards:Array[Card]
 @onready var ui_shovel: UIShovel = %UIShovel
 
 ## 快捷键
-func _input(event):
+@warning_ignore("unused_parameter")
+func _unhandled_key_input(event):
 	## 铲子快捷键
 	if Input.is_action_just_pressed("ShortcutKeys_Shovel"):
 		ui_shovel._on_button_pressed()

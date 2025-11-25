@@ -25,6 +25,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			signal_change_is_swimming.emit(true)
 		## 如果是珊瑚僵尸
 		else:
+			appear_splash()
 			body.position.y += 30
 			body.zombie_body_up_from_pool()
 			signal_change_is_swimming.emit(true)

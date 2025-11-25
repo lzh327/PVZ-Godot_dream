@@ -10,5 +10,6 @@ func activate_bullet_effect():
 	## 子弹父类
 	var bullet_parent = owner.get_parent()
 	z_index = owner.z_index
-	GlobalUtils.child_node_change_parent(self, bullet_parent)
+	#GlobalUtils.child_node_change_parent(self, bullet_parent)
 
+	reparent(bullet_parent)

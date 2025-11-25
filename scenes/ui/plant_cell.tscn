@@ -2,19 +2,26 @@
 
 [ext_resource type="Script" uid="uid://c5ndd0ab746h3" path="res://scripts/main_game_item/plant_cell.gd" id="1_66flf"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66flf"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12gte"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3evvn"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12gte"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66flf"]
 
-[node name="PlantCell" type="Control"]
+[node name="PlantCell" type="Control" node_paths=PackedStringArray("plant_in_cell")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 76.0
 offset_bottom = 95.0
 mouse_filter = 2
 script = ExtResource("1_66flf")
+plant_cell_type = null
+row_col = null
+plant_in_cell = {}
+can_common_plant = null
+curr_special_state_plant = null
+can_common_zombie = null
+curr_special_state_zombie = null
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -24,11 +31,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxEmpty_66flf")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_3evvn")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_12gte")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_12gte")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_12gte")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_12gte")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_12gte")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3evvn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_66flf")
 
 [node name="PlantArea2dPosition" type="Control" parent="."]
 layout_mode = 1
@@ -97,15 +104,19 @@ grow_vertical = 0
 
 [node name="Marker2D" type="Marker2D" parent="PlantShellContainer"]
 
-[node name="PlantCellDown" type="Control" parent="."]
+[node name="PlantImitaterContainer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_top = -20.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Marker2D" type="Marker2D" parent="PlantImitaterContainer"]
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

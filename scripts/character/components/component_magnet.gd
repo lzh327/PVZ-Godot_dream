@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name MagnetComponent
 
 ## 当前持有铁器容器
@@ -31,8 +31,8 @@ func enable_component(is_enable_factor:E_IsEnableFactor):
 			_on_area_2d_area_entered(area)
 
 ## 磁力菇吸铁
-func attack_once(iron_node:IronNodeBase):
-	SoundManager.play_plant_SFX(Global.PlantType.P032MagnetShroom, "magnetshroom")
+func attack_once(iron_node:IronNode):
+	SoundManager.play_character_SFX("magnetshroom")
 
 	is_attack_cd = true
 	signal_attack_start.emit()
@@ -72,7 +72,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			return
 		else:
 			## 僵尸身上的铁器节点
-			var iron_node:IronNodeBase = area_owner.iron_node
+			var iron_node:IronNode = area_owner.iron_node
 			if iron_node.is_be_magnet:
 				return
 			else:
@@ -83,7 +83,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 	elif area_owner is Ladder:
 		## 梯子身上的铁器节点
-		var iron_node:IronNodeBase = area_owner.iron_node
+		var iron_node:IronNode = area_owner.iron_node
 		if iron_node.is_be_magnet:
 			return
 		else:

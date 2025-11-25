@@ -7,22 +7,24 @@ class_name Plant000Base
 @onready var garden_component: GardenComponent = %GardenComponent
 
 #region 植物类基础属性
+
 @export var plant_type:Global.PlantType
 ## 植物初始化受击状态（从1[is_norm] 开始）僵尸攻击检测时判断是否可以攻击
-@export var init_be_attack_status :E_BeAttackStatusPlant = 1
+@export var init_be_attack_status :E_BeAttackStatusPlant = E_BeAttackStatusPlant.IsNorm
 ## 是否白天睡觉
 @export var is_sleep_in_day:bool = false
 ## 植物是否可以挂载梯子(Nrom位置植物使用)
 @export var is_can_ladder := false
 ## 植物当前状态，僵尸攻击检测时判断是否可以攻击
-var curr_be_attack_status:E_BeAttackStatusPlant
+var curr_be_attack_status:E_BeAttackStatusPlant = E_BeAttackStatusPlant.IsNorm
 ## 行和列
 var row_col:Vector2i = Vector2i(-1, -1)
 ## 植物所在格子
 var plant_cell:PlantCell
 ## 植物死亡后是否直接删除
 var is_death_free:= true
-
+## 是否为模仿者材质
+var is_imitater_material:=false
 #endregion
 
 #region 植物动画
@@ -32,6 +34,7 @@ var is_death_free:= true
 @export var is_garden_aquarium := false
 
 ## 植物梯子状态变化信号
+@warning_ignore("unused_signal")
 signal signal_ladder_update
 
 #region 角色枚举
@@ -53,15 +56,27 @@ var garden_date_init:Dictionary
 #region 初始化相关
 func _ready() -> void:
 	super()
+	if is_imitater_material:
+		plant_imitater_update_body()
+
 	if plant_type == 0:
 		push_error(name, "植物类型未赋值")
 
+## 植物初始化属性
+enum E_PInitAttr{
+	CharacterInitType,	## 角色初始化类型（正常、展示、花园）
+	PlantCell,			## 植物格子
+	IsImitaterMaterial,	## 是否为模仿者材质
+	GardenDate,			## 花园数据
+}
 ## 植物初始化相关, 创建植物时 加入场景树之前赋值
-func init_plant(init_type:E_CharacterInitType=E_CharacterInitType.IsNorm, plant_cell:PlantCell=null, garden_date:Dictionary={}) -> void:
-	self.character_init_type = init_type
-	match init_type:
+func init_plant(plant_init_para:Dictionary):
+	#init_type:E_CharacterInitType=E_CharacterInitType.IsNorm, plant_cell:PlantCell=null, garden_date:Dictionary={}) -> void:
+	self.character_init_type = plant_init_para[E_PInitAttr.CharacterInitType]
+	self.is_imitater_material = plant_init_para.get(E_PInitAttr.IsImitaterMaterial, false)
+	match character_init_type:
 		E_CharacterInitType.IsNorm:
-			self.plant_cell = plant_cell
+			self.plant_cell = plant_init_para[E_PInitAttr.PlantCell]
 			self.row_col = plant_cell.row_col
 			self.lane = plant_cell.row_col.x
 		E_CharacterInitType.IsShow:
@@ -71,24 +86,19 @@ func init_plant(init_type:E_CharacterInitType=E_CharacterInitType.IsNorm, plant_
 		E_CharacterInitType.IsGarden:
 			### 南瓜背景-1,这里所有植物+1
 			#z_index += 1
-			garden_date_init = garden_date
+			garden_date_init = plant_init_para[E_PInitAttr.GardenDate]
 			## 是否为水族馆背景，动画变化
-			is_garden_aquarium = garden_date["curr_garden_bg_type"]== GardenManager.E_GardenBgType.Aquarium
-			#for c in get_children():
-				#if not c.is_in_group("G_Garden") and c is ComponentBase:
-					#c = c as ComponentBase
-					#c.disable_component(ComponentBase.E_IsEnableFactor.Defautl)
-
+			is_garden_aquarium = garden_date_init["curr_garden_bg_type"] == GardenManager.E_GardenBgType.Aquarium
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	## 发射子弹攻击组件影响植物眨眼
 	var attack_component :AttackComponentBulletBase = get_node_or_null(^"AttackComponent")
 	if attack_component:
 		attack_component.signal_change_is_attack.connect(
 			## 可以攻击时禁用眨眼
-			func(value):blink_component.change_is_enabling.bind(not value, ComponentBase.E_IsEnableFactor.Attack)
+			func(value):blink_component.change_is_enabling(not value, ComponentNormBase.E_IsEnableFactor.Attack)
 		)
 
 	## 植物睡眠组件
@@ -97,12 +107,13 @@ func init_norm_signal_connect():
 
 	## 植物睡眠影响的组件
 	for sleep_influence_component in sleep_component.sleep_influence_components:
-		sleep_component.signal_is_sleep.connect(sleep_influence_component.disable_component.bind(ComponentBase.E_IsEnableFactor.Sleep))
-		sleep_component.signal_not_is_sleep.connect(sleep_influence_component.enable_component.bind(ComponentBase.E_IsEnableFactor.Sleep))
+		sleep_component.signal_is_sleep.connect(sleep_influence_component.disable_component.bind(ComponentNormBase.E_IsEnableFactor.Sleep))
+		sleep_component.signal_not_is_sleep.connect(sleep_influence_component.enable_component.bind(ComponentNormBase.E_IsEnableFactor.Sleep))
 
 ## 初始化正常出战角色
-func init_norm():
+func ready_norm():
 	super()
+
 	garden_component.queue_free()
 	curr_be_attack_status = init_be_attack_status
 	## 如果白天睡觉
@@ -115,30 +126,28 @@ func init_norm():
 		diff_slope_flat = plant_cell.position.y
 
 	if diff_slope_flat != 0:
-		position.y -= diff_slope_flat
-		body.position.y += diff_slope_flat
-		shadow.position.y += diff_slope_flat
-		hp_component.position.y += diff_slope_flat
-		be_attacked_box_component.move_y_hurt_box_real(diff_slope_flat)
-		for c in special_component_update_pos_in_slope:
-			c.update_component_y(diff_slope_flat)
-		for n in special_node2d_update_pos_in_slope:
-			n.position.y += diff_slope_flat
+		for n in node2d_detect_in_slope:
+			n.position.y -= diff_slope_flat
+
 ## 初始化展示角色
-func init_show():
+func ready_show():
 	super()
 	garden_component.queue_free()
 
 ## 初始化花园角色
-func init_garden():
+func ready_garden():
 	super()
 	garden_component.init_garden_component(garden_date_init)
-	sleep_component.signal_is_sleep.connect(garden_component.disable_component.bind(ComponentBase.E_IsEnableFactor.Sleep))
-	sleep_component.signal_not_is_sleep.connect(garden_component.enable_component.bind(ComponentBase.E_IsEnableFactor.Sleep))
+	sleep_component.signal_is_sleep.connect(garden_component.disable_component.bind(ComponentNormBase.E_IsEnableFactor.Sleep))
+	sleep_component.signal_not_is_sleep.connect(garden_component.enable_component.bind(ComponentNormBase.E_IsEnableFactor.Sleep))
 	## 如果白天睡觉
 	if is_sleep_in_day:
 		sleep_component.judge_is_sleeping()
 	shadow.visible = false
+
+## 植物模仿者更新body颜色
+func plant_imitater_update_body():
+	body.imitater_update_material()
 
 #endregion
 
@@ -155,7 +164,7 @@ func be_bungi()->Node2D:
 ## 被僵尸啃食
 ## attack_value:伤害
 ## attack_zombie:攻击的僵尸
-func be_zombie_eat(attack_value:int, attack_zombie:Zombie000Base):
+func be_zombie_eat(attack_value:int, _attack_zombie:Zombie000Base):
 	hp_component.Hp_loss(attack_value, Global.AttackMode.Penetration, true, false)
 
 ## 被僵尸啃食一次发光
@@ -164,16 +173,16 @@ func be_zombie_eat_once(attack_zombie:Zombie000Base):
 	_be_zombie_eat_once_special(attack_zombie)
 
 ## 被僵尸啃食一次特殊效果,魅惑\大蒜
-func _be_zombie_eat_once_special(attack_zombie:Zombie000Base):
+func _be_zombie_eat_once_special(_attack_zombie:Zombie000Base):
 	pass
 
 ## 植物死亡
 func character_death():
 	## 发射死亡信号
 	super()
-	if is_instance_valid(be_attacked_box_component):
+	if is_instance_valid(hurt_box_component):
 		## 要先删除碰撞器，否则僵尸攻击检测组件有问题
-		be_attacked_box_component.queue_free()
+		hurt_box_component.queue_free()
 	if is_death_free:
 		queue_free()
 
@@ -225,8 +234,8 @@ func coffee_bean_awake_up():
 
 
 ## 植物修改睡眠
-func update_is_sleeping(is_sleeping:bool):
-	self.is_sleeping = is_sleeping
+func update_is_sleeping(new_is_sleeping:bool):
+	self.is_sleeping = new_is_sleeping
 
 
 #region 花园植物
@@ -238,3 +247,16 @@ func satisfy_need(item: GardenManager.E_NeedItem):
 func get_curr_plant_data():
 	return garden_component.get_curr_plant_data()
 #endregion
+
+## 获取植物存档数据
+func gat_save_game_data_plant()->Dictionary:
+	var save_game_data_plant:Dictionary = {}
+	save_game_data_plant["plant_type"] = plant_type
+	save_game_data_plant["curr_hp"] = hp_component.curr_hp
+	save_game_data_plant["is_imitater_material"] = is_imitater_material
+	return save_game_data_plant
+
+## 读档植物数据
+func load_game_data_plant(save_game_data_plant:Dictionary):
+	hp_component.curr_hp = save_game_data_plant["curr_hp"]
+	hp_component.signal_hp_loss.emit(hp_component.curr_hp, true)

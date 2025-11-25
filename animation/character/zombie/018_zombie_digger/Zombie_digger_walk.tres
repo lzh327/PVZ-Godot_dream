@@ -120,7 +120,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:visible")
+tracks/8/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -132,7 +132,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:position")
+tracks/9/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -144,7 +144,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:rotation")
+tracks/10/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -156,7 +156,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:scale")
+tracks/11/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:scale")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -168,7 +168,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:skew")
+tracks/12/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:skew")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -180,7 +180,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:texture")
+tracks/13/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:texture")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -192,7 +192,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("Body/BodyCorrect/Pickaxe/Zombie_digger_pickaxe:self_modulate")
+tracks/14/path = NodePath("Body/BodyCorrect/Zombie_digger_pickaxe/Zombie_digger_pickaxe:self_modulate")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -655,7 +655,7 @@ tracks/52/keys = {
 "times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1, 1.0625, 1.125, 1.1875, 1.25, 1.3125, 1.375, 1.4375, 1.5, 1.5625, 1.625, 1.6875, 1.75, 1.8125, 1.875, 1.9375, 2, 2.0625, 2.125, 2.1875, 2.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.267035, -0.314159, -0.361283, -0.410152, -0.459022, -0.457276, -0.457276, -0.457276, -0.459022, -0.457276, -0.457276, -0.457276, -0.459022, -0.408407, -0.357792, -0.308923, -0.258309, -0.181514, -0.10821, -0.033161, 0.038397, 0.066323, 0.097738, 0.127409, 0.162316, 0.211185, 0.263545, 0.315905, 0.368264, 0.287979, 0.205949, 0.127409, 0.048869, -0.029671, -0.10821, -0.18675, -0.267035]
+"values": [-0.267035, -0.314159, -0.361283, -0.410152, -0.459022, -0.457276, -0.457276, -0.457276, -0.459022, -0.457276, -0.457276, -0.457276, -0.459022, -0.408407, -0.357792, -0.308923, -0.258309, -0.181514, -0.10821, -0.033161, 0.038397, 0.06632299999999999, 0.097738, 0.127409, 0.162316, 0.211185, 0.263545, 0.315905, 0.368264, 0.287979, 0.205949, 0.127409, 0.048869, -0.029671, -0.10821, -0.18675, -0.267035]
 }
 tracks/53/type = "value"
 tracks/53/imported = false
@@ -1495,7 +1495,7 @@ tracks/122/keys = {
 "times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5, 0.5625, 0.625, 0.6875, 0.75, 0.8125, 0.875, 0.9375, 1, 1.0625, 1.125, 1.1875, 1.25, 1.3125, 1.375, 1.4375, 1.5, 1.5625, 1.625, 1.6875, 1.75, 1.8125, 1.875, 1.9375, 2, 2.0625, 2.125, 2.1875, 2.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.277507, -0.31765, -0.361283, -0.401426, -0.445059, -0.549779, -0.651008, -0.755728, -0.860447, -0.837758, -0.816814, -0.794125, -0.773181, -0.614356, -0.453786, -0.296706, -0.139626, -0.085521, -0.033161, 0.013963, 0.066323, 0.101229, 0.139626, 0.179769, 0.218166, 0.109956, 0.005236, -0.099484, -0.205949, -0.21293, -0.221657, -0.230383, -0.23911, -0.247837, -0.256563, -0.26529, -0.277507]
+"values": [-0.277507, -0.31765, -0.361283, -0.401426, -0.445059, -0.549779, -0.651008, -0.755728, -0.860447, -0.837758, -0.816814, -0.794125, -0.773181, -0.614356, -0.453786, -0.296706, -0.139626, -0.085521, -0.033161, 0.013963, 0.06632299999999999, 0.101229, 0.139626, 0.179769, 0.218166, 0.109956, 0.005236, -0.099484, -0.205949, -0.21293, -0.221657, -0.230383, -0.23911, -0.247837, -0.256563, -0.26529, -0.277507]
 }
 tracks/123/type = "value"
 tracks/123/imported = false

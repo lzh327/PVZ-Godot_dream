@@ -6,7 +6,7 @@ class_name Bullet000ParabolaBase
 ## 控制抛物线的顶点高度 (调节上下弯曲的程度)
 @export var parabola_height: float = -300
 ## 抛物线(贝塞尔曲线)子弹需要根据敌人位置每帧更新(_ready之前赋值)
-var enemy: Character000Base
+var target_enemy: Character000Base
 ## 敌人最终位置，敌人死亡时位置不变
 var enemy_last_global_pos: Vector2
 ## 敌人移动距离(大于最大距离后,子弹不进行修正)
@@ -44,8 +44,8 @@ var start_control_point_on_bounce:Vector2
 
 func _ready() -> void:
 	super()
-	if is_instance_valid(enemy):
-		enemy_last_global_pos = enemy.body.global_position
+	if is_instance_valid(target_enemy) and is_instance_valid(target_enemy.hurt_box_component):
+		enemy_last_global_pos = target_enemy.hurt_box_component.global_position
 	curr_diff_x = 0
 	start_global_pos = global_position
 	# 计算贝塞尔曲线的控制点，确保曲线的最高点位于中间
@@ -68,19 +68,20 @@ func _ready() -> void:
 ## [EnemyGloPos:Vector2]:敌人位置,发射单位赋值,若发射时敌人死亡,使用该位置
 func init_bullet(bullet_paras:Dictionary[E_InitParasAttr,Variant]):
 	super(bullet_paras)
-	## 抛物线子弹初始化(子弹初始化之后)
-	self.enemy = bullet_paras.get(E_InitParasAttr.Enemy, null)
+
+	## 抛物线子弹初始化
+	self.target_enemy = bullet_paras.get(E_InitParasAttr.Enemy, null)
 
 	self.enemy_last_global_pos = bullet_paras[E_InitParasAttr.EnemyGloPos]
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	## 若敌人存在且敌人还未死亡,更新其位置
-	if is_instance_valid(enemy) and not enemy.is_death:
+	if is_instance_valid(target_enemy) and not target_enemy.is_death:
 		##$ 计算敌人移动的水平差距
-		curr_diff_x += abs(enemy.body.global_position.x - enemy_last_global_pos.x)
+		curr_diff_x += abs(target_enemy.hurt_box_component.global_position.x - enemy_last_global_pos.x)
 		if curr_diff_x < max_diff_x:
-			enemy_last_global_pos = enemy.body.global_position + Vector2(0, -20)
+			enemy_last_global_pos = target_enemy.hurt_box_component.global_position + Vector2(0, -20)
 
 	current_time += delta
 	var t :float= min(current_time / all_time, 1)
@@ -93,13 +94,16 @@ func _process(delta: float) -> void:
 	## 是否更新弹开曲线
 	if not is_bounce_update:
 		## 子弹根据贝塞尔曲线的路径更新位置
-		global_position = start_global_pos.bezier_interpolate(start_control_point, enemy_last_global_pos, enemy_last_global_pos, eased_t)
+		global_position = start_global_pos.bezier_interpolate(start_control_point, enemy_last_global_pos + Vector2(0, -100), enemy_last_global_pos, eased_t)
 	else:
 		## 子弹根据贝塞尔曲线的路径更新位置
 		global_position = start_global_pos_on_bounce.bezier_interpolate(start_control_point_on_bounce, end_global_pos_on_bounce, end_global_pos_on_bounce, eased_t)
 
 	update_shadow_global_pos()
 
+	## 移动超过最大距离后销毁，部分子弹有限制
+	if global_position.distance_to(start_pos) > max_distance:
+		queue_free()
 
 ## 攻击一次
 func attack_once(enemy:Character000Base):

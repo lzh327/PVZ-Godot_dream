@@ -9,7 +9,7 @@ func _be_zombie_eat_once_special(attack_zombie:Zombie000Base):
 ## 魅惑僵尸
 func hypno_zombie(zombie:Zombie000Base):
 	if not is_sleeping:
-		SoundManager.play_plant_SFX(Global.PlantType.P013HypnoShroom, "MindControlled")
+		SoundManager.play_character_SFX("MindControlled")
 		zombie.be_hypno()
 		character_death()
 

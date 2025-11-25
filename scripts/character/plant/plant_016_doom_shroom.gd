@@ -3,7 +3,7 @@ class_name Plant016DoomShroom
 
 @onready var bomb_component: BombComponentBase = %BombComponent
 
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	bomb_component.signal_bomb_once.connect(plant_cell.create_crater)
 

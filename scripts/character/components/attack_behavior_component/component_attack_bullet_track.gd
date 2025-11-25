@@ -22,7 +22,7 @@ func detect_component_init():
 		detect_component_global.signal_not_can_attack.connect(update_is_attack_factors.bind(false, E_IsAttackFactors.RayEnemy))
 
 		## 每次启用组件,重新检测是否有需要攻击的敌人
-		detect_component_global.enable_component(ComponentBase.E_IsEnableFactor.Global)
+		detect_component_global.enable_component(ComponentNormBase.E_IsEnableFactor.Global)
 
 
 func get_bullet_paras(marker_2d_bullet_glo_pos:Vector2, ray_direction:Vector2) -> Dictionary[Bullet000Base.E_InitParasAttr,Variant]:

@@ -5,7 +5,7 @@ class_name Plant012GraveBuster
 
 var is_end_eat_grave := false
 
-func init_norm():
+func ready_norm():
 	super()
 	_start_eat_grave()
 
@@ -20,7 +20,7 @@ func character_death():
 func _start_eat_grave():
 	plant_cell.start_eat_tombstone()
 	## 播放音效
-	SoundManager.play_plant_SFX(Global.PlantType.P012GraveBuster, &"GraveBusterChomp")
+	SoundManager.play_character_SFX(&"GraveBusterChomp")
 
 	await get_tree().create_timer(0.5).timeout
 	gpu_particles_2d_grave_buster.emitting = true
@@ -29,7 +29,8 @@ func _start_eat_grave():
 ## 吞噬墓碑结束
 func _end_eat_grave():
 	is_end_eat_grave = true
-	GlobalUtils.child_node_change_parent(gpu_particles_2d_grave_buster, plant_cell)
+	#GlobalUtils.child_node_change_parent(gpu_particles_2d_grave_buster, plant_cell)
+	gpu_particles_2d_grave_buster.reparent(plant_cell)
 	gpu_particles_2d_grave_buster.emitting = false
 	## 两秒后删除自身
 	gpu_particles_2d_grave_buster.free_self_after_two_sec()

@@ -5,49 +5,17 @@
 
 [resource]
 script = ExtResource("1_x5w5a")
-game_sences = 0
 game_BG = 1
 game_BGM = 5
-is_fog = false
 is_day = false
 is_day_sun = false
-is_lawn_mover = true
-all_pre_plant_data = Array[ExtResource("1_lnrd1")]([])
 look_show_zombie = false
 can_choosed_card = false
 monster_mode = 2
-zombie_multy = 1
-max_wave = 30
 zombie_refresh_types = Array[int]([0, 2, 3, 4, 5, 6, 7, 8])
-is_bungi = false
-range_num_bungi = Vector2i(3, 5)
-zombie_multy_hammer = 1
-max_wave_hammer_zombie = 10
-speed_zombie_init = 1.0
-speed_zombie_add = 0.15
-speed_zombie_max = 2.0
 is_have_tombston = true
 init_tombstone_num = 10
-card_mode = 0
-have_card_bar = true
-max_choosed_card_num = 10
 start_sun = 0
-pre_choosed_card_list_plant = Array[int]([])
-pre_choosed_card_list_zombie = Array[int]([])
-all_card_plant_type_probability = Dictionary[int, int]({})
-all_card_zombie_type_probability = Dictionary[int, int]({})
-start_list_card_plant_type = Array[int]([])
-start_list_card_zombie_type = Array[int]([])
-create_new_card_speed = 1.0
-is_mode_column = false
-is_shovel = true
-is_bowling_stripe = false
-plant_cell_col_j = 2
-plant_cell_can_use = Dictionary[String, bool]({
-"left_can_plant": true,
-"left_can_zombie": true,
-"right_can_plant": true,
-"right_can_zombie": true
-})
+pre_choosed_card_list_plant = Array[int]([15, 12, 5])
 is_hammer = true
 metadata/_custom_type_script = "uid://bjt3l56exxmdw"

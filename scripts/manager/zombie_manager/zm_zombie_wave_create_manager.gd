@@ -14,59 +14,62 @@ const zombie_power = {
 	Global.ZombieType.Z004PoleVaulter: 2,	# 撑杆战力
 	Global.ZombieType.Z005Bucket: 4,		# 铁桶战力
 
-	Global.ZombieType.Z006Paper: 4,		# 读报战力
+	Global.ZombieType.Z006Paper: 2,		# 读报战力
 	Global.ZombieType.Z007ScreenDoor: 4,	# 铁门战力
-	Global.ZombieType.Z008Football: 4,	# 橄榄球战力
-	Global.ZombieType.Z009Jackson: 4,		# 舞王战力
+	Global.ZombieType.Z008Football: 7,	# 橄榄球战力
+	Global.ZombieType.Z009Jackson: 5,		# 舞王战力
 	Global.ZombieType.Z010Dancer: 1,		# 伴舞权重
 
-	Global.ZombieType.Z012Snorkle: 2,		# 潜水
-	Global.ZombieType.Z013Zamboni: 4,		# 冰车
-	Global.ZombieType.Z014Bobsled: 4,		# 滑雪四兄弟
+	Global.ZombieType.Z012Snorkle: 3,		# 潜水
+	Global.ZombieType.Z013Zamboni: 7,		# 冰车
+	Global.ZombieType.Z014Bobsled: 3,		# 滑雪四兄弟
 	Global.ZombieType.Z015Dolphinrider: 3,# 海豚僵尸
 
 	Global.ZombieType.Z016Jackbox: 3,		# 小丑
 	Global.ZombieType.Z017Ballon: 2,		# 气球
-	Global.ZombieType.Z018Digger: 2,		# 矿工
-	Global.ZombieType.Z019Pogo: 2,			# 跳跳
-	Global.ZombieType.Z020Yeti: 1,			# 雪人
+	Global.ZombieType.Z018Digger: 4,		# 矿工
+	Global.ZombieType.Z019Pogo: 4,			# 跳跳
+	Global.ZombieType.Z020Yeti: 4,			# 雪人
 
-	Global.ZombieType.Z022Ladder: 3,		# 扶梯
-	Global.ZombieType.Z023Catapult: 4,		# 投篮
-	Global.ZombieType.Z024Gargantuar: 4,	# 伽刚特尔
+	Global.ZombieType.Z022Ladder: 4,		# 扶梯
+	Global.ZombieType.Z023Catapult: 5,		# 投篮
+	Global.ZombieType.Z024Gargantuar: 10,	# 伽刚特尔
 	Global.ZombieType.Z025Imp: 1,			# 小鬼
 }
 
 ## 创建 zombie_weights 字典，存储初始权重,普僵权重会修改，
-var zombie_weights = {
+const zombie_weights = {
 	Global.ZombieType.Z001Norm: 4000,			# 普僵权重
-	Global.ZombieType.Z002Flag: 0,			# 旗帜权重
+	#Global.ZombieType.Z002Flag: 0,			# 旗帜权重
 	Global.ZombieType.Z003Cone: 4000,			# 路障权重
 	Global.ZombieType.Z004PoleVaulter: 2000,	# 撑杆权重
 	Global.ZombieType.Z005Bucket: 3000,		# 铁桶权重
 
-	Global.ZombieType.Z006Paper: 3000,		# 读报权重
-	Global.ZombieType.Z007ScreenDoor: 3000,	# 铁门权重
-	Global.ZombieType.Z008Football: 3000,		# 橄榄球权重
-	Global.ZombieType.Z009Jackson: 3000,		# 舞王权重
+	Global.ZombieType.Z006Paper: 1000,		# 读报权重
+	Global.ZombieType.Z007ScreenDoor: 3500,	# 铁门权重
+	Global.ZombieType.Z008Football: 2000,		# 橄榄球权重
+	Global.ZombieType.Z009Jackson: 1000,		# 舞王权重
 	Global.ZombieType.Z010Dancer: 4000,		# 舞王权重
 
-	Global.ZombieType.Z012Snorkle: 3000,		# 潜水
-	Global.ZombieType.Z013Zamboni: 3000,		# 冰车
-	Global.ZombieType.Z014Bobsled: 3000,		# 滑雪四兄弟
-	Global.ZombieType.Z015Dolphinrider: 3000,	# 海豚僵尸
+	Global.ZombieType.Z012Snorkle: 2000,		# 潜水
+	Global.ZombieType.Z013Zamboni: 2000,		# 冰车
+	Global.ZombieType.Z014Bobsled: 2000,		# 滑雪四兄弟
+	Global.ZombieType.Z015Dolphinrider: 1500,	# 海豚僵尸
 
-	Global.ZombieType.Z016Jackbox: 3000,		# 小丑
-	Global.ZombieType.Z017Ballon: 3000,		# 气球
-	Global.ZombieType.Z018Digger: 3000,		# 矿工
-	Global.ZombieType.Z019Pogo: 3000,			# 跳跳
-	Global.ZombieType.Z020Yeti: 100,			# 雪人
+	Global.ZombieType.Z016Jackbox: 1000,		# 小丑
+	Global.ZombieType.Z017Ballon: 2000,		# 气球
+	Global.ZombieType.Z018Digger: 1000,		# 矿工
+	Global.ZombieType.Z019Pogo: 1000,			# 跳跳
+	Global.ZombieType.Z020Yeti: 1,			# 雪人
 
-	Global.ZombieType.Z022Ladder: 2000,		# 扶梯
-	Global.ZombieType.Z023Catapult: 2000,	# 投篮
-	Global.ZombieType.Z024Gargantuar: 2000,	# 伽刚特尔
-	Global.ZombieType.Z025Imp: 2000,		# 小鬼
+	Global.ZombieType.Z022Ladder: 1000,		# 扶梯
+	Global.ZombieType.Z023Catapult: 1500,	# 投篮
+	Global.ZombieType.Z024Gargantuar: 1500,	# 伽刚特尔
+	#Global.ZombieType.Z025Imp: 0,		# 小鬼
 }
+
+## 僵尸随机选择池
+var zombie_choose_random_pool:RandomPicker
 
 ## 每波最大僵尸数量
 @export var max_zombies_per_wave = 50
@@ -84,19 +87,27 @@ var wave_all_zombies:Array[Zombie000Base]
 var is_bungi:bool = false
 ## 蹦极僵尸数量范围
 var range_num_bungi:Vector2i = Vector2i(3,5)
-## 创建僵尸信号，发给僵尸管理器创建僵尸
-signal signal_create_one_zombie_in_wave
 
 ## 初始化创建波次僵尸管理器
 func init_zombie_wave_create_manager(game_para:ResourceLevelData):
 	self.zombie_multy = game_para.zombie_multy
-	self.zombie_refresh_types = game_para.zombie_refresh_types
-	for zombie_type in self.zombie_refresh_types:
-		if min_power > zombie_power[zombie_type]:
-			min_power =  zombie_power[zombie_type]
-	self.is_bungi = game_para.is_bungi
 	self.range_num_bungi = game_para.range_num_bungi
 	zombie_choose_row_system.init_zombie_choose_row_system()
+	update_zombie_refresh_types(game_para.zombie_refresh_types, game_para.is_bungi)
+
+## 更新可以刷新的僵尸列表
+func update_zombie_refresh_types(new_zombie_refresh_types:Array[Global.ZombieType], new_is_bungi:=false):
+	self.is_bungi = new_is_bungi
+	self.zombie_refresh_types = new_zombie_refresh_types
+	## 初始化僵尸生成随机池数据
+	var zombie_choose_random_pool_data:Array[Array] = []
+	min_power = 100
+	for zombie_type in self.zombie_refresh_types:
+		if min_power > zombie_power[zombie_type]:
+			min_power = zombie_power[zombie_type]
+		zombie_choose_random_pool_data.append([zombie_type, zombie_weights[zombie_type]])
+	print("更新僵尸随机选择池")
+	zombie_choose_random_pool = RandomPicker.new(zombie_choose_random_pool_data)
 
 
 #region 创建当前波次僵尸
@@ -117,7 +128,7 @@ func create_curr_wave_all_zombies(wave:int, is_big_wave:bool):
 		if zombie_type == Global.ZombieType.Z014Bobsled:
 			## 计算冰道权重
 			if special_base_weight.is_empty():
-				for row_ice_road:Array[IceRoad] in Global.main_game.plant_cell_manager.all_ice_roads:
+				for row_ice_road:Array[IceRoad] in Global.main_game.zombie_manager.all_ice_roads:
 					if row_ice_road.is_empty():
 						special_base_weight.append(0)
 					else:
@@ -155,11 +166,15 @@ func wave_create_zombie(
 	curr_wave:int,		## 僵尸波次
 	init_zombie_special:Callable = Callable()		## 初始化僵尸特殊属性
 ):
+	var zombie_init_para:Dictionary = {
+		Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+		Zombie000Base.E_ZInitAttr.Lane:lane,
+		Zombie000Base.E_ZInitAttr.CurrWave:curr_wave,
+	}
 	var zombie_parent = Global.main_game.zombie_manager.all_zombie_rows[lane]
-	var zombie_init_type = Character000Base.E_CharacterInitType.IsNorm
-	var zombie_pos = Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_create_position.position + Vector2(randf_range(-10, 10), 0)
+	var zombie_glo_pos = Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_create_position.global_position + Vector2(randf_range(-10, 10), 0)
 
-	var zombie = zombie_manager.create_norm_zombie(zombie_type,zombie_parent,zombie_init_type,lane,curr_wave,zombie_pos, init_zombie_special)
+	var zombie = zombie_manager.create_norm_zombie(zombie_type,zombie_parent,zombie_init_para, zombie_glo_pos, init_zombie_special)
 
 	return zombie
 
@@ -179,6 +194,7 @@ func create_curr_wave_zombie_list(wave:int, is_big_wave:bool):
 func calculate_wave_power_limit(wave:int, is_big_wave: bool) -> int:
 	## x从0开始
 	## 计算战力上限 = y=int(x/3)+1
+	@warning_ignore("integer_division")
 	var base_power_limit:int = wave / 3 + 1
 	## 如果是大波，战力上限是原战力上限的2.5倍
 	if is_big_wave:
@@ -207,19 +223,16 @@ func update_curr_zombie_weight_upper_limit(wave:int):
 
 ## 更新僵尸权重
 func _update_weights(wave: int):
-	# 普通僵尸权重调整逻辑
-	if wave >= 5:
-		var norm_weight = 4000 - (wave - 4) * 180
-		if wave >= 25:
-			norm_weight = 400  # 当轮次达到25时，普通僵尸权重固定为400
-		zombie_weights[Global.ZombieType.Z001Norm] = norm_weight
+	if wave < 25 and wave >= 5:
+		if Global.ZombieType.Z001Norm in zombie_refresh_types:
+			var norm_weight = 4000 - (wave - 4) * 180
+			zombie_choose_random_pool.update_item_weight(Global.ZombieType.Z001Norm, norm_weight, false)
 
-	# 路障僵尸权重调整逻辑
-	if wave >= 5:
-		var cone_weight = 4000 - (wave - 4) * 150
-		if wave >= 25:
-			cone_weight = 1000  # 当轮次达到25时，路障僵尸权重固定为1000
-		zombie_weights[Global.ZombieType.Z003Cone] = cone_weight
+		if Global.ZombieType.Z003Cone in zombie_refresh_types:
+			var cone_weight = 4000 - (wave - 4) * 150
+			zombie_choose_random_pool.update_item_weight(Global.ZombieType.Z003Cone, cone_weight, false)
+
+		zombie_choose_random_pool.rebuild_alias_table()
 
 ## 获取当前波僵尸列表
 func get_curr_wave_zombie_list(wave:int, is_big_wave: bool, curr_wave_power_limit:int) ->Array[Global.ZombieType]:
@@ -252,8 +265,12 @@ func get_curr_wave_zombie_list(wave:int, is_big_wave: bool, curr_wave_power_limi
 
 	# 生成剩余僵尸，直到总战力符合当前战力上限
 	while curr_spare_slot > 0 and total_power < curr_wave_power_limit:
-		var selected_zombie = _get_random_zombie_based_on_weight()
+
+		var selected_zombie:Global.ZombieType = zombie_choose_random_pool.get_random_item()
 		var zombie_power_value = zombie_power[selected_zombie]
+
+		#prints("当前剩余僵尸", curr_spare_slot, "当前战力:", total_power, "当前所选僵尸:", selected_zombie, "当前所选僵尸战力:", zombie_power_value)
+
 		# 检查如果加上该僵尸的战力后超过当前波的战力上限，重新选择
 		if total_power + zombie_power_value <= curr_wave_power_limit:
 			wave_spawn.append(selected_zombie)
@@ -270,27 +287,6 @@ func get_curr_wave_zombie_list(wave:int, is_big_wave: bool, curr_wave_power_limi
 
 	return wave_spawn
 
-## 获取根据权重选择的僵尸
-func _get_random_zombie_based_on_weight() -> int:
-	## 基于统一的刷新种类随机选择僵尸
-	var cumulative_weight = 0
-	var max_weight = 0
-
-	# 计算所有可能僵尸的权重总和
-	for zombie_type in zombie_refresh_types:
-		max_weight += zombie_weights[zombie_type]
-
-	var random_value = randi_range(0, max_weight)  # 使用动态计算的最大权重
-
-	for zombie_type in zombie_refresh_types:
-		cumulative_weight += zombie_weights[zombie_type]
-
-		if random_value < cumulative_weight:
-			return zombie_type  # 返回选中的僵尸类型
-
-	## 如果没有选中，默认返回普通僵尸
-	return Global.ZombieType.Z001Norm
-
 #endregion
 
 #endregion
@@ -301,6 +297,7 @@ func _get_random_zombie_based_on_weight() -> int:
 func spawn_special_zombie_in_big_wave(is_final:=false):
 	## 珊瑚僵尸,若有水路自动创建,没有则不创建
 	if is_final:
+		#print("生成珊瑚僵尸")
 		spawn_sea_weed_zombies()
 	## 如果有蹦极僵尸
 	if is_bungi:
@@ -314,6 +311,7 @@ func spawn_sea_weed_zombies():
 		if Global.main_game.zombie_manager.all_zombie_rows[i].zombie_row_type == Global.ZombieRowType.Pool:
 			zombie_row_pool_i.append(i)
 	if zombie_row_pool_i.is_empty():
+		print("无水路,无法生成珊瑚僵尸")
 		return
 
 	var zombie_type_sea_weed_list :Array= [Global.ZombieType.Z001Norm, Global.ZombieType.Z003Cone, Global.ZombieType.Z005Bucket]
@@ -321,12 +319,13 @@ func spawn_sea_weed_zombies():
 	for i in range(3):
 		var zombie_type:Global.ZombieType = zombie_type_sea_weed_list.pick_random()
 		var lane:int= zombie_row_pool_i.pick_random()
-		wave_create_zombie(zombie_type, lane, -1, _zombie_seaweed)
+		var zombie_sea_weed:Zombie000Base = wave_create_zombie(zombie_type, lane, -1, _zombie_seaweed)
+
+		zombie_sea_weed.global_position.x = randf_range(500, 750)
 
 ## 珊瑚僵尸
 func _zombie_seaweed(z:Zombie001Norm):
-	z.global_position.x = randf_range(500, 750)
-	z.sea_weed_init()
+	z.is_seaweed = true
 #endregion
 
 #region 蹦极僵尸
@@ -341,14 +340,17 @@ func spawn_bungi_zombies():
 	var all_cell_be_bungi = all_cell_have_plant.slice(0, num_bungi_res)
 	## 生成蹦极僵尸
 	for plant_cell:PlantCell in all_cell_be_bungi:
+		var zombie_init_para:Dictionary = {
+			Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+			Zombie000Base.E_ZInitAttr.Lane:plant_cell.row_col.x
+		}
+
 		Global.main_game.zombie_manager.create_norm_zombie(
 			Global.ZombieType.Z021Bungi,
 			Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x],
-			Character000Base.E_CharacterInitType.IsNorm,
-			plant_cell.row_col.x,
-			-1,
-			Vector2(plant_cell.global_position.x + plant_cell.size.x/2 - Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x].global_position.x,
-				Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x].zombie_create_position.position.y
+			zombie_init_para,
+			Vector2(plant_cell.global_position.x + plant_cell.size.x/2,
+				Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x].zombie_create_position.global_position.y
 			),
 			create_bungi.bind(plant_cell)
 		)

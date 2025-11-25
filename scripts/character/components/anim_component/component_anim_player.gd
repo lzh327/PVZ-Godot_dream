@@ -6,9 +6,10 @@ class_name AnimComponentPlayer
 
 func _ready() -> void:
 	animation_origin_speed = animation_player.speed_scale
+	animation_player.animation_finished.connect(_on_animation_finished)
 
 ## 更新动画速度
-func update_anim_speed(speed_factor_product:float):
+func owner_update_speed(speed_factor_product:float):
 	animation_player.speed_scale = animation_origin_speed * speed_factor_product
 
 ## 更新动画速度(动画播放速度)

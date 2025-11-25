@@ -95,7 +95,8 @@ func change_plant_content(card:Card):
 func create_plant(curr_plant_type:Global.PlantType, curr_plant_name:String):
 	var plant_scene = Global.get_plant_info(curr_plant_type, Global.PlantInfoAttribute.PlantScenes)
 	var new_show_plant:Plant000Base = plant_scene.instantiate()
-	new_show_plant.init_plant(Character000Base.E_CharacterInitType.IsShow)
+	var plant_init_para:Dictionary = {Plant000Base.E_PInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsShow}
+	new_show_plant.init_plant(plant_init_para)
 	plant_bg.add_child(new_show_plant)
 	new_show_plant.position = Vector2(100,100)
 	if show_plant:

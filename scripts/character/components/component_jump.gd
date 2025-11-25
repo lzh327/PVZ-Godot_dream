@@ -1,10 +1,10 @@
-extends ComponentBase
+extends ComponentNormBase
 ## 跳跃组件
 class_name JumpComponent
 
 @onready var owner_zombie: Zombie000Base = owner
 @onready var move_component: MoveComponent = %MoveComponent
-@onready var detect_component: AttackRayComponent = %AttackRayComponent
+@onready var detect_component: DetectComponent = %DetectComponent
 
 ## 影子定位僵尸本体位置
 @onready var shadow: Sprite2D = %Shadow
@@ -20,7 +20,6 @@ var is_jump_compensate = false
 ## 跳跃补偿距离
 @export var jump_compensate_distance: float = 40	# 跳过植物的距离
 var jump_plant_position_x : float# 正在跳跃的植物的X值
-var diff_all : float = 0	# 撑杆跳时的位移，
 
 ## 跳跃被高坚果强行停止
 var is_jump_stop := false
@@ -29,7 +28,6 @@ var jump_stop_postion :Vector2
 ## 跳跃中
 var is_jumping := false
 @export_group("跳跃音效")
-@export var jump_sfx_zombie_type:Global.ZombieType
 @export var jump_sfx:StringName
 
 ## 外部需要的组件（攻击行为组件）连接该信号
@@ -39,7 +37,7 @@ signal signal_jump_end()
 ## 跳跃结束后摇结束
 signal signal_jump_end_end()
 
-
+@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	if is_jump_compensate and is_jumping:
 		if shadow.global_position.x < jump_plant_position_x - jump_compensate_distance:
@@ -70,11 +68,11 @@ func disable_component(is_enable_factor:E_IsEnableFactor):
 ## 开始跳跃
 ## [is_jump_compensate:bool]是否有跳跃补偿
 ## [global_pos_x:float]跳跃补偿对应植物位置
-func jump_start(is_jump_compensate:bool, global_pos_x:float=0):
-	self.is_jump_compensate = is_jump_compensate
+func jump_start(curr_is_jump_compensate:bool, global_pos_x:float=0):
+	self.is_jump_compensate = curr_is_jump_compensate
 	is_jumping = true
 	signal_jump_start.emit()
-	if is_jump_compensate:
+	if self.is_jump_compensate:
 		jump_plant_position_x = global_pos_x
 
 ## 结束跳跃，动画调用
@@ -83,9 +81,11 @@ func jump_end():
 	signal_jump_end.emit()
 	await get_tree().process_frame
 	await get_tree().process_frame
+	if owner_zombie.is_mini_zombie:
+		jump_x /= 2
 	owner.global_position.x -= jump_x
 	signal_jump_end_end.emit()
-	print("跳跃结束修改完成位置")
+	#print("跳跃结束修改完成位置")
 
 ## 跳跃被高坚果强行停止
 func jump_be_stop(plant:Plant000Base):
@@ -141,4 +141,4 @@ func _on_enemy_zombie_status_change(zombie:Zombie000Base):
 		jump_start(false)
 
 func _play_jump_SFX():
-	SoundManager.play_zombie_SFX(jump_sfx_zombie_type, jump_sfx)
+	SoundManager.play_character_SFX(jump_sfx)

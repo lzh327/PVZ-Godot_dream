@@ -1,30 +1,19 @@
-[gd_resource type="Resource" script_class="ResourceLevelData" load_steps=7 format=3 uid="uid://c8hxvxxt7hdo6"]
+[gd_resource type="Resource" script_class="ResourceLevelData" load_steps=5 format=3 uid="uid://c8hxvxxt7hdo6"]
 
 [ext_resource type="Script" uid="uid://bke3sg5otco7s" path="res://scripts/resources/level/pre_plant_in_level.gd" id="1_hl02h"]
 [ext_resource type="Script" uid="uid://bjt3l56exxmdw" path="res://scripts/resources/level/level_data.gd" id="2_i5mhj"]
 
-[sub_resource type="Resource" id="Resource_gacjd"]
+[sub_resource type="Resource" id="Resource_hl02h"]
 script = ExtResource("1_hl02h")
 plant_type = 34
 plant_cell_pos = Vector2i(0, 1)
+is_imitater_plant = true
 metadata/_custom_type_script = "uid://bke3sg5otco7s"
 
-[sub_resource type="Resource" id="Resource_lhnqu"]
+[sub_resource type="Resource" id="Resource_i5mhj"]
 script = ExtResource("1_hl02h")
 plant_type = 34
 plant_cell_pos = Vector2i(0, 2)
-metadata/_custom_type_script = "uid://bke3sg5otco7s"
-
-[sub_resource type="Resource" id="Resource_rlxv5"]
-script = ExtResource("1_hl02h")
-plant_type = 34
-plant_cell_pos = Vector2i(0, 3)
-metadata/_custom_type_script = "uid://bke3sg5otco7s"
-
-[sub_resource type="Resource" id="Resource_dxuh2"]
-script = ExtResource("1_hl02h")
-plant_type = 34
-plant_cell_pos = Vector2i(0, 4)
 metadata/_custom_type_script = "uid://bke3sg5otco7s"
 
 [resource]
@@ -32,46 +21,28 @@ script = ExtResource("2_i5mhj")
 game_sences = 2
 game_BG = 4
 game_BGM = 4
-is_fog = false
-is_day = true
-is_day_sun = true
-is_lawn_mover = true
-all_pre_plant_data = Array[ExtResource("1_hl02h")]([SubResource("Resource_gacjd"), SubResource("Resource_lhnqu"), SubResource("Resource_rlxv5"), SubResource("Resource_dxuh2")])
-look_show_zombie = true
-can_choosed_card = true
-monster_mode = 0
-zombie_multy = 4
-max_wave = 20
-zombie_refresh_types = Array[int]([7])
+all_pre_plant_data = Array[ExtResource("1_hl02h")]([SubResource("Resource_hl02h"), SubResource("Resource_i5mhj")])
+zombie_refresh_types = Array[int]([7, 1, 3, 5, 6, 8, 24, 22, 9, 15])
 is_bungi = true
-range_num_bungi = Vector2i(3, 5)
-zombie_multy_hammer = 1
-max_wave_hammer_zombie = 10
-speed_zombie_init = 1.0
-speed_zombie_add = 0.15
-speed_zombie_max = 2.0
-is_have_tombston = false
-init_tombstone_num = 0
-card_mode = 0
-have_card_bar = true
-max_choosed_card_num = 10
 start_sun = 50000
-pre_choosed_card_list_plant = Array[int]([])
-pre_choosed_card_list_zombie = Array[int]([])
-all_card_plant_type_probability = Dictionary[int, int]({})
-all_card_zombie_type_probability = Dictionary[int, int]({})
-start_list_card_plant_type = Array[int]([])
-start_list_card_zombie_type = Array[int]([])
-create_new_card_speed = 1.0
-is_mode_column = false
-is_shovel = true
-is_bowling_stripe = false
-plant_cell_col_j = 2
-plant_cell_can_use = Dictionary[String, bool]({
-"left_can_plant": true,
-"left_can_zombie": true,
-"right_can_plant": true,
-"right_can_zombie": true
+all_card_plant_type_probability = Dictionary[int, int]({
+3: 1,
+7: 1,
+18: 1,
+21: 1,
+33: 1,
+34: 1,
+35: 1,
+40: 1
 })
-is_hammer = false
+card_order_plant = Dictionary[int, int]({
+0: 5,
+1: 24,
+2: 40,
+3: 32,
+4: 36,
+9: 45
+})
+create_new_card_speed = 1.5
+is_mode_column = true
 metadata/_custom_type_script = "uid://bjt3l56exxmdw"

@@ -16,11 +16,11 @@ var pos_body_correct:Vector2 = Vector2(-55, -120)
 ## 默认为移动状态,is_walk由多种状态控制
 @export var is_thrown := false
 
-func init_norm():
+func ready_norm():
 	super()
 	if is_thrown:
 		update_body_correct_pos_throw()
-		SoundManager.play_zombie_SFX(Global.ZombieType.Z025Imp, &"imp")
+		SoundManager.play_character_SFX(&"imp")
 
 ## 投掷小鬼更新BodyCorrect位置
 func update_body_correct_pos_throw():

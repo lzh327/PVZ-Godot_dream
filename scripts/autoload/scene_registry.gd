@@ -2,12 +2,6 @@ extends Node
 ## 散落的加载场景
 
 
-#region  主游戏场景相关预加载场景
-
-## 雾
-const FOG = preload("res://scenes/item/game_scenes_item/fog.tscn")
-
-#endregion
 ## 花园植物格子
 var PLANT_CELL_GARDEN:PackedScene= load("res://scenes/garden/plant_cell_garden.tscn")
 ## 花园需求气泡
@@ -58,8 +52,6 @@ const BUTTER_SPLAT = preload("res://scenes/fx/butter_splat.tscn")
 
 ## 阳光
 var SUN = load("res://scenes/item/game_scenes_item/sun.tscn")
-## 天降阳光节点
-const DAY_SUNS_MANAGER = preload("res://scenes/manager/day_suns_manager.tscn")
 
 ## 泥土上升特效
 const DIRT_RISE_EFFECT = preload("res://scenes/character/item/dirt_rise_effect.tscn")

@@ -9,7 +9,7 @@ func _ready() -> void:
 	animation_tree.animation_finished.connect(_on_animation_finished)
 
 ## 更新动画速度
-func update_anim_speed(speed_factor_product:float):
+func owner_update_speed(speed_factor_product:float):
 	animation_tree.set("parameters/TimeScale/scale", animation_origin_speed * speed_factor_product)
 
 ## 更新动画速度(动画播放速度)

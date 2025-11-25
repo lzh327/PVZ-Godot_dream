@@ -1,4 +1,4 @@
-extends ComponentBase
+extends Node2D
 class_name HpStageChangeComponent
 ## 血量阶段变化组件,坚果和南瓜头使用
 ## 血量到达临界值时变化
@@ -36,13 +36,12 @@ var curr_hp_armor1_stage := -1
 ## 当前血量阶段
 var curr_hp_armor2_stage := -1
 
-## 死亡时body是否无变化(炸弹\死亡时直接消失\TODO:小推车)
-var is_no_change:=false
-
 func _ready() -> void:
 	## 初始化参数
 	if boundary_value_hp.is_empty():
+		@warning_ignore("integer_division")
 		boundary_value_hp.append(hp_component.max_hp * 2 / 3 - 1)	## 掉手
+		@warning_ignore("integer_division")
 		boundary_value_hp.append(hp_component.max_hp * 1 / 3 - 1)	## 掉头
 		if owner is Plant000Base:
 			printerr("植物使用血量阶段变化组件需对对`boundary_value_hp`赋值")
@@ -68,12 +67,8 @@ func _ready() -> void:
 ## 判断body是否需要变化
 ## curr_hp: 当前剩余血量
 func judge_body_change(curr_hp:int, is_drop:=true):
-	if not is_instance_valid(owner_character):
-		return
-	## 死亡并且无变化
-	if is_no_change and curr_hp <= boundary_value_hp[-1]:
-		return
-	if curr_hp_stage == boundary_value_hp.size() - 1:
+	## 角色不存在 or 最后血量状态 or 不掉落
+	if not is_instance_valid(owner_character) or curr_hp_stage == boundary_value_hp.size() - 1 or not is_drop:
 		return
 	## 循环数组
 	for i in range(boundary_value_hp.size()):
@@ -81,73 +76,57 @@ func judge_body_change(curr_hp:int, is_drop:=true):
 			curr_hp_stage = i
 			if body_change[i] == null:
 				continue
-			for j in range(body_change[i].sprite_change.size()):
-				var sprite_change:Sprite2D = get_node(body_change[i].sprite_change[j])
-				sprite_change.texture = body_change[i].sprite_change_texture[j]
-				#print("改变")
 
-			for j in range(body_change[i].sprite_appear.size()):
-				var sprite_appear:Node2D = get_node(body_change[i].sprite_appear[j])
-				sprite_appear.visible = true
+			body_change[i].update_body(self)
 
-			for j in range(body_change[i].sprite_disappear.size()):
-				var sprite_disappear:Node2D = get_node(body_change[i].sprite_disappear[j])
-				sprite_disappear.visible = false
-
-			## 如果有掉落节点
-			if body_change[i].node_drop:
-				if not is_drop:
-					continue
-				var drop:ZombieDropBase = get_node(body_change[i].node_drop)
-				drop.acitvate_it()
 #endregion
 
 #region 防具body变化
 ## 防具血量变化判断,判断body是否需要变化
 ## curr_hp: 当前剩余血量
-func judge_body_change_armor(curr_hp_arm:int, curr_hp:int, is_drop:bool=true, is_armor1:bool=true):
-	var curr_hp_stage:int = curr_hp_armor1_stage
-	var boundary_value_hp:Array[int] = boundary_value_hp_armor1
-	var body_change:Array[ResourceBodyChange] = body_change_armor1
-	if not is_armor1:
-		curr_hp_stage = curr_hp_armor2_stage
-		boundary_value_hp = boundary_value_hp_armor2
-		body_change = body_change_armor2
+func judge_body_change_armor(curr_hp_arm:int, _curr_hp:int, is_drop:bool=true, is_armor1:bool=true):
+	## 角色不存在  or 不掉落
+	if not is_instance_valid(owner_character) or not is_drop:
+		return
 
-	if is_no_change and curr_hp <= boundary_value_hp[-1]:
-		return
-	if curr_hp_stage == boundary_value_hp.size() - 1:
-		return
+	if is_armor1:
+		curr_hp_armor1_stage = update_hp_armor_stage(curr_hp_arm, curr_hp_armor1_stage, boundary_value_hp_armor1, body_change_armor1)
+	else:
+		curr_hp_armor2_stage = update_hp_armor_stage(curr_hp_arm, curr_hp_armor2_stage, boundary_value_hp_armor2, body_change_armor2)
+
+func update_hp_armor_stage(curr_hp_arm:int, curr_hp_armor_stage:int, boundary_value_hp_armor:Array[int], body_change_armor:Array[ResourceBodyChange]):
+	## 最后血量状态
+	if curr_hp_armor_stage == boundary_value_hp_armor.size() - 1 :
+		return curr_hp_armor_stage
+
 	## 循环数组
-	for i in range(boundary_value_hp.size()):
-		if curr_hp_stage < i and curr_hp_arm <= boundary_value_hp[i]:
+	for i in range(boundary_value_hp_armor.size()):
+		if curr_hp_armor_stage < i and curr_hp_arm <= boundary_value_hp_armor[i]:
 			#print("当前血量状态：", curr_hp_stage, "小于状态：", i)
 			#print("当前血量：", curr_hp_stage, "小于状态：", i)
-			curr_hp_stage = i
-			if is_armor1:
-				curr_hp_armor1_stage = curr_hp_stage
-			else:
-				curr_hp_armor2_stage = curr_hp_stage
+			curr_hp_armor_stage = i
 
-			if body_change[i] == null:
-				break
+			if body_change_armor[i] == null:
+				continue
+			body_change_armor[i].update_body(self)
 
-			for j in range(body_change[i].sprite_change.size()):
-				var sprite_change:Sprite2D = get_node(body_change[i].sprite_change[j])
-				sprite_change.texture = body_change[i].sprite_change_texture[j]
-
-			for j in range(body_change[i].sprite_appear.size()):
-				var sprite_appear:Node2D = get_node(body_change[i].sprite_appear[j])
-				sprite_appear.visible = true
-
-			for j in range(body_change[i].sprite_disappear.size()):
-				var sprite_disappear:Node2D = get_node(body_change[i].sprite_disappear[j])
-				sprite_disappear.visible = false
-
-			## 如果有掉落节点
-			if body_change[i].node_drop:
-				if not is_drop:
-					continue
-				var drop:ZombieDropBase = get_node(body_change[i].node_drop)
-				drop.acitvate_it()
+	return curr_hp_armor_stage
 #endregion
+
+## 小僵尸大麻烦更新僵尸血量变化临界值
+func update_mini_zombie_hp_stage_change():
+	for i in range(boundary_value_hp.size()):
+		boundary_value_hp[i] /= 2
+	## 修改死亡临界值
+	if boundary_value_hp[-1] != 0:
+		hp_component.set_death_hp(boundary_value_hp[-1])
+
+	## 初始化防具参数
+	if hp_component.max_hp_armor1 != 0:
+		for i in range(boundary_value_hp_armor1.size()):
+			boundary_value_hp_armor1[i] /= 2
+
+	if hp_component.max_hp_armor2 != 0:
+		for i in range(boundary_value_hp_armor2.size()):
+			boundary_value_hp_armor2[i] /= 2
+

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bbgh3cu4qdrb5" path="res://scenes/bullet/bullet_1003_bowling_big.tscn" id="3_31glj"]
 [ext_resource type="Texture2D" uid="uid://cpbkvykx6yq07" path="res://assets/reanim/Wallnut_twitch.png" id="3_41x36"]
 [ext_resource type="Texture2D" uid="uid://co3e8k6uwm4hi" path="res://assets/reanim/Wallnut_blink1.png" id="4_31glj"]
-[ext_resource type="Script" uid="uid://dfr4esbmsl62b" path="res://scripts/character/components/anim_component/component_anim.gd" id="7_23c7u"]
+[ext_resource type="Script" uid="uid://t3g1fyasmwgx" path="res://scripts/character/components/anim_component/component_anim_empty.gd" id="7_23c7u"]
 
 [node name="Plant1003WallNutBowling" instance=ExtResource("1_aj77m")]
 script = ExtResource("2_41x36")
@@ -51,5 +51,5 @@ centered = false
 [node name="AnimComponent" parent="." index="2"]
 script = ExtResource("7_23c7u")
 
-[node name="BlinkComponent" parent="." index="8"]
+[node name="BlinkComponent" parent="." index="5"]
 is_enable_default = false

@@ -266,36 +266,20 @@ anim_offset_max = 1.0
 script = ExtResource("2_5r5rm")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_zamboni_1")])
 sprite_change_texture = Array[Texture2D]([ExtResource("25_xvg1s")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_xvg1s"]
 script = ExtResource("2_5r5rm")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_zamboni_1")])
 sprite_change_texture = Array[Texture2D]([ExtResource("26_da3wv")])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_da3wv"]
 script = ExtResource("2_5r5rm")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_xxx3k"]
 script = ExtResource("2_5r5rm")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
-sprite_disappear = Array[NodePath]([])
-node_drop = NodePath("")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Animation" id="Animation_fuck"]
@@ -1315,8 +1299,9 @@ _data = {
 &"ALL_ANIMS": SubResource("Animation_fuck")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjtkh"]
-size = Vector2(70, 5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xvg1s"]
+radius = 50.0
+height = 150.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_82abc"]
 _data = {
@@ -1350,18 +1335,17 @@ graph_offset = Vector2(50, -40)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yuhtx"]
 graph_offset = Vector2(-148, 23)
+nodes/output/position = Vector2(380, 120)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_ta2fm")
 nodes/StateMachine/position = Vector2(-60, 80)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_pmmng")
 nodes/TimeScale/position = Vector2(200, 60)
-nodes/output/position = Vector2(380, 120)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [node name="Zombie013Zamboni" instance=ExtResource("1_cvyhe")]
 script = ExtResource("2_tjtkh")
 is_caltrop = false
 zombie_type = 13
-head1_path = NodePath("Body/BodyCorrect/Zombie_head")
 
 [node name="IceRoad" parent="." index="0" instance=ExtResource("3_yuhtx")]
 position = Vector2(80, -22)
@@ -1472,7 +1456,7 @@ visible = false
 centered = false
 
 [node name="Zombie_zamboni_4" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(21.5, 116.655)
+position = Vector2(21.5, 116.943306)
 scale = Vector2(0.55, 0.55)
 texture = ExtResource("2_ted5p")
 centered = false
@@ -1484,119 +1468,119 @@ texture = ExtResource("3_vbmfc")
 centered = false
 
 [node name="Zombie_zamboni_seat" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(44.9, 46.0455)
+position = Vector2(44.9, 46.181587)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_e0420")
 centered = false
 
 [node name="Zombie_zambonidriver_legs" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
-position = Vector2(8.2, 75.3455)
+position = Vector2(8.2, 75.440796)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("5_q5x6w")
 centered = false
 
 [node name="Zombie_zambonidriver_innerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
-position = Vector2(19.5455, 42.3455)
+position = Vector2(19.640795, 42.48159)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("6_ujpb2")
 centered = false
 
 [node name="Zombie_zambonidriver_body" type="Sprite2D" parent="Body/BodyCorrect" index="9"]
-position = Vector2(37.6636, 28.0729)
-rotation = 0.0309379
+position = Vector2(37.41841, 28.603975)
+rotation = 0.022619823
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("7_n01se")
 centered = false
 
 [node name="Zombie_zambonidriver_upperarm" type="Sprite2D" parent="Body/BodyCorrect" index="10"]
-position = Vector2(55.391, 52.6364)
+position = Vector2(55.5, 52.8)
 rotation = 6.06851
-scale = Vector2(0.748, 0.748)
+scale = Vector2(0.74840796, 0.74840796)
 texture = ExtResource("8_yv182")
 centered = false
 
 [node name="Zombie_zambonidriver_lowerarm_outer" type="Sprite2D" parent="Body/BodyCorrect" index="11"]
-position = Vector2(41.4455, 69.8)
-rotation = 5.87018
-scale = Vector2(0.747455, 0.747455)
+position = Vector2(41.540794, 69.8)
+rotation = 5.875168
+scale = Vector2(0.74840796, 0.74840796)
 texture = ExtResource("9_to5yd")
 centered = false
 
 [node name="Zombie_zambonidriver_outerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="12"]
-position = Vector2(29.5455, 56.5455)
+position = Vector2(29.640795, 56.681587)
 rotation = 0.118682
-scale = Vector2(0.749, 0.749)
+scale = Vector2(0.74940795, 0.74940795)
 texture = ExtResource("10_w0oyq")
 centered = false
 
 [node name="Zombie_zambonidriver_shoulder" type="Sprite2D" parent="Body/BodyCorrect" index="13"]
-position = Vector2(51.5545, 42.6819)
-rotation = 0.0134843
+position = Vector2(51.5, 43.103977)
+rotation = 0.0051668235
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("11_sp1fh")
 centered = false
 
 [node name="Zombie_head" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(23.0545, -0.418077)
+position = Vector2(22.959206, -0.077615105)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_dqc0a")
 centered = false
 
 [node name="Zombie_jaw" type="Sprite2D" parent="Body/BodyCorrect" index="15"]
-position = Vector2(30.9, 33.6455)
-rotation = -0.0252232
+position = Vector2(30.859205, 33.740795)
+rotation = -0.009299926
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_wy8xw")
 centered = false
 
 [node name="Zombie_zambonidriver_mullet2" type="Sprite2D" parent="Body/BodyCorrect" index="16"]
-position = Vector2(54.8, 11.3274)
-rotation = -0.0323625
+position = Vector2(54.8, 11.76318)
+rotation = -0.012399903
 scale = Vector2(0.66, 0.66)
 texture = ExtResource("14_8njlc")
 centered = false
 
 [node name="Zombie_zambonidriver_beanie" type="Sprite2D" parent="Body/BodyCorrect" index="17"]
-position = Vector2(23.809, -11.0362)
+position = Vector2(23.659206, -10.314435)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("15_l1rr5")
 centered = false
 
 [node name="Zombie_zamboni_wires" type="Sprite2D" parent="Body/BodyCorrect" index="18"]
-position = Vector2(72.1, 93.8455)
+position = Vector2(72.1, 93.98159)
 scale = Vector2(0.63, 0.63)
 texture = ExtResource("16_q0xlo")
 centered = false
 
 [node name="Zombie_zamboni_brush" type="Sprite2D" parent="Body/BodyCorrect" index="19"]
-position = Vector2(-38.1726, 138.3)
+position = Vector2(-37.73682, 138.3)
 scale = Vector2(0.63, 0.63)
 texture = ExtResource("17_n0y45")
 centered = false
 
 [node name="Zombie_zamboni_wheel1" type="Sprite2D" parent="Body/BodyCorrect" index="20"]
-position = Vector2(-70.0003, 123.464)
-rotation = 0.0837608
-scale = Vector2(0.562, 0.562)
+position = Vector2(-71.00795, 124.22636)
+rotation = 0.030999755
+scale = Vector2(0.562408, 0.562408)
 texture = ExtResource("18_6mx43")
 centered = false
 
 [node name="Zombie_zamboni_wheel2" type="Sprite2D" parent="Body/BodyCorrect" index="21"]
-position = Vector2(-4.65481, 123.618)
-rotation = 0.0837608
-scale = Vector2(0.562, 0.562)
+position = Vector2(-5.5671544, 124.28556)
+rotation = 0.030999755
+scale = Vector2(0.562408, 0.562408)
 texture = ExtResource("18_6mx43")
 centered = false
 
 [node name="Zombie_zamboni_2" type="Sprite2D" parent="Body/BodyCorrect" index="22"]
-position = Vector2(-80.1, 56.891)
+position = Vector2(-80.1, 57.08159)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("19_he2le")
 centered = false
 
 [node name="Zombie_zamboni_1" type="Sprite2D" parent="Body/BodyCorrect" index="23"]
-position = Vector2(-81.2455, 41.9548)
-rotation = 0.00713926
+position = Vector2(-81.38159, 42.90795)
+rotation = 0.0030999756
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("20_p2bi8")
 centered = false
@@ -1681,15 +1665,23 @@ libraries = {
 [node name="AttackComponent" parent="." index="7"]
 script = ExtResource("46_5rl58")
 
-[node name="AttackRayComponent" parent="AttackComponent" index="0"]
-can_attack_plant_status = 5
-
-[node name="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2d" index="0"]
-position = Vector2(-15, 0)
-shape = SubResource("RectangleShape2D_tjtkh")
-
 [node name="MoveComponent" parent="." index="8"]
 move_mode = 1
+
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetection" index="0"]
+position = Vector2(20, -50)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xvg1s")
+
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxReal" index="0"]
+position = Vector2(20, -50)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xvg1s")
+
+[node name="CollisionShape2D" parent="HurtBoxComponent/HurtBoxDetectionOnAttack" index="0"]
+position = Vector2(20, -50)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_xvg1s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="12"]
 libraries = {

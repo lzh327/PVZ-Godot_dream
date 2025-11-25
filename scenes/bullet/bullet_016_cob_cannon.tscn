@@ -75,6 +75,7 @@ position = Vector2(0, -28)
 script = ExtResource("5_nsvt0")
 
 [node name="BlastMark" type="Sprite2D" parent="BombComponent/BombEffect"]
+z_index = -1
 position = Vector2(4, 37)
 texture = ExtResource("6_l1osl")
 

@@ -19,12 +19,21 @@ class_name DaySunsManagner
 
 
 func _ready():
-	production_interval = 10 * curr_sun_sum_value + 425
 	production_timer.timeout.connect(_on_production_timer_timeout)
 
 
 func start_day_sun():
-	production_timer.start(production_interval/100)
+	# 如果计时器是暂停状态，取消暂停
+	if production_timer.paused:
+		production_timer.paused = false
+
+	if production_timer.is_stopped():
+		change_production_interval()
+		production_timer.start(production_interval/100)
+
+func pause_day_sun():
+	production_timer.paused = true
+
 
 func _on_production_timer_timeout():
 	spawn_sun()

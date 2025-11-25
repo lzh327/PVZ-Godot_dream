@@ -48,7 +48,8 @@ func init_state(init_status:E_JacksonStatus):
 		change_jackson_anim_status(curr_jackson_status, E_JacksonStatus.Point)
 		jackson_manager.start_anim()
 	else:
-		animation_player.play("pose_be_call")		## 方向
+		if init_status == E_JacksonStatus.Enter:
+			animation_player.play("pose_be_call")		## 方向
 		zombie_009_jackson.update_direction_x_body(1)
 
 ## 舞王动画状态改变
@@ -69,7 +70,7 @@ func change_jackson_anim_status(ori_value:E_JacksonStatus, new_value:E_JacksonSt
 			enter_status(new_value)
 
 		E_JacksonStatus.Death:
-			print("僵尸原始为死亡状态")
+			#print("僵尸原始为死亡状态")
 			return
 
 ## 进入新状态
@@ -80,7 +81,11 @@ func enter_status(new_value:E_JacksonStatus):
 			## 召唤僵尸动画
 			animation_player.play("point")
 			## 控制舞王方向
-			zombie_009_jackson.body.scale = Vector2(1,1)
+			#zombie_009_jackson.body.scale = Vector2(1,1)
+			zombie_009_jackson.body.scale = Vector2(
+				abs(zombie_009_jackson.body.scale.x) * sign(1),
+				abs(zombie_009_jackson.body.scale.y) * sign(1)
+			)
 			await animation_player.animation_finished
 			change_jackson_anim_status(curr_jackson_status, judge_curr_status())
 		E_JacksonStatus.Norm:
@@ -91,7 +96,11 @@ func enter_status(new_value:E_JacksonStatus):
 			## 修改攻击力为原始值
 			attack_component.update_attack_value(1, AttackComponentZombieNorm.E_AttackValueFactor.JacksonEnter)
 			animation_player.play(&"eat", -1, 2)
-			zombie_009_jackson.body.scale = Vector2(1,1)
+			#zombie_009_jackson.body.scale = Vector2(1,1)
+			zombie_009_jackson.body.scale = Vector2(
+				abs(zombie_009_jackson.body.scale.x) * sign(1),
+				abs(zombie_009_jackson.body.scale.y) * sign(1)
+			)
 		E_JacksonStatus.Death:
 			animation_player.play(&"death", 0.2)
 
@@ -111,27 +120,27 @@ func allow_dance():
 
 ## 舞王管理器管理动画播放
 ## Norm状态更新
-func anim_play(name, curr_scale, start_time, speed, is_follow:=false):
+func anim_play(anim_name, curr_scale, start_time, _speed, is_follow:=false):
 	if curr_jackson_status == E_JacksonStatus.Norm:
 		move_component._walking_end()
 		## 如果是唤伴舞动画,入场标志已结束使用，这里重复使用一下
-		if name == "point":
+		if anim_name == "point":
 			change_jackson_anim_status(curr_jackson_status, E_JacksonStatus.Point)
 			return
 		## 最后一次举手需要举起，舞王管理器重新创建了新动画控制播放时间
-		if name == "armraise_end":
-			name = "armraise"
+		if anim_name == "armraise_end":
+			anim_name = "armraise"
 
 		if is_follow:
-			animation_player.play_section(name, start_time, -1, 0.2)
+			animation_player.play_section(anim_name, start_time, -1, 0.2)
 		else:
-			animation_player.play(name)
+			animation_player.play(anim_name)
 			animation_player.seek(0)
 
 		## 控制舞王方向
 		zombie_009_jackson.update_direction_x_body(curr_scale.x)
 
-		if name == "walk":
+		if anim_name == "walk":
 			#await get_tree().create_timer(0.1).timeout
 			await get_tree().process_frame
 			await get_tree().process_frame

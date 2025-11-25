@@ -8,12 +8,14 @@ class_name Bullet1002BowlingBomb
 var rotation_speed = 5.0
 
 
-func _process(delta: float) -> void:
-	super._process(delta)
+
+func _physics_process(delta: float) -> void:
+	super(delta)
 	body_correct.rotation += rotation_speed * delta
 
 
 ## 攻击一次
+@warning_ignore("unused_parameter")
 func attack_once(enemy:Character000Base):
 	bomb_component.bomb_once()
 	queue_free()

@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 func attack_once():
 	if is_instance_valid(detect_component.enemy_can_be_attacked) and not owner.is_death:
 		detect_component.enemy_can_be_attacked.be_zombie_eat_once(owner)
-		SoundManager.play_zombie_SFX(Global.ZombieType.Null, "Chomp")
+		SoundManager.play_character_SFX("Chomp")
 
 
 

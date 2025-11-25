@@ -1268,7 +1268,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(70, 555), Vector2(70, 37)]
+"values": [Vector2(70, 555), Vector2(70, 40)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1485,9 +1485,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -360.0
-offset_top = -329.0
+offset_top = -350.0
 offset_right = 360.0
-offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_jjhxv")
@@ -1497,9 +1496,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -299.0
+offset_top = -340.0
 offset_right = 476.0
-offset_bottom = 381.0
+offset_bottom = 340.0
 grow_vertical = 2
 texture = ExtResource("37_at8of")
 
@@ -1511,8 +1510,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -730.0
-offset_top = -45.0
-offset_bottom = 515.0
+offset_top = -560.0
+offset_bottom = 0.00036621094
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("2_j2mjb")
@@ -1961,8 +1960,9 @@ speed_scale = 0.1
 [node name="WoodSign" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 47.0
-offset_top = -249.0
+offset_top = -19.15364
 offset_right = 351.0
+offset_bottom = 229.84636
 
 [node name="TextureRect" type="TextureRect" parent="WoodSign"]
 layout_mode = 0
@@ -2051,7 +2051,6 @@ offset_bottom = 373.0
 
 [node name="Music" type="Control" parent="StartMenuOptionDialog/Option"]
 custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
 anchors_preset = 0
 offset_left = 4.0
 offset_top = -0.5
@@ -2077,7 +2076,6 @@ value = 0.5
 
 [node name="SoundEffect" type="Control" parent="StartMenuOptionDialog/Option"]
 custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
 anchors_preset = 0
 offset_left = 4.0
 offset_top = 33.5
@@ -2103,7 +2101,6 @@ value = 0.5
 
 [node name="FullScreen" type="Control" parent="StartMenuOptionDialog/Option"]
 custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
 anchors_preset = 0
 offset_left = 4.0
 offset_top = 67.5
@@ -2194,7 +2191,7 @@ use_parent_material = false
 clip_contents = false
 custom_minimum_size = Vector2(0, 0)
 layout_direction = 0
-layout_mode = 3
+layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0
@@ -2222,9 +2219,18 @@ focus_neighbor_bottom = NodePath("")
 focus_next = NodePath("")
 focus_previous = NodePath("")
 focus_mode = 2
+focus_behavior_recursive = 0
 mouse_filter = 0
+mouse_behavior_recursive = 0
 mouse_force_pass_scroll_events = true
 mouse_default_cursor_shape = 2
+accessibility_name = ""
+accessibility_description = ""
+accessibility_live = 0
+accessibility_controls_nodes = Array[NodePath]([])
+accessibility_described_by_nodes = Array[NodePath]([])
+accessibility_labeled_by_nodes = Array[NodePath]([])
+accessibility_flow_to_nodes = Array[NodePath]([])
 theme = null
 theme_type_variation = &""
 disabled = false
@@ -2267,6 +2273,7 @@ visible = false
 
 [node name="Dialog_Help" parent="." instance=ExtResource("57_ry5e1")]
 visible = false
+layout_mode = 0
 offset_left = 225.0
 offset_top = 124.0
 offset_right = 225.0
@@ -2283,6 +2290,7 @@ text = "僵尸打开了天灵盖
 
 [node name="Dialog" parent="." instance=ExtResource("57_ry5e1")]
 visible = false
+layout_mode = 0
 offset_left = 225.0
 offset_top = 124.0
 offset_right = 225.0
@@ -2300,7 +2308,7 @@ text = "没做"
 [connection signal="pressed" from="BG_Right/Menu/Button1" to="." method="_on_button_1_pressed"]
 [connection signal="pressed" from="BG_Right/Menu/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="BG_Right/Menu/Button3" to="Dialog" method="appear_dialog"]
-[connection signal="pressed" from="BG_Right/Menu/Button4" to="Dialog" method="appear_dialog"]
+[connection signal="pressed" from="BG_Right/Menu/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="BG_Right/Option/TextureButton" to="." method="_on_option_button_1_pressed"]
 [connection signal="pressed" from="BG_Right/Option/TextureButton2" to="." method="_on_option_button_2_pressed"]
 [connection signal="pressed" from="BG_Right/Option/TextureButton3" to="." method="_on_option_button_3_pressed"]

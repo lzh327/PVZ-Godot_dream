@@ -20,8 +20,9 @@ func _ready() -> void:
 		y_every_lane.append(i_zombie_row_node.zombie_create_position.global_position.y)
 	SoundManager.play_bullet_attack_SFX(SoundManager.TypeBulletSFX.Bowling)
 
-func _process(delta: float) -> void:
-	super._process(delta)
+
+func _physics_process(delta: float) -> void:
+	super(delta)
 	body_correct.rotation += rotation_speed * delta
 	## 如果第一次攻击已完成，碰到边缘时
 	if first_attack_end:
@@ -48,10 +49,11 @@ func _process(delta: float) -> void:
 	## 移动离开当前行后，更新当前
 	if in_curr_lane and (y_every_lane[bullet_lane] - 10 > global_position.y or global_position.y > y_every_lane[bullet_lane] + 10):
 		in_curr_lane = false	# 修改当前行
-		update_z_index_and_lane(bullet_lane, bullet_lane + direction.y)
+		update_z_index_and_lane(bullet_lane, int(bullet_lane + direction.y))
 
 
 ## 更新图层
+@warning_ignore("unused_parameter")
 func update_z_index_and_lane(curr_lane:int, target_lane:int):
 	bullet_lane = target_lane
 	z_index = 50 * bullet_lane + 45
@@ -68,7 +70,7 @@ func _update_direction():
 		else:
 			direction.y *= -1
 
-	update_z_index_and_lane(bullet_lane, bullet_lane + direction.y)
+	update_z_index_and_lane(bullet_lane, int(bullet_lane + direction.y))
 
 ## 子弹与敌人碰撞
 func _on_area_2d_attack_area_entered(area: Area2D) -> void:

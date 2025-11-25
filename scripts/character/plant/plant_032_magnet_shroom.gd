@@ -7,7 +7,7 @@ class_name Plant032MagnetShroom
 @export var is_attack:=false
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	magnet_component.signal_attack_start.connect(func():is_attack=true)
 	magnet_component.signal_attack_cd_end.connect(func():is_attack=false)

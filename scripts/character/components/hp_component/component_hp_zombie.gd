@@ -57,7 +57,6 @@ var curr_hp_stage_armor2:= 0
 ## 死亡后每4帧掉一次血
 var num_frame := 0
 
-
 signal signal_hp_armor1_loss(curr_hp_armor1:int, curr_hp:int, is_no_drop:bool)
 signal signal_hp_armor2_loss(curr_hp_armor2:int, curr_hp:int, is_no_drop:bool)
 
@@ -78,22 +77,23 @@ func _physics_process(delta: float) -> void:
 	if owner_character.is_death and curr_hp != 0:
 		num_frame = wrapi(num_frame + 1, 0, 4)
 		if num_frame == 0:
-			curr_hp -= delta * 50 * 4
+			curr_hp -= max(int(delta * 50 * 4), 1)
 
 
 func get_all_hp():
 	return curr_hp_armor1 + curr_hp_armor2 + curr_hp
 
 
-## 掉血
-## attack_value(int): 掉血的值
-## bullet_mode(Global.AttackMode): 伤害类型
-## trigger_be_attack_SFX:=true:是否触发受击音效
+## [attack_value:int] 掉血的值
+## [bullet_mode:Global.AttackMode]: 伤害类型
+## [is_drop_on_death:bool] 死亡时是否有掉落
+## [trigger_be_attack_SFX:bool]:是否触发受击音效
+## [is_drop_2:bool] 是否有掉落额外条件
 ## return bool: 返回是否死亡
-func Hp_loss(attack_value:int, bullet_mode : Global.AttackMode = Global.AttackMode.Norm, is_drop=true, trigger_be_attack_SFX:=true):
+func Hp_loss(attack_value:int, bullet_mode : Global.AttackMode = Global.AttackMode.Norm, is_drop_on_death=true, trigger_be_attack_SFX:=true, is_drop_2:=true):
 	var ori_hp = get_all_hp()
-	## 掉血标志, 1:本体 2:一类防具 3:二类防具
-	var flag_loss:int = 0b000
+	## 掉血标志, 1:本体 2:一类防具 4:二类防具
+	var flag_loss:int = 0
 	match bullet_mode:
 		## 普通子弹
 		Global.AttackMode.Norm:
@@ -235,7 +235,9 @@ func Hp_loss(attack_value:int, bullet_mode : Global.AttackMode = Global.AttackMo
 	var res_hp = get_all_hp()
 	var loss_hp = ori_hp - res_hp
 
-	## 发射僵尸掉血信号
+	var is_drop = not (owner.is_death and not is_drop_on_death) and is_drop_2
+
+	## 组件发射掉血信号,僵尸发射僵尸掉血信号给僵尸管理器处理残半刷新
 	signal_zombie_hp_loss.emit(loss_hp)
 	if flag_loss & 1:
 		signal_hp_loss.emit(curr_hp, is_drop)
@@ -254,4 +256,14 @@ func Hp_loss(attack_value:int, bullet_mode : Global.AttackMode = Global.AttackMo
 		## 如果有受击音效并且触发受击音效
 		if sfx_be_attack_armor2 != SoundManager.TypeBeAttackSFX.Null and trigger_be_attack_SFX:
 			SoundManager.play_be_attack_SFX(sfx_be_attack_armor2)
+
+## 小僵尸大麻烦更新僵尸血量
+func update_mini_zombie_hp():
+	max_hp /= 2
+	max_hp_armor1 /= 2
+	max_hp_armor2 /= 2
+
+	curr_hp = max_hp
+	curr_hp_armor1 = max_hp_armor1
+	curr_hp_armor2 = max_hp_armor2
 

@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name SleepComponent
 
 
@@ -11,7 +11,7 @@ signal signal_is_sleep
 signal signal_not_is_sleep
 
 ## 睡眠影响的节点,在植物本体中调用judge_is_sleeping()使对应节点disable
-@export var sleep_influence_components:Array[ComponentBase]
+@export var sleep_influence_components:Array[ComponentNormBase]
 
 ## 植物本体_ready节点调用
 func judge_is_sleeping() -> void:
@@ -40,5 +40,9 @@ func end_sleep():
 	visible = false
 	anim_sleep.stop()
 	signal_not_is_sleep.emit()
+
+## 更新动画速度
+func owner_update_speed(speed_product:float):
+	anim_sleep.speed_scale = speed_product
 
 

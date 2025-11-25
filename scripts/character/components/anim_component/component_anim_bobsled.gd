@@ -14,7 +14,7 @@ func _ready() -> void:
 	animation_player.animation_finished.connect(_on_animation_finished)
 
 ## 更新动画速度(根据速度倍率)
-func update_anim_speed(speed_factor_product:float):
+func owner_update_speed(speed_factor_product:float):
 	animation_player.speed_scale = animation_origin_speed * speed_factor_product
 	for sub_bobsled_anim_player in all_sub_bobsled_anim_player:
 		sub_bobsled_anim_player.speed_scale = animation_origin_speed * speed_factor_product

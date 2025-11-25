@@ -10,14 +10,14 @@ class_name Plant014ScaredyShroom
 
 
 
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	scaredy_component.signal_scaredy_start.connect(change_is_scared.bind(true))
 	scaredy_component.signal_scaredy_end.connect(change_is_scared.bind(false))
 
-	for component:ComponentBase in scaredy_component.scaredy_influence_components:
-		scaredy_component.signal_scaredy_start.connect(component.disable_component.bind(ComponentBase.E_IsEnableFactor.Scaredy))
-		scaredy_component.signal_scaredy_end.connect(component.enable_component.bind(ComponentBase.E_IsEnableFactor.Scaredy))
+	for component:ComponentNormBase in scaredy_component.scaredy_influence_components:
+		scaredy_component.signal_scaredy_start.connect(component.disable_component.bind(ComponentNormBase.E_IsEnableFactor.Scaredy))
+		scaredy_component.signal_scaredy_end.connect(component.enable_component.bind(ComponentNormBase.E_IsEnableFactor.Scaredy))
 	signal_update_speed.connect(attack_component.owner_update_speed)
 
 ## 害怕组件信号发射改变植物害怕状态

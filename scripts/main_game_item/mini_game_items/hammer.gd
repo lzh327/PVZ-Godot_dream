@@ -3,7 +3,7 @@ class_name Hammer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var area_2d: Area2D = $Area2D
-@onready var pow: Sprite2D = $Pow
+@onready var pow_effect: Sprite2D = $Pow
 
 @export_group("锤击出阳光相关")
 ## 是否掉落阳光
@@ -18,6 +18,7 @@ var is_used := false
 func _ready() -> void:
 	set_is_used(true)
 
+@warning_ignore("unused_parameter")
 func _process(delta):
 	if is_used:
 		# 跟随鼠标移动
@@ -73,10 +74,10 @@ func hammer_zombie():
 		return
 
 	## 选择最左边的僵尸area
-	var area_be_choosed :Area2D
+	var area_be_choosed :Area2D = null
 	# 遍历所有重叠的区域
 	for area in overlapping_areas:
-		if not area_be_choosed:
+		if area_be_choosed == null:
 			area_be_choosed = area
 		else:
 			if area.global_position.x < area_be_choosed.global_position.x:
@@ -97,7 +98,7 @@ func hammer_zombie():
 				spawn_sun(global_position_zombie_be_choosed)
 
 	## 锤击僵尸特效
-	var new_pow :Sprite2D= pow.duplicate()
+	var new_pow :Sprite2D= pow_effect.duplicate()
 	new_pow.visible = true
 	new_pow.global_position = global_position
 	new_pow.z_as_relative = false

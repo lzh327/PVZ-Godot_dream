@@ -1,133 +1,20 @@
 extends Node
 
-## 图层顺序种类
-#0,		## 世界背景
-#100,	## 鼠标未移入UI时，在最下面
-#395,	## 植物： 395	 代码更新每行图层 每行隔10个图层
-	#395+5,		## 磁力菇吸的铁具
-	#395-4,		## 墓碑: 当前植物格子图层-4
-#400,	## 僵尸： 400	 代码更新每行图层 每行僵尸隔10图层
-	#0,		## 保龄球根据行更新图层，在僵尸行之间
-	#400-7 蹦极僵尸
-	#400-7 +7+2 蹦极僵尸靶子
-#405,	## 小推车： 每行比僵尸行+5，
-#600,	## 子弹： 600
-#650,	## 爆炸： 650
-#700,	## 展示僵尸： 700
-#800,	## 泳池迷雾:800
-#910,	## 阳光： 910
-#900,	## Ui2 : 900 鼠标移入UI时，在植物和僵尸上面
-#950,	## 真实铲子 : 950
-#950,	## 锤子： 950
-#951,	## 锤击僵尸特效： 951
-#0,		## 血量显示： 对应角色+1
-#1000,	## UI3： 1000 进度条、准备放置植物
-#1100,	## UI4： 1100 卡槽默认 （+50 卡片选择移动时临时位置）
-#2000,	## 奖杯： 2000
-#0,		## 商店： 使用canvasLayer
-#3100,	## 戴夫: 3100
-#3200,	## 金币显示：3200
-
-
-## 花园图层顺序
-#TODO:忘记写了，也不重要，有空写
-
-#region 用户游戏存档相关
-#region 全局游戏数据
-## 金币数量
-##
-var coin_value : int = 0:
-	set(value):
-		coin_value_change.emit()
-		## 若存在金币显示ui 更新金币
-		coin_value = value
-		if coin_value_label:
-			coin_value_label.update_label()
-
-## 金币改变信号
-signal coin_value_change
-## 显示金币的label
-var coin_value_label:CoinBankLabel
-
-## 生产金币,按概率生产，概率和为1, 将金币生产在coin_bank_bank（Global.coin_value_label）节点下
-## 概率顺序为 银币金币和钻石
-func create_coin(probability:Array=[0.5, 0.5, 0], global_position_new_coin:Vector2=Vector2()):
-	coin_value_label.update_label()
-	## 如果当前场景有金币值的label,将金币生产在coin_bank_bank（Global.coin_value_label）节点下
-	if is_instance_valid(Global.coin_value_label):
-		assert(probability[0] + probability[1] + probability[2], "概率和不为1")
-		var r = randf()
-		var new_coin:Coin
-		if r < probability[0]:
-			new_coin = SceneRegistry.COIN_SILVER.instantiate()
-		elif r < probability[0] + probability[1]:
-			new_coin = SceneRegistry.COIN_GOLD.instantiate()
-		else:
-			new_coin = SceneRegistry.COIN_DIAMOND.instantiate()
-		Global.coin_value_label.add_child(new_coin)
-		new_coin.global_position = global_position_new_coin
-		## 抛物线发射金币
-		new_coin.launch(Vector2(randf_range(-50, 50), randf_range(80, 90)))
-	else:
-		printerr("生成金币但没有coin_value_label")
-# TODO:暂时先写global，后面要改?
-# 也可能不改 -- 20250907
-## 掉落花园植物
-func create_garden_plant(global_position_new_garden_plant:Vector2):
-	coin_value_label.update_label()
-
-	var new_garden_plant:Present = SceneRegistry.PRESENT.instantiate()
-
-	Global.coin_value_label.add_child(new_garden_plant)
-	new_garden_plant.global_position = global_position_new_garden_plant
-	SoundManager.play_other_SFX("chime")
-
-## 当前花园的新增植物数量，进入花园时处理
-var curr_num_new_garden_plant :int = 3
-
-## 花园数据
-var garden_data:Dictionary = {
-	"num_bg_page_0":1,
-	"num_bg_page_1":1,
-	"num_bg_page_2":1,
-}
-
-## 数字转str,每三位加逗号
-func format_number_with_commas(n: int) -> String:
-	var s := str(n)
-	var result := ""
-	var count := 0
-	for i in range(s.length() - 1, -1, -1):
-		result = s[i] + result
-		count += 1
-		if count % 3 == 0 and i != 0:
-			result = "," + result
-	return result
-
-#endregion
-
-
 func _ready() -> void:
 	load_game_data()
 	_create_save_game_timer()
 
-#region 自动保存存档
-func _create_save_game_timer():
-	var save_game_timer = Timer.new()
+var main_game:MainGameManager
+var game_para:ResourceLevelData
 
-	save_game_timer.wait_time = 60
-	save_game_timer.one_shot = false
-	save_game_timer.autostart = true
-	add_child(save_game_timer)
-	# 连接超时信号
-	save_game_timer.timeout.connect(_on_save_game_timer_timeout)
-
-
-func _on_save_game_timer_timeout():
-	print("自动保存存档")
-	save_game_data()
+#region 图鉴信息
+var data_almanac:Dictionary
+const PathDataPlant := "res://data/almanac_plant.json"
 #endregion
 
+#region 用户数据 存档
+
+#region 当前植物和僵尸
 var curr_plant = [
 	PlantType.P001PeaShooterSingle,
 	PlantType.P002SunFlower,
@@ -189,7 +76,6 @@ var curr_plant = [
 
 ]
 
-
 var curr_zombie = [
 	ZombieType.Z001Norm,
 	ZombieType.Z002Flag,
@@ -223,8 +109,102 @@ var curr_zombie = [
 	### 单人雪橇车小队僵尸
 	#ZombieType.Z1001BobsledSingle,
 ]
+#endregion
+
+#region 全局游戏数据
+#region 金币
+## 金币数量
+var coin_value : int = 0:
+	set(value):
+		coin_value_change.emit()
+		## 若存在金币显示ui 更新金币
+		coin_value = value
+		if coin_value_label:
+			coin_value_label.update_label()
+
+## 金币改变信号
+signal coin_value_change
+## 显示金币的label
+var coin_value_label:CoinBankLabel
+
+## 生产金币,按概率生产，概率和为1, 将金币生产在coin_bank_bank（Global.coin_value_label）节点下
+## 概率顺序为 银币金币和钻石
+func create_coin(probability:Array=[0.5, 0.5, 0], global_position_new_coin:Vector2=Vector2()):
+	coin_value_label.update_label()
+	## 如果当前场景有金币值的label,将金币生产在coin_bank_bank（Global.coin_value_label）节点下
+	if is_instance_valid(Global.coin_value_label):
+		assert(probability[0] + probability[1] + probability[2], "概率和不为1")
+		var r = randf()
+		var new_coin:Coin
+		if r < probability[0]:
+			new_coin = SceneRegistry.COIN_SILVER.instantiate()
+		elif r < probability[0] + probability[1]:
+			new_coin = SceneRegistry.COIN_GOLD.instantiate()
+		else:
+			new_coin = SceneRegistry.COIN_DIAMOND.instantiate()
+		Global.coin_value_label.add_child(new_coin)
+		new_coin.global_position = global_position_new_coin
+		## 抛物线发射金币
+		new_coin.launch(Vector2(randf_range(-50, 50), randf_range(80, 90)))
+	else:
+		printerr("生成金币但没有coin_value_label")
+#endregion
+
+#region 花园
+# TODO:暂时先写global，后面要改?
+# 也可能不改 -- 20250907
+## 掉落花园植物
+func create_garden_plant(global_position_new_garden_plant:Vector2):
+	coin_value_label.update_label()
+
+	var new_garden_plant:Present = SceneRegistry.PRESENT.instantiate()
+
+	Global.coin_value_label.add_child(new_garden_plant)
+	new_garden_plant.global_position = global_position_new_garden_plant
+	SoundManager.play_other_SFX("chime")
+
+## 当前花园的新增植物数量，进入花园时处理
+var curr_num_new_garden_plant :int = 3
+
+## 花园数据
+var garden_data:Dictionary = {
+	"num_bg_page_0":1,
+	"num_bg_page_1":1,
+	"num_bg_page_2":1,
+}
+#endregion
+
+#region 关卡状态
+
+var curr_all_level_state_data:Dictionary = {
+	"IsSuccess":false,
+	"IsHaveMultiRoundSaveGameData":false,
+	"CurrGameRound":1
+}
+#endregion
+
+#endregion
+
+
+#region 自动保存存档
+func _create_save_game_timer():
+	var save_game_timer = Timer.new()
+
+	save_game_timer.wait_time = 60
+	save_game_timer.one_shot = false
+	save_game_timer.autostart = true
+	add_child(save_game_timer)
+	# 连接超时信号
+	save_game_timer.timeout.connect(_on_save_game_timer_timeout)
+
+
+func _on_save_game_timer_timeout():
+	print("自动保存全局数据存档")
+	save_game_data()
+#endregion
 
 #region 保存数据
+
 #region 存档全局数据
 const SAVE_GAME_PATH = "user://SaveGame.json"
 ## 保存存档数据到 JSON 文件
@@ -233,6 +213,7 @@ func save_game_data() -> void:
 		"coin_value": coin_value,
 		"garden_data": garden_data,
 		"curr_num_new_garden_plant": curr_num_new_garden_plant,
+		"curr_all_level_state_data": curr_all_level_state_data,
 	}
 	save_json(data, SAVE_GAME_PATH)
 
@@ -242,6 +223,7 @@ func load_game_data() -> void:
 	coin_value = data.get("coin_value", coin_value)
 	curr_num_new_garden_plant = data.get("curr_num_new_garden_plant", curr_num_new_garden_plant)
 	garden_data = data.get("garden_data", garden_data)
+	curr_all_level_state_data = data.get("curr_all_level_state_data", curr_all_level_state_data)
 #endregion
 
 #region 保存上次选卡信息
@@ -255,16 +237,10 @@ func save_selected_cards():
 	save_json(data, SelectedCardsPath)
 
 func load_selected_cards():
-
 	var data = load_json(SelectedCardsPath) as Dictionary
 		# 加载数据
 	selected_cards = data.get("selected_cards", {})
 
-#endregion
-
-#region 图鉴信息
-var data_almanac:Dictionary
-const PathDataPlant := "res://data/almanac_plant.json"
 #endregion
 
 #region 保存数据方法
@@ -299,9 +275,8 @@ func load_json(path:String):
 	print("✅ 成功读取json文件:", path)
 	return result
 #endregion
+
 #endregion
-
-
 
 #region 游戏相关
 
@@ -374,7 +349,8 @@ enum PlantType {
 	P046GoldMagnet,
 	P047SpikeRock,
 	P048CobCannon,
-
+	## 模仿者
+	P999Imitater = 999,
 	## 发芽
 	P1000Sprout = 1000,
 	## 保龄球
@@ -744,6 +720,16 @@ const  PlantInfo = {
 		PlantInfoAttribute.PlantScenes : preload("res://scenes/character/plant/plant_048_cob_cannon.tscn")
 		},
 
+	## 模仿者
+	PlantType.P999Imitater:{
+		PlantInfoAttribute.PlantName: "Imitater",
+		PlantInfoAttribute.CoolTime: 50.0,
+		PlantInfoAttribute.SunCost: 0,
+		PlantInfoAttribute.PlantConditionResource :  preload("res://resources/character_resource/plant_condition/999_imitater.tres"),
+		PlantInfoAttribute.PlantScenes :  preload("res://scenes/character/plant/plant_999_imitater.tscn")
+		},
+
+
 	## 发芽
 	PlantType.P1000Sprout:{
 		PlantInfoAttribute.PlantName: "Sprout",
@@ -783,6 +769,7 @@ enum PlacePlantInCell{
 	Shell,	## 保护壳位置
 	Down,	## 花盆（睡莲）位置
 	Float,	## 漂浮位置
+	Imitater,## 模仿者位置
 }
 
 ## 获取植物属性方法
@@ -1155,7 +1142,7 @@ signal signal_change_display_zombie_HP_label(value:bool)
 var card_slot_top_mouse_focus := false:
 	set(value):
 		card_slot_top_mouse_focus = value
-
+		signal_change_card_slot_top_mouse_focus.emit()
 signal signal_change_card_slot_top_mouse_focus
 
 ## 静态迷雾
@@ -1223,12 +1210,41 @@ func load_config():
 
 #endregion
 
+#endregion
+
+#region 主游戏场景相关
+#region 场景树暂停
+## 游戏暂停因素
+enum E_PauseFactor{
+	Menu,			## 菜单
+	GameOver,		## 游戏结束
+	ReChooseCard,	## 重新选卡
+}
+
+var curr_pause_factor: Dictionary = {
+}
+
+func _update_pause_state():
+	get_tree().paused = curr_pause_factor.values().any(func(v): return v)
+
+## 开始场景树暂停
+func start_tree_pause(pause_factor: E_PauseFactor):
+	curr_pause_factor[pause_factor] = true
+	_update_pause_state()
+
+## 结束场景树暂停
+func end_tree_pause(pause_factor: E_PauseFactor):
+	curr_pause_factor[pause_factor] = false
+	_update_pause_state()
+
+## 清除所有暂停因素
+func end_tree_pause_clear_all_pause_factors():
+	curr_pause_factor.clear()
+	_update_pause_state()
 
 #endregion
 
-
-#region 关卡相关
-
+#region 场景
 ## 加载场景
 enum MainScenes{
 	MainGameFront,
@@ -1238,8 +1254,10 @@ enum MainScenes{
 	StartMenu = 100,
 	ChooseLevel,
 	ChooseLevelMiniGame,
+	ChooseLevelPuzzle,
+	ChooseLevelSurvival,
 
-	Garden,
+	Garden = 200,
 	Almanac,
 	Store,
 }
@@ -1252,30 +1270,41 @@ var MainScenesMap = {
 	MainScenes.StartMenu: "res://scenes/main/01StartMenu.tscn",
 	MainScenes.ChooseLevel: "res://scenes/main/02ChooesLevel.tscn",
 	MainScenes.ChooseLevelMiniGame: "res://scenes/main/03MiniGameChooesLevel.tscn",
+	MainScenes.ChooseLevelPuzzle: "TODO",
+	MainScenes.ChooseLevelSurvival: "res://scenes/main/05SurvivalChooesLevel.tscn",
 
 	MainScenes.Garden: "res://scenes/main/10Garden.tscn",
 	MainScenes.Almanac: "res://scenes/main/11Almanac.tscn",
 	MainScenes.Store: "res://scenes/main/12Store.tscn",
 }
 
-var main_game:MainGameManager
-var game_para:ResourceLevelData
+## 场景僵尸的行类型
+const ZombieRowTypewithMainScenesMap:Dictionary = {
+	MainScenes.MainGameFront:ZombieRowType.Land,
+	MainScenes.MainGameBack:ZombieRowType.Both,
+	MainScenes.MainGameRoof:ZombieRowType.Land,
+}
+
+#endregion
+
+#endregion
+
+#region 商店
 ## 离开商店信号
 signal signal_store_leave
 var store_node :Node
 ## 打开商店和删除相关
 # 当前场景中
+@warning_ignore("unused_parameter")
 func enter_store(curr_scene:Node):
 	save_game_data()
 	## 商店场景添加为子节点
 	store_node = preload("res://scenes/main/12Store.tscn").instantiate()
 	get_tree().current_scene.add_child(store_node)
 
-
 # 在新场景的脚本中（例如点击返回按钮）
 func exit_store():
 	Global.save_game_data()
 	signal_store_leave.emit()
 	store_node.queue_free()  # 删除当前商店场景
-
 #endregion

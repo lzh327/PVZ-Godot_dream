@@ -14,9 +14,9 @@ class_name Plant000DownBase
 @export var plant_up_position :Vector2
 
 ## 植物初始化相关
-func init_plant(init_type:E_CharacterInitType=E_CharacterInitType.IsNorm, plant_cell:PlantCell=null, garden_date:Dictionary={}) -> void:
-	super(init_type, plant_cell, garden_date)
-	if init_type != E_CharacterInitType.IsNorm:
+func init_plant(plant_init_para:Dictionary) -> void:
+	super(plant_init_para)
+	if plant_init_para[E_PInitAttr.CharacterInitType] != E_CharacterInitType.IsNorm:
 		return
 	plant_cell.down_plant_change_condition(plant_cell.plant_cell_type == PlantCell.PlantCellType.Pool)
 

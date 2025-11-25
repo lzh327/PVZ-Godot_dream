@@ -2,7 +2,8 @@ extends Bullet000Base
 class_name BulletLinear000Base
 ## 直线移动子弹基类
 
-func _process(delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	## 每帧移动子弹
 	position += direction * speed * delta
 

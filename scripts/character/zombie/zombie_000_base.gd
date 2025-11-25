@@ -14,19 +14,20 @@ class_name Zombie000Base
 @export_group("僵尸基础属性")
 ## 是否忽略梯子,即可以攻击梯子下的植物
 @export var is_ignore_ladder:=false
-
+## 是否为小僵尸大麻烦的小僵尸(速度翻倍,大小,血量减半)
+var is_mini_zombie:= false
 @export_subgroup("僵尸铁器")
 ## 僵尸铁器类型
 @export var iron_type:Global.IronType = Global.IronType.Null
 ## 僵尸铁器节点
-@export var iron_node:IronNodeBase
+@export var iron_node:IronNode
 @export_subgroup("僵尸初始化状态")
 ## 僵尸初始化状态（从1[is_norm] 开始，被攻击时是否能被攻击到的属性）
-@export var init_be_attack_status :E_BeAttackStatusZombie = 1
+@export var init_be_attack_status :E_BeAttackStatusZombie = E_BeAttackStatusZombie.IsNorm
 ## 僵尸出生波次
 var curr_wave:=-1
 ## 僵尸当前状态
-var curr_be_attack_status:E_BeAttackStatusZombie:
+var curr_be_attack_status:E_BeAttackStatusZombie=E_BeAttackStatusZombie.IsNorm:
 	set(value):
 		curr_be_attack_status = value
 		signal_status_update.emit()
@@ -105,25 +106,39 @@ func _stop_sfx_enter():
 
 @export_group("其他")
 @export_subgroup("黄油")
-## 头的节点路径,黄油糊脸使用
-@export_node_path("Sprite2D") var head1_path:NodePath = "Body/BodyCorrect/Anim_head1"
+## 头的可能的节点路径,黄油糊脸使用,若路径都不对,新增一个对应的路径
+var head1_path_candidate:Array[NodePath] = [
+	"Body/BodyCorrect/Anim_head/Anim_head1",
+	"Body/BodyCorrect/Anim_head1",
+	"Body/BodyCorrect/Zombie_head",
+	"Body/BodyCorrect/Head/Anim_head1",
+	"Body/BodyCorrect/Zombie_catapult_driver_head",
+]
 ## 头的节点
-@onready var head_node:Node2D = get_node(head1_path)
+var head_node:Node2D
 ## 黄油节点,
 var butter_splat:Node2D
+
+## 僵尸初始化属性
+enum E_ZInitAttr{
+	CharacterInitType,	## 角色初始化类型（正常、展示）
+	Lane,				## 僵尸行
+	CurrZombieRowType,	## 僵尸所在行属性（水、陆地）
+	CurrWave,			## 僵尸波次
+	IsMiniZombie,		## 是否为小僵尸大麻烦的小僵尸
+}
+
 ## 修改初始化状态，在添加到场景树之前调用
-func init_zombie(
-	character_init_type:E_CharacterInitType, 	## 角色初始化类型（正常、展示）
-	curr_zombie_row_type:Global.ZombieRowType,	## 僵尸所在行属性（水、陆地）
-	lane:int = -1, 	## 僵尸行
-	curr_wave:int = -1,		## 僵尸波次
-	curr_pos:Vector2 = Vector2.ZERO,	## 僵尸局部位置
-):
-	self.character_init_type = character_init_type
-	self.curr_zombie_row_type = curr_zombie_row_type
-	self.lane = lane
-	self.curr_wave = curr_wave
-	self.position = curr_pos
+func init_zombie(zombie_init_para:Dictionary):
+	self.is_mini_zombie = zombie_init_para[E_ZInitAttr.IsMiniZombie]
+	self.character_init_type = zombie_init_para.get(E_ZInitAttr.CharacterInitType, E_CharacterInitType.IsNorm)
+	self.lane = zombie_init_para.get(E_ZInitAttr.Lane, -1)
+	if zombie_init_para.has(E_ZInitAttr.CurrZombieRowType):
+		self.curr_zombie_row_type = zombie_init_para[E_ZInitAttr.CurrZombieRowType]
+	else:
+		self.curr_zombie_row_type = Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_row_type
+
+	self.curr_wave = zombie_init_para.get(E_ZInitAttr.CurrWave, -1)
 
 	## 两栖类僵尸在水路时变化
 	if Global.get_zombie_info(zombie_type, Global.ZombieInfoAttribute.ZombieRowType) == Global.ZombieRowType.Both:
@@ -147,27 +162,50 @@ func init_zombie(
 					var sprite = get_node(sprite_path)
 					sprite.visible = true
 
-## 初始化正常出战角色
-func init_norm():
+
+func _ready() -> void:
+	if is_mini_zombie:
+		update_mini_zombie()
 	super()
+	##TODO: 检测是否有头节点,后续删除
+	var is_have_head:=false
+	for head1_path:NodePath in head1_path_candidate:
+		if has_node(head1_path):
+			head_node = get_node(head1_path)
+			is_have_head = true
+			break
+	if not is_have_head:
+		printerr(name, "没有获取头节点")
+
+## 初始化正常出战角色
+func ready_norm():
+	super()
+	var is_have_head:=false
+	for head1_path:NodePath in head1_path_candidate:
+		if has_node(head1_path):
+			head_node = get_node(head1_path)
+			is_have_head = true
+			break
+	if not is_have_head:
+		printerr(name, "没有获取头节点")
 	curr_be_attack_status = init_be_attack_status
 	## 若生成位置在斜面中,生成时修正斜面位置
 	if is_instance_valid(Global.main_game.main_game_slope):
 		## 获取对应位置的斜面y相对位置
 		var slope_y_first = Global.main_game.main_game_slope.get_all_slope_y(global_position.x)
-		move_y_body(slope_y_first)
+		move_y_zombie(slope_y_first)
 	## 僵尸普通攻击组件连接信号
 	if attack_component is AttackComponentZombieNorm:
 		## 攻击组件是否攻击梯子下僵尸
 		attack_component.init_attack_component(is_ignore_ladder)
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	## 入场音效相关
 	if not sfx_enter_name.is_empty():
 		## 入场音效
-		sfx_enter = SoundManager.play_zombie_SFX(zombie_type, sfx_enter_name)
+		sfx_enter = SoundManager.play_character_SFX(sfx_enter_name)
 		## 同一帧多次播放同一音效时不播放新音效
 		if sfx_enter:
 			is_sfxing = true
@@ -176,12 +214,13 @@ func init_norm_signal_connect():
 
 	hp_component.signal_zombie_hp_loss.connect(func(hp_loss:int): signal_zombie_hp_loss.emit(hp_loss, curr_wave))
 	## 角色死亡时禁用攻击组件
-	hp_component.signal_hp_component_death.connect(attack_component.disable_component.bind(ComponentBase.E_IsEnableFactor.Death))
+	hp_component.signal_hp_component_death.connect(attack_component.disable_component.bind(ComponentNormBase.E_IsEnableFactor.Death))
 	## 攻击组件
 	attack_component.signal_change_is_attack.connect(move_component.update_move_factor.bind(move_component.E_MoveFactor.IsAttack))
 	attack_component.signal_change_is_attack.connect(change_is_attack)
+	hurt_box_component = hurt_box_component as HurtBoxComponentZombie
 	## 攻击时受击组件
-	attack_component.signal_change_is_attack.connect(be_attacked_box_component.change_area_attack_appear)
+	attack_component.signal_change_is_attack.connect(hurt_box_component.change_area_attack_appear)
 
 	## 死亡时取消黄油
 	hp_component.signal_hp_component_death.connect(death_stop_butter)
@@ -196,7 +235,7 @@ func init_norm_signal_connect():
 	anim_component.signal_animation_finished.connect(move_component._on_animation_finished)
 
 	## 被魅惑信号
-	signal_character_be_hypno.connect(be_attacked_box_component.owner_be_hypno)
+	signal_character_be_hypno.connect(hurt_box_component.owner_be_hypno)
 	signal_character_be_hypno.connect(attack_component.owner_be_hypno)
 	signal_character_be_hypno.connect(move_component._walking_start)
 
@@ -214,8 +253,8 @@ func init_norm_signal_connect():
 	hp_component.signal_hp_component_death.connect(drop_item_component.drop_coin)
 	hp_component.signal_hp_component_death.connect(drop_item_component.drop_garden_plant)
 
-	## 移动y方向
-	move_component.signal_move_body_y.connect(move_y_body)
+	## 移动僵尸本体y位置,修改对应检测层面节点位置
+	move_component.signal_move_body_y.connect(move_y_zombie)
 
 	## 对移动速度影响,只对速度移动模式生效
 	signal_update_speed.connect(move_component.owner_update_speed)
@@ -223,9 +262,9 @@ func init_norm_signal_connect():
 	signal_update_speed.connect(attack_component.owner_update_speed)
 
 ## 初始化展示角色
-func init_show():
+func ready_show():
 	super()
-	move_component.disable_component(ComponentBase.E_IsEnableFactor.InitType)
+	move_component.disable_component(ComponentNormBase.E_IsEnableFactor.InitType)
 
 ## 改变攻击状态攻击
 func change_is_attack(value:bool):
@@ -237,18 +276,11 @@ func update_move_dir_y_correct(move_dir_y_correct_slope:Vector2):
 	move_component.move_dir_y_correct_slope = move_dir_y_correct_slope
 
 
-## body\shader\灰烬\受击(真实)框移动y方向
-func move_y_body(move_y:float):
-	body.position.y += move_y
-	shadow.position.y += move_y
-	charred_component.position.y += move_y
-	hp_component.position.y += move_y
-	be_attacked_box_component.move_y_hurt_box_real(move_y)
-
-	for c in special_component_update_pos_in_slope:
-		c.update_component_y(move_y)
-	for n in special_node2d_update_pos_in_slope:
-		n.position.y += move_y
+## 角色移动y值(本体移动,同时修改检测层面的节点)
+func move_y_zombie(move_y:float):
+	position.y += move_y
+	for n in node2d_detect_in_slope:
+		n.position.y -= move_y
 
 ## 改变游泳状态,切换动画时0.2秒过度时间停止移动
 func change_is_swimming(value:bool):
@@ -262,7 +294,7 @@ func change_is_swimming(value:bool):
 ## 角色死亡
 func character_death():
 	super()
-	be_attacked_box_component.queue_free()
+	hurt_box_component.queue_free()
 	swim_box_component._on_owner_is_death()
 	#attack_component.queue_free()
 
@@ -274,14 +306,12 @@ func _fade_and_remove():
 
 ## 死亡不消失(海草\TODO:小推车)
 func character_death_not_disappear():
-	hp_stage_change_component.is_no_change = true
-	hp_component.Hp_loss_death()
+	hp_component.Hp_loss_death(false)
 
 ## 死亡直接消失
 func character_death_disappear():
 	is_death = true
-	hp_stage_change_component.is_no_change = true
-	hp_component.Hp_loss_death()
+	hp_component.Hp_loss_death(false)
 	queue_free()
 
 ## 被小推车碾压
@@ -298,7 +328,7 @@ func in_water_death_start():
 
 ## 被水草缠住,
 func be_grap_in_pool():
-	attack_component.disable_component(ComponentBase.E_IsEnableFactor.Death)
+	attack_component.disable_component(ComponentNormBase.E_IsEnableFactor.Death)
 	anim_component.stop_anim()
 	move_component.update_move_factor(true, MoveComponent.E_MoveFactor.IsDeath)
 
@@ -361,7 +391,7 @@ func zombie_up_from_ground():
 	await body.zombie_body_up_from_ground()
 
 ## 跳跃被高坚果停止
-func jump_be_stop(plant:Plant000Base):
+func jump_be_stop(_plant:Plant000Base):
 	pass
 
 
@@ -398,7 +428,7 @@ func _on_butter_timer_timeout() -> void:
 
 #region 僵尸吃大蒜换行
 func update_lane_on_eat_garlic():
-	SoundManager.play_zombie_SFX(0, "yuck")
+	SoundManager.play_character_SFX("yuck")
 	update_speed_factor(0.0, E_Influence_Speed_Factor.EatGarlic)
 	await get_tree().create_timer(0.5, false).timeout
 	update_speed_factor(1.0, E_Influence_Speed_Factor.EatGarlic)
@@ -419,11 +449,12 @@ func update_lane():
 	signal_lane_update.emit()
 
 	## 禁用攻击组件
-	attack_component.disable_component(ComponentBase.E_IsEnableFactor.Garlic)
-	GlobalUtils.child_node_change_parent(self, Global.main_game.zombie_manager.all_zombie_rows[lane])
+	attack_component.disable_component(ComponentNormBase.E_IsEnableFactor.Garlic)
+	#GlobalUtils.child_node_change_parent(self, Global.main_game.zombie_manager.all_zombie_rows[lane])
+	reparent(Global.main_game.zombie_manager.all_zombie_rows[lane])
 	var tween:Tween = create_tween()
 	tween.tween_property(self, ^"position:y", Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_create_position.position.y, 1)
-	tween.tween_callback(attack_component.enable_component.bind(ComponentBase.E_IsEnableFactor.Garlic))
+	tween.tween_callback(attack_component.enable_component.bind(ComponentNormBase.E_IsEnableFactor.Garlic))
 
 #endregion
 
@@ -432,5 +463,21 @@ func update_lane():
 ## 梯子检测到僵尸时,僵尸爬过梯子
 func start_climbing_ladder():
 	move_component.start_ladder()
+
+#endregion
+
+#region 特殊场景状态
+## 小僵尸大麻烦
+func update_mini_zombie():
+	random_speed_range *= 2
+	## 舞王僵尸会改变符号,所有这么写
+	scale = Vector2(
+		0.5 * sign(scale.x),
+		0.5 * sign(scale.y)
+	)
+	hp_component = hp_component as HpComponentZombie
+	hp_component.update_mini_zombie_hp()
+	hp_stage_change_component.update_mini_zombie_hp_stage_change()
+	hurt_box_component.scale *= 2
 
 #endregion

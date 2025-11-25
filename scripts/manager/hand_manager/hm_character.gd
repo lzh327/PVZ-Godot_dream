@@ -41,6 +41,9 @@ func click_card(card:Card) -> void:
 		_clear_curr_data()
 	## 新植物数据
 	curr_card = card
+	if curr_card.is_seed_rain_card:
+		curr_card.mouse_filter_stop()
+	EventBus.push_event("hm_character_hand_card", [curr_card])
 	## 植物
 	if curr_card.card_plant_type != Global.PlantType.Null:
 		plant_condition = Global.get_plant_info(curr_card.card_plant_type, Global.PlantInfoAttribute.PlantConditionResource)
@@ -91,12 +94,16 @@ func end_preplant_purple_light():
 
 ## 清除数据
 func _clear_curr_data():
-
 	# 如果是紫卡植物
 	if plant_condition != null and plant_condition.is_purple_card:
 		end_preplant_purple_light()
 
 	is_shadow_in_cell = false
+	## 若当前存在卡片,事件总线推清除当前卡片数据,种子雨卡槽接受判断
+	if is_instance_valid(curr_card):
+		EventBus.push_event("hm_character_clear_card", [curr_card])
+		if curr_card.is_seed_rain_card:
+			curr_card.mouse_filter_start()
 	curr_card = null
 	characte_static.queue_free()
 	characte_static_shadow.queue_free()
@@ -167,17 +174,20 @@ func mouse_exit(plant_cell:PlantCell):
 func click_cell(plant_cell:PlantCell):
 	if is_shadow_in_cell:
 		if curr_card.card_plant_type != 0:
-			plant_cell.create_plant(curr_card.card_plant_type)
+			plant_cell.create_plant(curr_card.card_plant_type, curr_card.is_initater)
 		else:
+			var zombie_init_para:Dictionary = {
+				Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+				Zombie000Base.E_ZInitAttr.Lane:plant_cell.row_col.x,
+			}
+
 			Global.main_game.zombie_manager.create_norm_zombie(
 				curr_card.card_zombie_type,
 				Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x],
-				Character000Base.E_CharacterInitType.IsNorm,
-				plant_cell.row_col.x,
-				-1,
+				zombie_init_para,
 				Vector2(
-					plant_cell.global_position.x + plant_cell.size.x/2 - Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x].global_position.x,
-					Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x].zombie_create_position.position.y
+					plant_cell.global_position.x + plant_cell.size.x/2,
+					Global.main_game.zombie_manager.all_zombie_rows[plant_cell.row_col.x].zombie_create_position.global_position.y
 				),
 				get_special_zombie_callable(curr_card.card_zombie_type, plant_cell)
 			)
@@ -233,7 +243,7 @@ func _click_cell_column(plant_cell:PlantCell):
 			var _characte_static_shadow = characte_static_shadow_colum[i]
 			if _characte_static_shadow.modulate.a != 0:
 				var _plant_cell:PlantCell = Global.main_game.plant_cell_manager.all_plant_cells[i][plant_cell.row_col.y]
-				_plant_cell.create_plant(curr_card.card_plant_type)
+				_plant_cell.create_plant(curr_card.card_plant_type, curr_card.is_initater)
 	else:
 		for i in range(characte_static_shadow_colum.size()):
 			## 当前格子的图像透明
@@ -241,14 +251,18 @@ func _click_cell_column(plant_cell:PlantCell):
 			if _characte_static_shadow.modulate.a != 0:
 				var _plant_cell:PlantCell = Global.main_game.plant_cell_manager.all_plant_cells[i][plant_cell.row_col.y]
 
+				var zombie_init_para:Dictionary = {
+					Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+					Zombie000Base.E_ZInitAttr.Lane:_plant_cell.row_col.x,
+				}
+
 				Global.main_game.zombie_manager.create_norm_zombie(
 					curr_card.card_zombie_type,
 					Global.main_game.zombie_manager.all_zombie_rows[_plant_cell.row_col.x],
-					Character000Base.E_CharacterInitType.IsNorm,
-					_plant_cell.row_col.x,
-					-1,
-					Vector2(_characte_static_shadow.global_position.x - Global.main_game.zombie_manager.all_zombie_rows[_plant_cell.row_col.x].global_position.x,
-						Global.main_game.zombie_manager.all_zombie_rows[_plant_cell.row_col.x].zombie_create_position.position.y
+					zombie_init_para,
+
+					Vector2(_characte_static_shadow.global_position.x,
+						Global.main_game.zombie_manager.all_zombie_rows[_plant_cell.row_col.x].zombie_create_position.global_position.y
 					),
 					get_special_zombie_callable(curr_card.card_zombie_type, _plant_cell)
 				)

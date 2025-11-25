@@ -8,5 +8,5 @@ func attack_once(enemy:Character000Base):
 	super(enemy)
 	if enemy is Zombie000Base:
 		var zombie = enemy as Zombie000Base
-		if zombie.hp_component.curr_hp_stage_armor1 <= 0:
+		if zombie.hp_component.curr_hp_armor2 <= 0:
 			zombie.be_ice_decelerate(time_be_decelerated)

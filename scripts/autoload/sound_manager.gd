@@ -6,9 +6,10 @@ enum Bus {MASTER, BGM, SFX}
 @onready var bgm_play: AudioStreamPlayer = $BGMPlay
 @onready var sfx_all: Node = $SFXAll
 @onready var crazy_dave_player: AudioStreamPlayer = $SFXAll/CrazyDavePlayer
+@onready var rain_player: AudioStreamPlayer = $SFXAll/RainPlayer
 
 ## 当前帧播放的音效(每隔25物理帧清除一次)
-## 即音效每25物理帧内不可以重复播放
+## 音效每25物理帧内不可以重复播放
 var curr_frame_sfx:Array[AudioStream] = []
 var frame_num:=0
 
@@ -16,6 +17,8 @@ func _ready() -> void:
 	Global.load_config()
 	Global.save_config()
 
+
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	frame_num = wrapi(frame_num + 1, 0, 25)
 	if frame_num == 0:
@@ -28,9 +31,7 @@ func play_bgm(stream: AudioStream):
 
 #region 植物和僵尸有关音效(植物、僵尸、子弹、受击)
 """
- 本身这部分代码是只有防具受击音效和子弹攻击音效的，
- 后来又加了植物和僵尸音效，
- 然后就懒得改了，干脆就这么用了
+ 音效分为 僵尸受击 子弹音效 角色(植物僵尸) 戴夫 和其他音效
 """
 
 ## 僵尸受击音效种类
@@ -94,238 +95,119 @@ const SFXBulletMap := {
 
 }
 
-## 植物音效字典
-const SFXPlantMap := {
-	Global.PlantType.P001PeaShooterSingle:{
-		&"Throw":[
-			preload("res://assets/audio/SFX/plant/throw1.ogg"),
-			preload("res://assets/audio/SFX/plant/throw2.ogg")
-		]
-	},
-	Global.PlantType.P002SunFlower:{
-		&"Throw":preload("res://assets/audio/SFX/plant/throw1.ogg"),
+## 植物\僵尸音效字典
+const SFXCharacterMap := {
+	## -------------------------------植物-------------------------------
+	## 豌豆射手发射字典
+	&"Throw":[
+		preload("res://assets/audio/SFX/plant/throw1.ogg"),
+		preload("res://assets/audio/SFX/plant/throw2.ogg")
+	],
+	## 向日葵发射阳光
+	&"Throw1":preload("res://assets/audio/SFX/plant/throw1.ogg"),
+	## 樱桃炸弹爆炸
+	&"CherryBomb":preload("res://assets/audio/SFX/plant/cherrybomb.ogg"),
+	## 土豆雷爆炸
+	&"PotatoMine": preload("res://assets/audio/SFX/plant/potato_mine.ogg"),
+	## 大嘴花
+	&"BigChomp": preload("res://assets/audio/SFX/plant/bigchomp.ogg"),
+	## 小喷菇发射子弹
+	&"Puff": preload("res://assets/audio/SFX/plant/puff.ogg"),
+	## 阳光菇长大
+	&"PlantGrow": preload("res://assets/audio/SFX/plant/plantgrow.ogg"),
+	## 大喷菇发射子弹
+	&"Fume": preload("res://assets/audio/SFX/plant/fume.ogg"),
+	## 墓碑吞噬者
+	&"GraveBusterChomp":preload("res://assets/audio/SFX/plant/gravebusterchomp.ogg"),
+	## 魅惑菇
+	&"MindControlled": preload("res://assets/audio/SFX/plant/mindcontrolled.ogg"),
+	## 寒冰菇
+	&"Frozen": preload("res://assets/audio/SFX/plant/frozen.ogg"),
+	## 毁灭菇
+	&"DoomShroom": preload("res://assets/audio/SFX/plant/doomshroom.ogg"),
+	## 倭瓜发现敌人
+	&"SquashHmm":[
+		preload("res://assets/audio/SFX/plant/squash_hmm2.ogg"),
+		preload("res://assets/audio/SFX/plant/squash_hmm.ogg")
+	],
+	## 火爆辣椒
+	&"Jalapeno": preload("res://assets/audio/SFX/plant/jalapeno.ogg"),
+	## 三叶草
+	&"blover": preload("res://assets/audio/SFX/plant/blover.ogg"),
+	## 磁力菇
+	&"magnetshroom": preload("res://assets/audio/SFX/plant/magnetshroom.ogg"),
 
-	},
-	Global.PlantType.P003CherryBomb:{
-		&"CherryBomb":preload("res://assets/audio/SFX/plant/cherrybomb.ogg"),
-
-	},
-	Global.PlantType.P004WallNut:{
-	},
-	Global.PlantType.P005PotatoMine:{
-		&"PotatoMine": preload("res://assets/audio/SFX/plant/potato_mine.ogg")
-	},
-	Global.PlantType.P006SnowPea:{
-	},
-	Global.PlantType.P007Chomper:{
-		&"BigChomp": preload("res://assets/audio/SFX/plant/bigchomp.ogg")
-	},
-	Global.PlantType.P008PeaShooterDouble:{
-	},
-	Global.PlantType.P009PuffShroom:{
-		&"Puff": preload("res://assets/audio/SFX/plant/puff.ogg")
-	},
-	Global.PlantType.P010SunShroom:{
-		&"PlantGrow": preload("res://assets/audio/SFX/plant/plantgrow.ogg")
-	},
-	Global.PlantType.P011FumeShroom:{
-		&"Fume": preload("res://assets/audio/SFX/plant/fume.ogg")
-	},
-	Global.PlantType.P012GraveBuster:{
-		&"GraveBusterChomp":preload("res://assets/audio/SFX/plant/gravebusterchomp.ogg")
-	},
-	Global.PlantType.P013HypnoShroom:{
-		&"MindControlled": preload("res://assets/audio/SFX/plant/mindcontrolled.ogg")
-	},
-	Global.PlantType.P014ScaredyShroom:{
-	},
-	Global.PlantType.P015IceShroom:{
-		&"Frozen": preload("res://assets/audio/SFX/plant/frozen.ogg")
-	},
-	Global.PlantType.P016DoomShroom:{
-		&"DoomShroom": preload("res://assets/audio/SFX/plant/doomshroom.ogg")
-	},
-	Global.PlantType.P017LilyPad:{
-	},
-	Global.PlantType.P018Squash:{
-		&"SquashHmm":[
-			preload("res://assets/audio/SFX/plant/squash_hmm2.ogg"),
-			preload("res://assets/audio/SFX/plant/squash_hmm.ogg")
-		]
-	},
-	Global.PlantType.P019ThreePeater:{
-	},
-	Global.PlantType.P020TangleKelp:{
-	},
-	Global.PlantType.P021Jalapeno:{
-		&"Jalapeno": preload("res://assets/audio/SFX/plant/jalapeno.ogg")
-	},
-	Global.PlantType.P022Caltrop:{
-	},
-	Global.PlantType.P023TorchWood:{
-	},
-
-	Global.PlantType.P025SeaShroom:{
-	},
-	Global.PlantType.P026Plantern:{
-	},
-	Global.PlantType.P027Cactus:{
-	},
-	Global.PlantType.P028Blover:{
-		&"blover": preload("res://assets/audio/SFX/plant/blover.ogg")
-	},
-	Global.PlantType.P029SplitPea:{
-	},
-	Global.PlantType.P030StarFruit:{
-	},
-	Global.PlantType.P031Pumpkin:{
-	},
-	Global.PlantType.P032MagnetShroom:{
-		&"magnetshroom": preload("res://assets/audio/SFX/plant/magnetshroom.ogg")
-	},
-
-	Global.PlantType.P033CabbagePult:{
-	},
-	Global.PlantType.P034FlowerPot:{
-	},
-	Global.PlantType.P035CornPult:{
-	},
-	Global.PlantType.P036CoffeeBean:{
-	},
-	Global.PlantType.P037Garlic:{
-	},
-	Global.PlantType.P038UmbrellaLeaf:{
-	},
-	Global.PlantType.P039MariGold:{
-	},
-	Global.PlantType.P040MelonPult:{
-	},
-
-	Global.PlantType.P041GatlingPea:{
-	},
-	Global.PlantType.P042TwinSunFlower:{
-	},
-	Global.PlantType.P043GloomShroom:{
-	},
-	Global.PlantType.P044Cattail:{
-	},
-	Global.PlantType.P045WinterMelon:{
-	},
-	Global.PlantType.P046GoldMagnet:{
-	},
-	Global.PlantType.P047SpikeRock:{
-	},
-	Global.PlantType.P048CobCannon:{
-	}
-}
-
-## 僵尸音效字典
-const SFXZombieMap := {
+	## -------------------------------僵尸-------------------------------
 	## 通用音效
-	Global.ZombieType.Null:{## 啃食
-		&"Chomp":[
-			preload("res://assets/audio/SFX/zombie/chomp.ogg"),
-			preload("res://assets/audio/SFX/zombie/chomp2.ogg"),
-			preload("res://assets/audio/SFX/zombie/chompsoft.ogg")
-		],
-		## 掉头
-		&"Shoop":preload("res://assets/audio/SFX/zombie/shoop.ogg"),
-		## 啃食大蒜
-		&"yuck":[
-			preload("res://assets/audio/SFX/zombie/yuck2.ogg"),
-			preload("res://assets/audio/SFX/zombie/yuck.ogg")
-		]
-	},
+	## 啃食
+	&"Chomp":[
+		preload("res://assets/audio/SFX/zombie/chomp.ogg"),
+		preload("res://assets/audio/SFX/zombie/chomp2.ogg"),
+		preload("res://assets/audio/SFX/zombie/chompsoft.ogg")
+	],
+	## 掉头
+	&"Shoop":preload("res://assets/audio/SFX/zombie/shoop.ogg"),
+	## 啃食大蒜
+	&"yuck":[
+		preload("res://assets/audio/SFX/zombie/yuck2.ogg"),
+		preload("res://assets/audio/SFX/zombie/yuck.ogg")
+	],
+	## 撑杆跳
+	&"Polevault":preload("res://assets/audio/SFX/zombie/polevault.ogg"),
+	## 读报僵尸愤怒
+	&"Rarrgh":[
+		preload("res://assets/audio/SFX/zombie/newspaper_rarrgh.ogg"),
+		preload("res://assets/audio/SFX/zombie/newspaper_rarrgh2.ogg")
+	],
+	## 读报僵尸报纸掉落
+	&"Rip":	preload("res://assets/audio/SFX/zombie/newspaper_rip.ogg"),
+	## 舞王入场
+	&"Dancer":preload("res://assets/audio/SFX/zombie/dancer.ogg"),
+	## 冰车僵尸入场
+	&"zamboni":preload("res://assets/audio/SFX/zombie/zamboni.ogg"),
+	## 冰车僵尸爆炸\小丑僵尸爆炸
+	&"explosion":preload("res://assets/audio/SFX/zombie/explosion.ogg"),
+	## 海豚僵尸入场
+	&"dolphin_appears":preload("res://assets/audio/SFX/zombie/dolphin_appears.ogg"),
+	## 海豚僵尸跳跃
+	&"dolphin_before_jumping":preload("res://assets/audio/SFX/zombie/dolphin_before_jumping.ogg"),
+	## 小丑僵尸入场
+	&"jackinthebox":preload("res://assets/audio/SFX/zombie/jackinthebox.ogg"),
+	## 小丑僵尸爆炸惊讶
+	&"jack_suprise":[
+		preload("res://assets/audio/SFX/zombie/jack_surprise.ogg"),
+		preload("res://assets/audio/SFX/zombie/jack_surprise2.ogg"),
+	],
+	## 小丑僵尸盒子打开
+	&"boing":preload("res://assets/audio/SFX/zombie/boing.ogg"),
+	## 气球僵尸入场
+	&"ballooninflate":preload("res://assets/audio/SFX/zombie/ballooninflate.ogg"),
+	## 气球爆炸
+	&"balloon_pop":preload("res://assets/audio/SFX/zombie/balloon_pop.ogg"),
+	## 矿工僵尸绝地
+	&"digger_zombie": preload("res://assets/audio/SFX/Zombie/digger_zombie.ogg"),
+	## 跳跳僵尸跳跃
+	&"pogo_zombie": preload("res://assets/audio/SFX/Zombie/pogo_zombie.ogg"),
+	## 蹦极僵尸入场
+	&"bungee_scream":[
+		preload("res://assets/audio/SFX/zombie/bungee_scream.ogg"),
+		preload("res://assets/audio/SFX/zombie/bungee_scream2.ogg"),
+		preload("res://assets/audio/SFX/zombie/bungee_scream3.ogg")
+	],
+	## 扶梯僵尸放置梯子
+	&"ladder_zombie": preload("res://assets/audio/SFX/zombie/ladder_zombie.ogg"),
+	## 篮球僵尸发射篮球子弹
+	&"basketball": preload("res://assets/audio/SFX/zombie/basketball.ogg"),
 
-	Global.ZombieType.Z001Norm:{
-	},
-	Global.ZombieType.Z002Flag:{
-	},
-	Global.ZombieType.Z003Cone:{
-	},
-	Global.ZombieType.Z004PoleVaulter:{
-		&"Polevault":preload("res://assets/audio/SFX/zombie/polevault.ogg")
-	},
-	Global.ZombieType.Z005Bucket:{
-	},
-	Global.ZombieType.Z006Paper:{
-		&"Rarrgh":[
-			preload("res://assets/audio/SFX/zombie/newspaper_rarrgh.ogg"),
-			preload("res://assets/audio/SFX/zombie/newspaper_rarrgh2.ogg")
-		],
-		&"Rip":	preload("res://assets/audio/SFX/zombie/newspaper_rip.ogg")
-	},
-	Global.ZombieType.Z007ScreenDoor:{
-	},
-	Global.ZombieType.Z008Football:{
-	},
-	Global.ZombieType.Z009Jackson:{
-		&"Dancer":preload("res://assets/audio/SFX/zombie/dancer.ogg")
-	},
-	Global.ZombieType.Z010Dancer:{
-	},
-	Global.ZombieType.Z011Duckytube:{
-	},
-	Global.ZombieType.Z012Snorkle:{
-	},
-	Global.ZombieType.Z013Zamboni:{
-		&"zamboni":preload("res://assets/audio/SFX/zombie/zamboni.ogg"),
-		&"explosion":preload("res://assets/audio/SFX/zombie/explosion.ogg")
-	},
-	Global.ZombieType.Z014Bobsled:{
-	},
-	Global.ZombieType.Z015Dolphinrider:{
-		&"dolphin_appears":preload("res://assets/audio/SFX/zombie/dolphin_appears.ogg"),
-		&"dolphin_before_jumping":preload("res://assets/audio/SFX/zombie/dolphin_before_jumping.ogg")
-	},
-	Global.ZombieType.Z016Jackbox:{
-		&"jackinthebox":preload("res://assets/audio/SFX/zombie/jackinthebox.ogg"),
-		&"jack_suprise":[
-			preload("res://assets/audio/SFX/zombie/jack_surprise.ogg"),
-			preload("res://assets/audio/SFX/zombie/jack_surprise2.ogg"),
-		],
-		&"boing":preload("res://assets/audio/SFX/zombie/boing.ogg"),
-		&"explosion":preload("res://assets/audio/SFX/zombie/explosion.ogg"),
-	},
-	Global.ZombieType.Z017Ballon:{
-		&"ballooninflate":preload("res://assets/audio/SFX/zombie/ballooninflate.ogg"),
-		&"balloon_pop":preload("res://assets/audio/SFX/zombie/balloon_pop.ogg")
-	},
-	Global.ZombieType.Z018Digger:{
-		&"digger_zombie": preload("res://assets/audio/SFX/Zombie/digger_zombie.ogg")
-	},
-	Global.ZombieType.Z019Pogo:{
-		&"pogo_zombie": preload("res://assets/audio/SFX/Zombie/pogo_zombie.ogg")
-	},
-	Global.ZombieType.Z020Yeti:{
-	},
-	Global.ZombieType.Z021Bungi:{
-		&"bungee_scream":[
-			preload("res://assets/audio/SFX/zombie/bungee_scream.ogg"),
-			preload("res://assets/audio/SFX/zombie/bungee_scream2.ogg"),
-			preload("res://assets/audio/SFX/zombie/bungee_scream3.ogg")
-		]
-	},
-	Global.ZombieType.Z022Ladder:{
-		&"ladder_zombie": preload("res://assets/audio/SFX/zombie/ladder_zombie.ogg")
-	},
-
-	Global.ZombieType.Z023Catapult:{
-	},
-
-	Global.ZombieType.Z024Gargantuar:{
-		&"gargantuar_thump": preload("res://assets/audio/SFX/zombie/gargantuar_thump.ogg"),
-		&"gargantudeath": preload("res://assets/audio/SFX/zombie/gargantudeath.ogg")
-	},
-
-	Global.ZombieType.Z025Imp:{
-		&"imp":[
-			preload("res://assets/audio/SFX/zombie/imp.ogg"),
-			preload("res://assets/audio/SFX/zombie/imp2.ogg")
-		]
-
-	},
-
+	## 巨人僵尸攻击\倭瓜
+	&"gargantuar_thump": preload("res://assets/audio/SFX/zombie/gargantuar_thump.ogg"),
+	## 巨人僵尸死亡
+	&"gargantudeath": preload("res://assets/audio/SFX/zombie/gargantudeath.ogg"),
+	## 小鬼被抛射
+	&"imp":[
+		preload("res://assets/audio/SFX/zombie/imp.ogg"),
+		preload("res://assets/audio/SFX/zombie/imp2.ogg")
+	]
 }
 
 ## 戴夫音效字典
@@ -385,9 +267,12 @@ func play_sfx_with_pool(sfx_resource: AudioStream) -> AudioStreamPlayer:
 	player.play()
 	return player
 
+#TODO: 好像没什么用,后续会删掉
+@warning_ignore("unused_parameter")
 func _on_sfx_finished(player: AudioStreamPlayer):
 	# 播放完成后自动停止，保留在池中
-	player.stop()
+	#player.stop()
+	pass
 
 ## 播放僵尸受击音效
 func play_be_attack_SFX(type_bullet_zombie_sfx:TypeBeAttackSFX):
@@ -403,25 +288,16 @@ func play_bullet_attack_SFX(type_bullet_sfx:TypeBulletSFX):
 	var sfx_selected = sfx_array.pick_random()
 	play_sfx_with_pool(sfx_selected)
 
-## 播放植物相关音效
-func play_plant_SFX(plant_type:Global.PlantType, option:StringName):
+## 播放植物\僵尸相关音效
+func play_character_SFX(option:StringName):
 	var sfx_resource:AudioStream
-	if SFXPlantMap[plant_type][option] is Array:
-		sfx_resource = SFXPlantMap[plant_type][option].pick_random()
+	if SFXCharacterMap[option] is Array:
+		sfx_resource = SFXCharacterMap[option].pick_random()
 	else:
-		sfx_resource = SFXPlantMap[plant_type][option]
+		sfx_resource = SFXCharacterMap[option]
 	var player: AudioStreamPlayer = play_sfx_with_pool(sfx_resource)
 	return player
 
-## 播放僵尸相关音效
-func play_zombie_SFX(zombie_type:Global.ZombieType, option:StringName):
-	var sfx_resource: AudioStream
-	if SFXZombieMap[zombie_type][option] is Array:
-		sfx_resource = SFXZombieMap[zombie_type][option].pick_random()
-	else:
-		sfx_resource = SFXZombieMap[zombie_type][option]
-	var player: AudioStreamPlayer = play_sfx_with_pool(sfx_resource)
-	return player
 
 ## 播放戴夫音效
 func play_crazy_dave_SFX(option:StringName):
@@ -431,6 +307,13 @@ func play_crazy_dave_SFX(option:StringName):
 	crazy_dave_player.stream = sfx_selected
 	crazy_dave_player.play()
 
+func play_rain_SFX():
+	var RAIN = load("uid://dmjld1k8ieh1g")
+	rain_player.stream = RAIN
+	rain_player.play()
+
+func stop_rain_SFX():
+	rain_player.stop()
 #endregion
 
 #region 其余音效
@@ -498,6 +381,7 @@ const SFXOtherMap := {
 	&"prize": preload("res://assets/audio/SFX/garden/prize.ogg"),
 	## -------- 僵尸出土 ------------
 	&"dirt_rise": preload("res://assets/audio/SFX/zombie/dirt_rise.ogg"),
+
 
 	##-------------------------- 花园相关 --------------------------
 	&"watering":preload("res://assets/audio/SFX/garden/watering.ogg"),

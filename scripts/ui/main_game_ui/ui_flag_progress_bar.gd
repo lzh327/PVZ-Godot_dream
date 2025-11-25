@@ -5,7 +5,10 @@ class_name FlagProgressBar
 ## 真实进度值 (0-100)
 var real_value: float = 0.0
 ## 追赶进度值 (0-100)
-var chase_value: float = 0.0
+var chase_value: float = 0.
+
+## 轮次label
+@onready var round_label: Label = $RoundLabel
 
 ## 进度条
 @onready var texture_progress_bar: TextureProgressBar = $TextureProgressBar
@@ -58,13 +61,23 @@ func create_flag(flag_num:int):
 	## 删除原始的flag
 	flag.queue_free()
 
-
 ## 根据波数生成大波的旗帜
 func init_flag_from_wave(wave_num:int):
 	assert(wave_num % 10 == 0, "当前波数不为10的倍数")
-	var flag_num : int = wave_num / 10
+	var flag_num : int = int(wave_num / 10.0)
 	create_flag(flag_num)
 
+## 开始下一轮游戏,进度条更新数据
+func start_next_game_flag_progress_bar_update():
+	set_progress(0, -1)
+	texture_progress_bar.value = 0
+	for curr_flag:FlagProgressBarFlag in flag_arr:
+		curr_flag.down_flag()
+
+## 设置轮次
+func set_round(curr_round:int):
+	round_label.text = "完成" + str(curr_round) + "轮"
+	round_label.visible = true
 
 ## 设置真实进度
 func set_progress(value: float, flag_i:int = -1):

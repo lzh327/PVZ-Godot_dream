@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://42p44atq8kh8" path="res://scripts/main_game_item/ladder.gd" id="1_7imw8"]
 [ext_resource type="Texture2D" uid="uid://btga2dyqmwvf0" path="res://assets/reanim/Zombie_ladder_5.png" id="2_7imw8"]
-[ext_resource type="Script" uid="uid://cgdy515nfukla" path="res://scripts/character/components/iron_node/iron_node_copy.gd" id="3_0qafn"]
+[ext_resource type="Script" uid="uid://cgdy515nfukla" path="res://scripts/character/components/iron_node/iron_node.gd" id="3_0qafn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7imw8"]
 size = Vector2(35, 70)
@@ -17,17 +17,17 @@ texture = ExtResource("2_7imw8")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 512
+collision_layer = 2048
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(50, 50)
 shape = SubResource("RectangleShape2D_7imw8")
 
-[node name="IronNode" type="Node2D" parent="." node_paths=PackedStringArray("all_ori_nodes")]
+[node name="IronNode" type="Node2D" parent="."]
 visible = false
 position = Vector2(55, 43)
 script = ExtResource("3_0qafn")
-all_ori_nodes = [NodePath("../ZombieLadder")]
 
 [node name="Zombie_ladder_1" type="Sprite2D" parent="IronNode"]
 position = Vector2(-39, -56)

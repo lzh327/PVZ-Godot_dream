@@ -1,8 +1,9 @@
 extends Zombie000Base
 class_name Zombie001Norm
 
-## 里面的手拿东西
-@export var is_inner_hand_zombie := false
+@onready var anim_innerarm: Node2D = $Body/BodyCorrect/Anim_innerarm
+@onready var zombie_outerarm_upper: Node2D = $Body/BodyCorrect/Zombie_outerarm_upper
+
 @export_group("动画状态")
 ## 动画状态（僵尸有某类动画有多种）
 @export var idle_status := 1
@@ -15,42 +16,30 @@ class_name Zombie001Norm
 @export var death_status_max := 2
 
 @export_group("普僵初始化精灵节点")
-@export var init_sprite_random:Array[Sprite2D]
+@export var init_sprite_random:Array[Node2D]
 
+## 海草精灵节点
+@onready var sprite_seaweed:Array[Sprite2D] = [
+	$Body/BodyCorrect/Anim_head/Anim_head1/ZombieSeaweed3,
+	$Body/BodyCorrect/Zombie_duckytube/Zombie_duckytube/ZombieSeaweed,
+	$Body/BodyCorrect/Zombie_duckytube/Zombie_duckytube/ZombieSeaweed2,
+	$Body/BodyCorrect/Zombie_outerarm_upper/Zombie_outerarm_upper/ZombieSeaweed4,
+	$Body/BodyCorrect/Anim_head/Anim_head1/ZombieSeaweed2,
+]
+## 铁桶海草精灵
+@onready var sprite_seaweed_bucket: Sprite2D = $Body/BodyCorrect/Anim_bucket/Anim_bucket/ZombieSeaweed4
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	super()
 	_random_anim_status()
 	_random_sprit_appear()
-
-
-@onready var anim_innerarm : Array[Sprite2D] = [
-	$Body/BodyCorrect/Anim_innerarm3,
-	$Body/BodyCorrect/Anim_innerarm2,
-	$Body/BodyCorrect/Anim_innerarm1
-	]
-@onready var flag_hand_and_arm : Array[Sprite2D]  = [
-	$Body/BodyCorrect/Zombie_flaghand,
-	$Body/BodyCorrect/Zombie_innerarm_screendoor,
-	$Body/BodyCorrect/Zombie_innerarm_screendoor_hand
-	]
-
-## 海草精灵节点
-@onready var sprite_seaweed:Array[Sprite2D] = [
-	$Body/BodyCorrect/Zombie_duckytube/ZombieSeaweed,
-	$Body/BodyCorrect/Zombie_duckytube/ZombieSeaweed2,
-	$Body/BodyCorrect/Anim_head1/ZombieSeaweed3,
-	$Body/BodyCorrect/Zombie_outerarm_upper/ZombieSeaweed4,
-]
-
-# 切换到死亡动画时修改flaghand
-func _death_anim():
-	if is_inner_hand_zombie:
-		for arm in anim_innerarm:
-			arm.visible = true
-		for flag_hand_or_arm in flag_hand_and_arm:
-			flag_hand_or_arm.visible = false
+	if is_seaweed:
+		sprite_seaweed.shuffle()
+		var pick3 = sprite_seaweed.slice(0, 3)
+		for s in pick3:
+			s.visible = true
+		sprite_seaweed_bucket.visible = true
 
 ## 随机选择动画状态种类
 func _random_anim_status():
@@ -62,8 +51,7 @@ func _random_sprit_appear():
 	for sprite in init_sprite_random:
 		sprite.visible = [true, false].pick_random()
 
-## 珊瑚僵尸初始化
-func sea_weed_init():
-	is_seaweed = true
-	for s in sprite_seaweed:
-		s.visible = true
+
+## 死亡动画开始时,将里面的胳膊显示(旗帜\铁门)
+func anim_death_start():
+	anim_innerarm.visible = true

@@ -13,6 +13,21 @@ class_name ZombieManager
 ## 所有僵尸根节点
 @onready var zombies_root: Node2D = %ZombiesRoot
 
+#region 多轮游戏
+## 多轮游戏最后一波计时器
+var multi_round_end_wave_timer:Timer
+## 多轮游戏最后一波时长
+var multi_round_end_wave_time :float = 49
+## 当前轮次
+var curr_game_round := 1
+## 最大轮次(0表示无尽模式)
+var max_game_round := 1
+
+#endregion
+
+## 是否为小僵尸大麻烦模式
+var is_mini_zombie:=false
+
 var curr_zombie_num:int = 0:
 	set(v):
 		curr_zombie_num=v
@@ -48,6 +63,7 @@ func _ready():
 	EventBus.subscribe("blover_blow_away_in_sky_zombie", blover_blow_away_in_sky_zombie)
 	## 非刷怪模式最后一波僵尸
 	EventBus.subscribe("end_wave_zombie", func():is_end_wave=true)
+	EventBus.subscribe("test_death_all_zombie", death_all_zombie)
 
 	## 初始化僵尸和行列表
 	for zombie_row_i in zombies_root.get_child_count():
@@ -65,6 +81,8 @@ func _ready():
 func init_zombie_manager(game_para:ResourceLevelData):
 	zombie_show_in_start.init_zombie_show_in_start(game_para)
 	self.monster_mode = game_para.monster_mode
+	self.is_mini_zombie = game_para.is_mini_zombie
+	self.max_game_round = game_para.game_round
 	match self.monster_mode:
 		## 没有僵尸刷新,直接启动最后一波僵尸检查计时器
 		ResourceLevelData.E_MonsterMode.Null:
@@ -81,7 +99,6 @@ func init_zombie_manager(game_para:ResourceLevelData):
 			hammer_zombie_manager.init_hammer_zombie_manager(game_para)
 			## 波次刷新时判断是否为最后一波，删除多余魅惑僵尸
 			hammer_zombie_manager.signal_wave_refresh.connect(wave_refresh)
-
 
 ## 开始第一波
 func start_game():
@@ -103,30 +120,24 @@ func start_game():
 func create_norm_zombie(
 	zombie_type:Global.ZombieType,	## 僵尸类型
 	zombie_parent:Node,				## 僵尸父节点
-	zombie_init_type:Character000Base.E_CharacterInitType,	## 僵尸初始化类型（战斗、展示）
-	lane:int = -1, 			## 僵尸行
-	curr_wave:int = -1,		## 僵尸波次
-	pos:Vector2=Vector2.ZERO,
+	zombie_init_para:Dictionary,			## 僵尸初始化参数
+	global_pos:Vector2=Vector2.ZERO,
 	init_zombie_special:Callable = Callable()		## 初始化僵尸特殊属性
 ) -> Zombie000Base:
 	var zombie:Zombie000Base = Global.get_zombie_info(zombie_type, Global.ZombieInfoAttribute.ZombieScenes).instantiate()
-	zombie.init_zombie(
-		zombie_init_type,
-		Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_row_type,
-		lane,
-		curr_wave,
-		pos,
-	)
+	zombie_init_para[Zombie000Base.E_ZInitAttr.IsMiniZombie] = is_mini_zombie
+	zombie.init_zombie(zombie_init_para)
 	if not init_zombie_special.is_null():
 		init_zombie_special.call(zombie)
-
+	zombie.position = global_pos - zombie_parent.global_position
 	zombie_parent.add_child(zombie)
+
 	## 只要创建僵尸，都要连接这两个信号
 	zombie.signal_character_death.connect(_on_zombie_dead.bind(zombie))
 	zombie.signal_character_be_hypno.connect(_on_zombie_hypno.bind(zombie))
 	zombie.signal_lane_update.connect(zombie_update_lane.bind(zombie, zombie.lane))
 
-	all_zombies_2d[lane].append(zombie)
+	all_zombies_2d[zombie.lane].append(zombie)
 	all_zombies_1d.append(zombie)
 
 	curr_zombie_num += 1
@@ -135,8 +146,8 @@ func create_norm_zombie(
 
 #endregion
 
-#region 僵尸死亡、魅惑信号
-
+#region 僵尸死亡 魅惑信号 波次刷新 多轮游戏
+#region 魅惑 死亡
 ## 僵尸被魅惑发射信号
 func _on_zombie_hypno(zombie:Zombie000Base):
 	## 出战僵尸保存列表删除该僵尸
@@ -149,7 +160,6 @@ func _on_zombie_hypno(zombie:Zombie000Base):
 		zombie.signal_zombie_hp_loss.disconnect(conn.callable)
 	all_zombies_be_hypno.append(zombie)
 
-
 ## 僵尸发射死亡信号后调用函数
 func _on_zombie_dead(zombie: Zombie000Base) -> void:
 	all_zombies_1d.erase(zombie)
@@ -161,15 +171,26 @@ func _on_zombie_dead(zombie: Zombie000Base) -> void:
 
 		## 如果到了最后一波刷新,且僵尸全部死亡
 		if is_end_wave and curr_zombie_num == 0:
-			print("=======================游戏结束，您获胜了=======================")
-			var trophy = SceneRegistry.TROPHY.instantiate()
-			get_tree().current_scene.add_child(trophy)
-			trophy.global_position = zombie.global_position
-			if trophy.global_position.x >= 750:
-				var x_diff = trophy.global_position.x - 750
-				throw_to(trophy, trophy.position - Vector2(x_diff + randf_range(0,50), 0))
+			## 多轮游戏,非最后一轮
+			if curr_game_round != max_game_round:
+				_on_trigger_start_next_round_game()
+				assert(max_game_round == 0 or curr_game_round < max_game_round, "非无尽模式,且当前轮次大于最大轮次,当前轮次:" + str(curr_game_round) + "最大轮次:" + str(max_game_round))
 			else:
-				throw_to(trophy, trophy.position - Vector2(randf_range(-50,50), 0))
+				create_trophy(zombie.global_position)
+#endregion
+
+#region 奖杯
+## 创建奖杯
+func create_trophy(glo_pos:Vector2):
+	print("=======================游戏结束，您获胜了=======================")
+	var trophy = SceneRegistry.TROPHY.instantiate()
+	Global.main_game.canvas_layer_temp.add_child(trophy)
+	trophy.global_position = glo_pos
+	if trophy.global_position.x >= 750:
+		var x_diff = trophy.global_position.x - 750
+		throw_to(trophy, trophy.position - Vector2(x_diff + randf_range(0,50), 0))
+	else:
+		throw_to(trophy, trophy.position - Vector2(randf_range(-50,50), 0))
 
 ## 奖杯抛出
 func throw_to(node:Node2D, target_pos: Vector2, duration: float = 1.0):
@@ -182,13 +203,19 @@ func throw_to(node:Node2D, target_pos: Vector2, duration: float = 1.0):
 
 	tween.parallel().tween_property(node, "position:y", peak_pos.y, duration / 2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(node, "position:y", target_pos.y, duration / 2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN).set_delay(duration / 2)
+#endregion
 
-func wave_refresh(is_end_wave:bool):
-	self.is_end_wave = is_end_wave
+#region 波次刷新
+func wave_refresh(curr_is_end_wave:bool):
+	is_end_wave = curr_is_end_wave
 	set_zombie_death_over_view()
 	if is_end_wave:
 		check_zombie_end_wave_timer.start()
 		print("最后一波僵尸检测是否有离开当前视野的僵尸")
+		## 如果不是最大游戏轮次
+		if curr_game_round != max_game_round:
+			multi_round_end_wave_timer_start()
+			assert(max_game_round == 0 or curr_game_round < max_game_round, "非无尽模式,且当前轮次大于最大轮次,当前轮次:" + str(curr_game_round) + "最大轮次:" + str(max_game_round))
 
 ### 删除移动超出视野的僵尸,每次刷新僵尸调用
 func set_zombie_death_over_view():
@@ -198,6 +225,43 @@ func set_zombie_death_over_view():
 			#all_zombies_be_hypno.erase(z)
 			z.character_death_disappear()
 	#print("删除离开当前视野的僵尸，目前还剩的僵尸：", all_zombies_1d)
+#endregion
+
+#region 多轮游戏
+#region 触发
+## 多轮游戏 非最后一轮 最后一波 计时器
+func multi_round_end_wave_timer_start():
+	if not is_instance_valid(multi_round_end_wave_timer):
+		multi_round_end_wave_timer = Timer.new()
+		multi_round_end_wave_timer.wait_time = multi_round_end_wave_time
+		multi_round_end_wave_timer.one_shot = true
+		multi_round_end_wave_timer.autostart = false
+		multi_round_end_wave_timer.timeout.connect(_on_trigger_start_next_round_game)
+		add_child(multi_round_end_wave_timer)
+	multi_round_end_wave_timer.start()
+
+## 触发开始下一轮game
+func _on_trigger_start_next_round_game():
+	EventBus.push_event("start_next_round_game")
+	multi_round_end_wave_timer.stop()
+#endregion
+
+#region 开始下一轮游戏
+
+## 僵尸管理器更新
+func start_next_game_zombie_mananger_update(game_para:ResourceLevelData):
+	print("开始下一轮游戏")
+	curr_game_round += 1
+	is_end_wave = false
+	check_zombie_end_wave_timer.stop()
+	## 获取当前轮次的出怪列表
+	game_para.update_multi_round_zombie_refresh_types(curr_game_round)
+	zombie_wave_manager.start_next_game_zombie_wave_mananger_update(game_para.zombie_refresh_types, game_para.is_bungi)
+	zombie_show_in_start.update_show_zombies_type(game_para.zombie_refresh_types, game_para.is_bungi)
+	## 更新波次管理器
+	#zombie_wave_manager.init_zombie_wave_manager(game_para)
+#endregion
+#endregion
 #endregion
 
 #region 生成关卡前展示僵尸
@@ -233,7 +297,7 @@ func jalapeno_bomb_item_lane(lane:int):
 
 ## 火爆辣椒爆炸整行僵尸
 func jalapeno_bomb_lane_zombie(lane:int):
-	print(all_zombies_2d[lane])
+	#print(all_zombies_2d[lane])
 	for i in range(all_zombies_2d[lane].size()-1,-1,-1) :
 		if is_instance_valid(all_zombies_2d[lane][i]):
 			var zombie:Zombie000Base = all_zombies_2d[lane][i]
@@ -264,3 +328,14 @@ func zombie_update_lane(zombie:Zombie000Base, ori_lane:int):
 		zombie.signal_lane_update.connect(zombie_update_lane.bind(zombie, zombie.lane))
 		#print("僵尸换行")
 
+
+#region 控制台 所有僵尸死亡
+## 所有僵尸死亡
+func death_all_zombie():
+	for zombie_row:Array in all_zombies_2d:
+		if zombie_row.is_empty():
+			continue
+		for i in range(zombie_row.size()-1, -1, -1):
+			var zombie:Zombie000Base = zombie_row[i]
+			zombie.character_death_disappear()
+#endregion

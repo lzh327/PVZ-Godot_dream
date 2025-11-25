@@ -75,4 +75,7 @@ forked from [PVZ_reanim2godot_animation](https://github.com/HYTommm/PVZ_reanim2g
 
 ### 项目贡献
 - 植物图鉴初稿整理：[多003_](https://space.bilibili.com/472181151?spm_id_from=333.1387.follow.user_card.click)
+
+### 参考项目
 - 樱桃炸弹爆炸动画粒子特效: [HYTommm](https://space.bilibili.com/3493140163988287?spm_id_from=333.1387.follow.user_card.click)开源项目[Godot-PVZ](https://github.com/HYTommm/Godot-PVZ)
+- 信号总线,随机选择器: [玩物不丧志的老李](https://space.bilibili.com/8618918?spm_id_from=333.788.upinfo.head.click)开源项目[godot_core_system](https://github.com/LiGameAcademy/godot_core_system?tab=readme-ov-file)

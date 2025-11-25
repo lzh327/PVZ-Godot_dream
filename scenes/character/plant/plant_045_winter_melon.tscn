@@ -14,7 +14,7 @@
 [ext_resource type="Animation" uid="uid://4gch5vm7yr55" path="res://animation/character/plant/045_winter_melon/WinterMelon_idle.tres" id="12_vvf6f"]
 [ext_resource type="Animation" uid="uid://cqrhbn2od5y46" path="res://animation/character/plant/045_winter_melon/WinterMelon_shooting.tres" id="13_8ufpx"]
 [ext_resource type="Script" uid="uid://b5t3ejxgko6nc" path="res://scripts/character/components/attack_behavior_component/component_attack_bullet_pult_base.gd" id="14_4tk23"]
-[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/attack_ray_component/component_attack_ray.gd" id="15_uc7vn"]
+[ext_resource type="Script" uid="uid://bafp0ax1lmlge" path="res://scripts/character/components/detect_component/component_detect.gd" id="15_uc7vn"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eil7v"]
 _data = {
@@ -48,13 +48,14 @@ nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_s04lx")
 nodes/TimeScale/position = Vector2(140, 160)
 "nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_26gh6")
 "nodes/TimeScale 2/position" = Vector2(-260, 300)
-node_connections = [&"OneShot", 0, &"Animation", &"OneShot", 1, &"TimeScale 2", &"TimeScale", 0, &"OneShot", &"TimeScale 2", 0, &"Animation 2", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"OneShot", 0, &"Animation", &"OneShot", 1, &"TimeScale 2", &"TimeScale", 0, &"OneShot", &"TimeScale 2", 0, &"Animation 2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvf6f"]
 size = Vector2(800, 5)
 
-[node name="Plant045WinterMelon" instance=ExtResource("1_w8in0")]
+[node name="Plant045WinterMelon" node_paths=PackedStringArray("node2d_detect_in_slope") instance=ExtResource("1_w8in0")]
 plant_type = 45
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("AttackComponent/DetectComponent")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-41, -69)
@@ -71,53 +72,53 @@ visible = false
 centered = false
 
 [node name="Frontleaf_right_tip" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(27.7617, 57.6404)
-rotation = -2.47456
-scale = Vector2(0.619284, 0.443199)
-skew = 3.22657
+position = Vector2(26.8, 57.4)
+rotation = -2.46091
+scale = Vector2(0.571, 0.443)
+skew = 3.14334
 texture = ExtResource("2_1x6ev")
 centered = false
 
 [node name="Frontleaf_tip_left" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(64.239, 48.7801)
-rotation = 2.48669
-scale = Vector2(0.571199, 0.498)
-skew = -3.16083
+position = Vector2(64.7, 48.7)
+rotation = 2.51153
+scale = Vector2(0.571, 0.498)
+skew = -3.13985
 texture = ExtResource("3_41kgx")
 centered = false
 
 [node name="Cabbagepult_basket" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
-position = Vector2(-25.9624, 3.00716)
-rotation = 0.0264018
+position = Vector2(-24.654642, -0.7814319)
+rotation = 0.093923286
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("4_4tk23")
 centered = false
 
 [node name="Melonpult_mellon" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(-22.9469, -33.2127)
-rotation = 0.338469
-scale = Vector2(0.997199, 0.997199)
+position = Vector2(-19.443464, -36.901894)
+rotation = 0.40091377
+scale = Vector2(0.998, 0.998)
 texture = ExtResource("5_uc7vn")
 centered = false
 
 [node name="Cabbagepult_basket_overlay" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
-position = Vector2(-26.2213, 12.4674)
-rotation = 0.0264018
+position = Vector2(-25.523418, 8.526375)
+rotation = 0.093923286
 scale = Vector2(0.799, 0.799)
 texture = ExtResource("6_nrqmn")
 centered = false
 
 [node name="Melonpult_stalk" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
-position = Vector2(15.5993, 18.9624)
-rotation = -0.0210067
-scale = Vector2(0.801, 0.8)
-skew = 0.033174
+position = Vector2(16.015612, 17.646837)
+rotation = 0.01328177
+scale = Vector2(0.8009219, 0.8)
+skew = 0.025089702
 texture = ExtResource("7_jvi63")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="9"]
-position = Vector2(15.3596, 32.9007)
-scale = Vector2(0.798213, 0.808978)
+position = Vector2(15.592195, 32.531223)
+scale = Vector2(0.7913123, 0.8201413)
 texture = ExtResource("8_6ty4r")
 centered = false
 
@@ -129,38 +130,38 @@ texture = ExtResource("9_26gh6")
 centered = false
 
 [node name="Melonpult_eyebrow1" type="Sprite2D" parent="Body/BodyCorrect" index="11"]
-position = Vector2(53.4, 45.0199)
+position = Vector2(53.4, 45.1)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_s04lx")
 centered = false
 
 [node name="Melonpult_eyebrow2" type="Sprite2D" parent="Body/BodyCorrect" index="12"]
-position = Vector2(35.5, 46.5397)
+position = Vector2(35.5, 46.623417)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("10_s04lx")
 centered = false
 
 [node name="Frontleaf" type="Sprite2D" parent="Body/BodyCorrect" index="13"]
-position = Vector2(23.4801, 55.4603)
+position = Vector2(23.392193, 55.268776)
 rotation = 0.101229
-scale = Vector2(0.572, 0.42239)
+scale = Vector2(0.572, 0.42862448)
 skew = 0.0034908
 texture = ExtResource("11_t884t")
 centered = false
 
 [node name="Frontleaf_right_tip1" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(56.7794, 59.9603)
-rotation = -0.000396261
-scale = Vector2(0.572, 0.438397)
-skew = -0.0129232
+position = Vector2(57.02342, 59.684387)
+rotation = 0.029313564
+scale = Vector2(0.572, 0.44015613)
+skew = -0.008454255
 texture = ExtResource("2_1x6ev")
 centered = false
 
 [node name="Frontleaf_tip_left1" type="Sprite2D" parent="Body/BodyCorrect" index="15"]
-position = Vector2(20.5206, 60.0603)
-rotation = 0.150123
-scale = Vector2(0.584206, 0.45778)
-skew = 0.0848654
+position = Vector2(20.268776, 59.584385)
+rotation = 0.13477354
+scale = Vector2(0.5806097, 0.47017092)
+skew = 0.058633927
 texture = ExtResource("3_41kgx")
 centered = false
 
@@ -191,15 +192,15 @@ markers_2d_bullet = [NodePath("../Body/BodyCorrect/Marker2DBullet")]
 
 [node name="BulletAttackCdTimer" type="Timer" parent="AttackComponent" index="0"]
 
-[node name="AttackRayComponent" type="Node2D" parent="AttackComponent" index="1"]
+[node name="DetectComponent" type="Node2D" parent="AttackComponent" index="1"]
 script = ExtResource("15_uc7vn")
 
-[node name="Area2D" type="Area2D" parent="AttackComponent/AttackRayComponent" index="0"]
+[node name="Area2D" type="Area2D" parent="AttackComponent/DetectComponent" index="0"]
 position = Vector2(0, -25)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/AttackRayComponent/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/DetectComponent/Area2D" index="0"]
 position = Vector2(400, 0)
 shape = SubResource("RectangleShape2D_vvf6f")
 

@@ -5,7 +5,7 @@ class_name Plant1001WallNutBowling
 var bullets:Node2D
 
 ## 初始化正常出战角色
-func init_norm():
+func ready_norm():
 	bullets = Global.main_game.bullets
 	_launch_bowling()
 	queue_free()

@@ -35,5 +35,4 @@ func get_all_slope_y(global_x:float)->float:
 		else:
 			y = slope.end_pos_slope.y
 			break
-
 	return y

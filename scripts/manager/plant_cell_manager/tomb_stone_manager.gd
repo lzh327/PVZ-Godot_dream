@@ -2,7 +2,7 @@ extends Node
 class_name TombStoneManager
 
 ## 是否有墓碑(二维)
-var is_tombstone:Array[Array]
+var all_is_tombstone:Array[Array]
 ## 墓碑数量
 var tombstone_num := 0
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 	EventBus.subscribe("create_tombstone", create_tombstone)
 
 ## 初始化墓碑管理器
-func init_tomb_stone_manager(game_para:ResourceLevelData):
+func init_tomb_stone_manager(_game_para:ResourceLevelData):
 	# 植物种植区域信号，更新植物位置列号,更新墓碑信息
 	for plant_cells_row_i in range(Global.main_game.plant_cell_manager.all_plant_cells.size()):
 
@@ -23,7 +23,7 @@ func init_tomb_stone_manager(game_para:ResourceLevelData):
 			## 该位置没有墓碑
 			is_tombstone_row.append(false)
 
-		is_tombstone.append(is_tombstone_row)
+		all_is_tombstone.append(is_tombstone_row)
 
 #region 墓碑相关
 ## 生成待选位置,没有墓碑的行和列
@@ -33,7 +33,7 @@ func _candidates_position(rows:int, cols_start:int, cols_end:int=Global.main_gam
 	for r in range(rows):
 		for c in range(cols_start, cols_end):
 			## 如果没有墓碑
-			if not is_tombstone[r][c]:
+			if not all_is_tombstone[r][c]:
 				candidates.append(Vector2i(r, c))
 
 	# 打乱顺序确保随机性
@@ -65,7 +65,7 @@ func _reandom_tombstone_pos(new_num:int) ->  Array[Vector2i]:
 
 	if len(selected_positions) < new_num:
 		# 构建可选位置列表
-		var new_candidates = _candidates_position(rows, usable_cols, cols)
+		var new_candidates = _candidates_position(rows, 0, usable_cols)
 		var add_pos = new_candidates.slice(0, min(new_num- len(selected_positions), new_candidates.size()))
 
 		selected_positions.append_array(add_pos)
@@ -77,27 +77,24 @@ func _reandom_tombstone_pos(new_num:int) ->  Array[Vector2i]:
 ## 创建一个墓碑
 func _create_one_tombstone(plant_cell: PlantCell, pos:Vector2i):
 	assert(not is_instance_valid(plant_cell.tombstone))
-	assert(not is_tombstone[pos.x][pos.y], "第"+str(pos)+"墓碑有问题")
-	var tombstone :Node2D= SceneRegistry.TOMBSTONE.instantiate()
+	assert(not all_is_tombstone[pos.x][pos.y], "第"+str(pos)+"墓碑有问题")
 
 	## plant_cell生成墓碑并连接信号
-	plant_cell.create_tombstone(tombstone)
+	plant_cell.create_tombstone()
 	plant_cell.signal_cell_delete_tombstone.connect(_delete_tombstone)
 
 	# 创建墓碑相关参数变化
-	is_tombstone[pos.x][pos.y] = true
+	all_is_tombstone[pos.x][pos.y] = true
 	tombstone_num += 1
 
-	Global.main_game.plant_cell_manager.tombstone_list.append(tombstone)
 
 ## 删除墓碑修改对应的参数并断开信号连接
-func _delete_tombstone(plant_cell:PlantCell, tombstone:TombStone):
+func _delete_tombstone(plant_cell:PlantCell, _tombstone:TombStone):
+	var pos:Vector2i = plant_cell.row_col
+	all_is_tombstone[pos.x][pos.y] = false
+	tombstone_num -= 1
 	plant_cell.signal_cell_delete_tombstone.disconnect(_delete_tombstone)
 
-	var pos:Vector2i = plant_cell.row_col
-	is_tombstone[pos.x][pos.y] = false
-	tombstone_num -= 1
-	Global.main_game.plant_cell_manager.tombstone_list.erase(tombstone)
 
 ## 黑夜关卡生成墓碑（生成数量）
 func create_tombstone(new_num:int):
@@ -113,5 +110,24 @@ func create_tombstone(new_num:int):
 
 		_create_one_tombstone(plant_cell, pos)
 
+
+#endregion
+
+#region 存档
+
+func get_save_game_data_tomb_stone_manager()->Dictionary:
+	var save_game_data_tomb_stome_manager:Dictionary = {}
+	save_game_data_tomb_stome_manager["all_is_tombstone"] = all_is_tombstone
+
+	return save_game_data_tomb_stome_manager
+
+func load_game_data_tomb_stone_manager(save_game_data_tomb_stome_manager:Dictionary):
+	var new_all_is_tombstone:Array[Array] = save_game_data_tomb_stome_manager.get("all_is_tombstone", all_is_tombstone)
+	for i in range(new_all_is_tombstone.size()):
+		for j in range(new_all_is_tombstone[i].size()):
+			var pos:Vector2i = Vector2i(i,j)
+			if new_all_is_tombstone[i][j]:
+				var plant_cell:PlantCell = Global.main_game.plant_cell_manager.all_plant_cells[pos.x][pos.y]
+				_create_one_tombstone(plant_cell, pos)
 
 #endregion

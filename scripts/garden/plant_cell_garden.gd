@@ -137,7 +137,11 @@ func _add_new_plant(curr_plant_cell_data:Dictionary={}):
 		"curr_garden_bg_type":curr_garden_bg_type,
 		"curr_plant_condition":curr_plant_condition,
 	}
-	curr_plant.init_plant(Character000Base.E_CharacterInitType.IsGarden, null,garden_date_init)
+	var plant_init_para = {
+		Plant000Base.E_PInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsGarden,
+		Plant000Base.E_PInitAttr.GardenDate:garden_date_init
+	}
+	curr_plant.init_plant(plant_init_para)
 	plant_in_cell = curr_plant
 	plant_container_node[curr_plant_place].call_deferred("add_child", curr_plant)
 	## 如果是发芽植物

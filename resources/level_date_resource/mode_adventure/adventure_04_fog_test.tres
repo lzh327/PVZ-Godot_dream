@@ -1,51 +1,36 @@
-[gd_resource type="Resource" script_class="ResourceLevelData" load_steps=3 format=3 uid="uid://qbly1sno3hn6"]
+[gd_resource type="Resource" script_class="ResourceLevelData" load_steps=3 format=3 uid="uid://deg85prfbg2fo"]
 
-[ext_resource type="Script" uid="uid://bke3sg5otco7s" path="res://scripts/resources/level/pre_plant_in_level.gd" id="1_et7b7"]
-[ext_resource type="Script" uid="uid://bjt3l56exxmdw" path="res://scripts/resources/level/level_data.gd" id="1_w0hwk"]
+[ext_resource type="Script" uid="uid://bke3sg5otco7s" path="res://scripts/resources/level/pre_plant_in_level.gd" id="1_6kpqt"]
+[ext_resource type="Script" uid="uid://bjt3l56exxmdw" path="res://scripts/resources/level/level_data.gd" id="2_gwdva"]
 
 [resource]
-script = ExtResource("1_w0hwk")
+script = ExtResource("2_gwdva")
 game_sences = 1
 game_BG = 3
 game_BGM = 3
-is_fog = true
+is_rain = true
 is_day = false
 is_day_sun = false
-all_pre_plant_data = Array[ExtResource("1_et7b7")]([])
-look_show_zombie = true
-can_choosed_card = true
-monster_mode = 0
-zombie_multy = 1
-max_wave = 30
-zombie_refresh_types = Array[int]([1, 3, 4, 5])
-is_bungi = false
-zombie_multy_hammer = 1
-max_wave_hammer_zombie = 10
-speed_zombie_init = 1.0
-speed_zombie_add = 0.15
-speed_zombie_max = 2.0
-is_have_tombston = false
-init_tombstone_num = 0
-card_mode = 0
-have_card_bar = true
-max_choosed_card_num = 10
-start_sun = 3015
-pre_choosed_card_list_plant = Array[int]([30])
-pre_choosed_card_list_zombie = Array[int]([0, 18])
-all_card_plant_type_probability = Dictionary[int, int]({})
-all_card_zombie_type_probability = Dictionary[int, int]({})
-start_list_card_plant_type = Array[int]([])
-start_list_card_zombie_type = Array[int]([])
-create_new_card_speed = 1.0
-is_mode_column = false
-is_shovel = true
-is_bowling_stripe = false
-plant_cell_col_j = 2
-plant_cell_can_use = Dictionary[String, bool]({
-"left_can_plant": true,
-"left_can_zombie": true,
-"right_can_plant": true,
-"right_can_zombie": true
+zombie_multy = 4
+zombie_refresh_types = Array[int]([15])
+is_seed_rain = true
+all_card_plant_type_probability_seed_rain = Dictionary[int, int]({
+1: 2,
+3: 1,
+4: 2,
+6: 2,
+8: 2,
+17: 8,
+18: 1,
+19: 2,
+21: 1,
+23: 2,
+26: 1,
+28: 2,
+44: 1
 })
-is_hammer = false
+card_order_plant_seed_rain = Dictionary[int, int]({
+0: 17,
+5: 44
+})
 metadata/_custom_type_script = "uid://bjt3l56exxmdw"

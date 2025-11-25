@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name CreateCoinComponent
 
 @onready var create_coin_timer: Timer = $CreateCoinTimer

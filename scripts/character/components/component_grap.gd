@@ -1,4 +1,4 @@
-extends ComponentBase
+extends Node2D
 class_name GrapComponent
 
 @onready var anim_tanglekelp_grab: AnimationPlayer = $Anim_Tanglekelp_grab

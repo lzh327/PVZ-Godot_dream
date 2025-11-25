@@ -23,8 +23,6 @@ class_name AttackComponentBulletBase
 ## 子弹生产位置
 @export var markers_2d_bullet: Array[Marker2D]
 @export_group("发射子弹音效")
-## 攻击音效所属植物
-@export var attack_sfx_plant_type:Global.PlantType = Global.PlantType.P001PeaShooterSingle
 ## 攻击音效名字（发射子弹）
 @export var attack_sfx:StringName = &"Throw"
 
@@ -78,8 +76,8 @@ func _on_bullet_attack_cd_timer_timeout() -> void:
 	animation_tree.set(attack_para, AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 func set_cancel_attack():
-	animation_tree.set(attack_para, AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
-
+	#animation_tree.set(attack_para, AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
+	pass
 
 ## 发射子弹（动画调用）
 func _shoot_bullet():
@@ -106,4 +104,4 @@ func get_bullet_paras(marker_2d_bullet_glo_pos:Vector2, ray_direction:Vector2) -
 
 func play_throw_sfx():
 	## 播放音效
-	SoundManager.play_plant_SFX(attack_sfx_plant_type, attack_sfx)
+	SoundManager.play_character_SFX(attack_sfx)

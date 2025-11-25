@@ -29,7 +29,7 @@ var is_attack_pos := false
 @export var body_change_1:Dictionary[StringName, ResourceBodyChange] = {}
 var curr_body_pole_change_dic:Dictionary[StringName, ResourceBodyChange]
 
-func init_norm():
+func ready_norm():
 	super()
 	## 默认禁用攻击组件,到达可以攻击的位置后,启用攻击组件
 	attack_component.update_is_attack_factors(false, AttackComponentBase.E_IsAttackFactors.Character)
@@ -40,7 +40,7 @@ func init_norm():
 		num_real_bullet_node_bullet = int(ceil(float(MaxNumBullet) / float(node_bullet.size())))
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	## 血量变化
 	hp_stage_change_component.signal_hp_stage_change.connect(hp_stage_zamboni_change)
@@ -92,14 +92,12 @@ func hp_stage_zamboni_change(curr_hp_stage:int):
 			tween.tween_property(body, "position", body.position, 0.05).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 			tween.set_loops()
 		3:
-			## 如果死亡时body有变化
-			if not hp_stage_change_component.is_no_change:
-				zamboni_death_effect()
+			zamboni_death_effect()
 
 ## 死亡爆炸特效
 func zamboni_death_effect():
 	death_bomb.activate_it()
-	SoundManager.play_zombie_SFX(Global.ZombieType.Z013Zamboni, "explosion")
+	SoundManager.play_character_SFX(&"explosion")
 	queue_free()
 #endregion
 

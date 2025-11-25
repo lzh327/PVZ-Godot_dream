@@ -40,10 +40,10 @@ func init_lawn_mover_manager(game_para:ResourceLevelData) -> void:
 	EventBus.subscribe("replenish_lawn_mover", replenish_lawn_mover)
 	if not is_lawn_mover:
 		return
-	create_all_lawn_movers()
+	create_all_lawn_movers(game_para.is_has_all_lawn_mover)
 
 ## 生成所有的小推车
-func create_all_lawn_movers():
+func create_all_lawn_movers(is_has_all_lawn_mover:Array=[]):
 	all_lawn_movers_type = AllLawnMoverTypeFromGameScenes[game_scene]
 
 	print("创建小推车, 小推车类型", all_lawn_movers_type)
@@ -52,7 +52,11 @@ func create_all_lawn_movers():
 		var zombie_row:ZombieRow = Global.main_game.zombie_manager.all_zombie_rows[lane]
 		var global_pos_lawn_mover:Vector2 = Vector2(GlobalXLawnMover, zombie_row.zombie_create_position.global_position.y)
 		all_lawn_movers_global_pos.append(global_pos_lawn_mover)
-		var new_lawn_mover = create_lawn_mover(lane, all_lawn_movers_type[lane], all_lawn_movers_global_pos[lane])
+		var new_lawn_mover:LawnMover
+		if is_has_all_lawn_mover.is_empty() or is_has_all_lawn_mover[lane] == true:
+			new_lawn_mover = create_lawn_mover(lane, all_lawn_movers_type[lane], all_lawn_movers_global_pos[lane])
+		else:
+			new_lawn_mover = null
 		all_lawn_movers.append(new_lawn_mover)
 
 ## 补充小推车
@@ -83,3 +87,15 @@ func lawn_mover_appear(lawn_mover:Node2D):
 	lawn_mover.position.x -= 100
 	var tween:Tween = create_tween()
 	tween.tween_property(lawn_mover, "position:x", pos_x, 0.5)
+
+func get_save_game_data_lawn_mover_manager()->Dictionary:
+	var save_game_data_lawn_mover:Dictionary = {}
+	var is_has_all_lawn_mover:Array[bool] = []
+	for i in range(all_lawn_movers.size()):
+		if is_instance_valid(all_lawn_movers[i]) and not all_lawn_movers[i].is_moving:
+			is_has_all_lawn_mover.append(true)
+		else:
+			is_has_all_lawn_mover.append(false)
+	save_game_data_lawn_mover["is_has_all_lawn_mover"] = is_has_all_lawn_mover
+	return save_game_data_lawn_mover
+

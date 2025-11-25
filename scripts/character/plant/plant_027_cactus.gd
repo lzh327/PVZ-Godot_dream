@@ -7,7 +7,7 @@ class_name Plant027Cactus
 
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	attack_component.signal_is_have_zombie_in_sky.connect(func(value):is_rise=value)
 	signal_update_speed.connect(attack_component.owner_update_speed)

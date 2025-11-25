@@ -550,7 +550,7 @@ tracks/43/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [3e-07, 4e-07, -5e-07, -4e-07, 4e-07, 3e-07, -2e-07, -4e-07, 4e-07, 1e-07, -3e-07, 0.0, 0.066323, 0.132645, 0.0663227, -4e-07, 2e-07, 0.0]
+"values": [3e-07, 4e-07, -5e-07, -4e-07, 4e-07, 3e-07, -2e-07, -4e-07, 4e-07, 1e-07, -3e-07, 0.0, 0.06632299999999999, 0.132645, 0.0663227, -4e-07, 2e-07, 0.0]
 }
 tracks/44/type = "value"
 tracks/44/imported = false
@@ -670,7 +670,7 @@ tracks/53/keys = {
 "times": PackedFloat32Array(0, 0.083333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667, 1, 1.08333, 1.16667, 1.25, 1.33333, 1.41667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [3e-07, 4e-07, -5e-07, -4e-07, 4e-07, 3e-07, -2e-07, -4e-07, 4e-07, 1e-07, -3e-07, 0.0, 0.066323, 0.132645, 0.0663227, -4e-07, 2e-07, 0.0]
+"values": [3e-07, 4e-07, -5e-07, -4e-07, 4e-07, 3e-07, -2e-07, -4e-07, 4e-07, 1e-07, -3e-07, 0.0, 0.06632299999999999, 0.132645, 0.0663227, -4e-07, 2e-07, 0.0]
 }
 tracks/54/type = "value"
 tracks/54/imported = false
@@ -1047,7 +1047,7 @@ tracks/84/keys = {
 tracks/85/type = "value"
 tracks/85/imported = false
 tracks/85/enabled = true
-tracks/85/path = NodePath("Body/BodyCorrect/IronNodeHelmet/Zombie_football_helmet:position")
+tracks/85/path = NodePath("Body/BodyCorrect/Zombie_football_helmet:position")
 tracks/85/interp = 1
 tracks/85/loop_wrap = true
 tracks/85/keys = {
@@ -1059,7 +1059,7 @@ tracks/85/keys = {
 tracks/86/type = "value"
 tracks/86/imported = false
 tracks/86/enabled = true
-tracks/86/path = NodePath("Body/BodyCorrect/IronNodeHelmet/Zombie_football_helmet:rotation")
+tracks/86/path = NodePath("Body/BodyCorrect/Zombie_football_helmet:rotation")
 tracks/86/interp = 1
 tracks/86/loop_wrap = true
 tracks/86/keys = {
@@ -1071,7 +1071,7 @@ tracks/86/keys = {
 tracks/87/type = "value"
 tracks/87/imported = false
 tracks/87/enabled = true
-tracks/87/path = NodePath("Body/BodyCorrect/IronNodeHelmet/Zombie_football_helmet:scale")
+tracks/87/path = NodePath("Body/BodyCorrect/Zombie_football_helmet:scale")
 tracks/87/interp = 1
 tracks/87/loop_wrap = true
 tracks/87/keys = {
@@ -1083,7 +1083,7 @@ tracks/87/keys = {
 tracks/88/type = "value"
 tracks/88/imported = false
 tracks/88/enabled = true
-tracks/88/path = NodePath("Body/BodyCorrect/IronNodeHelmet/Zombie_football_helmet:skew")
+tracks/88/path = NodePath("Body/BodyCorrect/Zombie_football_helmet:skew")
 tracks/88/interp = 1
 tracks/88/loop_wrap = true
 tracks/88/keys = {

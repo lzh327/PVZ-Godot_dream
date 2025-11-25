@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://p2ospfmeb27t"]
+[gd_scene load_steps=16 format=3 uid="uid://p2ospfmeb27t"]
 
 [ext_resource type="Texture2D" uid="uid://cpweorxgjagtw" path="res://assets/image/ui/ui_card/ConveyorBelt_backdrop.png" id="1_38655"]
 [ext_resource type="Texture2D" uid="uid://clu7agu73dxr8" path="res://assets/image/ui/ui_card/ConveyorBelt.png" id="2_jyq52"]
 [ext_resource type="Script" uid="uid://bhd301j1lfe7r" path="res://scripts/ui/card/card_slot/card_slot_conveyor/card_slot_conveyor_belt_gear.gd" id="2_nb3kr"]
 [ext_resource type="Script" uid="uid://h4kkw30hjgsr" path="res://scripts/ui/card/card_slot/card_slot_conveyor/card_slot_conveyor_belt.gd" id="2_p880x"]
+[ext_resource type="PackedScene" uid="uid://d1nnrhr8k1tel" path="res://scenes/card_slot/card_random_pool.tscn" id="5_aafbt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3d12c"]
 texture = ExtResource("1_38655")
@@ -75,10 +76,6 @@ offset_bottom = -14.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxTexture_3d12c")
 script = ExtResource("2_p880x")
-all_card_plant_type_probability = Dictionary[int, int]({
-1: 1,
-5: 1
-})
 
 [node name="ConveyorBeltGear" type="Panel" parent="."]
 clip_children = 1
@@ -102,5 +99,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ovmrh")
 
 [node name="CreateNewCardTimer" type="Timer" parent="."]
+
+[node name="CardRandomPool" parent="." instance=ExtResource("5_aafbt")]
 
 [connection signal="timeout" from="CreateNewCardTimer" to="." method="_on_create_new_card_timer_timeout"]

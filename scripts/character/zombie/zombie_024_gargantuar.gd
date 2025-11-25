@@ -32,7 +32,7 @@ var is_throw_once := false
 
 
 ## 初始化正常出战角色信号连接
-func init_norm_signal_connect():
+func ready_norm_signal_connect():
 	super()
 	## 血量状态变化组件
 	hp_component.signal_hp_loss.connect(jugde_throw_imp_form_hp_change)
@@ -53,23 +53,26 @@ func throw_out_imp():
 	create_imp()
 
 func create_imp():
+	var zombie_init_para:Dictionary = {
+		Zombie000Base.E_ZInitAttr.CharacterInitType:Character000Base.E_CharacterInitType.IsNorm,
+		Zombie000Base.E_ZInitAttr.Lane:lane,
+
+	}
 	Global.main_game.zombie_manager.create_norm_zombie(
 		Global.ZombieType.Z025Imp,
 		Global.main_game.zombie_manager.all_zombie_rows[lane],
-		Character000Base.E_CharacterInitType.IsNorm,
-		lane,
-		-1,
-		_get_imp_throw_pos(),
+		zombie_init_para,
+		_get_imp_throw_glo_pos(),
 		update_imp_throw_pos
 	)
 
 ## 获取投掷小鬼的目标位置
-func _get_imp_throw_pos()->Vector2:
+func _get_imp_throw_glo_pos()->Vector2:
 	var target_x_imp_throw = clamp(global_position.x - XThrow, RangeXImpThrow.x, RangeXImpThrow.y)
 	var target_x_imp_throw_res = target_x_imp_throw + randf_range(RangeRandomXThrow.x, RangeRandomXThrow.y)
-	prints("全局位置:", global_position.x, "投掷位置:", target_x_imp_throw, "随机位置:", target_x_imp_throw_res)
+	#prints("全局位置:", global_position.x, "投掷位置:", target_x_imp_throw, "随机位置:", target_x_imp_throw_res)
 	glo_pos_imp_be_thrown = Vector2(target_x_imp_throw_res, Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_create_position.global_position.y)
-	return glo_pos_imp_be_thrown - Global.main_game.zombie_manager.all_zombie_rows[lane].global_position
+	return glo_pos_imp_be_thrown
 	#Vector2(target_x_imp_throw_res - Global.main_game.zombie_manager.all_zombie_rows[lane].global_position.x, \
 	#Global.main_game.zombie_manager.all_zombie_rows[lane].zombie_create_position.position.y)
 
@@ -86,4 +89,4 @@ func be_caltrop():
 
 ## 死亡时播放音效,动画调用
 func play_gargantuar_death_sfx():
-	SoundManager.play_zombie_SFX(Global.ZombieType.Z024Gargantuar, "gargantudeath")
+	SoundManager.play_character_SFX(&"gargantudeath")

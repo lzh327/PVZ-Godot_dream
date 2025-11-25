@@ -8,8 +8,9 @@ var rotation_speed = 5.0
 
 
 
-func _process(delta: float) -> void:
-	super._process(delta)
+
+func _physics_process(delta: float) -> void:
+	super(delta)
 	body_correct.rotation += rotation_speed * delta
 
 ## 对敌人造成伤害

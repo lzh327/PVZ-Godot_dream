@@ -8,6 +8,7 @@ class_name Bullet000Base
 @onready var bullet_effect: BulletEffect000Base = $BulletEffect
 ## 子弹本体节点
 @onready var body: Node2D = $Body
+@export var bullet_type:Global.BulletType
 ## 子弹基类
 @export_group("子弹基础属性")
 ## 子弹阵营
@@ -50,10 +51,6 @@ var bullet_lane :int = -1
 @export_group("子弹升级相关")
 ## 是否可以升级子弹
 @export var is_can_up:=false
-## 子弹升级需要的植物种类（升级子弹的植物需要有对应的area区域）
-@export var bullet_up_plant_type : Global.PlantType
-## 子弹升级种类（子弹升级后的子弹种类）
-@export var bullet_up_type:Global.BulletType
 
 func _ready() -> void:
 	body.rotation = direction.angle()
@@ -79,7 +76,7 @@ enum E_InitParasAttr{
 }
 
 ## 初始化子弹属性
-func init_bullet(bullet_paras:Dictionary[E_InitParasAttr,Variant]):
+func init_bullet(bullet_paras:Dictionary):
 	## 子弹行
 	self.is_activate_lane = bullet_paras.get(E_InitParasAttr.IsActivateLane, true)
 	self.bullet_lane = bullet_paras.get(E_InitParasAttr.BulletLane, -1)
@@ -166,18 +163,3 @@ func attack_once(enemy:Character000Base):
 	## 判断是否进入删除队列
 	if max_attack_num != -1 and curr_attack_num >= max_attack_num:
 		queue_free()
-
-
-#region 子弹升级相关
-## 创建升级后的子弹
-func create_new_bullet_up():
-	var new_bullet_up_scenes = Global.get_bullet_scenes(bullet_up_type)
-	## 子弹升级后更新行属性，上次升级的火炬树桩
-	var bullet_up :Bullet000Base = new_bullet_up_scenes.instantiate()
-	bullet_up.init_bullet(get_bullet_paras())
-
-	return bullet_up
-
-
-
-#endregion

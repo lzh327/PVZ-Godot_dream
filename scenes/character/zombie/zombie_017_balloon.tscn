@@ -54,16 +54,12 @@
 script = ExtResource("24_38yut")
 sprite_change = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_upper")])
 sprite_change_texture = Array[Texture2D]([ExtResource("19_6ocr3")])
-sprite_appear = Array[NodePath]([])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Zombie_outerarm_lower"), NodePath("../Body/BodyCorrect/Zombie_outerarm_hand")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Hand_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
 
 [sub_resource type="Resource" id="Resource_3tcol"]
 script = ExtResource("24_38yut")
-sprite_change = Array[NodePath]([])
-sprite_change_texture = Array[Texture2D]([])
-sprite_appear = Array[NodePath]([])
 sprite_disappear = Array[NodePath]([NodePath("../Body/BodyCorrect/Anim_head1"), NodePath("../Body/BodyCorrect/Anim_head2"), NodePath("../Body/BodyCorrect/Hat")])
 node_drop = NodePath("../Body/NodeDrop/Node2D_Head_Drop")
 metadata/_custom_type_script = "uid://jl0nl4a234bc"
@@ -1110,7 +1106,7 @@ nodes/Animation/node = SubResource("AnimationNodeAnimation_7skne")
 nodes/Animation/position = Vector2(-180, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_38yut")
 nodes/TimeScale/position = Vector2(60, 140)
-node_connections = [&"TimeScale", 0, &"Animation", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jxd4q"]
 animation = &"Zombie_balloon_death"
@@ -1191,12 +1187,12 @@ graph_offset = Vector2(156, 66)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_fnk7f"]
 graph_offset = Vector2(-332.485, 11.9031)
+nodes/output/position = Vector2(380, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_5l7cb")
 nodes/StateMachine/position = Vector2(-120, 140)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_0qgrc")
 nodes/TimeScale/position = Vector2(180, 140)
-nodes/output/position = Vector2(380, 140)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [node name="Zombie017Balloon" instance=ExtResource("1_40w0v")]
 script = ExtResource("2_jxd4q")
@@ -1212,138 +1208,133 @@ position = Vector2(-40, -128)
 centered = false
 
 [node name="Zombie_balloon_innerleg_lower" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(37.0508, 74.5655)
-rotation = -0.0370794
+position = Vector2(36.369843, 75.131744)
+rotation = 0.0034075475
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_6ocr3")
 centered = false
 
 [node name="Zombie_balloon_innerleg_foot" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(39.5803, 88.4574)
-rotation = 0.00686681
+position = Vector2(37.74921, 90.05714)
+rotation = -0.021580916
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("3_jxd4q")
 centered = false
 
 [node name="Zombie_balloon_innerleg_upper" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(36.0295, 60.4868)
+position = Vector2(35.269844, 60.54603)
+rotation = 0.0034075475
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_7skne")
 centered = false
 
 [node name="Zombie_innerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="4"]
-position = Vector2(8.81973, 94.4705)
-rotation = 0.0384524
+position = Vector2(10.195238, 97.44285)
 scale = Vector2(0.656, 0.7)
 texture = ExtResource("5_38yut")
 centered = false
 
 [node name="Zombie_balloon_innerarm_upper" type="Sprite2D" parent="Body/BodyCorrect" index="5"]
-position = Vector2(14.5492, 66.8639)
-rotation = 0.0549321
+position = Vector2(15.165079, 69.507935)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("6_b3tuq")
 centered = false
 
 [node name="Zombie_balloon_innerarm_lower" type="Sprite2D" parent="Body/BodyCorrect" index="6"]
-position = Vector2(10.4476, 82.8721)
-rotation = -0.0329594
+position = Vector2(12.230159, 85.32857)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("7_3tcol")
 centered = false
 
 [node name="Zombie_balloon_string" type="Sprite2D" parent="Body/BodyCorrect" index="7"]
-position = Vector2(38.8, 27.1655)
+position = Vector2(38.8, 27.015871)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_x23hu")
 centered = false
 
 [node name="Zombie_balloon_bottom" type="Sprite2D" parent="Body/BodyCorrect" index="8"]
-position = Vector2(36.2147, 29.3721)
-scale = Vector2(0.761445, 0.965238)
+position = Vector2(35.83492, 30.201584)
+scale = Vector2(0.8162698, 0.7863334)
 texture = ExtResource("9_oounx")
 centered = false
 
 [node name="Zombie_balloon_top" type="Sprite2D" parent="Body/BodyCorrect" index="9"]
-position = Vector2(24.6361, -12.7361)
-scale = Vector2(0.592131, 0.607082)
+position = Vector2(24.074604, -10.677782)
+scale = Vector2(0.61236507, 0.5902381)
 texture = ExtResource("10_2yjgv")
 centered = false
 
 [node name="Zombie_balloon_body2" type="Sprite2D" parent="Body/BodyCorrect" index="10"]
-position = Vector2(38.5, 44.1655)
-rotation = -0.0192266
+position = Vector2(38.825397, 44.406345)
+rotation = 0.0227172
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("11_udej0")
 centered = false
 
 [node name="Zombie_balloon_body1" type="Sprite2D" parent="Body/BodyCorrect" index="11"]
-position = Vector2(16.8787, 36.9934)
-rotation = 0.0205996
+position = Vector2(16.930159, 38.1619)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_xvxvo")
 centered = false
 
 [node name="Zombie_balloon_outerleg_foot" type="Sprite2D" parent="Body/BodyCorrect" index="12"]
-position = Vector2(50.7671, 86.4574)
-rotation = -0.0192266
+position = Vector2(48.279366, 88.187294)
+rotation = -0.010222642
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("13_6cdq5")
 centered = false
 
 [node name="Zombie_balloon_outerleg_lower" type="Sprite2D" parent="Body/BodyCorrect" index="13"]
-position = Vector2(52.6163, 79.6721)
-rotation = -0.0439462
-scale = Vector2(0.8, 0.8)
+position = Vector2(51.13492, 80.24127)
+rotation = 0.018173369
+scale = Vector2(0.8, 0.8169206)
 texture = ExtResource("14_gwttt")
 centered = false
 
 [node name="Zombie_balloon_outerleg_upper" type="Sprite2D" parent="Body/BodyCorrect" index="14"]
-position = Vector2(50.3934, 54.8721)
-rotation = -0.0370794
-scale = Vector2(0.8, 0.8)
+position = Vector2(50, 55.636505)
+rotation = 0.0034075475
+scale = Vector2(0.8, 0.8084603)
 texture = ExtResource("15_ogm3x")
 centered = false
 
 [node name="Anim_head1" type="Sprite2D" parent="Body/BodyCorrect" index="15"]
-position = Vector2(-5.04105, 31.3771)
-rotation = 0.0494391
+position = Vector2(-6.820634, 35.06825)
+rotation = -0.021580916
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("16_edmiy")
 centered = false
 
 [node name="Anim_head2" type="Sprite2D" parent="Body/BodyCorrect" index="16"]
-position = Vector2(3.72789, 66.741)
-rotation = 0.0494391
-scale = Vector2(0.8, 0.8)
+position = Vector2(4.525396, 71.18888)
+rotation = -0.0420262
+scale = Vector2(0.8006508, 0.8)
+skew = 0.02044509
 texture = ExtResource("17_488br")
 centered = false
 
 [node name="Zombie_outerarm_hand" type="Sprite2D" parent="Body/BodyCorrect" index="17"]
-position = Vector2(22.6558, 96.6508)
-rotation = -0.0370794
+position = Vector2(23.795237, 98.57301)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("18_5l7cb")
 centered = false
 
 [node name="Zombie_outerarm_upper" type="Sprite2D" parent="Body/BodyCorrect" index="18"]
-position = Vector2(26.3426, 59.8721)
-rotation = -0.0233465
+position = Vector2(26.565079, 61.417458)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("19_0qgrc")
 centered = false
 
 [node name="Zombie_outerarm_lower" type="Sprite2D" parent="Body/BodyCorrect" index="19"]
-position = Vector2(29.3147, 82.2361)
-rotation = 0.0590521
+position = Vector2(29.13016, 84.473015)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("20_fnk7f")
 centered = false
 
 [node name="Hat" type="Sprite2D" parent="Body/BodyCorrect" index="20"]
-position = Vector2(-0.534469, 33.7279)
-rotation = 0.0384524
-scale = Vector2(0.8, 0.8)
+position = Vector2(-2.1158712, 36.998405)
+rotation = -0.038618654
+scale = Vector2(0.79934925, 0.79934925)
 texture = ExtResource("21_3cpmf")
 centered = false
 
@@ -1410,7 +1401,6 @@ body_change_armor1 = Array[ExtResource("24_38yut")]([null])
 
 [node name="HpComponent" parent="." index="4"]
 max_hp_armor1 = 20
-max_hp = 270
 
 [node name="Anim_blink" type="Sprite2D" parent="CharredComponent/ZombieCharred/CharredCorrect" index="0"]
 centered = false

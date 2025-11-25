@@ -1,4 +1,4 @@
-extends ComponentBase
+extends ComponentNormBase
 class_name DancerManagerComponent
 
 ## 舞王和伴舞僵尸，0表示舞王

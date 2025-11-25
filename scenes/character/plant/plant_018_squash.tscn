@@ -10,7 +10,7 @@
 [ext_resource type="Animation" uid="uid://qq4s7m264mj1" path="res://animation/character/plant/018_squash/Squash_jumpup.tres" id="7_taict"]
 [ext_resource type="Animation" uid="uid://ph5epkvaxlw8" path="res://animation/character/plant/018_squash/Squash_lookleft.tres" id="8_22da3"]
 [ext_resource type="Animation" uid="uid://bkw8ev4lim0mg" path="res://animation/character/plant/018_squash/Squash_lookright.tres" id="9_0e73g"]
-[ext_resource type="Script" uid="uid://cpqg0k1xevhi5" path="res://scripts/character/components/attack_ray_component/component_attack_ray_squash.gd" id="11_kh2ri"]
+[ext_resource type="Script" uid="uid://cpqg0k1xevhi5" path="res://scripts/character/components/detect_component/component_detect_squash.gd" id="11_kh2ri"]
 
 [sub_resource type="Animation" id="Animation_cpkc7"]
 resource_name = "Squash_idle"
@@ -430,12 +430,12 @@ graph_offset = Vector2(-17, 66)
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hxowj"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gvb6j"]
+nodes/output/position = Vector2(560, 140)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_r8nbb")
 nodes/StateMachine/position = Vector2(0, 120)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hxowj")
 nodes/TimeScale/position = Vector2(360, 120)
-nodes/output/position = Vector2(560, 140)
-node_connections = [&"TimeScale", 0, &"StateMachine", &"output", 0, &"TimeScale"]
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"StateMachine"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xoecu"]
 size = Vector2(200, 5)
@@ -443,46 +443,47 @@ size = Vector2(200, 5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kh2ri"]
 size = Vector2(80, 5)
 
-[node name="Plant018Squash" instance=ExtResource("1_2veis")]
+[node name="Plant018Squash" node_paths=PackedStringArray("node2d_detect_in_slope") instance=ExtResource("1_2veis")]
 script = ExtResource("2_rin1p")
 can_attack_plant_status = 5
 can_attack_zombie_status = 5
 is_attack = false
 is_right = true
 plant_type = 18
+node2d_detect_in_slope = [NodePath("HurtBoxComponent/HurtBoxDetection"), NodePath("DetectComponent"), NodePath("Area2DSquashAttack")]
 
 [node name="BodyCorrect" parent="Body" index="0"]
 position = Vector2(-41, -75)
 
 [node name="Squash_stem" type="Sprite2D" parent="Body/BodyCorrect" index="0"]
-position = Vector2(33.6688, -2.33752)
-rotation = 0.0195446
+position = Vector2(33.869095, -2.7381902)
+rotation = 0.034113377
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_tfn24")
 centered = false
 
 [node name="Squash_body" type="Sprite2D" parent="Body/BodyCorrect" index="1"]
-position = Vector2(6.77917, 4.70728)
-scale = Vector2(0.796865, 0.804927)
+position = Vector2(6.91273, 4.339992)
+scale = Vector2(0.79452723, 0.80860007)
 texture = ExtResource("3_kh2ri")
 centered = false
 
 [node name="Anim_face" type="Sprite2D" parent="Body/BodyCorrect" index="2"]
-position = Vector2(33.2896, 29.7312)
-scale = Vector2(0.79776, 0.801792)
+position = Vector2(33.356365, 29.530905)
+scale = Vector2(0.7960909, 0.80312735)
 texture = ExtResource("4_rin1p")
 centered = false
 
 [node name="Anim_eye" type="Sprite2D" parent="Body/BodyCorrect" index="3"]
-position = Vector2(25.4344, 18.5864)
-scale = Vector2(0.79776, 0.801792)
+position = Vector2(25.534548, 18.352722)
+scale = Vector2(0.7960909, 0.80312735)
 texture = ExtResource("5_xoecu")
 centered = false
 
 [node name="IceDecelerateTimer" type="Timer" parent="." index="5"]
 one_shot = true
 
-[node name="BlinkComponent" parent="." index="7"]
+[node name="BlinkComponent" parent="." index="6"]
 is_enable_default = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
@@ -497,17 +498,17 @@ advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 parameters/TimeScale/scale = 1.5
 
-[node name="AttackRayComponent" type="Node2D" parent="." index="11"]
+[node name="DetectComponent" type="Node2D" parent="." index="11"]
 script = ExtResource("11_kh2ri")
 can_attack_zombie_status = 5
 plant_enemy_collision_lay = 20
 
-[node name="Area2D" type="Area2D" parent="AttackRayComponent" index="0"]
+[node name="Area2D" type="Area2D" parent="DetectComponent" index="0"]
 position = Vector2(0, -25)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRayComponent/Area2D" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent/Area2D" index="0"]
 shape = SubResource("RectangleShape2D_xoecu")
 
 [node name="Area2DSquashAttack" type="Area2D" parent="." index="12"]

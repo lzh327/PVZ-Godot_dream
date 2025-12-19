@@ -107,11 +107,18 @@ theme_override_constants/v_separation = 3
 columns = 5
 
 [node name="MainMenu" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 670.0
-offset_top = 568.0
-offset_right = 759.0
-offset_bottom = 594.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -133.0
+offset_top = -32.0
+offset_right = -44.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
 mouse_default_cursor_shape = 2
 texture_normal = ExtResource("44_006r8")
 texture_pressed = ExtResource("45_nbnce")
@@ -235,11 +242,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LabelPage" type="Label" parent="."]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 572.0
-offset_right = 83.0
-offset_bottom = 592.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = -31.0
+offset_right = 120.0
+offset_bottom = -11.0
+grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "当前页数:"
 horizontal_alignment = 1

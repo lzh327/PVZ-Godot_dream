@@ -46,6 +46,7 @@ class_name MainGameManager
 
 #region 游戏主元素
 @onready var canvas_layer_temp: CanvasLayer = %CanvasLayerTemp
+@onready var canvas_layer_ui: CanvasLayer = %CanvasLayerUI
 
 ## 阳光收集位置
 @onready var marker_2d_sun_target: Marker2D = %Marker2DSunTargetDefault
@@ -176,7 +177,7 @@ func _ready() -> void:
 		if game_para.crazy_dave_dialog:
 			var crazy_dave:CrazyDave = SceneRegistry.CRAZY_DAVE.instantiate()
 			crazy_dave.init_dave(game_para.crazy_dave_dialog)
-			add_child(crazy_dave)
+			canvas_layer_ui.add_child(crazy_dave)
 			await crazy_dave.signal_dave_leave_end
 			crazy_dave.queue_free()
 

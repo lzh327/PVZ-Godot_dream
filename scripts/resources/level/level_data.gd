@@ -111,7 +111,7 @@ func set_choose_level(curr_game_mode:Global.MainScenes, curr_level_page:int, cur
 #@export var level_name:String
 ## 游戏场景
 @export var game_sences:Global.MainScenes = Global.MainScenes.MainGameFront
-## 游戏轮次:多轮游戏且自然出怪 自动更新自然出怪列表
+## 游戏轮次:多轮游戏且自然出怪 自动更新自然出怪列表 -1表示无尽，不要用其余的数字表示无尽
 @export var game_round:int = 1
 
 

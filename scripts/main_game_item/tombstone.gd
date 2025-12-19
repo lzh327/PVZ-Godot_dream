@@ -66,8 +66,9 @@ func create_new_zombie(new_zombie_type:Global.ZombieType, anim_multiply:float=1.
 			zombie_init_para,
 			Vector2(global_position.x,Global.main_game.zombie_manager.all_zombie_rows[row_col.x].zombie_create_position.global_position.y)
 		)
-		## 从地下出来时停止动画
+		#new_zombie.call_deferred("update_speed_factor", anim_multiply, Character000Base.E_Influence_Speed_Factor.HammerZombieSpeed)
 		new_zombie.update_speed_factor(0.0, Character000Base.E_Influence_Speed_Factor.HammerZombieSpeed)
+
 		await new_zombie.zombie_up_from_ground()
 		## 从地下出来后恢复动画
 		new_zombie.update_speed_factor(anim_multiply, Character000Base.E_Influence_Speed_Factor.HammerZombieSpeed)

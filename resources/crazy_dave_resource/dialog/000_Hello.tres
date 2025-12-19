@@ -10,8 +10,4 @@
 script = ExtResource("1_xcycs")
 dialog_detail_list = Array[ExtResource("1_ycufd")]([ExtResource("3_33ygh"), ExtResource("4_flfar"), ExtResource("5_em7fq")])
 dialog_detail_long_time_idle_list = Array[ExtResource("1_ycufd")]([ExtResource("3_33ygh"), ExtResource("4_flfar")])
-is_enter_up = false
-is_grab = false
-is_long_time_dave = true
-hand_show_item_path = ""
 metadata/_custom_type_script = "uid://dlfnh7fjqyil6"

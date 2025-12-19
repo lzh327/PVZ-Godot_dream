@@ -68,7 +68,7 @@
 [ext_resource type="BitMap" uid="uid://cra43htuprgvi" path="res://assets/image/ui/ui_start_menu/SelectorScreen_Store_Mask.png" id="55_ito2j"]
 [ext_resource type="Texture2D" uid="uid://bttkqw7l87kyw" path="res://assets/image/ui/ui_start_menu/SelectorScreen_WoodSign3.png" id="56_b7wor"]
 [ext_resource type="PackedScene" uid="uid://cp0kgnsx20pyh" path="res://scenes/ui/dialog.tscn" id="57_ry5e1"]
-[ext_resource type="PackedScene" uid="uid://dg7h8k2m1n3x5" path="res://scenes/ui/dialog_confirm.tscn" id="58_confirm"]
+[ext_resource type="PackedScene" uid="uid://cngkuh03v6yty" path="res://scenes/ui/dialog_confirm.tscn" id="58_confirm"]
 [ext_resource type="Theme" uid="uid://em12la0rqibq" path="res://data/PVZ_theme.tres" id="59_e0j7q"]
 [ext_resource type="Texture2D" uid="uid://toxyk2jadqam" path="res://assets/image/ui/ui_main_game_menu/option_dialog.png" id="60_343qg"]
 [ext_resource type="Script" uid="uid://batxx0jfofa74" path="res://scripts/ui/start_menu/start_menu_option_dialog.gd" id="61_pnpk5"]

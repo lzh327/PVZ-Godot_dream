@@ -44,5 +44,4 @@ card_order_plant = Dictionary[int, int]({
 9: 45
 })
 create_new_card_speed = 1.5
-is_mode_column = true
 metadata/_custom_type_script = "uid://bjt3l56exxmdw"

@@ -1,23 +1,9 @@
-[gd_resource type="Resource" script_class="ResourceLevelData" load_steps=3 format=3 uid="uid://bu0iybyn3lfrt"]
+[gd_resource type="Resource" script_class="ResourceLevelData" load_steps=3 format=3 uid="uid://n4ag8qfqegwh"]
 
 [ext_resource type="Script" uid="uid://bjt3l56exxmdw" path="res://scripts/resources/level/level_data.gd" id="1_0covv"]
 [ext_resource type="Script" uid="uid://bke3sg5otco7s" path="res://scripts/resources/level/pre_plant_in_level.gd" id="1_84rgi"]
 
 [resource]
 script = ExtResource("1_0covv")
-max_wave = 20
-is_bungi = true
-is_seed_rain = true
-start_sun = 12810
-pre_choosed_card_list_zombie = Array[int]([4])
-all_card_plant_type_probability_seed_rain = Dictionary[int, int]({
-1003: 1
-})
-plant_cell_col_j = 7
-plant_cell_can_use = Dictionary[String, bool]({
-"left_can_plant": true,
-"left_can_zombie": false,
-"right_can_plant": true,
-"right_can_zombie": true
-})
+start_sun = 5210
 metadata/_custom_type_script = "uid://bjt3l56exxmdw"

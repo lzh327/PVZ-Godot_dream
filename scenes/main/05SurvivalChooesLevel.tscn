@@ -450,129 +450,129 @@ scale = Vector2(0.6, 0.6)
 character_init_type = 1
 
 [node name="Anim_innerarm3" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_innerarm" index="0"]
-position = Vector2(26.641598, 83.22479)
-rotation = 6.125966
+position = Vector2(26.633871, 84.83968)
+rotation = 6.1057243
 
 [node name="Anim_innerarm2" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_innerarm" index="1"]
-position = Vector2(25.19168, 69.13312)
-rotation = 6.125966
+position = Vector2(24.860321, 69.92065)
+rotation = 6.1057243
 
 [node name="Anim_innerarm1" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_innerarm" index="2"]
-position = Vector2(25.833443, 48.433113)
-rotation = 6.1933055
+position = Vector2(24.773548, 49.3471)
+rotation = 6.1702003
 
 [node name="Zombie_flaghand" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_flaghand" index="0"]
-position = Vector2(-8.433278, 53.441433)
-rotation = 5.654579
-scale = Vector2(0.7960832, 0.7960832)
+position = Vector2(-8.913225, 54.007416)
+rotation = 5.6497316
+scale = Vector2(0.79613227, 0.79613227)
 
 [node name="Zombie_flagpole" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_flag" index="0"]
-position = Vector2(9.699018, 0.050941467)
-rotation = -0.57658225
+position = Vector2(8.378375, 0.04394436)
+rotation = -0.586378
 
 [node name="Zombie_flag" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_flag" index="1"]
-position = Vector2(11.699001, 0.050941467)
-rotation = -0.57658225
+position = Vector2(10.378357, 0.04394436)
+rotation = -0.586378
 
 [node name="Zombie_innerarm_screendoor" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_innerarm_screendoor" index="0"]
-position = Vector2(1.8584018, 52.016476)
+position = Vector2(1.3, 52.380966)
 
 [node name="Zombie_neck" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect" index="5"]
-position = Vector2(28.400164, 36.608154)
-rotation = -0.067335874
-scale = Vector2(0.835, 0.795)
+position = Vector2(27.652905, 36.933872)
+rotation = -0.079721674
+scale = Vector2(0.83513224, 0.796)
 
 [node name="Anim_head1" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_head" index="0"]
-position = Vector2(3.4252875, 13.199671)
-rotation = -0.10267849
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(1.1603222, 16.06613)
+rotation = -0.17391378
 
 [node name="Zombie_innerleg_upper" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/leg" index="0"]
-position = Vector2(43.99168, 77.73328)
-rotation = -0.09322552
-scale = Vector2(0.799, 0.9321631)
+position = Vector2(43.913227, 77.77355)
+rotation = -0.09648304
+scale = Vector2(0.799, 0.92656124)
+skew = 1.07418465e-07
 
 [node name="Zombie_innerleg_lower" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/leg" index="1"]
-position = Vector2(34.54992, 89.48336)
-rotation = 0.1509667
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(34.420643, 89.42645)
+rotation = 0.14442873
+scale = Vector2(0.799, 0.799)
 
 [node name="Zombie_body" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect" index="8"]
-position = Vector2(28.100164, 35.808155)
-rotation = -0.05904549
+position = Vector2(27.352903, 36.333874)
+rotation = -0.074485675
+scale = Vector2(0.8, 0.8)
 
 [node name="Zombie_duckytube" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect" index="9"]
 visible = true
 
 [node name="Zombie_duckytube" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_duckytube" index="0"]
-position = Vector2(-0.3665571, 49.533115)
-rotation = -0.034903463
-
-[node name="Zombie_tie" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_tie" index="0"]
-position = Vector2(23.841763, 53.891514)
-rotation = 6.053095
+position = Vector2(-0.7867741, 49.880966)
+rotation = -0.04224798
 scale = Vector2(0.799, 0.799)
 
+[node name="Zombie_tie" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_tie" index="0"]
+position = Vector2(23.42645, 52.801613)
+rotation = 6.1707807
+scale = Vector2(0.79886776, 0.81371933)
+
 [node name="Anim_head2" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_head2" index="0"]
-position = Vector2(13.800164, 43.607994)
-rotation = -0.0866766
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(13.279355, 47.18516)
+rotation = -0.23273715
 
 [node name="Anim_tongue" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_tongue" index="0"]
-position = Vector2(21.616804, 43.633114)
-rotation = 6.500475
-scale = Vector2(0.798, 0.7683328)
-skew = 0.025889186
+position = Vector2(21.139679, 45.97936)
+rotation = 6.4937057
+scale = Vector2(0.798, 0.7892484)
+skew = 0.15137058
 
 [node name="Zombie_mustache" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_mustache" index="0"]
-position = Vector2(3.6918447, 35.491352)
-rotation = -0.10267849
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(2.9661298, 38.166126)
+rotation = -0.17391378
 
 [node name="Anim_screendoor" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_screendoor" index="0"]
-position = Vector2(-3.7998357, 36.149754)
-rotation = -0.089298904
-scale = Vector2(0.798, 0.798)
+position = Vector2(-4.2603226, 36.680965)
+rotation = -0.08844868
+scale = Vector2(0.79813224, 0.79813224)
 
 [node name="Zombie_innerarm_screendoor_hand" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_innerarm_screendoor_hand" index="0"]
-position = Vector2(-3.1499178, 54.633114)
-rotation = -0.10137164
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(-3.573548, 54.628063)
+rotation = -0.09671396
+scale = Vector2(0.7991323, 0.7991323)
 
 [node name="Zombie_outerarm_screendoor" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_screendoor" index="0"]
-position = Vector2(31.425123, 44.591515)
-rotation = -0.09366114
+position = Vector2(31.052904, 45.3471)
+rotation = -0.10020396
+scale = Vector2(0.799, 0.799)
 
 [node name="Zombie_outerarm_hand" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_hand" index="0"]
-position = Vector2(35.96672, 84.783195)
-rotation = 6.1460333
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(35.03387, 86.366135)
+rotation = 6.1543636
+scale = Vector2(0.799, 0.799)
 
 [node name="Zombie_outerarm_upper" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_upper" index="0"]
-position = Vector2(42.416805, 43.56656)
-rotation = 6.1540337
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(41.82645, 43.947098)
+rotation = 6.1543636
 
 [node name="Zombie_outerarm_lower" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_lower" index="0"]
-position = Vector2(37.95008, 67.56656)
-rotation = 6.1428328
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(37.17355, 67.86032)
+rotation = 6.1543636
+scale = Vector2(0.799, 0.799)
 
 [node name="Anim_hair" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_hair" index="0"]
-position = Vector2(-0.59967124, 11.007991)
-rotation = -0.10267849
-scale = Vector2(0.79908323, 0.79908323)
-skew = 1.8336073e-07
+position = Vector2(-3.0264518, 15.024841)
+rotation = -0.2035562
+scale = Vector2(0.7991323, 0.799)
+skew = 0.02964257
 
 [node name="Anim_cone" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_cone" index="0"]
-position = Vector2(3.6504111, -11.525288)
-rotation = -0.12013149
-scale = Vector2(0.796, 0.796)
+position = Vector2(-3.8290372, -6.37677)
+rotation = -0.27087492
+scale = Vector2(0.795, 0.795)
 
 [node name="Anim_bucket" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_bucket" index="0"]
-position = Vector2(-3.9911873, -2.133772)
-rotation = -0.12580056
-scale = Vector2(0.798, 0.798)
+position = Vector2(-10.130649, 4.689359)
+rotation = -0.30229092
+scale = Vector2(0.797, 0.797)
 
 [node name="ProgressBarHpArmor2" parent="AllPage/GridContainer/ChooseLevelButton8/Panel/TextureRect/Zombie001Norm/HpComponent/VBoxContainer/Armor2Control" index="0"]
 value = 0.5
@@ -825,129 +825,129 @@ scale = Vector2(0.6, 0.6)
 character_init_type = 1
 
 [node name="Anim_innerarm3" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_innerarm" index="0"]
-position = Vector2(26.641598, 83.22479)
-rotation = 6.125966
+position = Vector2(26.633871, 84.83968)
+rotation = 6.1057243
 
 [node name="Anim_innerarm2" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_innerarm" index="1"]
-position = Vector2(25.19168, 69.13312)
-rotation = 6.125966
+position = Vector2(24.860321, 69.92065)
+rotation = 6.1057243
 
 [node name="Anim_innerarm1" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_innerarm" index="2"]
-position = Vector2(25.833443, 48.433113)
-rotation = 6.1933055
+position = Vector2(24.773548, 49.3471)
+rotation = 6.1702003
 
 [node name="Zombie_flaghand" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_flaghand" index="0"]
-position = Vector2(-8.433278, 53.441433)
-rotation = 5.654579
-scale = Vector2(0.7960832, 0.7960832)
+position = Vector2(-8.913225, 54.007416)
+rotation = 5.6497316
+scale = Vector2(0.79613227, 0.79613227)
 
 [node name="Zombie_flagpole" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_flag" index="0"]
-position = Vector2(9.699018, 0.050941467)
-rotation = -0.57658225
+position = Vector2(8.378375, 0.04394436)
+rotation = -0.586378
 
 [node name="Zombie_flag" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_flag" index="1"]
-position = Vector2(11.699001, 0.050941467)
-rotation = -0.57658225
+position = Vector2(10.378357, 0.04394436)
+rotation = -0.586378
 
 [node name="Zombie_innerarm_screendoor" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_innerarm_screendoor" index="0"]
-position = Vector2(1.8584018, 52.016476)
+position = Vector2(1.3, 52.380966)
 
 [node name="Zombie_neck" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect" index="5"]
-position = Vector2(28.400164, 36.608154)
-rotation = -0.067335874
-scale = Vector2(0.835, 0.795)
+position = Vector2(27.652905, 36.933872)
+rotation = -0.079721674
+scale = Vector2(0.83513224, 0.796)
 
 [node name="Anim_head1" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_head" index="0"]
-position = Vector2(3.4252875, 13.199671)
-rotation = -0.10267849
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(1.1603222, 16.06613)
+rotation = -0.17391378
 
 [node name="Zombie_innerleg_upper" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/leg" index="0"]
-position = Vector2(43.99168, 77.73328)
-rotation = -0.09322552
-scale = Vector2(0.799, 0.9321631)
+position = Vector2(43.913227, 77.77355)
+rotation = -0.09648304
+scale = Vector2(0.799, 0.92656124)
+skew = 1.07418465e-07
 
 [node name="Zombie_innerleg_lower" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/leg" index="1"]
-position = Vector2(34.54992, 89.48336)
-rotation = 0.1509667
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(34.420643, 89.42645)
+rotation = 0.14442873
+scale = Vector2(0.799, 0.799)
 
 [node name="Zombie_body" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect" index="8"]
-position = Vector2(28.100164, 35.808155)
-rotation = -0.05904549
+position = Vector2(27.352903, 36.333874)
+rotation = -0.074485675
+scale = Vector2(0.8, 0.8)
 
 [node name="Zombie_duckytube" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect" index="9"]
 visible = true
 
 [node name="Zombie_duckytube" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_duckytube" index="0"]
-position = Vector2(-0.3665571, 49.533115)
-rotation = -0.034903463
-
-[node name="Zombie_tie" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_tie" index="0"]
-position = Vector2(23.841763, 53.891514)
-rotation = 6.053095
+position = Vector2(-0.7867741, 49.880966)
+rotation = -0.04224798
 scale = Vector2(0.799, 0.799)
 
+[node name="Zombie_tie" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_tie" index="0"]
+position = Vector2(23.42645, 52.801613)
+rotation = 6.1707807
+scale = Vector2(0.79886776, 0.81371933)
+
 [node name="Anim_head2" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_head2" index="0"]
-position = Vector2(13.800164, 43.607994)
-rotation = -0.0866766
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(13.279355, 47.18516)
+rotation = -0.23273715
 
 [node name="Anim_tongue" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_tongue" index="0"]
-position = Vector2(21.616804, 43.633114)
-rotation = 6.500475
-scale = Vector2(0.798, 0.7683328)
-skew = 0.025889186
+position = Vector2(21.139679, 45.97936)
+rotation = 6.4937057
+scale = Vector2(0.798, 0.7892484)
+skew = 0.15137058
 
 [node name="Zombie_mustache" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_mustache" index="0"]
-position = Vector2(3.6918447, 35.491352)
-rotation = -0.10267849
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(2.9661298, 38.166126)
+rotation = -0.17391378
 
 [node name="Anim_screendoor" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_screendoor" index="0"]
-position = Vector2(-3.7998357, 36.149754)
-rotation = -0.089298904
-scale = Vector2(0.798, 0.798)
+position = Vector2(-4.2603226, 36.680965)
+rotation = -0.08844868
+scale = Vector2(0.79813224, 0.79813224)
 
 [node name="Zombie_innerarm_screendoor_hand" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_innerarm_screendoor_hand" index="0"]
-position = Vector2(-3.1499178, 54.633114)
-rotation = -0.10137164
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(-3.573548, 54.628063)
+rotation = -0.09671396
+scale = Vector2(0.7991323, 0.7991323)
 
 [node name="Zombie_outerarm_screendoor" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_screendoor" index="0"]
-position = Vector2(31.425123, 44.591515)
-rotation = -0.09366114
+position = Vector2(31.052904, 45.3471)
+rotation = -0.10020396
+scale = Vector2(0.799, 0.799)
 
 [node name="Zombie_outerarm_hand" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_hand" index="0"]
-position = Vector2(35.96672, 84.783195)
-rotation = 6.1460333
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(35.03387, 86.366135)
+rotation = 6.1543636
+scale = Vector2(0.799, 0.799)
 
 [node name="Zombie_outerarm_upper" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_upper" index="0"]
-position = Vector2(42.416805, 43.56656)
-rotation = 6.1540337
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(41.82645, 43.947098)
+rotation = 6.1543636
 
 [node name="Zombie_outerarm_lower" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Zombie_outerarm_lower" index="0"]
-position = Vector2(37.95008, 67.56656)
-rotation = 6.1428328
-scale = Vector2(0.79908323, 0.79908323)
+position = Vector2(37.17355, 67.86032)
+rotation = 6.1543636
+scale = Vector2(0.799, 0.799)
 
 [node name="Anim_hair" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_hair" index="0"]
-position = Vector2(-0.59967124, 11.007991)
-rotation = -0.10267849
-scale = Vector2(0.79908323, 0.79908323)
-skew = 1.8336073e-07
+position = Vector2(-3.0264518, 15.024841)
+rotation = -0.2035562
+scale = Vector2(0.7991323, 0.799)
+skew = 0.02964257
 
 [node name="Anim_cone" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_cone" index="0"]
-position = Vector2(3.6504111, -11.525288)
-rotation = -0.12013149
-scale = Vector2(0.796, 0.796)
+position = Vector2(-3.8290372, -6.37677)
+rotation = -0.27087492
+scale = Vector2(0.795, 0.795)
 
 [node name="Anim_bucket" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/Body/BodyCorrect/Anim_bucket" index="0"]
-position = Vector2(-3.9911873, -2.133772)
-rotation = -0.12580056
-scale = Vector2(0.798, 0.798)
+position = Vector2(-10.130649, 4.689359)
+rotation = -0.30229092
+scale = Vector2(0.797, 0.797)
 
 [node name="ProgressBarHpArmor2" parent="AllPage/GridContainer/ChooseLevelButton13/Panel/TextureRect/Zombie001Norm/HpComponent/VBoxContainer/Armor2Control" index="0"]
 value = 0.5

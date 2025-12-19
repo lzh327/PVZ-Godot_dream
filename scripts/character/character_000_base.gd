@@ -23,7 +23,6 @@ var all_timer:Dictionary[E_TimerType, Timer] = {
 	E_TimerType.IceFreeze:null,
 	E_TimerType.Butter:null,
 }
-var a :Dictionary = {"111":1}
 #endregion
 
 #region 基础属性
@@ -44,6 +43,7 @@ var is_zombie_mode:=false
 @export_group("角色速度")
 ## 角色速度随机范围
 @export var random_speed_range :Vector2 = Vector2(0.9, 1.1)
+## 角色所在行
 var lane:int = -1
 ## 速度改变量
 var influence_speed_factors :Dictionary[E_Influence_Speed_Factor, float]= {
@@ -58,6 +58,7 @@ enum E_Influence_Speed_Factor{
 
 	EatGarlic,		## 啃食大蒜后短时间停止
 }
+## 是否被魅惑
 var is_hypno:bool = false
 ## 冰冻结束后减速时间（每次被冰冻时赋值）
 var time_ice_end_decelerate := 5.0
@@ -149,6 +150,7 @@ func ready_norm():
 	## 我是僵尸模式，随机速度变量为1
 	if is_zombie_mode:
 		random_speed_range = Vector2(1,1)
+	## 舞王重写该方法，要在帧末尾调用，不然会保存
 	call_deferred("init_random_speed")
 
 ## 初始化展示角色
@@ -191,7 +193,7 @@ func character_death():
 func be_attack_to_death(trigger_be_attack_SFX:=true):
 	hp_component.Hp_loss(hp_component.get_all_hp(), Global.AttackMode.Norm, true, trigger_be_attack_SFX)
 
-## 死亡不消失(海草\被碾压\TODO:小推车)
+## 死亡不消失(海草\被碾压)
 func character_death_not_disappear():
 	pass
 

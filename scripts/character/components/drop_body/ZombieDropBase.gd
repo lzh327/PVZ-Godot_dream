@@ -72,8 +72,18 @@ func acitvate_it(control_x:float = 0):
 		ground_y = 200
 		is_swimming = true
 
+
 	var zombie_lane := Global.main_game.zombie_manager.all_zombie_rows[zombie.lane]
 	reparent(zombie_lane)
+
+	## 从地下出现的僵尸修改其陆地位置
+	if zombie.is_body_up_from_ground:
+		ground_y = zombie_lane.zombie_create_position.global_position.y - global_position.y
+		#var drop_body_glo_pos:Vector2 = drop_body.global_position
+		#global_position.y = zombie_lane.zombie_create_position.global_position.y
+		#drop_body.global_position = drop_body_glo_pos
+
+
 
 ## 被小推车推倒时
 func acitvate_it_on_ground(global_pos_x:float):

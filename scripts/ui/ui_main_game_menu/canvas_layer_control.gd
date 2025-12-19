@@ -11,6 +11,7 @@ class_name CanvasLayerConsole
 @onready var check_box_7: CheckBox = $OptionBG/HBoxContainer/VBoxContainer/CheckBox7
 @onready var check_box_8: CheckBox = $OptionBG/HBoxContainer/VBoxContainer/CheckBox8
 @onready var check_box_9: CheckBox = $OptionBG/HBoxContainer/VBoxContainer2/CheckBox9
+@onready var check_box_10: CheckBox = $OptionBG/HBoxContainer/VBoxContainer2/CheckBox10
 
 
 func _ready() -> void:
@@ -29,6 +30,8 @@ func init_console_panel():
 	check_box_7.button_pressed = Global.card_slot_top_mouse_focus
 	check_box_8.button_pressed = Global.fog_is_static
 	check_box_9.button_pressed = Global.plant_be_shovel_front
+	check_box_10.button_pressed = Global.open_all_level
+	
 
 ## 关闭控制台
 func _on_texture_button_pressed() -> void:
@@ -59,8 +62,6 @@ func _on_check_box_4_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-
-
 func _on_check_box_5_toggled(toggled_on: bool) -> void:
 	Global.display_plant_HP_label = toggled_on
 
@@ -76,3 +77,5 @@ func _on_check_box_8_toggled(toggled_on: bool) -> void:
 func _on_check_box_9_toggled(toggled_on: bool) -> void:
 	Global.plant_be_shovel_front = toggled_on
 
+func _on_check_box_10_toggled(toggled_on: bool) -> void:
+	Global.open_all_level = toggled_on

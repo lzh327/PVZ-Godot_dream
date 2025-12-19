@@ -434,8 +434,10 @@ var fog_is_static := false:
 
 signal signal_fog_is_static
 
-
 var plant_be_shovel_front := true	## 预铲除植物本格置顶
+
+## 打开所有关卡，默认为冒险开放1关，其余开放三关,无尽模式默认开放
+var open_all_level := false
 
 var time_scale := 1.0
 
@@ -456,6 +458,7 @@ func save_config():
 	config.set_value("user_control", "card_slot_top_mouse_focus", card_slot_top_mouse_focus)
 	config.set_value("user_control", "fog_is_static", fog_is_static)
 	config.set_value("user_control", "plant_be_shovel_front", plant_be_shovel_front)
+	config.set_value("user_control", "open_all_level", open_all_level)
 
 	config.save(config_path)
 
@@ -490,7 +493,7 @@ func load_config():
 	card_slot_top_mouse_focus = config.get_value("user_control", "card_slot_top_mouse_focus", false)
 	fog_is_static = config.get_value("user_control", "fog_is_static", false)
 	plant_be_shovel_front = config.get_value("user_control", "plant_be_shovel_front", true)
-
+	open_all_level = config.get_value("user_control", "open_all_level", false)
 #endregion
 
 #region 当前植物和僵尸

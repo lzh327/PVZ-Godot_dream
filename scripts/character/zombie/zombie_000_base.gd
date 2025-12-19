@@ -19,6 +19,8 @@ class_name Zombie000Base
 var is_mini_zombie:= false
 ## 是否为罐子创建的僵尸
 var is_pot_zombie:=false
+## 是否正在从地下出现
+var is_body_up_from_ground := false
 
 @export_subgroup("僵尸铁器")
 ## 僵尸铁器类型
@@ -351,9 +353,9 @@ func be_mowered_run(lawn_mover:LawnMover):
 func be_mowered_run_anim_norm(lawn_mover:LawnMover):
 	## 先掉落防具
 	hp_component = hp_component as HpComponentZombie
-	if hp_component.max_hp_armor1 != 0:
+	if hp_component.curr_hp_armor1 != 0:
 		hp_stage_change_component.judge_body_change_armor(0, 0, true, true)
-	if hp_component.max_hp_armor2 != 0:
+	if hp_component.curr_hp_armor2 != 0:
 		hp_stage_change_component.judge_body_change_armor(0, 0, true, false)
 
 	## 修改本体掉落物（手和头）
@@ -448,7 +450,9 @@ func be_blow_away():
 
 ## 从地下出来
 func zombie_up_from_ground():
+	is_body_up_from_ground = true
 	await body.zombie_body_up_from_ground()
+	is_body_up_from_ground = false
 
 ## 跳跃被高坚果停止
 func jump_be_stop(_plant:Plant000Base):

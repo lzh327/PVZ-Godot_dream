@@ -25,8 +25,8 @@ position = Vector2(50, 50)
 shape = SubResource("RectangleShape2D_7imw8")
 
 [node name="Area2DReal" type="Area2D" parent="."]
-collision_layer = 2048
-collision_mask = 4
+collision_layer = 4096
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DReal"]
 position = Vector2(50, 50)
@@ -44,4 +44,3 @@ texture = ExtResource("2_7imw8")
 centered = false
 
 [connection signal="area_entered" from="Area2DDetect" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Area2DReal" to="." method="_on_area_2d_area_entered"]

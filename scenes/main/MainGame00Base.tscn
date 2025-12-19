@@ -431,6 +431,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ybhi1")
 
 [node name="CanvasLayerUI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
 layer = 50
 
 [node name="CoinBankLabel" parent="CanvasLayerUI" instance=ExtResource("30_xh73d")]
